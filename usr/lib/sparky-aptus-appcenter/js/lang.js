@@ -22,7 +22,8 @@ document.write('<script src="./lang/info/' + language + '.js" type="text/javascr
 document.write('<script src="./lang/internet/' + language + '.js" type="text/javascript"></script>');
 document.write('<script src="./lang/multimedia/' + language + '.js" type="text/javascript"></script>');
 document.write('<script src="./lang/office/' + language + '.js" type="text/javascript"></script>');
-// network sub-categories
-document.write('<script src="./lang/netemail/' + language + '.js" type="text/javascript"></script>');
-document.write('<script src="./lang/netothers/' + language + '.js" type="text/javascript"></script>');
-document.write('<script src="./lang/netwebbrowsers/' + language + '.js" type="text/javascript"></script>');
+// sub-categories
+document.write('<script src="./lang/web/' + language + '.js" type="text/javascript"></script>');
+//document.write('<script src="./lang/netothers/' + language + '.js" type="text/javascript"></script>');
+//document.write('<script src="./lang/netp2p/' + language + '.js" type="text/javascript"></script>');
+//document.write('<script src="./lang/netwebbrowsers/' + language + '.js" type="text/javascript"></script>');

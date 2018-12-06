@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# created by Piotr "MoroS" Mrożek 2018
-# szybki tutorial kodow wyjscia YAD:
-# exit 0 - Yad obsluzy URL (np. przejdzie do nastepnej strony)
-# exit 1 - Yad zignoruje URL (nie zrobi nic)
-# exit 2 - Yad uzna to za URL do sciagniecia pliku (nie testowalem tego jeszcze)
-# last update by pavroo Dec 6, 2018
+# Created by Piotr "MoroS" Mrożek 2018
+# Quick guide of YAD output codes:
+# exit 0 - Yad supports URL (goes to a next page)
+# exit 1 - Yad ignores URL (does nothing)
+# exit 2 - Yad treats URL as a file downloading (not tested yet)
+# Last update by pavroo Dec 6, 2018
 
 URI="$1"
 
@@ -36,23 +36,32 @@ if [[ "$URI" == aptus* ]]; then
 	
 	echo "running a command for $CMD..."
 
-	CHECKWEBEMAIL=`echo "$CMD" | grep email`
-	CHECKWEBOTHER=`echo "$CMD" | grep webother`
-	CHECKWEBBROWSER=`echo "$CMD" | grep webbrowser`
+	#CHECKWEBEMAIL=`echo "$CMD" | grep webemail`
+	#CHECKWEBP2P=`echo "$CMD" | grep webp2p`
+	#CHECKWEBOTHER=`echo "$CMD" | grep webother`
+	CHECKWEB=`echo "$CMD" | grep web`
 
-	# section: web email
-	if [ "$CHECKWEBEMAIL" != "" ]; then
-		RUNWEBEMAIL=`echo "$CMD" | sed -e 's/webEMAIL_//'`
-		/usr/lib/sparky-aptus-appcenter/bin/aptus-internet $RUNWEBEMAIL
+	### section: internet ###
 
-	elif [ "$CHECKWEBOTHER" != "" ]; then
-		RUNWEBOTHER=`echo "$CMD" | sed -e 's/webother_//'`
-		/usr/lib/sparky-aptus-appcenter/bin/aptus-internet $RUNWEBOTHER
+	# sub-section internet: web email
+	#if [ "$CHECKWEBEMAIL" != "" ]; then
+	#	RUNWEBEMAIL=`echo "$CMD" | sed -e 's/webemail_//'`
+	#	/usr/lib/sparky-aptus-appcenter/bin/aptus-internet $RUNWEBEMAIL
 
-	# section: web browser
-	elif [ "$CHECKWEBBROWSER" != "" ]; then
-		RUNWEBBROWSER=`echo "$CMD" | sed -e 's/webbrowser_//'`
-		/usr/lib/sparky-aptus-appcenter/bin/aptus-internet $RUNWEBBROWSER
+	# sub-section internet: web p2p 
+	#elif [ "$CHECKWEBP2P"= "" ]; then
+	#	RUNWEBP2P=`echo "$CMD" | sed -e 's/webp2p_//'`
+	#	/usr/lib/sparky-aptus-appcenter/bin/aptus-internet $RUNWEBP2P
+
+	# sub-section internet: web other 
+	#elif [ "$CHECKWEBOTHER" != "" ]; then
+	#	RUNWEBOTHER=`echo "$CMD" | sed -e 's/webother_//'`
+	#	/usr/lib/sparky-aptus-appcenter/bin/aptus-internet $RUNWEBOTHER
+
+	# sub-section internet: web browser
+	if [ "$CHECKWEB" != "" ]; then
+		RUNWEB=`echo "$CMD" | sed -e 's/web_//'`
+		/usr/lib/sparky-aptus-appcenter/bin/aptus-internet $RUNWEB
 	else
 		echo "unknown command... exiting"
 	fi

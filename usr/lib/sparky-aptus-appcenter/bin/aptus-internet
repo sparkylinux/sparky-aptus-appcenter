@@ -32,7 +32,7 @@ if [ "$testroot" != "root" ]; then
 	exit 1
 fi
 
-DIALOG="`which yad` --width=450 --height=250 --window-icon=system-software-install --image=system-software-install"
+DIALOG="`which yad` --width=450 --height=250 --window-icon=system-software-install --image=system-software-install --center"
 TEXT="--text="
 TITLE="--title="
 OKEXIT="--button=Ok:0 --button=$LOCAL001:1"
@@ -64,46 +64,44 @@ ARCH64="`uname -m | grep x86_64`"
 ARCH32="`uname -m | grep 686`"
 ARCHARM="`uname -m | grep arm`"
 
-if [ "$1" = "" ]; then
-	echo "Usage of sparky-webbrowser-installer is as follows:"
-	echo ""
-	echo "sudo sparky-webbrowser-installer WEB-BROWSER-NAME"
-	echo ""
-	echo "Example:"
-	echo "sudo sparky-webbrowser-installer midori"
-	echo ""
-	exit 1
-fi
-
 # 64bit only are: brave, cyberfox, google-chrome-stable, opera, waterfox
 case $1 in
   ##### email clients #####
   alpine)
 	PACKAGE="alpine"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   claws-mail)
 	PACKAGE="claws-mail"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   evolution)
 	PACKAGE="evolution"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   geary)
 	PACKAGE="geary"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   kmail)
 	PACKAGE="kmail"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   mutt)
 	PACKAGE="mutt"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   sylpheed)
 	PACKAGE="sylpheed"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   thunderbird)
 	PACKAGE="thunderbird"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   trojita)
 	PACKAGE="trojita"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   ##### web browsers #####
   brave)
@@ -112,15 +110,15 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="brave"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   chromium)
 	PACKAGE="chromium"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   conkeror)
 	PACKAGE="conkeror"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   cyberfox)
 	if [ "$ARCH64" = "" ]; then
@@ -128,11 +126,11 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="cyberfox"
-	CHECKPACKAGE="/usr/cyberfox/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   dillo)
 	PACKAGE="dillo"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   dooble)
 	if [ "$ARCHARM" != "" ]; then
@@ -140,15 +138,15 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="dooble"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   elinks)
 	PACKAGE="elinks"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   epiphany)
 	PACKAGE="epiphany-browser"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   falkon)
 	if [ "$ARCHARM" != "" ]; then
@@ -156,11 +154,11 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="falkon"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   firefox-esr)
 	PACKAGE="firefox-esr"
-	CHECKPACKAGE="/usr/share/doc/$PACKAGE/copyright"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   firefox-latest)
 	if [ "$ARCHARM" != "" ]; then
@@ -172,7 +170,11 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="firefox"
-	CHECKPACKAGE="/usr/share/doc/$PACKAGE/copyright"
+	if [ -f /usr/share/doc/$PACKAGE/copyright ]; then
+		CHECKPACKAGE="$PACKAGE"
+	else
+		CHECKPACKAGE=""
+	fi
      ;;
   google-chrome-stable)
 	if [ "$ARCH64" = "" ]; 	then
@@ -180,7 +182,7 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="google-chrome-stable"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   icecat)
 	if [ "$ARCHARM" != "" ]; then
@@ -188,7 +190,7 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="icecat"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   iridium)
 	if [ "$ARCH64" = "" ]; then
@@ -196,7 +198,7 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="iridium-browser"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   iron)
 	if [ "$ARCHARM" != "" ]; then
@@ -204,23 +206,23 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="iron"
-	CHECKPACKAGE="/usr/bin/srware-iron"
+	CHECKPACKAGE=`which srware-iron`
      ;;
   konqueror)
 	PACKAGE="konqueror"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   links2)
 	PACKAGE="links2"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   lynx)
 	PACKAGE="lynx"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   midori)
 	PACKAGE="midori"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
    min)
 	if [ "$ARCHARM" != "" ]; then
@@ -228,7 +230,7 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="min"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   netsurf)
 	if [ "$SPARKYVERCHECK4" = "" ] || [ "$DEBIANVERCHECK9" = "" ]; then
@@ -236,7 +238,7 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="netsurf"
-	CHECKPACKAGE="/usr/bin/netsurf-gtk"
+	CHECKPACKAGE=`which netsurf-gtk`
      ;;
   opera-stable)
 	if [ "$ARCH64" = "" ]; then
@@ -244,11 +246,11 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="opera-stable"
-	CHECKPACKAGE="/usr/bin/opera"
+	CHECKPACKAGE=`which opera`
      ;;
   otter-browser)
 	PACKAGE="otter-browser"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   palemoon)
 	if [ "$ARCHARM" != "" ]; then
@@ -256,7 +258,7 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="palemoon"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   seamonkey)
 	if [ "$ARCHARM" != "" ]; then
@@ -264,7 +266,7 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="seamonkey"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   tor-browser)
 	if [ "$ARCHARM" != "" ]; then
@@ -272,15 +274,15 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="tor-browser"
-	CHECKPACKAGE="/usr/bin/start-tor-browser"
+	CHECKPACKAGE=`which start-tor-browser`
      ;;
   vivaldi-stable)
 	PACKAGE="vivaldi-stable"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   w3m)
 	PACKAGE="w3m"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   waterfox)
 	if [ "$ARCH64" = "" ]; then
@@ -288,7 +290,7 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="waterfox"
-	CHECKPACKAGE="/usr/bin/$PACKAGE"
+	CHECKPACKAGE=`which $PACKAGE`
      ;;
   ##### web others #####
   google-earth)
@@ -297,18 +299,18 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="google-earth"
-	CHECKPACKAGE="/usr/bin/$PACKAGE-pro"
+	CHECKPACKAGE=`which google-earth-pro`
 	if [ "$ARCH64" != "" ]; then
-		PACKEARTH="PACKE64"
+		PACKEARTH="$PACKE64"
 	else
-		PACKEARTH="PACKE32"
+		PACKEARTH="$PACKE32"
 	fi
      ;;
 esac
 
 # install, reinstall or remove google-chrome
 if [ "$1" = "google-chrome-stable" ]; then
-	if [ -f "$CHECKPACKAGE" ]; then
+	if [ "$CHECKPACKAGE" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
 		ret=$?
 		if [[ $ret -eq 3 ]]; then
@@ -322,13 +324,11 @@ if [ "$1" = "google-chrome-stable" ]; then
 			mkdir -p $WORKDIR
 			cd $WORKDIR
 			$SPARKYXTERM "wget $SERVERG/$PACKG64"
-			$SPARKYXTERM "dpkg -i $PACKG64"
-			$SPARKYXTERM "apt-get update"
-			$SPARKYXTERM "$INSTALL -f -y"
+			$SPARKYXTERM "$INSTALL ./$PACKG64"
 		else
 			exit 1
 		fi
-	elif [ ! -f "$CHECKPACKAGE" ]; then
+	elif [ "$CHECKPACKAGE" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL014" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
 		if [ "$?" = "0" ]; then
 			if [ "$PINGTEST" = "" ]; then
@@ -339,8 +339,8 @@ if [ "$1" = "google-chrome-stable" ]; then
 			mkdir -p $WORKDIR
 			cd $WORKDIR
 			$SPARKYXTERM "wget $SERVERG/$PACKG64"
-			$SPARKYXTERM "apt-get install ./$PACKG64"
-			if [ ! -f "$CHECKPACKAGE" ]; then
+			$SPARKYXTERM "$INSTALL ./$PACKG64"
+			if [ "$CHECKPACKAGE" = "" ]; then
 				$DIALOG $TEXT"\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 				exit 1
 			else
@@ -355,7 +355,7 @@ if [ "$1" = "google-chrome-stable" ]; then
 
 # install, reinstall or remove google-earth
 elif [ "$1" = "google-earth" ]; then
-	if [ -f "$CHECKPACKAGE" ]; then
+	if [ "$CHECKPACKAGE" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
 		ret=$?
 		if [[ $ret -eq 3 ]]; then
@@ -369,13 +369,11 @@ elif [ "$1" = "google-earth" ]; then
 			mkdir -p $WORKDIR
 			cd $WORKDIR
 			$SPARKYXTERM "wget $SERVERE/$PACKEARTH"
-			$SPARKYXTERM "dpkg -i $PACKEARTH"
-			$SPARKYXTERM "apt-get update"
-			$SPARKYXTERM "$INSTALL -f -y"
+			$SPARKYXTERM "$INSTALL ./$PACKEARTH"
 		else
 			exit 1
 		fi
-	elif [ ! -f "$CHECKPACKAGE" ]; then
+	elif [ "$CHECKPACKAGE" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL014" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
 		if [ "$?" = "0" ]; then
 			if [ "$PINGTEST" = "" ]; then
@@ -386,8 +384,8 @@ elif [ "$1" = "google-earth" ]; then
 			mkdir -p $WORKDIR
 			cd $WORKDIR
 			$SPARKYXTERM "wget $SERVERE/$PACKEARTH"
-			$SPARKYXTERM "apt-get install ./$PACKEARTH"
-			if [ ! -f "$CHECKPACKAGE" ]; then
+			$SPARKYXTERM "$INSTALL ./$PACKEARTH"
+			if [ "$CHECKPACKAGE" = "" ]; then
 				$DIALOG $TEXT"\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 				exit 1
 			else
@@ -402,7 +400,7 @@ elif [ "$1" = "google-earth" ]; then
 
 # install, reinstall or remove anything else
 else
-	if [ -f "$CHECKPACKAGE" ]; then
+	if [ "$CHECKPACKAGE" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
 		ret=$?
 		if [[ $ret -eq 3 ]]; then
@@ -416,7 +414,7 @@ else
 		else
 			exit 1
 		fi
-	elif [ ! -f "$CHECKPACKAGE" ]; then
+	elif [ "$CHECKPACKAGE" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL014" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
 		if [ "$?" = "0" ]; then
 			if [ "$PINGTEST" = "" ]; then
@@ -424,7 +422,7 @@ else
 				exit 1
 			fi
 			$SPARKYXTERM "$INSTALL $PACKAGE"
-			if [ ! -f "$CHECKPACKAGE" ]; then
+			if [ "$CHECKPACKAGE" = "" ]; then
 				$DIALOG $TEXT"\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 				exit 1
 			else
