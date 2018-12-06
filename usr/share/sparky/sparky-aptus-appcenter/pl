@@ -1,0 +1,21 @@
+# Polish localization file for Sparky APTus AppCenter
+# It based on: webbrowser-installer, 
+# Copyright 2017 Paweł "pavroo" Pijanowski <pavroo@onet.eu> 2017/08/19
+# Under the GNU GPL v3
+# Last update 2018/11/30 by pavroo
+LOCAL001="Wyjście"
+LOCAL002="Instalacja Przeglądarki WWW"
+LOCAL003="Połączenie z internetem nieudane!\n\nPrawdopodobnie NIE jesteś połączony z internetem lub główny serwer repozytoriów jest niedostępny.\n\nSprawdź to i spróbuj ponownie."
+LOCAL004="Aplikacja jest dostępna tylko dla architektury amd64."
+LOCAL005="Wyjście..."
+LOCAL006="Twoja wersja systemu operacyjnego jest za stara aby zainstalować wybrany pakiet."
+LOCAL007="Ta aplikacja nie może być zainstalowany na obecnej wersji Debiana/Sparky.\n\n"
+LOCAL008="Usuń"
+LOCAL009="Reinstaluj"
+LOCAL010="Zainstaluj"
+LOCAL011="Ten pakiet jest już zainstalowany."
+LOCAL012="Co chcesz teraz zrobić?"
+LOCAL013="Coś poszło źle! \nPrawdopodobnie zatrzymałeś instalację lub połączenie z internetem jest uszkodzone lub ten pakiet nie jest dostępny dla wersji twojego systemu.\nSprawdź to i spróbuj ponownie."
+LOCAL014="Czy mam zainstalować pakiet, który wybrałeś?"
+LOCAL015="Pakiet został poprawnie zainstalowany."
+LOCAL016="Ten pakiet nie jest dostępny dla Twojej wersji systemu."

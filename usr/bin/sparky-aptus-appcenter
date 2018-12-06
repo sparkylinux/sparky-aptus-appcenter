@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo ""
+echo "Usage of sparky-aptus-appcenter is as follows:"
+echo "cd /usr/lib/sparky-aptus-appcenter"
+echo "ktsuss (or sudo) app-center"
+echo "Bugs report at sparkylinux.org forums, if you find any."
+echo ""
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+cd /usr/lib/sparky-aptus-appcenter
+ktsuss aptus-appcenter
+
+exit 0

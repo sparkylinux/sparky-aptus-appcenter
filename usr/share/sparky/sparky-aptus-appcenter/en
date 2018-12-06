@@ -1,0 +1,21 @@
+# English localization file for Sparky APTus AppCenter
+# It based on: webbrowser-installer, 
+# Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
+# Under the GNU GPL v3
+# Last update 2018/12/05 by pavroo
+LOCAL001="Exit"
+LOCAL002="Web Browser Installer"
+LOCAL003="Internet connection test failed!\n\nProbably you are NOT connected to the Internet or the main repository server is down.\n\nCheck it out and try again."
+LOCAL004="The application is available for amd64 architecture only."
+LOCAL005="Exiting..."
+LOCAL006="Your version of operating system is too old to install the package."
+LOCAL007="It can not be installed on your version of Debian/Sparky.\n\n..."
+LOCAL008="Remove"
+LOCAL009="Reinstall"
+LOCAL010="Install"
+LOCAL011="This package is already installed."
+LOCAL012="What would you like to do now?"
+LOCAL013="Something is wrong! \nProbably you have stopped the installation, or your internet connection is broken, or the package is not availabel for you system version.\nCheck it out and try again."
+LOCAL014="Should I install the package you have chosen?"
+LOCAL015="The package has been successfully installed."
+LOCAL016="This package is not available for your system version."

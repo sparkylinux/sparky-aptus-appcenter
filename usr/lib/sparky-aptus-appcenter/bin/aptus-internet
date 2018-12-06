@@ -1,0 +1,441 @@
+#!/bin/bash
+
+# Web application installer
+# Copyright 2017-2018 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2018/12/06 by pavroo
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep es`" != "" ]; then
+. $DEFLOCDIR/es
+elif [ "`cat /etc/default/locale | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+else
+. $DEFLOCDIR/en
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo "Must be root... Exiting now..."
+	exit 1
+fi
+
+DIALOG="`which yad` --width=450 --height=250 --window-icon=system-software-install --image=system-software-install"
+TEXT="--text="
+TITLE="--title="
+OKEXIT="--button=Ok:0 --button=$LOCAL001:1"
+MSGBOX="--button=Ok:0"
+BUTTONREMOVE="--button=$LOCAL008:3"
+BUTTONREINSTALL="--button=$LOCAL009:4"
+BUTTONINSTALL="--button=$LOCAL010:0"
+BUTTONEXIT="--button=$LOCAL001:1"
+TITLETEXT="$LOCAL002"
+PINGTEST=$(ping -c 1 debian.org | grep [0-9])
+WORKDIR="/tmp/sparky-chrome"
+SERVERG="https://dl.google.com/linux/direct"
+PACKG64="google-chrome-stable_current_amd64.deb"
+SERVERE="https://dl.google.com/dl/earth/client/current"
+PACKE32="google-earth-pro-stable_current_i386.deb"
+PACKE64="google-earth-pro-stable_current_amd64.deb"
+SPARKYVERCHECK4="`cat /etc/issue | grep 4`"
+DEBIANVERCHECK9="`cat /etc/issue | grep stretch`"
+if [ -f /usr/bin/sparky-xterm ];then
+	SPARKYXTERM="/usr/bin/sparky-xterm"
+else
+	echo "sparky-xterm is missing... Exiting..."
+	exit 1
+fi
+INSTALL="apt-get install"
+REINSTALL="apt-get install --reinstall"
+UNINSTALL="apt-get purge"
+ARCH64="`uname -m | grep x86_64`"
+ARCH32="`uname -m | grep 686`"
+ARCHARM="`uname -m | grep arm`"
+
+if [ "$1" = "" ]; then
+	echo "Usage of sparky-webbrowser-installer is as follows:"
+	echo ""
+	echo "sudo sparky-webbrowser-installer WEB-BROWSER-NAME"
+	echo ""
+	echo "Example:"
+	echo "sudo sparky-webbrowser-installer midori"
+	echo ""
+	exit 1
+fi
+
+# 64bit only are: brave, cyberfox, google-chrome-stable, opera, waterfox
+case $1 in
+  ##### email clients #####
+  alpine)
+	PACKAGE="alpine"
+     ;;
+  claws-mail)
+	PACKAGE="claws-mail"
+     ;;
+  evolution)
+	PACKAGE="evolution"
+     ;;
+  geary)
+	PACKAGE="geary"
+     ;;
+  kmail)
+	PACKAGE="kmail"
+     ;;
+  mutt)
+	PACKAGE="mutt"
+     ;;
+  sylpheed)
+	PACKAGE="sylpheed"
+     ;;
+  thunderbird)
+	PACKAGE="thunderbird"
+     ;;
+  trojita)
+	PACKAGE="trojita"
+     ;;
+  ##### web browsers #####
+  brave)
+	if [ "$ARCH64" = "" ]; then
+		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="brave"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  chromium)
+	PACKAGE="chromium"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  conkeror)
+	PACKAGE="conkeror"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  cyberfox)
+	if [ "$ARCH64" = "" ]; then
+		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="cyberfox"
+	CHECKPACKAGE="/usr/cyberfox/$PACKAGE"
+     ;;
+  dillo)
+	PACKAGE="dillo"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  dooble)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="dooble"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  elinks)
+	PACKAGE="elinks"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  epiphany)
+	PACKAGE="epiphany-browser"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  falkon)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="falkon"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  firefox-esr)
+	PACKAGE="firefox-esr"
+	CHECKPACKAGE="/usr/share/doc/$PACKAGE/copyright"
+     ;;
+  firefox-latest)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	if [ "$SPARKYVERCHECK4" != "" ] || [ "$DEBIANVERCHECK9" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="firefox"
+	CHECKPACKAGE="/usr/share/doc/$PACKAGE/copyright"
+     ;;
+  google-chrome-stable)
+	if [ "$ARCH64" = "" ]; 	then
+		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="google-chrome-stable"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  icecat)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="icecat"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  iridium)
+	if [ "$ARCH64" = "" ]; then
+		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="iridium-browser"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  iron)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="iron"
+	CHECKPACKAGE="/usr/bin/srware-iron"
+     ;;
+  konqueror)
+	PACKAGE="konqueror"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  links2)
+	PACKAGE="links2"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  lynx)
+	PACKAGE="lynx"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  midori)
+	PACKAGE="midori"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+   min)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="min"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  netsurf)
+	if [ "$SPARKYVERCHECK4" = "" ] || [ "$DEBIANVERCHECK9" = "" ]; then
+		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="netsurf"
+	CHECKPACKAGE="/usr/bin/netsurf-gtk"
+     ;;
+  opera-stable)
+	if [ "$ARCH64" = "" ]; then
+		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="opera-stable"
+	CHECKPACKAGE="/usr/bin/opera"
+     ;;
+  otter-browser)
+	PACKAGE="otter-browser"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  palemoon)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="palemoon"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  seamonkey)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="seamonkey"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  tor-browser)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="tor-browser"
+	CHECKPACKAGE="/usr/bin/start-tor-browser"
+     ;;
+  vivaldi-stable)
+	PACKAGE="vivaldi-stable"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  w3m)
+	PACKAGE="w3m"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  waterfox)
+	if [ "$ARCH64" = "" ]; then
+		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="waterfox"
+	CHECKPACKAGE="/usr/bin/$PACKAGE"
+     ;;
+  ##### web others #####
+  google-earth)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="google-earth"
+	CHECKPACKAGE="/usr/bin/$PACKAGE-pro"
+	if [ "$ARCH64" != "" ]; then
+		PACKEARTH="PACKE64"
+	else
+		PACKEARTH="PACKE32"
+	fi
+     ;;
+esac
+
+# install, reinstall or remove google-chrome
+if [ "$1" = "google-chrome-stable" ]; then
+	if [ -f "$CHECKPACKAGE" ]; then
+		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
+		ret=$?
+		if [[ $ret -eq 3 ]]; then
+			$SPARKYXTERM "$UNINSTALL $PACKAGE"
+		elif [[ $ret -eq 4 ]]; then
+			if [ "$PINGTEST" = "" ]; then
+				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL003 \n\n$LOCAL005"
+				exit 1
+			fi
+			rm -rf $WORKDIR
+			mkdir -p $WORKDIR
+			cd $WORKDIR
+			$SPARKYXTERM "wget $SERVERG/$PACKG64"
+			$SPARKYXTERM "dpkg -i $PACKG64"
+			$SPARKYXTERM "apt-get update"
+			$SPARKYXTERM "$INSTALL -f -y"
+		else
+			exit 1
+		fi
+	elif [ ! -f "$CHECKPACKAGE" ]; then
+		$DIALOG $TEXT"\n$LOCAL014" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
+		if [ "$?" = "0" ]; then
+			if [ "$PINGTEST" = "" ]; then
+				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL003 \n\n$LOCAL014"
+				exit 1
+			fi
+			rm -rf $WORKDIR
+			mkdir -p $WORKDIR
+			cd $WORKDIR
+			$SPARKYXTERM "wget $SERVERG/$PACKG64"
+			$SPARKYXTERM "apt-get install ./$PACKG64"
+			if [ ! -f "$CHECKPACKAGE" ]; then
+				$DIALOG $TEXT"\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+				exit 1
+			else
+				$DIALOG $TEXT"\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+				exit 1
+			fi
+
+		elif [ "$?" != "0" ]; then
+			exit 1
+		fi
+	fi
+
+# install, reinstall or remove google-earth
+elif [ "$1" = "google-earth" ]; then
+	if [ -f "$CHECKPACKAGE" ]; then
+		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
+		ret=$?
+		if [[ $ret -eq 3 ]]; then
+			$SPARKYXTERM "$UNINSTALL $PACKAGE"
+		elif [[ $ret -eq 4 ]]; then
+			if [ "$PINGTEST" = "" ]; then
+				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL003 \n\n$LOCAL005"
+				exit 1
+			fi
+			rm -rf $WORKDIR
+			mkdir -p $WORKDIR
+			cd $WORKDIR
+			$SPARKYXTERM "wget $SERVERE/$PACKEARTH"
+			$SPARKYXTERM "dpkg -i $PACKEARTH"
+			$SPARKYXTERM "apt-get update"
+			$SPARKYXTERM "$INSTALL -f -y"
+		else
+			exit 1
+		fi
+	elif [ ! -f "$CHECKPACKAGE" ]; then
+		$DIALOG $TEXT"\n$LOCAL014" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
+		if [ "$?" = "0" ]; then
+			if [ "$PINGTEST" = "" ]; then
+				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL003 \n\n$LOCAL014"
+				exit 1
+			fi
+			rm -rf $WORKDIR
+			mkdir -p $WORKDIR
+			cd $WORKDIR
+			$SPARKYXTERM "wget $SERVERE/$PACKEARTH"
+			$SPARKYXTERM "apt-get install ./$PACKEARTH"
+			if [ ! -f "$CHECKPACKAGE" ]; then
+				$DIALOG $TEXT"\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+				exit 1
+			else
+				$DIALOG $TEXT"\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+				exit 1
+			fi
+
+		elif [ "$?" != "0" ]; then
+			exit 1
+		fi
+	fi
+
+# install, reinstall or remove anything else
+else
+	if [ -f "$CHECKPACKAGE" ]; then
+		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
+		ret=$?
+		if [[ $ret -eq 3 ]]; then
+			$SPARKYXTERM "$UNINSTALL $PACKAGE"
+		elif [[ $ret -eq 4 ]]; then
+			if [ "$PINGTEST" = "" ]; then
+				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL003 \n\n$LOCAL005"
+				exit 1
+			fi
+			$SPARKYXTERM "$REINSTALL $PACKAGE"
+		else
+			exit 1
+		fi
+	elif [ ! -f "$CHECKPACKAGE" ]; then
+		$DIALOG $TEXT"\n$LOCAL014" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
+		if [ "$?" = "0" ]; then
+			if [ "$PINGTEST" = "" ]; then
+				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL003 \n\n$LOCAL005"
+				exit 1
+			fi
+			$SPARKYXTERM "$INSTALL $PACKAGE"
+			if [ ! -f "$CHECKPACKAGE" ]; then
+				$DIALOG $TEXT"\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+				exit 1
+			else
+				$DIALOG $TEXT"\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+				exit 1
+			fi
+
+		elif [ "$?" != "0" ]; then
+			exit 1
+		fi
+	fi
+fi
+
+exit 0

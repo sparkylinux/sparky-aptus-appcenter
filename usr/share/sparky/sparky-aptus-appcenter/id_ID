@@ -1,0 +1,22 @@
+# Indonesian localization file for Sparky APTus AppCenter
+# It based on: webbrowser-installer, 
+# Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu> 2017/08/19
+# Under the GNU GPL v3
+# Last update 2018/11/30 by pavroo
+# Translated to Indonesian by les kompie
+LOCAL001="Keluar"
+LOCAL002="Penginstal Browser Web"
+LOCAL003="Uji koneksi internet gagal!\n\nMungkin anda tidak terhubung ke Internet, atau server repositori utama sedang mati.\n\nPeriksa dan coba lagi."
+LOCAL004="Aplikasi ini hanya tersedia untuk arsitektur AMD64."
+LOCAL005="Keluar"
+LOCAL006="Versi sistem operasi anda terlalu tua untuk paket ini."
+LOCAL007="Ini tidak bisa di-instal di versi Debian/Sparky anda.\n\n..."
+LOCAL008="Hapus"
+LOCAL009="Instal ulang"
+LOCAL010="Instal"
+LOCAL011="Paket ini sudah ter-instal."
+LOCAL012="Apa yang anda mau lakukan sekarang?"
+LOCAL013="Ada yang salah! \nMungkin anda menghentikan proses instal, atau koneksi internet anda terputus, atau paket tidak tersedia untuk versi sistem anda.\nPeriksa dan coba lagi."
+LOCAL014="Apakah anda mau menginstal paket yang anda pilih?"
+LOCAL015="Paket telah berhasil di-instal."
+LOCAL016="Paket ini tidak tersedia untuk versi sistem anda."

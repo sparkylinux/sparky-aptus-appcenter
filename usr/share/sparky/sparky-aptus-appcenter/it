@@ -1,0 +1,21 @@
+# File di traduzione in italiano per Sparky APTus AppCenter
+# It based on: webbrowser-installer, 
+# Copyright 2017 Carlo Troiani <abbassolafrangetta@gmail.com> 2017/09/02
+# Rilasciato sotto licenza GNU GPL v3
+# Last update 2018/11/30 by pavroo
+LOCAL001="Esci"
+LOCAL002="Web Browser Installer"
+LOCAL003="Test della connessione ionternet fallito!\n\nProbabilmente NON sei connesso ad internet od il server del repository principale e' offline.\n\nControlla e prova di nuovo."
+LOCAL004="Il programma e' disponibile solamente per architettura amd64."
+LOCAL005="Sto uscendo..."
+LOCAL006="La versione del sistema operativo e' troppo vecchia per intallare il pacchetto."
+LOCAL007="Non puo' essere installato sulla tua versione di Debian/Sparky.\n\n"
+LOCAL008="Rimuovi"
+LOCAL009="Reinstalla"
+LOCAL010="Installa"
+LOCAL011="Questo pacchetto e' gia' installato."
+LOCAL012="Come intendi procedere adesso?"
+LOCAL013="Qualcosa e' andato storto! \nProbabilmente hai interrotto l'installazione o la tua linra internet e' giu', o il pacchetto non e' disponibile per la tua versione del sistema operativo.\nControlla cosa non va e prova di nuovo."
+LOCAL014="Devo installare i pacchetti che hai scelto?"
+LOCAL015="Il pacchetto eì stato installato senza errori."
+LOCAL016="Questo pacchetto non e' disponibile per la versione del tuo sistema operativo."

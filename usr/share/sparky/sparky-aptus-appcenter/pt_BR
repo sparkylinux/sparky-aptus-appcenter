@@ -1,0 +1,22 @@
+# Arquivo de localização para o Português do Brasil do aplicativo Sparky APTus AppCenter
+# It based on: webbrowser-installer, 
+# Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu> 2017/08/19
+# Sob a licença GNU GPL v3
+# Traduzido por Elton Fabrício Ferreira "eltonfabricio10" <eltonfabricio10@gmail.com> 2018/02/17
+# Last update 2018/11/30 by pavroo
+LOCAL001="Sair"
+LOCAL002="Instalação de Navegadores"
+LOCAL003="A conexão com a Internet falhou!\n\nProvavelmente você NÂO está conectado na Internet ou o servidor do repositório principal está desligado.\n\nVerifique e tente novamente."
+LOCAL004="O Navegador está disponível somente para arquitetura amd64."
+LOCAL005="Saindo..."
+LOCAL006="A versão do seu sistema operacional é muito antiga para instalar esse pacote."
+LOCAL007="Não pode ser instalado nessa versão do Debian/Sparky.\n\n..."
+LOCAL008="Remover"
+LOCAL009="Reinstalar"
+LOCAL010="Instalar"
+LOCAL011="Esse pacote já está instalado."
+LOCAL012="O que você gostaria de fazer agora?"
+LOCAL013="Algo está errado! \nProvavelmente você parou a instalação, ou sua conexão com a Internet está bloqueada, ou o pacote não está disponível para a versão do seu sistema.\nVerifique e tente novamente."
+LOCAL014="Gostaria de instalar o pacote que você escolheu?"
+LOCAL015="O pacote foi instalado com sucesso."
+LOCAL016="Esse pacote não está disponível para a versão do seu sistema."
