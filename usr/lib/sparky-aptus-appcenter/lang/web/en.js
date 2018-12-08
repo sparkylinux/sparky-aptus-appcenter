@@ -1,7 +1,7 @@
 // English localization file for Web
 // Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/07 by pavroo
+// Last update 2018/12/08 by pavroo
 //    dict.entries['web'][''] = "";
 // web email
 dict.entries['web'] = {};
@@ -45,6 +45,14 @@ dict.entries['web']['qbittorrent'] = "BitTorrent client written in C++ and based
 dict.entries['web']['rtorrent'] = "rtorrent is a BitTorrent client based on LibTorrent. It uses ncurses and aims to be a lean, yet powerful BitTorrent client, with features similar to the most complex graphical clients.";
 dict.entries['web']['transmission'] = "Transmission is a set of lightweight BitTorrent clients (in GUI, CLI and daemon form). All its incarnations feature a very simple, intuitive interface on top on an efficient, cross-platform back-end.";
 dict.entries['web']['vuze'] = "Vuze (previously Azureus) is a BitTorrent client used to transfer files via the BitTorrent protocol. Vuze is written in Java, and uses the Azureus Engine.";
+// web rss
+dict.entries['web']['akregator'] = "Akregator is a news feed reader. It enables you to follow news sites, blogs and other RSS/Atom-enabled websites without the need to manually check for updates using a web browser. It comes with Konqueror integration for adding news feeds and with an internal browser for easy news reading.";
+dict.entries['web']['liferea'] = "Liferea is a feed reader, a news reader, and a podcast client that brings together all of the content from your favorite web subscriptions into a simple interface with an embedded graphical browser that's easy to organize and browse.";
+dict.entries['web']['quiterss'] = "QuiteRSS is fast and comfortable to user cross-platform RSS/Atom news feeds reader written on Qt/C++.";
+dict.entries['web']['rawdog'] = "Rawdog is a feed aggregator, capable of producing a personal 'river of news' or a public 'planet' page. It supports all common feed formats, including all versions of RSS and Atom. By default, it is run from cron, collects articles from a number of feeds, and generates a static HTML page listing the newest articles in date order.";
+dict.entries['web']['rssguard'] = "RSS Guard is simple, light and easy-to-use RSS/ATOM feed aggregator developed using Qt framework which supports online feed synchronization.";
+dict.entries['web']['rsstail'] = "Console RSS reader that monitors a feed and outputs new entries. This small, simple application reads an RSS feed and outputs it like the 'tail' command. This tool can be used as a plugin in MultiTail.";
+dict.entries['web']['tickr'] = "Tickr is a GTK-based RSS/Atom Reader that displays feeds as a smooth scrolling line on your Desktop, as known from TV stations. Open feed links in your favourite Browser. Graphics are highly customizable.";
 // web browsers
 dict.entries['web']['brave'] = "Brave is a free and open-source web browser based on the Chromium web browser and its Blink engine, announced by the co-founder of the Mozilla Project and creator of JavaScript, Brendan Eich.";
 dict.entries['web']['chromium'] = "Chromium is an open-source web browser project started by Google, to provide the source code for the proprietary Google Chrome browser.";

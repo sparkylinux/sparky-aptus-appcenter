@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Web application installer
+# Application installer
 # Copyright 2017-2018 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2018/12/07 by pavroo
+# Last update 2018/12/08 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -75,194 +75,60 @@ ARCH32="`uname -m | grep 686`"
 ARCHARM="`uname -m | grep arm`"
 
 # 64bit only are: brave, cyberfox, google-chrome-stable, opera, waterfox
-case $1 in
-  ##### web email #####
-  alpine)
-	PACKAGE="alpine"
-     ;;
-  claws-mail)
-	PACKAGE="claws-mail"
-     ;;
-  evolution)
-	PACKAGE="evolution"
-     ;;
-  geary)
-	PACKAGE="geary"
-     ;;
-  kmail)
-	PACKAGE="kmail"
-     ;;
-  mutt)
-	PACKAGE="mutt"
-     ;;
-  sylpheed)
-	PACKAGE="sylpheed"
-     ;;
-  thunderbird)
-	PACKAGE="thunderbird"
-     ;;
-  trojita)
-	PACKAGE="trojita"
-     ;;
-  ##### web file transfer #####
-  aria2)
-	PACKAGE="aria2"
-     ;;
-  filezilla)
-	PACKAGE="filezilla"
-     ;;
-  gftp)
-	PACKAGE="gftp-gtk"
-     ;;
-  jftp)
-	PACKAGE="jftp"
-     ;;
-  kget)
-	PACKAGE="kget"
-     ;;
-  lftp)
-	PACKAGE="lftp"
-     ;;
-  ncftp)
-	PACKAGE="ncftp"
-     ;;
-  uftp)
-	PACKAGE="uftp"
-     ;;
-  uget)
-	PACKAGE="uget"
-     ;;
-  wget)
-	PACKAGE="wget"
-     ;;
-  ##### web others #####
-  dropbox)
+if [ "$1" = "dropbox" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="dropbox"
-     ;;
-  google-earth)
+	PACKAGE="$1"
+elif [ "$1" = "google-earth-pro-stable" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="google-earth-pro-stable"
+	PACKAGE="$1"
 	if [ "$ARCH64" != "" ]; then
 		PACKEARTH="$PACKE64"
 	else
 		PACKEARTH="$PACKE32"
 	fi
-     ;;
-  megasync)
+elif [ "$1" = "megasync" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="megasync"
-     ;;
-  spideroakone)
+	PACKAGE="$1"
+elif [ "$1" = "spideroakone" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="spideroakone"
-     ;;
-  youtube-dlg)
-	PACKAGE="youtube-dlg"
-     ;;
-  ##### web p2p #####
-  amule)
-	PACKAGE="amule"
-     ;;
-  bitstormlite)
-	PACKAGE="bitstormlite"
-     ;;
-  bittornado-gui)
-	PACKAGE="bittornado-gui"
-     ;;
-  bittorrent-gui)
-	PACKAGE="bittorrent-gui"
-     ;;
-  ctorrent)
-	PACKAGE="ctorrent"
-     ;;
-  deluge)
-	PACKAGE="deluge"
-     ;;
-  gtk-gnutella)
-	PACKAGE="gtk-gnutella"
-     ;;
-  ktorrent)
-	PACKAGE="ktorrent"
-     ;;
-  mldonkey-gui)
-	PACKAGE="mldonkey-gui"
-     ;;
-  nicotine)
-	PACKAGE="nicotine"
-     ;;
-  qbittorrent)
-	PACKAGE="qbittorrent"
-     ;;
-  rtorrent)
-	PACKAGE="rtorrent"
-     ;;
-  transmission)
-	PACKAGE="transmission"
-     ;;
-  vuze)
-	PACKAGE="vuze"
-     ;;
-  ##### web browsers #####
-  brave)
+	PACKAGE="$1"
+elif [ "$1" = "brave" ]; then
 	if [ "$ARCH64" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="brave"
-     ;;
-  chromium)
-	PACKAGE="chromium"
-     ;;
-  conkeror)
-	PACKAGE="conkeror"
-     ;;
-  cyberfox)
+	PACKAGE="$1"
+elif [ "$1" = "cyberfox" ]; then
 	if [ "$ARCH64" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="cyberfox"
-     ;;
-  dillo)
-	PACKAGE="dillo"
-     ;;
-  dooble)
+	PACKAGE="$1"
+elif [ "$1" = "dooble" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="dooble"
-     ;;
-  elinks)
-	PACKAGE="elinks"
-     ;;
-  epiphany)
-	PACKAGE="epiphany-browser"
-     ;;
-  falkon)
+	PACKAGE="$1"
+elif [ "$1" = "falkon" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="falkon"
-     ;;
-  firefox-esr)
-	PACKAGE="firefox-esr"
-     ;;
-  firefox-latest)
+	PACKAGE="$1"
+elif [ "$1" = "firefox-latest" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
@@ -272,106 +138,75 @@ case $1 in
 		exit 1
 	fi
 	PACKAGE="firefox"
-     ;;
-  google-chrome-stable)
+elif [ "$1" = "google-chrome-stable" ]; then
 	if [ "$ARCH64" = "" ]; 	then
 		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="google-chrome-stable"
-     ;;
-  icecat)
+	PACKAGE="$1"
+elif [ "$1" = "icecat" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="icecat"
-     ;;
-  iridium)
+	PACKAGE="$1"
+elif [ "$1" = "iridium-browser" ]; then
 	if [ "$ARCH64" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="iridium-browser"
-     ;;
-  iron)
+	PACKAGE="$1"
+elif [ "$1" = "iron" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="iron"
-     ;;
-  konqueror)
-	PACKAGE="konqueror"
-     ;;
-  links2)
-	PACKAGE="links2"
-     ;;
-  lynx)
-	PACKAGE="lynx"
-     ;;
-  midori)
-	PACKAGE="midori"
-     ;;
-   min)
+	PACKAGE="$1"
+elif [ "$1" = "min" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="min"
-     ;;
-  netsurf)
+	PACKAGE="$1"
+elif [ "$1" = "netsurf" ]; then
 	if [ "$SPARKYVERCHECK4" = "" ] || [ "$DEBIANVERCHECK9" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="netsurf"
-     ;;
-  opera-stable)
+	PACKAGE="$1"
+elif [ "$1" = "opera-stable" ]; then
 	if [ "$ARCH64" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="opera-stable"
-     ;;
-  otter-browser)
-	PACKAGE="otter-browser"
-     ;;
-  palemoon)
+	PACKAGE="$1"
+elif [ "$1" = "palemoon" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="palemoon"
-     ;;
-  seamonkey)
+	PACKAGE="$1"
+elif [ "$1" = "seamonkey" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="seamonkey"
-     ;;
-  tor-browser)
+	PACKAGE="$1"
+elif [ "$1" = "tor-browser" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="tor-browser"
-     ;;
-  vivaldi-stable)
-	PACKAGE="vivaldi-stable"
-     ;;
-  w3m)
-	PACKAGE="w3m"
-     ;;
-  waterfox)
+	PACKAGE="$1"
+elif [ "$1" = "waterfox" ]; then
 	if [ "$ARCH64" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
 	fi
-	PACKAGE="waterfox"
-     ;;
-esac
+	PACKAGE="$1"
+else
+	PACKAGE="$1"
+fi
 
 CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
 # install, reinstall or remove google-chrome
@@ -421,7 +256,7 @@ if [ "$1" = "google-chrome-stable" ]; then
 	fi
 
 # install, reinstall or remove google-earth
-elif [ "$1" = "google-earth" ]; then
+elif [ "$1" = "google-earth-pro-stable" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
 		ret=$?

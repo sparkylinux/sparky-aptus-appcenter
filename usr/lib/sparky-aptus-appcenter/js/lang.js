@@ -14,16 +14,7 @@ dict.print = function(dictName, entryName) {
 // load dictionaries
 // example
 //document.write('<script src="./lang/apps/' + language + '.js" type="text/javascript"></script>');
-// menu
-document.write('<script src="./lang/menu/' + language + '.js" type="text/javascript"></script>');
-// main pages
-document.write('<script src="./lang/categories/' + language + '.js" type="text/javascript"></script>');
-document.write('<script src="./lang/info/' + language + '.js" type="text/javascript"></script>');
-document.write('<script src="./lang/internet/' + language + '.js" type="text/javascript"></script>');
-document.write('<script src="./lang/multimedia/' + language + '.js" type="text/javascript"></script>');
-document.write('<script src="./lang/office/' + language + '.js" type="text/javascript"></script>');
+// main menu
+document.write('<script src="./lang/main/' + language + '.js" type="text/javascript"></script>');
 // web category
 document.write('<script src="./lang/web/' + language + '.js" type="text/javascript"></script>');
-//document.write('<script src="./lang/netothers/' + language + '.js" type="text/javascript"></script>');
-//document.write('<script src="./lang/netp2p/' + language + '.js" type="text/javascript"></script>');
-//document.write('<script src="./lang/netwebbrowsers/' + language + '.js" type="text/javascript"></script>');

@@ -1,7 +1,7 @@
 // Polish localization file for Web
 // Copyright 2017 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/07 by pavroo
+// Last update 2018/12/08 by pavroo
 //     dict.entries['web'][''] = "";
 // web email
 dict.entries['web'] = {};
@@ -45,6 +45,14 @@ dict.entries['web']['qbittorrent'] = "Klient BitTorrent napisany w C++ i oparty 
 dict.entries['web']['rtorrent'] = "rTorrent jest klientem BitTorrenta opartym na bibliotece libTorrent. Używa ncurses, a jego celem jest bycie zgrabnym, lecz potężnym klientem BitTorrenta z funkcjami podobnymi do większości złożonych klientów graficznych.";
 dict.entries['web']['transmission'] = "Transmission jest zestawem lekkich klientów BitTorrent (w postaci GUI, CLI i demona). Wszystkie jego wcielenia są wyposażone w bardzo prosty, intuicyjny interfejs oparty na wydajnym, wieloplatformowym backendzie.";
 dict.entries['web']['vuze'] = "Vuze (wcześniej Azureus) to klient BitTorrent używany do przesyłania plików za pośrednictwem protokołu BitTorrent. Vuze jest napisany w Javie i używa silnika Azureus.";
+// web rss
+dict.entries['web']['akregator'] = "Akregator jest czytnikiem kanałów informacyjnych. Pozwala śledzić strony informacyjne, blogi i inne strony mające kanały RSS/Atom, bez potrzeby ręcznego sprawdzania ich aktualności przez przeglądarkę internetową. Integruje się z Konquerorem w celu dodawania kanałów informacyjnych, ma też wewnętrzną przeglądarkę do łatwego czytania wiadomości. ";
+dict.entries['web']['liferea'] = "Liferea to czytnik kanałów, wiadomości i klient podcastów, który łączy wszystkie treści z ulubionych subskrypcji internetowych w prosty interfejs z wbudowaną graficzną przeglądarką, którą można łatwo porządkować i przeglądać.";
+dict.entries['web']['quiterss'] = "QuiteRSS to szybki i wygodny dla użytkownika wieloplatformowy czytnik kanałów RSS/Atom napisany w Qt/C++.";
+dict.entries['web']['rawdog'] = "Rawdog to agregator kanałów, zdolny do tworzenia osobistej 'rzeki wiadomości' lub publicznej 'planety'. Obsługuje wszystkie popularne formaty kanałów, w tym wszystkie wersje RSS i Atom. Domyślnie jest uruchamiany z cron, zbiera artykuły z wielu kanałów i generuje statyczną stronę HTML z najnowszymi artykułami w porządku chronologicznym.";
+dict.entries['web']['rssguard'] = "RSS Guard to prosty, lekki i łatwy w użyciu agregator kanałów RSS/ATOM opracowany przy użyciu platformy Qt i obsługujący synchronizację kanałów online.";
+dict.entries['web']['rsstail'] = "Konsolowy czytnik RSS, który monitoruje kanał i wyświetla nowe wpisy. Ta mała, prosta aplikacja odczytuje kanał RSS i wyprowadza go jak polecenie 'ogon'. Narzędzie może być używane jako wtyczka w MultiTail.";
+dict.entries['web']['tickr'] = "Tickr to czytnik RSS/Atom oparty na GTK, który wyświetla kanały jako płynną linię przewijania na twoim pulpicie, podobnie jak jest to znane ze stacji telewizyjnych. Otwiera linki do kanałów w ulubionej przeglądarce. Grafika jest wysoce konfigurowalna.";
 // web browsers
 dict.entries['web']['brave'] = "Brave to bezpłatna i otwarto źródłowa przeglądarka www bazująca na Chromium i silniku Blink, rozwijana przez byłego współzałożyciela projektu Mozilla i twórcy JavaScript.";
 dict.entries['web']['chromium'] = "Chromium to otwarto-źródłowy projekt przeglądarki www rozpoczęty przez Google, który dostarcza kod źródłowy dla własnościowej przeglądarki Google Chrome.";
