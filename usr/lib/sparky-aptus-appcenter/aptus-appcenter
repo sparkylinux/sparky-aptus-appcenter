@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Created by Piotr "MoroS" Mrożek 2018
-# last update Paweł "pavroo" Pijanowski Dec 5, 2018
+# last update Paweł "pavroo" Pijanowski Dec 7, 2018
 
 LANGUAGE=${LANG:0:2}
 DE=`echo $LANGUAGE | grep de`
@@ -14,22 +14,22 @@ PL=`echo $LANGUAGE | grep pl`
 PTBR=`echo $LANGUAGE | grep pt-br`
 PTPT=`echo $LANGUAGE | grep py | grep -v br`
 
-#if [ "$DE" != "" ]; then
-#	LANGUAGE="$LANGUAGE"
-#elif [ "$ES" != "" ]; then
-#	LANGUAGE="$LANGUAGE"
-#elif [ "$FR" != "" ]; then
-#	LANGUAGE="$LANGUAGE"
-#elif [ "$ID" != "" ]; then
-#	LANGUAGE="$LANGUAGE"
-#elif [ "$IT" != "" ]; then
-#	LANGUAGE="$LANGUAGE"
-if [ "$PL" != "" ]; then
+if [ "$DE" != "" ]; then
 	LANGUAGE="$LANGUAGE"
-#elif [ "$PTBR" != "" ]; then
-#	LANGUAGE="$LANGUAGE"
-#elif [ "$PTPT" != "" ]; then
-#	LANGUAGE="$LANGUAGE"
+elif [ "$ES" != "" ]; then
+	LANGUAGE="$LANGUAGE"
+elif [ "$FR" != "" ]; then
+	LANGUAGE="$LANGUAGE"
+elif [ "$ID" != "" ]; then
+	LANGUAGE="$LANGUAGE"
+elif [ "$IT" != "" ]; then
+	LANGUAGE="$LANGUAGE"
+elif [ "$PL" != "" ]; then
+	LANGUAGE="$LANGUAGE"
+elif [ "$PTBR" != "" ]; then
+	LANGUAGE="$LANGUAGE"
+elif [ "$PTPT" != "" ]; then
+	LANGUAGE="$LANGUAGE"
 else
 	LANGUAGE="en"
 fi
@@ -40,4 +40,4 @@ if [ "$testroot" != "root" ]; then
 	exit 1
 fi
 
-yad --window-icon=system-software-install --center --width 800 --height 600 --html --browser --uri="index.html" --user-agent="$LANGUAGE" --uri-handler="./handler.sh %s"
+yad --window-icon=system-software-install --center --width 880 --height 630 --html --browser --uri="index.html" --user-agent="$LANGUAGE" --uri-handler="./handler.sh %s"

@@ -8,6 +8,6 @@ dict.entries['internet']['email'] = "Poczta eMail";
 dict.entries['internet']['filetransfer'] = "Transfer plików";
 dict.entries['internet']['p2p'] = "p2p";
 dict.entries['internet']['rss'] = "RSS";
-dict.entries['internet']['universalaccess'] = "Dostę Uniwersalny";
+dict.entries['internet']['universalaccess'] = "Dostęp Uniwersalny";
 dict.entries['internet']['webbrowsers'] = "Przeglądarki WWW";
 dict.entries['internet']['others'] = "Inne";

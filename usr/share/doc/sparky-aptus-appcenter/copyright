@@ -351,6 +351,14 @@ File: falkon.png
 Copyright: 2010-2018 David Rosca <nowrep@gmail.com>
 License: GPL-3.0+
 
+File: filezilla.png
+Copyright: Tim Kosse
+LicenseL GNU GPL
+
+File: gftp.png
+Copyright: Brian Masney
+License: GNU GPL
+
 File: icecat.png
 Author: Hitflip
 Source: Wikipedia
@@ -363,6 +371,14 @@ License: ?
 File: iron.png
 Copyright: https://www.srware.net/en/software_srware_iron.php
 License: ?
+
+File: lftp.png
+Copyright: Alexander V. Lukyanov
+License: GNU GPL 3
+
+File: mega.png
+Copyright: 2013, Mega Limited
+License: MEGA LIMITED CODE REVIEW LICENCE
 
 File: min.png
 Copyright: https://minbrowser.github.io/min/
@@ -426,4 +442,11 @@ File: waterfox.png
 Source:	https://www.waterfoxproject.org
 Copyright Milos Mirkovic
 License: Mozilla Public License Version 2
+
+File: youtube-dlg.png
+Copyright: MrS0m30n3 <ytubedlg@gmail.com>
+License: The Unlicense
+
+
+
 

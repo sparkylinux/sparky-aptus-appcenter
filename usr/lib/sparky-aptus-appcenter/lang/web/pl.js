@@ -1,7 +1,8 @@
 // Polish localization file for Web
 // Copyright 2017 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/06 by pavroo
+// Last update 2018/12/07 by pavroo
+//     dict.entries['web'][''] = "";
 // web email
 dict.entries['web'] = {};
 dict.entries['web']['alpine'] = "Funkcjonalny, ale przyjazny dla nowicjuszy, tekstowy klient poczty elektronicznej. Umożliwia pełną obsługę protokołów pocztowych, takich jak IMAP i SMTP oraz protokołów bezpieczeństwa jak np. TLS.";
@@ -13,8 +14,37 @@ dict.entries['web']['mutt'] = "Mutt jest wyrafinowanym tekstowym programem poczt
 dict.entries['web']['sylpheed'] = "Klient poczty elektronicznej i czytnik grup dyskusyjnych oparty na bibliotece GTK+. Sylpheed obsługuje protokoły POP3, IMAP4, SMTP, NNTP i IPv6 oraz szyfrowanie i podpisywanie wiadomości przy pomocy GnuPG.";
 dict.entries['web']['thunderbird'] = "Klient poczty/wiadomości z obsługą RSS, czatu i zintegrowanym filtrem antyspamowym. Obsługuje różne konta pocztowe, bez względu na używany protokół, taki jak protokół POP lub IMAP, posiada zintegrowany filtr antyspamowy i oferuje łatwą organizację wiadomości e-mail z tagami i wirtualnymi folderami.";
 dict.entries['web']['trojita'] = "Szybki, bazujący na Qt klient poczty e-mail IMAP, który respektuje otwarte standardy.";
+// web file transfer
+dict.entries['web']['aria2'] = "Aria2 to pracujące w wierszu poleceń narzędzie do pobierania plików, z obsługą jego wznawiania i segmentowania. Obsługiwane protokoły to: HTTP/HTTPS/FTP/BitTorrent oraz Metalink. ";
+dict.entries['web']['filezilla'] = "FileZilla to w pełni funkcjonalny klient FTP z łatwym w użyciu interfejsem graficznym. Jest napisany w C ++ i używa biblioteki wxWidgets.";
+dict.entries['web']['gftp'] = "Aplikacja gFTP jest wielowątkowym klientem FTP, dostępnym w dwóch wersjach: do systemu X Window, napisana przy użyciu GLib i GTK+ oraz do konsoli (wiersza poleceń), napisana jedynie przy użyciu GLib.";
+dict.entries['web']['jftp'] = "JFtp jest graficznym klientem sieci i transferu plików, anpisany w Javie. Obsługuje FTP przy użyciu własnego interfejsu API FTP i różnych innych protokołów, takich jak SMB, SFTP, NFS, HTTP korzystając z innych interfejsów API.";
+dict.entries['web']['kget'] = "KGet jest zaawansowanym programem do pobierania plików, obsługującym Metalink oraz protokół BitTorrent. Posiada specjalną listę, na której można ustalić kolejność pobierania, czas rozpoczęcia pobierania oraz wstrzymać aktualnie pobierane pliki.";
+dict.entries['web']['lftp'] = "Lftp to narzędzie do pobierania plików obsługujące protokoły FTP, HTTP, FISH, SFTP, HTTPS, FTPS i BitTorrent zarówno w protokole IPv4, jak i IPv6. Lftp ma niesamowity zestaw funkcji, a jednocześnie zachowuje swój interfejs tak prosty i łatwy, jak to tylko możliwe.";
+dict.entries['web']['ncftp'] = "NcFTP pozwala przesyłać pliki z i do zdalnego serwera, oferując przy tym funkcje, których nie posiada standardowy program ftp. Program obsługuje bibliotekę Readline.";
+dict.entries['web']['uftp'] = "Narzędzie do bezpiecznego, niezawodnego i wydajnego przesyłania wielu plików jednocześnie. Jest to użyteczne przy dystrybucji dużych plików do dużej liczby odbiorców i jest szczególnie użyteczne w przypadku dystrybucji danych za pośrednictwem łącza satelitarnego, gdzie opóźnienie sprawia, że komunikacja oparta na protokole TCP jest wysoce nieefektywna.";
+dict.entries['web']['uget'] = "Uget (dawniej urlgfe) to prosty, lekki i łatwy w użyciu menedżer pobierania napisany w GTK+.";
+dict.entries['web']['wget'] = "Wget jest narzędziem sieciowym do pobierania plików z Internetu za pomocą HTTP(S) i FTP, dwóch najczęściej używanych protokołów internetowych. Działa ono bez udziału użytkownika, a więc będzie pracować w tle, nawet po wylogowaniu.";
+dict.entries['web']['youtubedlg'] = "Wieloplatformowy front-end GUI popularnego programu youtube-dl, napisany w wxPythonie";
 // web others
+dict.entries['web']['dropbox'] = "Bezpłatna usługa, dzięki której możesz zabrać swoje zdjęcia, dokumenty i filmy w dowolne miejsce i łatwo je udostępnić.";
 dict.entries['web']['googleearth'] = "Google Earth pozwala latać w dowolnym miejscu na Ziemi, aby oglądać zdjęcia satelitarne, mapy, ukształtowanie terenu, budynki 3D, od galaktyk w kosmosie do kanionów oceanu.";
+dict.entries['web']['megasync'] = "Łatwa automatyczna synchronizacja między komputerami i dyskiem MEGA Cloud Drive";
+dict.entries['web']['spideroakone'] = "SpiderOak to zaawansowane narzędzie przeznaczone do przechowywania plików w chmurze obliczeniowej.";
+// web p2p
+dict.entries['web']['amule'] = "aMule jest aplikacją wymiany plików metodą peer-to-peer, zaprojektowaną do łączenia się z sieciami eDonkey i Kad. Posiada szeroki zasób funkcji, z których wiele pochodzi z oryginalnego klienta eMule.";
+dict.entries['web']['bitstormlite'] = "Aplikacja oparta na języku C ++ zintegrowanym z przyjaznym dla użytkownika interfejsem Gtk + 2.0 umożliwia pobranie ogromnej ilości danych z dowolnego pliku .torrent pobranego z trackerów w sieci.";
+dict.entries['web']['bittornadogui'] = "Interfejs GUI do klienta bittorrent BitTornado. BitTornado to klient bittorrent zbudowany na oryginalnym kliencie BitTorrent firmy BitTorrent Inc. Ten klient oferuje wiele funkcji i jest jednym z oryginalnych klientów bittorrent.";
+dict.entries['web']['ctorrent'] = "Aplikacja została napisana w języku C++ i nie wymaga żadnych graficznych składników, takich jak serwer X. Pierwotny twórca ctorrenta wstrzymał jego rozwój, obecnie program jest utrzymywany i aktualizowany przez nowego dewelopera.";
+dict.entries['web']['deluge'] = "Deluge jest w pełni funkcjonalnym, wieloplatformowym i wielointerfejsowym klientem protokołu BitTorrent, używającym libtorrent-rasterbar w swoim backendzie oraz oferującym obsługę wielu interfejsów użytkownika: GTK+, WWW i konsoli.";
+dict.entries['web']['gtkgnutella'] = "Gtk-Gnutella jest niezawodnym i wydajnym klientem sieci Gnutella, obsługującym najnowszy protokół Gnutella, ograniczenie przepustowości pasma (dla danych przychodzących i wychodzących), kompresję ruchu, zaawansowane filtry wyszukiwania a także inne funkcje.";
+dict.entries['web']['ktorrent'] = "Pakiet zawiera KTorrent, klienta sieci peer-to-peer do platformy KDE. KTorrent obsługuje takie podstawowe funkcje jak pobieranie, wysyłanie i udostępnianie plików w sieci BitTorrent. Niektóre funkcje dostępne są jako wtyczki, dlatego należy upewnić się, że wszystkie pożądane zostały włączone.";
+dict.entries['web']['mldonkeygui'] = "Interfejs GTK+ dla MLDonkey zapewnia wygodny sposób zarządzania wszystkimi operacjami w MLDonkey. Daje szczegółowe informacje o połączonych serwerach, pobranych plikach, przyjaciołach i pozwala w przyjemny sposób wyszukiwać pliki.";
+dict.entries['web']['nicotine'] = "Nicotine jest klientem sieci SoulSeek, lekkiego i wydajnego systemu wymiany plików, napisanym w języku Python i wykorzystującym pakiet narzędziowy GTK2, opartym na projekcie PySoulSeek. Udostępnia możliwość wysyłania, ściągania, wyszukiwania oraz rozmawiania, ze ścisłą kontrolą nad wykorzystaniem łącza, i stara się wyglądać jak PySoulSeek.";
+dict.entries['web']['qbittorrent'] = "Klient BitTorrent napisany w C++ i oparty na libtorrent-rasterbar, z graficznym interfejsem użytkownika w Qt4. qBittorrent jest bogatym w funkcje, ale lekkim klientem, bardzo podobnym do uTorrent.";
+dict.entries['web']['rtorrent'] = "rTorrent jest klientem BitTorrenta opartym na bibliotece libTorrent. Używa ncurses, a jego celem jest bycie zgrabnym, lecz potężnym klientem BitTorrenta z funkcjami podobnymi do większości złożonych klientów graficznych.";
+dict.entries['web']['transmission'] = "Transmission jest zestawem lekkich klientów BitTorrent (w postaci GUI, CLI i demona). Wszystkie jego wcielenia są wyposażone w bardzo prosty, intuicyjny interfejs oparty na wydajnym, wieloplatformowym backendzie.";
+dict.entries['web']['vuze'] = "Vuze (wcześniej Azureus) to klient BitTorrent używany do przesyłania plików za pośrednictwem protokołu BitTorrent. Vuze jest napisany w Javie i używa silnika Azureus.";
 // web browsers
 dict.entries['web']['brave'] = "Brave to bezpłatna i otwarto źródłowa przeglądarka www bazująca na Chromium i silniku Blink, rozwijana przez byłego współzałożyciela projektu Mozilla i twórcy JavaScript.";
 dict.entries['web']['chromium'] = "Chromium to otwarto-źródłowy projekt przeglądarki www rozpoczęty przez Google, który dostarcza kod źródłowy dla własnościowej przeglądarki Google Chrome.";

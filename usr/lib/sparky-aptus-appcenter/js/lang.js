@@ -1,5 +1,5 @@
 // Created by Piotr "MoroS" Mrożek 2018
-// last update Dec 6, 2018 by pavroo
+// last update Dec 7, 2018 by pavroo
 // get the language (transfered from Yad command-line user-agent parameter)
 var language = window.navigator.userAgent;
 // create the dictionary object
@@ -22,7 +22,7 @@ document.write('<script src="./lang/info/' + language + '.js" type="text/javascr
 document.write('<script src="./lang/internet/' + language + '.js" type="text/javascript"></script>');
 document.write('<script src="./lang/multimedia/' + language + '.js" type="text/javascript"></script>');
 document.write('<script src="./lang/office/' + language + '.js" type="text/javascript"></script>');
-// sub-categories
+// web category
 document.write('<script src="./lang/web/' + language + '.js" type="text/javascript"></script>');
 //document.write('<script src="./lang/netothers/' + language + '.js" type="text/javascript"></script>');
 //document.write('<script src="./lang/netp2p/' + language + '.js" type="text/javascript"></script>');

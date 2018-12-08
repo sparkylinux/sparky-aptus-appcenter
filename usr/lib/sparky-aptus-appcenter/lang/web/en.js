@@ -1,7 +1,8 @@
 // English localization file for Web
 // Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/06 by pavroo
+// Last update 2018/12/07 by pavroo
+//    dict.entries['web'][''] = "";
 // web email
 dict.entries['web'] = {};
 dict.entries['web']['alpine'] = "Functional and friendly for novices, text email client. It offers full support of protocols such as IMAP and SMTP as well as security via TLS.";
@@ -13,8 +14,37 @@ dict.entries['web']['mutt'] = "Mutt is a sophisticated text-based Mail User Agen
 dict.entries['web']['sylpheed'] = "An e-mail client and news reader based on the GTK + library. Sylpheed supports POP3, IMAP4, SMTP, NNTP and IPv6 protocols, as well as encrypting and signing messages using GnuPG.";
 dict.entries['web']['thunderbird'] = "Mail/news client with RSS, chat and integrated spam filter support. It supports different mail accounts, no matter of the used protocol like POP(s) or IMAP(s), has an integrated learning Spam filter, and offers easy organization of mails with tagging and virtual folders.";
 dict.entries['web']['trojita'] = "Fast Qt based IMAP e-mail client which respects open standards.";
+// web file transfer
+dict.entries['web']['aria2'] = "Aria2 is a command line download client with resuming and segmented downloading. Supported protocols are HTTP/HTTPS/ SFTP/FTP/BitTorrent and it also supports Metalink.";
+dict.entries['web']['filezilla'] = "FileZilla is a full-featured FTP client with an easy-to-use GUI. It is written in C++ and uses the wxWidgets library.";
+dict.entries['web']['gftp'] = "gFTP is a multithreaded FTP client, available in two versions: version for X, written using GLib and GTK+, and version for the console, using only GLib";
+dict.entries['web']['jftp'] = "JFtp is a graphical Java network and file transfer client. It supports FTP using its own FTP API and various other protocols like SMB, SFTP, NFS, HTTP, and file I/O using third party APIs.";
+dict.entries['web']['kget'] = "KGet is an advanced download manager with support for Metalink and Bittorrent. Downloads are added to the list, where they can be paused, queued, or scheduled for later. This package is part of the KDE networking module.";
+dict.entries['web']['lftp'] = "Lftp is a file retrieving tool that supports FTP, HTTP, FISH, SFTP, HTTPS, FTPS and BitTorrent protocols under both IPv4 and IPv6. Lftp has an amazing set of features, while preserving its interface as simple and easy as possible.";
+dict.entries['web']['ncftp'] = "NcFTP allows a user to transfer files to and from a remote network site, and offers additional features that are not found in the standard interface, ftp. This version has Readline support enabled.";
+dict.entries['web']['uftp'] = "Utility for secure, reliable, and efficient file transfer to multiple receivers simultaneously. This is useful for distributing large files to a large number of receivers, and is especially useful for data distribution over a satellite link where the inherent delay makes any TCP based communication highly inefficient.";
+dict.entries['web']['uget'] = "Uget (formerly urlgfe) is a simple, lightweight and easy-to-use download manager written in GTK+.";
+dict.entries['web']['wget'] = "Wget is a network utility to retrieve files from the web using HTTP(S) and FTP, the two most widely used internet protocols. It works non-interactively, so it will work in the background, after having logged off.";
+dict.entries['web']['youtubedlg'] = "A cross platform front-end GUI of the popular youtube-dl written in wxPython";
 // web others
+dict.entries['web']['dropbox'] = "A free service that lets you bring your photos, docs, and videos anywhere and share them easily.";
 dict.entries['web']['googleearth'] = "Google Earth lets you fly anywhere on Earth to view satellite imagery, maps, terrain, 3D buildings, from galaxies in outer space to the canyons of the ocean.";
+dict.entries['web']['megasync'] = "Easy automated syncing between your computers and your MEGA Cloud Drive.";
+dict.entries['web']['spideroakone'] = "SpiderOak is an advanced tool designed for storing files in the cloud.";
+// web p2p
+dict.entries['web']['amule'] = "aMule is a peer-to-peer file sharing application, designed to connect to the eDonkey and Kad networks. It has a wide range of features, including many of the original eMule client";
+dict.entries['web']['bitstormlite'] = "This application based on the C++ language integrated with a Gtk+2.0 user-friendly gui has a possibility to download a huge amount of data from any .torrent file taken from trackers around the web.";
+dict.entries['web']['bittornadogui'] = "GUI interface to the BitTornado bittorrent client. BitTornado is a bittorrent client built on the original BitTorrent client from BitTorrent Inc. This client offers lots of features, and is one of the original bittorrent clients created.";
+dict.entries['web']['ctorrent'] = "This application is written in the C++ language and doesn't require any graphical component, such as an X server. Original ctorrent's upstream has stopped its development and now it's kept updated with new releases/bug fixes by a new developer.";
+dict.entries['web']['deluge'] = "Deluge is a full-featured, multi-platform, multi-interface BitTorrent client using libtorrent-rasterbar in it's backend and featuring multiple user-interfaces: GTK+, web and console.";
+dict.entries['web']['gtkgnutella'] = "Gtk-Gnutella is a reliable and efficient Gnutella client, supporting the latest Gnutella protocol, bandwidth limitation (both incoming and outgoing) traffic compression, and advanced search filters among other features.";
+dict.entries['web']['ktorrent'] = "This package contains KTorrent, a BitTorrent peer-to-peer network client, that is based on the KDE platform. KTorrent supports such basic features as downloading, uploading and seeding files on the BitTorrent network. Some features are available as plugins hence you should make sure you have the ones you need enabled.";
+dict.entries['web']['mldonkeygui'] = "The GTK+ interface for mldonkey provides a convenient way of managing all mldonkey operations. It gives details about connected servers, downloaded files, friends and lets one search for files in a pleasing way. ";
+dict.entries['web']['nicotine'] = "Nicotine is a client for SoulSeek, a light and efficient file sharing system, written in Python and using the GTK2 toolkit, based on the PySoulSeek project. It features uploading, downloading, searching and chatting, with strict bandwidth control, and tries to look like PySoulSeek.";
+dict.entries['web']['qbittorrent'] = "BitTorrent client written in C++ and based on libtorrent-rasterbar with a Qt4 user interface. qBittorrent is a feature rich but lightweight client that is very similar to uTorrent.";
+dict.entries['web']['rtorrent'] = "rtorrent is a BitTorrent client based on LibTorrent. It uses ncurses and aims to be a lean, yet powerful BitTorrent client, with features similar to the most complex graphical clients.";
+dict.entries['web']['transmission'] = "Transmission is a set of lightweight BitTorrent clients (in GUI, CLI and daemon form). All its incarnations feature a very simple, intuitive interface on top on an efficient, cross-platform back-end.";
+dict.entries['web']['vuze'] = "Vuze (previously Azureus) is a BitTorrent client used to transfer files via the BitTorrent protocol. Vuze is written in Java, and uses the Azureus Engine.";
 // web browsers
 dict.entries['web']['brave'] = "Brave is a free and open-source web browser based on the Chromium web browser and its Blink engine, announced by the co-founder of the Mozilla Project and creator of JavaScript, Brendan Eich.";
 dict.entries['web']['chromium'] = "Chromium is an open-source web browser project started by Google, to provide the source code for the proprietary Google Chrome browser.";

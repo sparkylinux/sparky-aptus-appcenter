@@ -2,7 +2,7 @@
 APTus AppCenter by pavroo <pavroo@onet.eu> 2018
 Improvenments by Piotr "MoroS" Mrożek
 License: GNU GPL 3
-Last update: Dec 2, 2018 by pavroo
+Last update: Dec 7, 2018 by pavroo
 */
 
 body {
@@ -45,7 +45,7 @@ ul, ol {
 
 a {
 	text-decoration: none;
-	color: #9C9A9A;
+	color: #747474; /*9C9C9C*/
 }
 
 a:hover {
