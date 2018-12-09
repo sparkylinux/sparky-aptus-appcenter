@@ -1,7 +1,7 @@
 // Italian localization file for main
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/08 by pavroo
+// Last update 2018/12/09 by pavroo
 // main menu
 dict.entries['main'] = {};
 dict.entries['main']['categories'] = "Categorie";
@@ -47,10 +47,9 @@ dict.entries['main']['video'] = "Video";
 // office
 dict.entries['main']['addressbooks'] = "Rubriche";
 dict.entries['main']['calculators'] = "Calcolatori";
-dict.entries['main']['comix'] = "Comix";
+dict.entries['main']['documentviewers'] = "Visualizzatori di documenti";
 dict.entries['main']['htmleditors'] = "Editor HTML";
 dict.entries['main']['officesuite'] = "Ufficio";
-dict.entries['main']['pdf'] = "PDF";
 dict.entries['main']['spreedsheet'] = "Foglio elettronico";
 dict.entries['main']['texteditors'] = "Editor di testo";
 // others

@@ -1,7 +1,7 @@
 // Brazilian localization file for main
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/08 by pavroo
+// Last update 2018/12/09 by pavroo
 // main menu
 dict.entries['main'] = {};
 dict.entries['main']['categories'] = "Categorias";
@@ -47,10 +47,9 @@ dict.entries['main']['video'] = "Vídeo";
 // office
 dict.entries['main']['addressbooks'] = "Livros de endereços";
 dict.entries['main']['calculators'] = "Calculadoras";
-dict.entries['main']['comix'] = "Comix";
+dict.entries['main']['documentviewers'] = "Visualizadores de documentos";
 dict.entries['main']['htmleditors'] = "Editores de HTML";
 dict.entries['main']['officesuite'] = "Suíte Office";
-dict.entries['main']['pdf'] = "PDF";
 dict.entries['main']['spreedsheet'] = "Planilha";
 dict.entries['main']['texteditors'] = "Editores de texto";
 // others

@@ -1,10 +1,42 @@
 // English localization file for Web
 // Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/08 by pavroo
+// Last update 2018/12/09 by pavroo
 //    dict.entries['web'][''] = "";
-// web email
 dict.entries['web'] = {};
+// web communication
+dict.entries['web']['bti'] = "bti sends a tweet message to twitter.com. bti provides an easy way to send tweet messages directly from the command line or a script. It reads the message on standard input and uses the account and password settings either from the command line options or from a config file to deliver the message.";
+dict.entries['web']['caprine'] = "Caprine is an unofficial and privacy-focused Facebook Messenger app with many useful features.";
+dict.entries['web']['corebird'] = "Corebird is a modern and lightweight Twitter client for the GNOME 3 desktop. It features inline image and video preview, creation of lists and favorites, filtering of tweets and full text search. Corebird is able to manage multiple Twitter accounts.";
+dict.entries['web']['discord'] = "Discord is a freeware VoIP application and digital distribution platform designed for video gaming communities, that specializes in text, image, video and audio communication between users in a chat channel.";
+dict.entries['web']['ekg2'] = "EKG2 is an open source instant messenger program for UNIX systems. The program has a plugin-based structure, and supports multiple protocols, currently Jabber, ICQ, Gadu-Gadu, IRC, RivChat, PolChat, NNTP and RSS. "
+dict.entries['web']['empathy'] = "Instant messaging program supporting text, voice, video, file transfers and inter-application communication over many different protocols, including: AIM, Windows Live (MSN), Google Talk (Jabber/XMPP), Yahoo!, Salut, Gadu-Gadu, Groupwise and ICQ.";
+dict.entries['web']['gajim'] = "Gajim is a Jabber client. It has a tabbed user interface with normal chats, group chats, and has many features such as, TLS, GPG, SSL, multiple accounts, avatars, file transfers, audio/video call, D-Bus and Metacontacts.";
+dict.entries['web']['hexchat'] = "HexChat is a graphical IRC client with a GTK+ GUI. Features include Python and Perl scripting support, a plugin API, multiple server/channel windows, spell checking, multiple authentication methods including SASL, and customizable notifications.";
+dict.entries['web']['ircii'] = "The ircII program is a full screen, termcap based interface to Internet Relay Chat. It gives full access to all of the normal IRC functions, plus a variety of additional options. This Version is able to display mIRC colors.";
+dict.entries['web']['irssi'] = "Irssi is a terminal based IRC client for UNIX systems. It also supports SILC and ICB protocols via plugins.";
+dict.entries['web']['kadu'] = "Gadu-Gadu is a Windows instant messenger, very popular in Poland. Kadu is a Qt5 client of Gadu-Gadu and XMPP for *nix systems. This package provides Kadu along with plugins developed by Kadu developers.";
+dict.entries['web']['konversation'] = "Konversation is a client for the Internet Relay Chat (IRC) protocol. It is easy to use and well-suited for novice IRC users, but novice and experienced users alike will appreciate its many features.";
+dict.entries['web']['kopete'] = "Kopete is an instant messaging and chat application with support for a wide variety of services, such as AIM, Yahoo, ICQ, MSN, and Jabber. Advanced features and additional protocols are available as plugins.";
+dict.entries['web']['kvirc'] = "A highly configurable graphical IRC client with an MDI interface, built-in scripting language, support for IRC DCC, drag & drop file browsing, and much more. KVIrc uses the KDE widget set, can be extended using its own scripting language, integrates with KDE, and supports custom plugins.";
+dict.entries['web']['loqui'] = "Loqui is a IRC/chat client based on GTK+, supports multiple servers and multiple protocols, has and the common buffer (a buffer to show messages on the channels that not currently selected).";
+dict.entries['web']['lostirc'] = "LostIRC is a simple, yet very useful IRC-client. It has features such as tab-autocompletion, multiple server support, automatic joining of servers/channels and DCC sending which should cover the needs of most people.";
+dict.entries['web']['pidgin'] = "Pidgin is a graphical, modular instant messaging client capable of using multiple networks at once. Currently supported are: AIM/ICQ, Yahoo!, MSN, IRC, Jabber/XMPP/Google Talk, Napster, Zephyr, Gadu-Gadu, Bonjour, Groupwise, Sametime, SIMPLE, MySpaceIM, and MXit.";
+dict.entries['web']['pork'] = "Pork is an ncurses-based AOL Instant Messenger and IRC client. It uses the OSCAR protocol (the one the windows client uses) to access AIM. Pork features Perl scripting; an online help system; the ability to configure nearly all aspects of the program's look-and-feel; an alias system; and a powerful, fully-configurable key binding system.";
+dict.entries['web']['psi'] = "Psi is a free instant messaging application designed for the Jabber (XMPP) IM network (including Google Talk). It has full Unicode support, and supports many important XMPP features like file transfer, group chat, encryption etc.";
+dict.entries['web']['quassel'] = "Quassel is a modern, cross-platform, distributed IRC client, meaning that one or more clients can attach to and detach from the central core. It's much like the popular combination of screen and a text-based IRC client such as WeeChat or irssi, but graphical.";
+dict.entries['web']['ring'] = "Ring (ring.cx) is a secure and distributed voice, video and chat communication platform that requires no centralized server and leaves the power of privacy in the hands of the user.";
+dict.entries['web']['scrollz'] = "ScrollZ is advanced IRC client based on ircII code. It adds features normally found in ircII scripts like Toolz, PhoEniX, GargOyle or Lice.";
+dict.entries['web']['sic'] = "sic is an extremely fast, small and simple irc client. It reads commands from standard input and prints all server output to standard output.";
+dict.entries['web']['skype'] = "Skype is a telecommunications application software product that specializes in providing video chat and voice calls between computers, tablets, mobile devices, the Xbox One console, and smartwatches via the Internet and to regular telephones.";
+dict.entries['web']['smuxi'] = "Smuxi is an irssi-inspired, flexible, user-friendly and cross-platform IRC client for sophisticated users, targeting the GNOME desktop.";
+dict.entries['web']['telegramdesktop'] = "Telegram is a messaging app with a focus on speed and security, it is super-fast, simple and free. You can use Telegram on all your devices at the same time — your messages sync seamlessly across any number of your phones, tablets or computers.";
+dict.entries['web']['tinyirc'] = "A very small, stripped down IRC client. It doesn't have most of the more advanced commands in the ircII family of IRC Clients, nor does it have any color, but it works, and it's tiny.";
+dict.entries['web']['tkabber'] = "Tkabber is a GUI client for XMPP (Jabber) instant messaging protocol. It provides full support of basic XMPP specifications as well as many protocol extensions (XEPs), such as multi-user conferencing, file transfers, extensive handling of privacy lists and much more.";
+dict.entries['web']['tormessenger'] = "TOR Anonymity Network application and an instant messanging client based on Instantbird.";
+dict.entries['web']['twinkle'] = "Twinkle is a soft-phone for making telephone calls over an IP network using the SIP protocol. You can use it for direct IP phone to IP phone communication or in a network using a SIP proxy to route your calls.";
+dict.entries['web']['weechat'] = "WeeChat (Wee Enhanced Environment for Chat) is a fast and light chat client for many operating systems. Everything can be done with a keyboard. It is customizable and extensible with plugins/scripts";
+// web email
 dict.entries['web']['alpine'] = "Functional and friendly for novices, text email client. It offers full support of protocols such as IMAP and SMTP as well as security via TLS.";
 dict.entries['web']['clawsmail'] = "Fast, light and user friendly e-mail client, based on GTK + 2. The program is extensible with plugins that support additional functions.";
 dict.entries['web']['evolution'] = "Evolution is a groupware toolkit that integrates: email program, calendar, address book, to-do list and reminder tools.";

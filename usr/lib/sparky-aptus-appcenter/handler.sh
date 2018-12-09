@@ -5,7 +5,7 @@
 # exit 0 - Yad supports URL (goes to a next page)
 # exit 1 - Yad ignores URL (does nothing)
 # exit 2 - Yad treats URL as a file downloading (not tested yet)
-# Last update by pavroo Dec 8, 2018
+# Last update by pavroo Dec 9, 2018
 
 URI="$1"
 
@@ -36,14 +36,25 @@ if [[ "$URI" == aptus* ]]; then
 	
 	echo "running a command for $CMD..."
 
-	if [ "$CMD" != "" ]; then
-		./bin/aptus-app $CMD
+	CHECKDESKTOP=`echo "$CMD" | grep environment`
+	CHECKAPP=`echo "$CMD" | grep app`
+	CHECKTOOL=`echo "$CMD" | grep tool`
+
+	# section: desktops
+	if [ "$CHECKDESKTOP" != "" ]; then
+		RUNDESKTOP=`echo "$CMD" | sed -e 's/environment_//'`
+		./bin/aptus-desktop $RUNDESKTOP
+	# section: apps
+	elif [ "$CHECKAPP" != "" ]; then
+		RUNAPP=`echo "$CMD" | sed -e 's/app_//'`
+		./bin/aptus-app $RUNAPP
+	# section: aptus tools
+	elif [ "$CHECKTOOL" != "" ]; then
+		RUNTOOL=`echo "$CMD" | sed -e 's/tool_//'`
+		./bin/aptus-tool $RUNTOOL
 	else
 		echo "unknown command... exiting"
 	fi
-
-	exit 1
-
 fi
 
 exit 1

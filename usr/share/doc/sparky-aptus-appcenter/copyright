@@ -331,16 +331,32 @@ The following shall not be protected by copyright:
 3. works of folklore,
 4. communications concerning events and facts that have an informational character.
 
+Files: hexchat.png, skype.png are a part of ultra-flat-icons package
+Copyright: Ultra-Flat-Icons by Steftrikia <steftrikia@gmail.com>
+License: Attribution-NonCommercial-ShareAlike 4.0 International Public License
+
 File: brave.png
-Copyright Brave Software Inc.
+Copyright: Brave Software Inc.
+License: ?
+
+File: caprine.png
+Copyright: Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
+LicenseL MIT License
+
+File: corebird.png
+Copyright: Timm Bäder <mail@baedert.org>
+License: GNU GPL 3+
+
+File: cyberfox.png
+Copyright: cyberfox.8pecxstudios.com
 License: ?
 
 File: dillo.png
 Copyright John Grantham
 License: GNU GPL 2+
 
-File: cyberfox.png
-Copyright: cyberfox.8pecxstudios.com
+File: discord.png
+Copyright/Source: https://discordapp.com/branding
 License: ?
 
 File: dooble.png
@@ -354,6 +370,10 @@ License: GPL-3.0+
 File: filezilla.png
 Copyright: Tim Kosse
 LicenseL GNU GPL
+
+File: gajim.png
+Copyright: Gajim Team
+License: GNU GPL
 
 File: gftp.png
 Copyright: Brian Masney
@@ -371,6 +391,16 @@ License: ?
 File: iron.png
 Copyright: https://www.srware.net/en/software_srware_iron.php
 License: ?
+
+File: kadu.png
+Copyright: Kadu Team
+Source: https://commons.wikimedia.org/wiki/File:Kadu_logo.png
+License: Creative Commons Attribution-Share Alike 3.0 Unported, 2.5 Generic, 2.0 Generic and 1.0 Generic license
+
+File: kvirc.png
+Copyright: http://kvirc.virg0.org/
+Source: https://en.wikipedia.org/wiki/File:Kvirclogo.png
+License: Creative Commons Attribution-ShareAlike 2.5 License. 
 
 File: lftp.png
 Copyright: Alexander V. Lukyanov
@@ -400,11 +430,15 @@ File: qutebrowser.png
 Copyright: Florian Bruhin
 License: GNU GPL
 
+File: ring.png
+Source: http://ring.cx/profiles/tatooine/themes/naboo/images/ring/logo-ring-coul.svg
+License: ?
+
 File: seamonkey.png
 Copyright: Alex Butin for Mozilla Foundation https://www.seamonkey-project.org/
 License: MPL/LGPL/GPL tri-license
 
-File: tor-browser.png
+File: tor-browser.png, tor-messenger.png
 Copyright (c) 2007-2013, The Tor Project, Inc.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -434,6 +468,14 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+File: tkabber.png
+Copyright: Artem Bannikov
+License: GNU GPL
+
+File: twinkle.png
+Copyright: Michel de Boer, Luboš Doležel
+License: GNU GPL
+
 File: vivaldi.png
 Source:	https://vivaldi.com/press/
 Copyright: Vivaldi Technologies™
@@ -442,6 +484,11 @@ File: waterfox.png
 Source:	https://www.waterfoxproject.org
 Copyright Milos Mirkovic
 License: Mozilla Public License Version 2
+
+File: weechat.png
+Copyright: Sébastien Helleu aka FlashCode
+Source: https://commons.wikimedia.org/wiki/File:Weechat_logo.png
+License: GNU Free Documentation License, Version 1.2 or any later
 
 File: youtube-dlg.png
 Copyright: MrS0m30n3 <ytubedlg@gmail.com>
