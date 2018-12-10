@@ -331,7 +331,7 @@ The following shall not be protected by copyright:
 3. works of folklore,
 4. communications concerning events and facts that have an informational character.
 
-Files: hexchat.png, skype.png are a part of ultra-flat-icons package
+Files: cantata.png, clementine.png, hexchat.png, radio.png, skype.png are a part of ultra-flat-icons package
 Copyright: Ultra-Flat-Icons by Steftrikia <steftrikia@gmail.com>
 License: Attribution-NonCommercial-ShareAlike 4.0 International Public License
 
@@ -379,6 +379,10 @@ File: gftp.png
 Copyright: Brian Masney
 License: GNU GPL
 
+File: gradio.png
+Copyright: 2016 Felix Häcker
+License: GPL-3.0+
+
 File: icecat.png
 Author: Hitflip
 Source: Wikipedia
@@ -392,10 +396,32 @@ File: iron.png
 Copyright: https://www.srware.net/en/software_srware_iron.php
 License: ?
 
+Files: jajuk.png
+Copyright: public domain
+License: public-domain
+
+File: juk.png (a prt of breeze-icons)
+Copyright: Andreas Kainz <kainz.a@gmail.com>, Uri Herrera <uri_herrera@nitrux.in>, Andrew Lake <jamboarder@gmail.com>, Marco Martin <notmart@gmail.com>, Harald Sitter <sitter@kde.org>, Jonathan Riddell <jr@jriddell.org>, Ken Vermette <vermette@gmail.com>, Aleix Pol <aleixpol@kde.org>, David Faure <faure@kde.org>, Albert Vaca <albertvaka@gmail.com>, Luca Beltrame <lbeltrame@kde.org>, Gleb Popov <6yearold@gmail.com>, Nuno Pinheiro <nuno.pinheiro@kdab.com>, Alex Richardson <arichardson.kde@gmail.com>, Jan Grulich <jgrulich@redhat.com>, Bernhard Landauer <oberon@manjaro.org>, Heiko Becker <heirecka@exherbo.org>, Volker Krause <vkrause@kde.org>, David Rosca <nowrep@gmail.com>, Phil Schaf <flying-sheep@web.de>
+License: GNU LGPL
+
 File: kadu.png
 Copyright: Kadu Team
 Source: https://commons.wikimedia.org/wiki/File:Kadu_logo.png
 License: Creative Commons Attribution-Share Alike 3.0 Unported, 2.5 Generic, 2.0 Generic and 1.0 Generic license
+
+File: kscd.png
+Copyright: Bouchikhi Mohamed-Amine <bouchikhi.amine@gmail.com>
+           Dembele Karim
+           Gastellu Sylvain <sylvain.gastellu@gmail.com>
+           Sovanramy Var <mastasushi@gmail.com>
+           1997, Bernd Johannes <wuebben@math.cornell.edu>
+           2002-2003, Aaron J. Seigo <aseigo@kde.org>
+           2004, Alexander Kern <alex.kern@gmx.de>
+           2003-2006, Richard Lärkäng <nouseforaname@home.se>
+           2008, Amine Bouchikhi <bouchikhi.amine@gmail.com>
+           2008, Laurent Montel <montel@kde.org>
+           2008, Stanislas Krzywda <stanislas.krzywda@gmail.com>
+License: GPL-2+
 
 File: kvirc.png
 Copyright: http://kvirc.virg0.org/
@@ -414,6 +440,10 @@ File: min.png
 Copyright: https://minbrowser.github.io/min/
 License: Apache License Version 2.0
 
+File: musique.png
+Copyright: 2011 Flavio Tordini
+License: GPL-3+
+
 File: netsurf.png
 Copyright: 2008-2015 Michael Drake <tlsa@netsurf-browser.org>
 License: MIT
@@ -426,6 +456,16 @@ File: palemoon.png
 Copyright: M.C. Straver BASc, AKA "Moonchild"
 License: Freeware
 
+File: pragha.png
+Copyright: 2007-2009 Sujith Manoharan <m.sujith@gmail.com>
+           2009-2015 Matias de Lellis <mati86dl@gmail.com>
+           2012-2013 Pavel Vasin
+License: GPL-3+
+
+File: qmmp.png
+Copyright: Qt-based Multimedia Player (Qmmp)
+License: GNU GPL
+
 File: qutebrowser.png
 Copyright: Florian Bruhin
 License: GNU GPL
@@ -433,6 +473,10 @@ License: GNU GPL
 File: ring.png
 Source: http://ring.cx/profiles/tatooine/themes/naboo/images/ring/logo-ring-coul.svg
 License: ?
+
+File: sayonara.png
+Copyright: Lucio Carreras <luciocarreras@gmail.com>
+License: GNU GPL-3
 
 File: seamonkey.png
 Copyright: Alex Butin for Mozilla Foundation https://www.seamonkey-project.org/
@@ -489,6 +533,10 @@ File: weechat.png
 Copyright: Sébastien Helleu aka FlashCode
 Source: https://commons.wikimedia.org/wiki/File:Weechat_logo.png
 License: GNU Free Documentation License, Version 1.2 or any later
+
+File: yarock.png
+Copyright: Sebastien Amardeilh
+License: GNU GPL 3
 
 File: youtube-dlg.png
 Copyright: MrS0m30n3 <ytubedlg@gmail.com>

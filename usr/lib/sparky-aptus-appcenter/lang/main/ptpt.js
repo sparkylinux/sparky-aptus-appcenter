@@ -1,7 +1,7 @@
 // Portuguese localization file for main
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/09 by pavroo
+// Last update 2018/12/10 by pavroo
 // main menu
 dict.entries['main'] = {};
 dict.entries['main']['categories'] = "Categorias";
@@ -41,9 +41,11 @@ dict.entries['main']['rss'] = "RSS";
 dict.entries['main']['universalaccess'] = "Acesso universal";
 dict.entries['main']['webbrowsers'] = "Navegadores da Web";
 // multimedia
-dict.entries['main']['audio'] = "Áudio";
+dict.entries['main']['audioeditors'] = "Editores de áudio";
+dict.entries['main']['audioplayers'] = "Players de áudio";
 dict.entries['main']['codecs'] = "Codecs";
-dict.entries['main']['video'] = "Vídeo";
+dict.entries['main']['videoeditors'] = "Editores de vídeo";
+dict.entries['main']['videoplayers'] = "Video players";
 // office
 dict.entries['main']['addressbooks'] = "Livros de endereços";
 dict.entries['main']['calculators'] = "Calculadoras";

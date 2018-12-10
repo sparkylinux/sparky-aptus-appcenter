@@ -16,5 +16,7 @@ dict.print = function(dictName, entryName) {
 //document.write('<script src="./lang/apps/' + language + '.js" type="text/javascript"></script>');
 // main menu
 document.write('<script src="./lang/main/' + language + '.js" type="text/javascript"></script>');
+// multimedia category
+document.write('<script src="./lang/media/' + language + '.js" type="text/javascript"></script>');
 // web category
 document.write('<script src="./lang/web/' + language + '.js" type="text/javascript"></script>');
