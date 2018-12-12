@@ -440,6 +440,10 @@ File: min.png
 Copyright: https://minbrowser.github.io/min/
 License: Apache License Version 2.0
 
+File: motionbox.png
+Copyright (C) 2018 Benjamin Arnaud <bunjee@omega.gg>
+License: GPL3
+
 File: musique.png
 Copyright: 2011 Flavio Tordini
 License: GPL-3+
@@ -456,6 +460,10 @@ File: palemoon.png
 Copyright: M.C. Straver BASc, AKA "Moonchild"
 License: Freeware
 
+File: parole.png
+Copyright: 2009-2010 Ali Abdallah <aliov@xfce.org> and others
+License: GPL-2+
+
 File: pragha.png
 Copyright: 2007-2009 Sujith Manoharan <m.sujith@gmail.com>
            2009-2015 Matias de Lellis <mati86dl@gmail.com>
@@ -470,6 +478,27 @@ File: qutebrowser.png
 Copyright: Florian Bruhin
 License: GNU GPL
 
+File: rage.png
+Copyright (C) 2014 Carsten Haitzler and various contributors (see AUTHORS)
+All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+   1. Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+   2. Redistributions in binary form must reproduce the above copyright 
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 File: ring.png
 Source: http://ring.cx/profiles/tatooine/themes/naboo/images/ring/logo-ring-coul.svg
 License: ?
@@ -482,24 +511,24 @@ File: seamonkey.png
 Copyright: Alex Butin for Mozilla Foundation https://www.seamonkey-project.org/
 License: MPL/LGPL/GPL tri-license
 
+File: smtube.png
+Copyright: 2015-2018 Ricardo Villalba
+License: GNU GPL
+
 File: tor-browser.png, tor-messenger.png
 Copyright (c) 2007-2013, The Tor Project, Inc.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
-
     * Redistributions of source code must retain the above copyright
 notice, this list of conditions and the following disclaimer.
-
     * Redistributions in binary form must reproduce the above
 copyright notice, this list of conditions and the following disclaimer
 in the documentation and/or other materials provided with the
 distribution.
-
     * Neither the names of the copyright owners nor the names of its
 contributors may be used to endorse or promote products derived from
 this software without specific prior written permission.
-
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -523,6 +552,10 @@ License: GNU GPL
 File: vivaldi.png
 Source:	https://vivaldi.com/press/
 Copyright: Vivaldi Technologies™
+
+File: vokoscreen.png
+Copyrigt: Volker Kohaupt
+License: GNU GPL2
 
 File: waterfox.png
 Source:	https://www.waterfoxproject.org

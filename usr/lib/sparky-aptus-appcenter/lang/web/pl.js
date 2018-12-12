@@ -1,7 +1,7 @@
 // Polish localization file for Web
 // Copyright 2017 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/09 by pavroo
+// Last update 2018/12/12 by pavroo
 dict.entries['web'] = {};
 // web communication
 dict.entries['web']['bti'] = "bti wysyła wiadomość na Twitterze do twitter.com. bti zapewnia łatwy sposób wysyłania wiadomości tweet bezpośrednio z wiersza poleceń lub skryptu. Odczytuje komunikat na standardowym wejściu i używa ustawień konta i hasła albo z poziomu wiersza poleceń, albo z pliku konfiguracyjnego, aby dostarczyć wiadomość.";
@@ -18,8 +18,10 @@ dict.entries['web']['kadu'] = "Gadu-Gadu to komunikator internetowy dla systemu 
 dict.entries['web']['konversation'] = "Konversation jest klientem protokołu IRC (Internet Relay Chat). Jest łatwy w użyciu i dobrze nadaje się dla początkujących użytkowników IRC, ale nowicjusze i doświadczeni użytkownicy z pewnością docenią jego wiele funkcji.";
 dict.entries['web']['kopete'] = "Kopete to komunikator internetowy oraz aplikacja do czatu, obsługująca wiele sieci, takich jak: AIM, Yahoo, ICQ, MSN, IRC czy Jabber. Zaawansowane właściwości oraz dodatkowe protokoły są dostępne jako wtyczki.";
 dict.entries['web']['kvirc'] = "Wysoce konfigurowalny graficzny klient IRC z interfejsem MDI, wbudowanym językiem skryptowym, obsługą IRC DCC, przeglądaniem plików typu 'przeciągnij i upuść' i wieloma innymi. KVIrc używa zestawu widżetów KDE, może być rozszerzony przy użyciu własnego języka skryptowego, integruje się z KDE i obsługuje niestandardowe wtyczki.";
+dict.entries['web']['linphone'] = "Linphone to internetowy telefon audio i wideo wykorzystujący protokół SIP. Posiada interfejs GTK+ oraz konsolowy, zawiera wiele różnych kodeków audio i wideo oraz zapewnia funkcje komunikatora.";
 dict.entries['web']['loqui'] = "Loqui to klient IRC / chat oparty na GTK+, który obsługuje wiele serwerów i wiele protokołów i ma wspólny bufor (do wyświetlania wiadomości na kanałach, które nie są aktualnie wybrane).";
 dict.entries['web']['lostirc'] = "LostIRC to prosty, ale bardzo przydatny klient IRC. Posiada funkcje takie jak autouzupełnianie, obsługa wielu serwerów, automatyczne łączenie serwerów / kanałów i wysyłanie DCC, które powinno zaspokajać potrzeby większości ludzi.";
+dict.entries['web']['mumble'] = "Mumble jest niskolatencyjnym programem do prowadzenia wysokiej jakości rozmów głosowych dla graczy komputerowych. Umożliwia: tłumienie szumów, szyfrowanie połączeń głosowych i wiadomości błyskawicznych, automatyczną regulację wzmocnienia i małe opóźnienie dźwięku z obsługą wielu standardów audio. Mumble zawiera nakładkę na grę, kompatybilną z większością otwartoźródłowych jak i komercyjnych aplikacji 3D.";
 dict.entries['web']['pidgin'] = "Pidgin jest graficznym, modułowym komunikatorem potrafiącym pracować z wieloma sieciami jednocześnie. Obecnie obsługiwane są: AIM/ICQ, Yahoo!, MSN, IRC, Jabber/XMPP/Google Talk, Napster, Zephyr, Gadu-Gadu, Bonjour, Groupwise, Sametime, SIMPLE, MySpaceIM i MXit.";
 dict.entries['web']['pork'] = "Pork to klient AOL Instant Messenger oraz klient IRC oparty na ncurses. Wykorzystuje protokół OSCAR (ten, z którego korzysta klient systemu Windows), aby uzyskać dostęp do AIM. Pork używa skrypty Perla; oferuje system pomocy online; możliwość konfiguracji prawie wszystkich aspektów wyglądu i stylu programu; system aliasów; i potężny, w pełni konfigurowalny system skrótów klawiszowych.";
 dict.entries['web']['psi'] = "Psi jest komunikatorem internetowym zaprojektowanym do użycia w sieci Jabber (XMPP; w tym Google Talk). W pełni obsługuje Unicode, a także najważniejsze funkcje XMPP, takie jak przesyłanie plików, rozmowy grupowe, szyfrowanie itd.";

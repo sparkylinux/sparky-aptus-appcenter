@@ -1,9 +1,9 @@
 Package: sparky-aptus-appcenter
-Version: 20181210
+Version: 20181212
 Architecture: all
 Maintainer: pavroo <pavroo@onet.eu>
-Installed-Size: 1528
-Depends: adduser, apt, coreutils, curl, dctrl-tools, dialog, dpkg, gdebi-core, gettext-base, grep, gawk, iputils-ping, ktsuss, sparky-apt, sparky-aptus-gamer (>= 0.2.0), sparky-codecs (>= 0.2.0), sparky-desktop (>= 20180424), sparky-editor, sparky-office (>= 0.2.0), ssft, teamspeak-installer (>= 3.1.8.2), tilda, ultra-flat-icons, vmplayer-installer, vrms, wget, yad, zenity
+Installed-Size: 1736
+Depends: adduser, apt, coreutils, curl, dctrl-tools, dialog, dpkg, gdebi-core, gettext-base, grep, gawk, iputils-ping, ktsuss, sparky-apt, sparky-aptus-gamer (>= 0.2.0), sparky-desktop (>= 20180424), sparky-editor, sparky-office (>= 0.2.0), ssft, teamspeak-installer (>= 3.1.8.2), tilda, ultra-flat-icons, vmplayer-installer, vrms, wget, yad, zenity
 Recommends: sparky-xterm, xterm
 Section: System
 Priority: optional

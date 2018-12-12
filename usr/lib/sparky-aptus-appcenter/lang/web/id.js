@@ -2,7 +2,7 @@
 // Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
 // Translated to Indonesian by les kompie
-// Last update 2018/12/09 by pavroo
+// Last update 2018/12/12 by pavroo
 dict.entries['web'] = {};
 // web communication
 dict.entries['web']['bti'] = "bti sends a tweet message to twitter.com. bti provides an easy way to send tweet messages directly from the command line or a script. It reads the message on standard input and uses the account and password settings either from the command line options or from a config file to deliver the message.";
@@ -19,8 +19,10 @@ dict.entries['web']['kadu'] = "Gadu-Gadu is a Windows instant messenger, very po
 dict.entries['web']['konversation'] = "Konversation is a client for the Internet Relay Chat (IRC) protocol. It is easy to use and well-suited for novice IRC users, but novice and experienced users alike will appreciate its many features.";
 dict.entries['web']['kopete'] = "Kopete is an instant messaging and chat application with support for a wide variety of services, such as AIM, Yahoo, ICQ, MSN, and Jabber. Advanced features and additional protocols are available as plugins.";
 dict.entries['web']['kvirc'] = "A highly configurable graphical IRC client with an MDI interface, built-in scripting language, support for IRC DCC, drag & drop file browsing, and much more. KVIrc uses the KDE widget set, can be extended using its own scripting language, integrates with KDE, and supports custom plugins.";
+dict.entries['web']['linphone'] = "Linphone is an audio and video internet phone using the SIP protocol. It has a GTK+ and console interface, includes a large variety of audio and video codecs, and provides IM features.";
 dict.entries['web']['loqui'] = "Loqui is a IRC/chat client based on GTK+, supports multiple servers and multiple protocols, has and the common buffer (a buffer to show messages on the channels that not currently selected).";
 dict.entries['web']['lostirc'] = "LostIRC is a simple, yet very useful IRC-client. It has features such as tab-autocompletion, multiple server support, automatic joining of servers/channels and DCC sending which should cover the needs of most people.";
+dict.entries['web']['mumble'] = "Mumble is a low-latency, high quality voice chat program for gaming. It features noise suppression, encrypted connections for both voice and instant messaging, automatic gain control and low latency audio with support for multiple audio standards. Mumble includes an in-game overlay compatible with most open-source and commercial 3D applications.";
 dict.entries['web']['pidgin'] = "Pidgin is a graphical, modular instant messaging client capable of using multiple networks at once. Currently supported are: AIM/ICQ, Yahoo!, MSN, IRC, Jabber/XMPP/Google Talk, Napster, Zephyr, Gadu-Gadu, Bonjour, Groupwise, Sametime, SIMPLE, MySpaceIM, and MXit.";
 dict.entries['web']['pork'] = "Pork is an ncurses-based AOL Instant Messenger and IRC client. It uses the OSCAR protocol (the one the windows client uses) to access AIM. Pork features Perl scripting; an online help system; the ability to configure nearly all aspects of the program's look-and-feel; an alias system; and a powerful, fully-configurable key binding system.";
 dict.entries['web']['psi'] = "Psi is a free instant messaging application designed for the Jabber (XMPP) IM network (including Google Talk). It has full Unicode support, and supports many important XMPP features like file transfer, group chat, encryption etc.";
