@@ -1,9 +1,10 @@
 // Indonesian localization file for main
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/10 by pavroo
+// Last update 2018/12/17 by pavroo
 // main menu
 dict.entries['main'] = {};
+dict.entries['main']['applications'] = "Aplikasi";
 dict.entries['main']['categories'] = "Kategori";
 dict.entries['main']['aptus'] = "APTus";
 dict.entries['main']['info'] = "Information";

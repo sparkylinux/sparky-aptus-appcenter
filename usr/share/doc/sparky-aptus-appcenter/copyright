@@ -74,6 +74,7 @@ License:
 On Debian systems, the complete text of the GNU General
 Public License can be found in `/usr/share/common-licenses/GPL'.
 
+### Flags ###
 File: al.png
 Author: John C. Meuser
 Source: https://openclipart.org/detail/26880/flag-of-albania-by-anonymous
@@ -331,6 +332,7 @@ The following shall not be protected by copyright:
 3. works of folklore,
 4. communications concerning events and facts that have an informational character.
 
+### application icons ###
 Files: cantata.png, clementine.png, hexchat.png, radio.png, skype.png are a part of ultra-flat-icons package
 Copyright: Ultra-Flat-Icons by Steftrikia <steftrikia@gmail.com>
 License: Attribution-NonCommercial-ShareAlike 4.0 International Public License
@@ -575,6 +577,145 @@ File: youtube-dlg.png
 Copyright: MrS0m30n3 <ytubedlg@gmail.com>
 License: The Unlicense
 
+### desktop icons ###
 
+File: awesome.png
+Copyright (C) The awesome team
+Source: https://awesome.naquadah.org/
+License: GNU GPL-2
 
+File: bspwm.png
+Copyright (C) Bastien Dejean
+Source: https://github.com/baskerville/bspwm
+License: BSD
 
+File: budgie.png
+Copyright (C) Ikey Doherty
+Source: https://github.com/solus-project/budgie-desktop
+License: GNU GPL 2
+
+File: cde.png
+Copyright (C) Copyright 1993-2012 The Open Group
+Copyright (C) 2012-2016 CDE Project contributors
+Source: https://sourceforge.net/p/cdesktopenv/
+License: GNU LGPL 2+
+
+File: cinnamon.png
+Copyright (C) Clement Lefebvre
+Source: https://commons.wikimedia.org/wiki/File:Linux_Mint_logo_without_wordmark.svg
+License: Creative Commons Attribution 3.0 Unported
+
+File: elementary.png
+Copyright (C) Dan Rabbit
+Source: https://commons.wikimedia.org/wiki/File:Elementary_logo.svg
+License: GNU GPL2+
+
+File: enlightenment.png
+Copyright (C) Carsten Haitzler and various contributors
+Source: https://en.wikipedia.org/wiki/File:E17_enlightenment_logo_shiny_black_curved.svg
+License: BSD
+
+File: fluxbox.png
+Copyright (C) Oliwier Ptak, <aleczapka at gmx dot net>
+Source: https://commons.wikimedia.org/wiki/File:Fluxbox-logo.png
+License: GNU GPL2+
+
+File: gnome*.png
+Copyright (C) GhePeU
+Source: https://commons.wikimedia.org/wiki/File:Gnomelogo-footprint.svg
+License: GNU LGPL
+
+File: i3.png
+Copyright (C) Michael Stapelberg
+Source: https://commons.wikimedia.org/wiki/File:I3_window_manager_logo.png
+License: Creative Commons Attribution-Share Alike 3.0 Unported
+
+File: icewm.png
+Copyright (C) Marko Maček
+Source: https://commons.wikimedia.org/wiki/File:IceWM_Logo.png
+License: Creative Commons Attribution-Share Alike 3.0 Unported
+
+File: jade.png
+Vitor Lopes <vmnlop@gmail.com>
+License: GPL
+
+File: jwm.png
+Copyright (C) Joe Wingbermuehle
+Source: http://joewing.net/projects/jwm/
+License: GNU GPL v2
+
+File: kde.png
+Copyright (C) KDE
+Source: https://commons.wikimedia.org/wiki/File:KDE_Logo_Official_Lineart_Detailed.svg
+License: GNU GPL v2
+
+File: lumina.png
+Copyright 2012-2016, Ken Moore (moorekou@gmail.com)
+All rights reserved
+Source: https://github.com/trueos/lumina
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the organization nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+
+File: lxde.png
+Copyright (C) Mario Behling
+Source: https://commons.wikimedia.org/wiki/File:LXDE_logo.jpg
+License: LGPL
+
+File: lxqt.png
+Copyright (C) Caig
+Source: https://commons.wikimedia.org/wiki/File:Helix_lxqt.svg
+License: Creative Commons Attribution-Share Alike 3.0 Unported
+
+File: manokwari.png
+Copyright (C) Manokwari team
+Source: http://manokwari.blankonlinux.or.id/
+License: GNU GPL
+
+File: mate.png
+Copyright (C) MATE team / Joseph Krieger
+Source: https://commons.wikimedia.org/wiki/File:Mate_icon.png
+License: GNU GPL
+
+File: openbox.png
+Copyright (C) David Barr
+Source: http://openbox.org/wiki/File:Openbox-72.png
+License: GNU GPL 2+
+
+File: pekwm.png
+Copyright (C) PekWM team
+Source: https://www.pekwm.org/
+License: GNU GPL
+
+File: tde.png
+Copyright (C) KDE, Pearson Computing
+Source: https://commons.wikimedia.org/wiki/File:Trinity_DE_logo_crystal.png
+License: LGPL
+
+File: wmaker.png
+Copyright (C) Window Maker developers
+Source: http://windowmaker.org/
+License: GNU GPL v2
+
+File: xfce.png
+Copyright (C) Xfce Team, Sav_vas
+Source: https://commons.wikimedia.org/wiki/File:Xfce_logo.svg
+License: LGPL

@@ -1,14 +1,22 @@
 #!/bin/bash
 
-echo ""
-echo "Usage of sparky-aptus-appcenter is as follows:"
-echo "cd /usr/lib/sparky-aptus-appcenter"
-echo "ktsuss (or sudo) app-center"
-echo "Bugs report at sparkylinux.org forums, if you find any."
-echo ""
+# Last update Dec 17, 2018 by pavroo
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 cd /usr/lib/sparky-aptus-appcenter
-ktsuss aptus-appcenter
+
+KTSUSS=`which ktsuss`
+SPARKYSU=`which spsu`
+SUTOROOT=`which su-to-root`
+
+if [ "$KTSUSS" != "" ]; then
+	$KTSUSS ./aptus-appcenter
+elif [ "$SPARKYSU" != "" ]; then
+	$SPARKYSU ./aptus-appcenter
+elif [ "$SUTOROOT" != "" ]; then
+	$SUTOROOT -X -c "./aptus-appcenter"
+else
+	echo "can not run sparky-aptus-appcenter, exiting..."
+fi
 
 exit 0

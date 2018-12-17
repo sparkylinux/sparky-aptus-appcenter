@@ -1,9 +1,10 @@
 // English localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2018/12/10 by pavroo
+// Last update 2018/12/17 by pavroo
 // main menu
 dict.entries['main'] = {};
+dict.entries['main']['applications'] = "Applications";
 dict.entries['main']['categories'] = "Categories";
 dict.entries['main']['aptus'] = "APTus";
 dict.entries['main']['info'] = "Informations";

@@ -41,7 +41,7 @@ BUTTONREMOVE="--button=$LOCAL008:3"
 BUTTONREINSTALL="--button=$LOCAL009:4"
 BUTTONINSTALL="--button=$LOCAL010:0"
 BUTTONEXIT="--button=$LOCAL001:1"
-TITLETEXT="$LOCAL002"
+TITLETEXT="APTus AppCenter"
 PINGTEST=$(ping -c 1 debian.org | grep [0-9])
 WORKDIR="/tmp/sparky-appcenter"
 SERVERG="https://dl.google.com/linux/direct"

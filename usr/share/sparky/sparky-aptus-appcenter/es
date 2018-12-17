@@ -3,14 +3,14 @@
 # Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu> 2017/08/19
 # Under the GNU GPL v3
 # Translated by 2017/11/02 by seacat
-# Last update 2018/11/30 by pavroo
+# Last update 2018/12/17 by pavroo
 LOCAL001="Salir"
-LOCAL002="Instalador del Navegador Web"
+LOCAL002="Antes de comenzar, asegúrese que la lista de paquetes está actualizada.\n\n¿Desea instalar ahora?"
 LOCAL003="¡Falló la prueba de la conexión de Internet!\n\nProbablemente NO esté conectado a Internet o el servidor principal del repositorio esté caído.\n\nVerifique esto y vuelva a intentarlo."
 LOCAL004="La aplicación está solamente disponible para la arquitectura amd64."
 LOCAL005="Saliendo..."
 LOCAL006="Su versión de sistema operativo es demasiado vieja para instalar el paquete."
-LOCAL007="It can not be installed on your version of Debian/Sparky.\n\n..."
+LOCAL007="It can not be installed on your version of Debian/Sparky."
 LOCAL008="Remove"
 LOCAL009="Reinstall"
 LOCAL010="Install"
@@ -20,3 +20,11 @@ LOCAL013="Something is wrong! \nProbably you have stopped the installation, or y
 LOCAL014="Should I install the package you have chosen?"
 LOCAL015="The package has been successfully installed."
 LOCAL016="This package is not available for your system version."
+LOCAL017="You are running"
+LOCAL018="so it CAN NOT be removed now."
+LOCAL019="Re-login to a different desktop and try again."
+LOCAL020="If everything went well, your desktop has been removed from your system."
+LOCAL021="Se instalá el nuevo escritorio que ha sido seleccionado y se reemplazarán las configuraciones antiguas del escritorio en el directorio Home, sí existían.\n\nTambién se podrán hacer pequeños cambios en las configuraciones de escritorio que ya estaba instalado."
+LOCAL022="El directorio Home del usuario NO exite, en consecuencia, los archivos de configuración del nuevo escritorio NO serán copiados."
+LOCAL023="Sí todo marchó adecuadamente, el nuevo escritorio ha sido instalado y configurado.\n\nCierre la sesión y ábrala en el nuevo escritorio para que tengan efecto los cambios."
+LOCAL024="¡Algo anda mal!\n\nNO se pueden encontrar los archivos del nuevo escritorio, por tanto las configuraciones de usuario NO serán copiadas al directorio Home."

@@ -1,5 +1,5 @@
 // Created by Piotr "MoroS" Mrożek 2018
-// last update Dec 7, 2018 by pavroo
+// last update Dec 17, 2018 by pavroo
 // get the language (transfered from Yad command-line user-agent parameter)
 var language = window.navigator.userAgent;
 // create the dictionary object
@@ -16,6 +16,8 @@ dict.print = function(dictName, entryName) {
 //document.write('<script src="./lang/apps/' + language + '.js" type="text/javascript"></script>');
 // main menu
 document.write('<script src="./lang/main/' + language + '.js" type="text/javascript"></script>');
+// desktop menu
+document.write('<script src="./lang/desktop/' + language + '.js" type="text/javascript"></script>');
 // multimedia category
 document.write('<script src="./lang/media/' + language + '.js" type="text/javascript"></script>');
 // web category
