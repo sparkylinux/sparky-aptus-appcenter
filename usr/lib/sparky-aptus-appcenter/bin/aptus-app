@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2018 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2018/12/11 by pavroo
+# Last update 2018/12/19 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -76,8 +76,34 @@ ARCH64="`uname -m | grep x86_64`"
 ARCH32="`uname -m | grep 686`"
 ARCHARM="`uname -m | grep arm`"
 
-### multimedia audio players ###
-if [ "$1" = "deadbeef" ]; then
+##### graphics editors #####
+if [ "$1" = "darktable" ]; then
+	if [ "$ARCH32" != "" ] || [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "lightzone" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "opentoonz" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "xnview" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="$1"
+
+##### multimedia audio players #####
+elif [ "$1" = "deadbeef" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1
@@ -114,7 +140,7 @@ elif [ "$1" = "yarock" ]; then
 	fi
 	PACKAGE="$1"
 
-### multimedia video players ###
+##### multimedia video players #####
 elif [ "$1" = "motionbox" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
@@ -128,7 +154,7 @@ elif [ "$1" = "rage" ]; then
 	fi
 	PACKAGE="$1"
 
-### web communication ###
+##### web communication #####
 elif [ "$1" = "caprine" ]; then
 	if [ "$ARCH64" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
@@ -160,7 +186,7 @@ elif [ "$1" = "tor-messenger" ]; then
 	fi
 	PACKAGE="$1"
 
-### web others ###
+##### web others #####
 elif [ "$1" = "dropbox" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
@@ -191,7 +217,7 @@ elif [ "$1" = "spideroakone" ]; then
 	fi
 	PACKAGE="$1"
 
-### web browsers ###
+##### web browsers #####
 elif [ "$1" = "brave" ]; then
 	if [ "$ARCH64" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX

@@ -1,9 +1,9 @@
 // German localization file for main
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/17 by pavroo
-// main menu
+// Last update 2018/12/18 by pavroo
 dict.entries['main'] = {};
+// main menu
 dict.entries['main']['applications'] = "Anwendungen";
 dict.entries['main']['categories'] = "Kategorien";
 dict.entries['main']['aptus'] = "APTus";
@@ -33,6 +33,10 @@ dict.entries['main']['info08'] = "If you find any problem, report it to Sparky f
 dict.entries['main']['info09'] = "Sparky APTus AppCenter is released under GNU GPL 3.0 License.";
 dict.entries['main']['info10'] = "Contributors:";
 dict.entries['main']['info11'] = "Übersetzungen:";
+// graphics
+dict.entries['main']['graphicseditors'] = "Grafik-Editoren";
+dict.entries['main']['graphicsviewers'] = "Grafikbetrachter";
+dict.entries['main']['graphicsscreenshots'] = "Bildschirmfoto";
 // internet
 dict.entries['main']['communication'] = "Kommunikation";
 dict.entries['main']['email'] = "eMail";

@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Last update Dec 17, 2018 by pavroo
+# Last update Dec 19, 2018 by pavroo
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 cd /usr/lib/sparky-aptus-appcenter
 
-KTSUSS=`which ktsuss`
 SPARKYSU=`which spsu`
+KTSUSS=`which ktsuss`
 SUTOROOT=`which su-to-root`
 
-if [ "$KTSUSS" != "" ]; then
-	$KTSUSS ./aptus-appcenter
-elif [ "$SPARKYSU" != "" ]; then
+if [ "$SPARKYSU" != "" ]; then
 	$SPARKYSU ./aptus-appcenter
+elif [ "$KTSUSS" != "" ]; then
+	$KTSUSS ./aptus-appcenter
 elif [ "$SUTOROOT" != "" ]; then
 	$SUTOROOT -X -c "./aptus-appcenter"
 else
