@@ -3,7 +3,7 @@
 # Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu> 2017/08/19
 # Under the GNU GPL v3
 # Translated by 2017/11/02 by seacat
-# Last update 2018/12/17 by pavroo
+# Last update 2018/12/21 by pavroo
 LOCAL001="Salir"
 LOCAL002="Antes de comenzar, asegúrese que la lista de paquetes está actualizada.\n\n¿Desea instalar ahora?"
 LOCAL003="¡Falló la prueba de la conexión de Internet!\n\nProbablemente NO esté conectado a Internet o el servidor principal del repositorio esté caído.\n\nVerifique esto y vuelva a intentarlo."
@@ -28,3 +28,5 @@ LOCAL021="Se instalá el nuevo escritorio que ha sido seleccionado y se reemplaza
 LOCAL022="El directorio Home del usuario NO exite, en consecuencia, los archivos de configuración del nuevo escritorio NO serán copiados."
 LOCAL023="Sí todo marchó adecuadamente, el nuevo escritorio ha sido instalado y configurado.\n\nCierre la sesión y ábrala en el nuevo escritorio para que tengan efecto los cambios."
 LOCAL024="¡Algo anda mal!\n\nNO se pueden encontrar los archivos del nuevo escritorio, por tanto las configuraciones de usuario NO serán copiadas al directorio Home."
+LOCAL025="LibreOffice está instalado! \n\nDesinstálelo antes de instalar OpenOffice."
+LOCAL026="OpenOffice está instalado! \n\nDesinstálelo antes de instalar LibreOffice."

@@ -1,7 +1,7 @@
 // Polish localization file for Multimedia
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/12 by pavroo
+// Last update 2018/12/22 by pavroo
 dict.entries['media'] = {};
 // multimedia audio players
 dict.entries['media']['alsaplayergui'] = "Interfejs GTK dla alsaplayer.";
@@ -66,6 +66,7 @@ dict.entries['media']['x264'] = "x264 to zaawansowany koder działający z linii
 dict.entries['media']['x265'] = "x265 to koder działający z linii poleceń do tworzenia strumieni wideo H.265 / High Efficiency Video Coding (HEVC).";
 // multimedia others
 dict.entries['media']['kazam'] = "Kazam zapewnia dobrze zaprojektowany i łatwy w użyciu interfejs do przechwytywania screencastów i zrzutów ekranu. Może nagrywać wideo na pulpicie i wiele strumieni audio jednocześnie z kontrolą poziomów audio i przechwytywaniem regionu ekranu.";
+dict.entries['media']['kover'] = "Kover to program WYSIWYG służący do drukowania okładek CD. Masz możliwość wpisania tytułu, zawartości, ustawienia kolorów tła, wprowadzenia tekstu, osadzenia obrazów lub przesłania tytułu i ścieżek z CDDB (w tym CDDB Code 211). Kover może uwierzytelniać za pośrednictwem serwera proxy (Basic, ale nie Digest) w celu uzyskania dostępu do CDDB i tworzyć żądanie CDDB po prostu wprowadzając identyfikator CDDB (tzn. Nie trzeba wkładać płyty CD).";
 dict.entries['media']['lxmms2'] = "lxmms2 to mały klient XMMS2 do sterowania XMMS2 za pomocą pilota zdalnego sterowania LIRC.";
 dict.entries['media']['vokoscreen'] = "vokoscreen może być używany do nagrywania filmów edukacyjnych, nagrań na żywo przeglądarki, instalacji, wideokonferencji itp. Możesz nagrać sam film lub wideo i dźwięk (za pomocą ALSA lub PulseAudio).";
 // multimedia video players

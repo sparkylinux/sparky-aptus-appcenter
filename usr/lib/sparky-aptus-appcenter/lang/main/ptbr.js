@@ -55,9 +55,9 @@ dict.entries['main']['videoplayers'] = "Video players";
 dict.entries['main']['addressbooks'] = "Livros de endereços";
 dict.entries['main']['calculators'] = "Calculadoras";
 dict.entries['main']['documentviewers'] = "Visualizadores de documentos";
-dict.entries['main']['htmleditors'] = "Editores de HTML";
+dict.entries['main']['notes'] = "Notes";
 dict.entries['main']['officesuite'] = "Suíte Office";
-dict.entries['main']['spreedsheet'] = "Planilha";
+dict.entries['main']['spreadsheet'] = "Planilha";
 dict.entries['main']['texteditors'] = "Editores de texto";
 // others
 dict.entries['main']['others'] = "Outras";

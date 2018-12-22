@@ -55,9 +55,9 @@ dict.entries['main']['videoplayers'] = "Pemutar Video";
 dict.entries['main']['addressbooks'] = "Buku Alamat";
 dict.entries['main']['calculators'] = "Kalkulator";
 dict.entries['main']['documentviewers'] = "Penampil Dokumen";
-dict.entries['main']['htmleditors'] = "Editor HTML";
+dict.entries['main']['notes'] = "Notes";
 dict.entries['main']['officesuite'] = "Office Suite";
-dict.entries['main']['spreedsheet'] = "Spreadsheet";
+dict.entries['main']['spreadsheet'] = "Spreadsheet";
 dict.entries['main']['texteditors'] = "Editor Teks";
 // others
 dict.entries['main']['others'] = "Lainnya";

@@ -2,7 +2,7 @@
 # It based on: webbrowser-installer, 
 # Copyright 2017 Carlo Troiani <abbassolafrangetta@gmail.com> 2017/09/02
 # Rilasciato sotto licenza GNU GPL v3
-# Last update 2018/12/17 by pavroo
+# Last update 2018/12/21 by pavroo
 LOCAL001="Esci"
 LOCAL002="Assicurati che la lista dei pacchetti sia aggiornata, prima di iniziare la procedura.\n\nVuoi procedere con l'installazione adesso?"
 LOCAL003="Test della connessione ionternet fallito!\n\nProbabilmente NON sei connesso ad internet od il server del repository principale e' offline.\n\nControlla e prova di nuovo."
@@ -27,3 +27,5 @@ LOCAL021="Installa il desktop che hai scelto; attenzione: se gia' presenti, le i
 LOCAL022="La home dell'utente NON esiste, quindi i files di configurazione del nuovo desktop NON saranno copiati."
 LOCAL023="Se tutto e' andato bene, il nuovo desktop a' stato installato e configurato.\n\nEffettua il log out e riaccedi affinchÃ© le modifiche abbiano effetto."
 LOCAL024="Qualcosa e' andato storto!\n\nNON posso trovare i file di configurazione del nuovo desktop, quindi le impostazioni dell'utente NON saranno copiate sulla home scelta."
+LOCAL025="Rilevata la presenza di LibreOffice nel sistema! \n\nDisinallalo prima di procedere con l'installazione di OpenOffice."
+LOCAL026="Rilevata la presenza di OpenOffice nel sistema! \n\nDisinallalo prima di procedere con l'installazione di LibreOffice."

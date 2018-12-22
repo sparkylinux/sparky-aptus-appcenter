@@ -1,7 +1,7 @@
 // English localization file for Multimedia
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2018/12/12 by pavroo
+// Last update 2018/12/22 by pavroo
 dict.entries['media'] = {};
 // multimedia audio players
 dict.entries['media']['alsaplayergui'] = "alsaplayer GTK interface.";
@@ -66,6 +66,7 @@ dict.entries['media']['x264'] = "x264 is an advanced commandline encoder for cre
 dict.entries['media']['x265'] = "x265 is a commandline encoder for creating H.265/High Efficiency Video Coding (HEVC) video streams.";
 // multimedia others
 dict.entries['media']['kazam'] = "Kazam provides a well designed and easy to use interface for capturing screencasts and screenshots. It can record desktop video and multiple audio streams simultaneously with control over audio levels and the screen region being captured.";
+dict.entries['media']['kover'] = "Kover is a WYSIWYG CD cover printer. You have the ability to enter the title, contents, set background colors, enter text, embed images or stream the title and tracks from CDDB (including CDDB Code 211). Kover can authenticate through a proxy (Basic, but not Digest) for accessing CDDB, and make a CDDB request just by entering the CDDB ID (i.e., no need to have the CD inserted).";
 dict.entries['media']['lxmms2'] = "lxmms2 is a tiny XMMS2 client to control XMMS2 with a LIRC compatible remote control.";
 dict.entries['media']['vokoscreen'] = "vokoscreen can be used to record educational videos, live recordings of browser, installation, videoconferences, etc. You can capture an alone video or video and sound (via ALSA or PulseAudio).";
 // multimedia video players

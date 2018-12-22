@@ -2,7 +2,7 @@
 # It based on: webbrowser-installer, 
 # Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu> 2017/08/19
 # Under the GNU GPL v3
-# Last update 2018/12/17 by pavroo
+# Last update 2018/12/21 by pavroo
 LOCAL001="Exit"
 LOCAL002="Stelle sicher, das die Paketliste aktuell ist, bevor du dieses startest.\n\nMöchtest du nun installieren?"
 LOCAL003="Internet Verbindungstest fehlgeschlagen!\n\nWahrscheinlich bist du NICHT mit dem Internet verbunden oder der Hauptversionsserver ist nicht verfügbar..\n\nÜberprüfe das und versuche es erneut."
@@ -27,3 +27,5 @@ LOCAL021="Es wird eine neue Oberfläche installiert, die du gewählt hast. Diese
 LOCAL022="Der Benutzer-Home-Ordner existiert NICHT, sodas die neuen Desktop-Konfigurationsdaten NICHT kopiert werden können."
 LOCAL023="Wenn alles gut ging, wurde dein neuer Desktop installiert und konfiguriert.\n\nMelde dich ab und melde dich an am neuen Desktop, damit die Änderungen greifen."
 LOCAL024="Etwas ist falsch!\n\nKann die neuen Desktop-Daten NICHT finden, Benutzereinstellungen werden NICHT in dein Home-Verzeichnis kopiert."
+LOCAL025="LibreOffice ist installiert! \n\nDeinstalliere es, bevor du OpenOffice installierst."
+LOCAL026="OpenOffice ist installiert! \n\nDeinstalliere es, bevor du LibreOffice installierst."

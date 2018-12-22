@@ -1,7 +1,7 @@
 // Polish localization file for Web
 // Copyright 2017 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/12 by pavroo
+// Last update 2018/12/22 by pavroo
 dict.entries['web'] = {};
 // web communication
 dict.entries['web']['bti'] = "bti wysyła wiadomość na Twitterze do twitter.com. bti zapewnia łatwy sposób wysyłania wiadomości tweet bezpośrednio z wiersza poleceń lub skryptu. Odczytuje komunikat na standardowym wejściu i używa ustawień konta i hasła albo z poziomu wiersza poleceń, albo z pliku konfiguracyjnego, aby dostarczyć wiadomość.";
@@ -39,6 +39,7 @@ dict.entries['web']['twinkle'] = "Twinkle to aplikacja do wykonywania połącze�
 dict.entries['web']['weechat'] = "WeeChat (Wee Enhanced Environment for Chat - rozszerzone środowisko Wee do czatowania) jest szybkim i lekkim klientem IRC, działającym pod kontrolą wielu systemów operacyjnych. Może być obsługiwany całkowicie przy użyciu klawiatury. Można go dostosowywać i rozszerzać za pomocą wtyczek/skryptów.";
 // web email
 dict.entries['web']['alpine'] = "Funkcjonalny, ale przyjazny dla nowicjuszy, tekstowy klient poczty elektronicznej. Umożliwia pełną obsługę protokołów pocztowych, takich jak IMAP i SMTP oraz protokołów bezpieczeństwa jak np. TLS.";
+dict.entries['web']['balsa'] = "Balsa jest funkcjonalnym i wysoce konfigurowalnym klientem poczty elektronicznej do środowiska GNOME. Obsługuje serwery POP3 i IMAP, a także lokalne formaty skrzynek pocztowych mbox, maildir i mh. Balsa obsługuje także SMTP i/lub korzystanie z lokalnych MTA (agent przesyłania poczty) takich jak Sendmail.";
 dict.entries['web']['clawsmail'] = "Szybki, lekki i przyjazny dla użytkownika klient poczty elektronicznej, oparty na GTK+2. Program jest rozszerzalny za pomocą wtyczek, które obsługują dodatkowe funkcje.";
 dict.entries['web']['evolution'] = "Evolution jest zestawem narzędziowym do pracy grupowej, który integruje: program pocztowy, kalendarz, książkę adresową, listę zadań do zrobienia oraz narzędzia przypominające.";
 dict.entries['web']['geary'] = "Geary to lekki czytnik e-mail dla GNOME, zaprojektowany tak, abyś mógł szybko i łatwo odczytać pocztę e-mail. Jego interfejs opiera się na rozmowach, dzięki czemu można łatwo przeczytać całą dyskusję bez konieczności klikania z wiadomości do wiadomości.";

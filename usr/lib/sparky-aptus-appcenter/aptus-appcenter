@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Created by Piotr "MoroS" Mrożek 2018
-# Last update by Paweł "pavroo" Pijanowski Dec 8, 2018
+# Last update by Paweł "pavroo" Pijanowski Dec 20, 2018
 
 LANGUAGE=${LANG:0:2}
 DE=`echo $LANGUAGE | grep de`
@@ -14,22 +14,22 @@ PL=`echo $LANGUAGE | grep pl`
 PTBR=`echo $LANGUAGE | grep pt-br`
 PTPT=`echo $LANGUAGE | grep py | grep -v br`
 
-if [ "$DE" != "" ]; then
+#if [ "$DE" != "" ]; then
+#	LANGUAGE="$LANGUAGE"
+#elif [ "$ES" != "" ]; then
+#	LANGUAGE="$LANGUAGE"
+#elif [ "$FR" != "" ]; then
+#	LANGUAGE="$LANGUAGE"
+#elif [ "$ID" != "" ]; then
+#	LANGUAGE="$LANGUAGE"
+#elif [ "$IT" != "" ]; then
+#	LANGUAGE="$LANGUAGE"
+if [ "$PL" != "" ]; then
 	LANGUAGE="$LANGUAGE"
-elif [ "$ES" != "" ]; then
-	LANGUAGE="$LANGUAGE"
-elif [ "$FR" != "" ]; then
-	LANGUAGE="$LANGUAGE"
-elif [ "$ID" != "" ]; then
-	LANGUAGE="$LANGUAGE"
-elif [ "$IT" != "" ]; then
-	LANGUAGE="$LANGUAGE"
-elif [ "$PL" != "" ]; then
-	LANGUAGE="$LANGUAGE"
-elif [ "$PTBR" != "" ]; then
-	LANGUAGE="$LANGUAGE"
-elif [ "$PTPT" != "" ]; then
-	LANGUAGE="$LANGUAGE"
+#elif [ "$PTBR" != "" ]; then
+#	LANGUAGE="$LANGUAGE"
+#elif [ "$PTPT" != "" ]; then
+#	LANGUAGE="$LANGUAGE"
 else
 	LANGUAGE="en"
 fi

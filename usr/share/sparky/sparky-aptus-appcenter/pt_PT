@@ -3,7 +3,7 @@
 # Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu> 2017/08/19
 # Under the GNU GPL v3
 # Translation by José Vieira <jvieira33@sapo.pt> 2018/04/13
-# Last update 2018/12/17 by pavroo
+# Last update 2018/12/21 by pavroo
 LOCAL001="Sair"
 LOCAL002="Antes de começar, certifique-se de que a lista de pacotes está actualizada.\n\nInstalar agora?"
 LOCAL003="A ligação À Internet falhou!\n\nProvavelmente NÃO está ligado à Internet ou o servidor do repositório principal está desligado.\n\nVerifique e tente novamente."
@@ -28,3 +28,5 @@ LOCAL021="Esta aplicação instalará um novo ambiente de trabalho e substituir�
 LOCAL022="A diretoria home do utilizador NÃO existe, pelo que os arquivos de configuração NÃO serão copiados para o novo ambiente de trabalho."
 LOCAL023="Se tudo ocorreu sem mensagens de erro, o novo ambiente de trabalho foi instalado e configurado.\n\n Saia desta sessão (log out) e inicie nova sessão, para que o novo ambiente de trabalho e as novas configurações se efectivem."
 LOCAL024="Algo está errado!\n\nOs arquivos de configuração do novo ambiente de trabalho não foram encontrados, pelo que as configurações de utilizador NÃO serão copiadas para a diretoria home."
+LOCAL025="LibreOffice está instalado! \n\nDesinstalá-lo antes de você irá instalar OpenOffice."
+LOCAL026="OpenOffice está instalado! \n\nDesinstalá-lo antes de você irá instalar LibreOffice."

@@ -55,9 +55,9 @@ dict.entries['main']['videoplayers'] = "Odtwarzacze Wideo";
 dict.entries['main']['addressbooks'] = "Książki Adresowe";
 dict.entries['main']['calculators'] = "Kalkulatory";
 dict.entries['main']['documentviewers'] = "Przeglądarki Dokumentów";
-dict.entries['main']['htmleditors'] = "Edytory HTML";
+dict.entries['main']['notes'] = "Notatki";
 dict.entries['main']['officesuite'] = "Pakiety Biurowe";
-dict.entries['main']['spreedsheet'] = "Arkusze Kalkulacyjne";
+dict.entries['main']['spreadsheet'] = "Arkusze Kalkulacyjne";
 dict.entries['main']['texteditors'] = "Edytory Tekstu";
 // others
 dict.entries['main']['others'] = "Inne";

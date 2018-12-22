@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Last update Dec 19, 2018 by pavroo
+# Last update Dec 21, 2018 by pavroo
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 cd /usr/lib/sparky-aptus-appcenter
@@ -16,7 +16,7 @@ elif [ "$KTSUSS" != "" ]; then
 elif [ "$SUTOROOT" != "" ]; then
 	$SUTOROOT -X -c "./aptus-appcenter"
 else
-	echo "can not run sparky-aptus-appcenter, exiting..."
+	echo "can not run sparky-aptus-appcenter, must be root or sudo, exiting..."
 fi
 
 exit 0

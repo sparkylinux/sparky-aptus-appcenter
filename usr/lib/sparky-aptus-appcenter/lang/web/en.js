@@ -1,8 +1,7 @@
 // English localization file for Web
 // Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/12 by pavroo
-//    dict.entries['web'][''] = "";
+// Last update 2018/12/22 by pavroo
 dict.entries['web'] = {};
 // web communication
 dict.entries['web']['bti'] = "bti sends a tweet message to twitter.com. bti provides an easy way to send tweet messages directly from the command line or a script. It reads the message on standard input and uses the account and password settings either from the command line options or from a config file to deliver the message.";
@@ -40,6 +39,7 @@ dict.entries['web']['twinkle'] = "Twinkle is a soft-phone for making telephone c
 dict.entries['web']['weechat'] = "WeeChat (Wee Enhanced Environment for Chat) is a fast and light chat client for many operating systems. Everything can be done with a keyboard. It is customizable and extensible with plugins/scripts";
 // web email
 dict.entries['web']['alpine'] = "Functional and friendly for novices, text email client. It offers full support of protocols such as IMAP and SMTP as well as security via TLS.";
+dict.entries['web']['balsa'] = "Balsa is a highly configurable and robust mail client for the GNOME desktop. It supports both POP3 and IMAP servers as well as the mbox, maildir and mh local mailbox formats. Balsa also supports SMTP and/or the use of a local MTA such as Sendmail.";
 dict.entries['web']['clawsmail'] = "Fast, light and user friendly e-mail client, based on GTK + 2. The program is extensible with plugins that support additional functions.";
 dict.entries['web']['evolution'] = "Evolution is a groupware toolkit that integrates: email program, calendar, address book, to-do list and reminder tools.";
 dict.entries['web']['geary'] = "Geary is a lightweight email reader for GNOME designed to let you read your email quickly and effortlessly. Its interface is based on conversations, so you can easily read an entire discussion without having to click from message to message.";

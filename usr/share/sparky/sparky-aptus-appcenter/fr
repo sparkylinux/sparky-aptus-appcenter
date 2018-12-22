@@ -3,7 +3,7 @@
 # Copyright 2016 hiver <hiver@club-internet.fr> 2016/06/05
 # Copyright 2018 Jean-Albert Caire
 # Sous licence GNU GPL v2
-# last update 2018/12/17 by pavroo
+# last update 2018/12/21 by pavroo
 LOCAL001="Quitter"
 LOCAL002="Vérifiez que la liste des paquets est à jour avant de commencer.\n\nVoulez-vous installer maintenant?"
 LOCAL003="Échec du test de la connexion internet!\n\nVous n'êtes probablement pas connecté à Internet ou bien le serveur du projet est hors-service.\n\nVérifiez et essayez à nouveau."
@@ -28,3 +28,5 @@ LOCAL021="Ceci va installer le nouveau bureau que vous avez choisi et remplacer 
 LOCAL022="Le dossier personnel de l'utilisateur n'existe pas, donc les fichiers de configuration du nouveau bureau ne seront pas copiés."
 LOCAL023="Si tout s'est bien passé votre nouveau bureau a été installé et configuré.\n\nQuittez la session et ouvrez en une nouvelle pour prendre en compte le nouveau bureau."
 LOCAL024="Il y a un problème!\n\nJe ne peux trouver les fichiers du nouveau bureau, donc le paramétrage personnel ne pourra être copié dans votre répertoire personnel."
+LOCAL025="LibreOffice est déjà installé! \n\nSupprimez le avant d'installer OpenOffice."
+LOCAL026="OpenOffice est déjà installé! \n\nSupprimez le avant d'installer LibreOffice."
