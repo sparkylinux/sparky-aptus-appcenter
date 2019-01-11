@@ -1,7 +1,7 @@
 // French localization file for main
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/18 by pavroo
+// Last update 2019/01/09 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Applications";
@@ -49,7 +49,9 @@ dict.entries['main']['webbrowsers'] = "Navigateurs Web";
 dict.entries['main'] = {};
 dict.entries['main']['audioeditors'] = "Editeurs Audio";
 dict.entries['main']['audioplayers'] = "Lecteurs audio";
+dict.entries['main']['burn'] = "Graver un CD/DVD";
 dict.entries['main']['codecs'] = "Codecs";
+dict.entries['main']['subtitles'] = "Les sous-titres";
 dict.entries['main']['videoeditors'] = "Editeurs de vidéos";
 dict.entries['main']['videoplayers'] = "Lecteurs vidéo";
 // office

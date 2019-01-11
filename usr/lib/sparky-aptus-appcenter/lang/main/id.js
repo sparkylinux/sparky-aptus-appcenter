@@ -1,7 +1,7 @@
 // Indonesian localization file for main
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/18 by pavroo
+// Last update 2019/01/09 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Aplikasi";
@@ -48,7 +48,9 @@ dict.entries['main']['webbrowsers'] = "Browser Web";
 // multimedia
 dict.entries['main']['audioeditors'] = "Editor Audio";
 dict.entries['main']['audioplayers'] = "Pemutar Audio";
+dict.entries['main']['burn'] = "Bakar CD/DVD";
 dict.entries['main']['codecs'] = "Codec";
+dict.entries['main']['subtitles'] = "Teks";
 dict.entries['main']['videoeditors'] = "Editor Video";
 dict.entries['main']['videoplayers'] = "Pemutar Video";
 // office

@@ -1,7 +1,7 @@
 // English localization file for Web
 // Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/22 by pavroo
+// Last update 2019/01/11 by pavroo
 dict.entries['web'] = {};
 // web communication
 dict.entries['web']['bti'] = "bti sends a tweet message to twitter.com. bti provides an easy way to send tweet messages directly from the command line or a script. It reads the message on standard input and uses the account and password settings either from the command line options or from a config file to deliver the message.";
@@ -10,6 +10,7 @@ dict.entries['web']['corebird'] = "Corebird is a modern and lightweight Twitter 
 dict.entries['web']['discord'] = "Discord is a freeware VoIP application and digital distribution platform designed for video gaming communities, that specializes in text, image, video and audio communication between users in a chat channel.";
 dict.entries['web']['ekg2'] = "EKG2 is an open source instant messenger program for UNIX systems. The program has a plugin-based structure, and supports multiple protocols, currently Jabber, ICQ, Gadu-Gadu, IRC, RivChat, PolChat, NNTP and RSS. "
 dict.entries['web']['empathy'] = "Instant messaging program supporting text, voice, video, file transfers and inter-application communication over many different protocols, including: AIM, Windows Live (MSN), Google Talk (Jabber/XMPP), Yahoo!, Salut, Gadu-Gadu, Groupwise and ICQ.";
+dict.entries['web']['franz'] = "Franz is a messaging app / former Emperor of Austria and combines chat & messaging services into one application. Franz currently supports Slack, WhatsApp, WeChat, HipChat, Facebook Messenger, Telegram, Google Hangouts, GroupMe, Skype and many more.";
 dict.entries['web']['gajim'] = "Gajim is a Jabber client. It has a tabbed user interface with normal chats, group chats, and has many features such as, TLS, GPG, SSL, multiple accounts, avatars, file transfers, audio/video call, D-Bus and Metacontacts.";
 dict.entries['web']['hexchat'] = "HexChat is a graphical IRC client with a GTK+ GUI. Features include Python and Perl scripting support, a plugin API, multiple server/channel windows, spell checking, multiple authentication methods including SASL, and customizable notifications.";
 dict.entries['web']['ircii'] = "The ircII program is a full screen, termcap based interface to Internet Relay Chat. It gives full access to all of the normal IRC functions, plus a variety of additional options. This Version is able to display mIRC colors.";

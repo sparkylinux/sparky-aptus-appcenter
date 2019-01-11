@@ -2,7 +2,7 @@ Upstream Author(s):
     Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 
 Files: *    
-    Copyright (C) 2018 Paweł Pijanowski
+    Copyright (C) 2018-2019 Paweł Pijanowski
     License: GPL-2+
 
 Files: lang/menu/en.js; lang/categories/en.js, apptus-appcenter; handler.sh; 
@@ -332,7 +332,7 @@ The following shall not be protected by copyright:
 3. works of folklore,
 4. communications concerning events and facts that have an informational character.
 
-Files: cantata.png, clementine.png, hexchat.png, imagemagick.png, kate.png, radio.png, skype.png are a part of ultra-flat-icons package
+Files: cantata.png, clementine.png, gnome-subtitles.png, hexchat.png, imagemagick.png, kate.png, radio.png, skype.png are a part of ultra-flat-icons package
 Copyright: Ultra-Flat-Icons by Steftrikia <steftrikia@gmail.com>
 License: Attribution-NonCommercial-ShareAlike 4.0 International Public License
 
@@ -344,7 +344,7 @@ License: ?
 
 File: caprine.png
 Copyright: Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
-LicenseL MIT License
+License: MIT License
 
 File: corebird.png
 Copyright: Timm Bäder <mail@baedert.org>
@@ -372,7 +372,11 @@ License: GPL-3.0+
 
 File: filezilla.png
 Copyright: Tim Kosse
-LicenseL GNU GPL
+License: GNU GPL
+
+File: franz.png
+Copyright: Stefan Malzner <stefan@adlk.io>
+License: Apache-2.0 License
 
 File: gajim.png
 Copyright: Gajim Team

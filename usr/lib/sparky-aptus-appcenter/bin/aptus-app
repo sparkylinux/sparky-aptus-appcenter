@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2018 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2018/12/22 by pavroo
+# Last update 2019/01/11 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -207,6 +207,12 @@ elif [ "$1" = "caprine" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "discord" ]; then
+	if [ "$ARCH64" = "" ]; then
+		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
+		exit 1
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "franz" ]; then
 	if [ "$ARCH64" = "" ]; then
 		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
 		exit 1

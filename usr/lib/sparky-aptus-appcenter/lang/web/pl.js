@@ -1,7 +1,7 @@
 // Polish localization file for Web
 // Copyright 2017 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/22 by pavroo
+// Last update 2019/01/11 by pavroo
 dict.entries['web'] = {};
 // web communication
 dict.entries['web']['bti'] = "bti wysyła wiadomość na Twitterze do twitter.com. bti zapewnia łatwy sposób wysyłania wiadomości tweet bezpośrednio z wiersza poleceń lub skryptu. Odczytuje komunikat na standardowym wejściu i używa ustawień konta i hasła albo z poziomu wiersza poleceń, albo z pliku konfiguracyjnego, aby dostarczyć wiadomość.";
@@ -10,6 +10,7 @@ dict.entries['web']['corebird'] = "Corebird to nowoczesny i lekki klient Twitter
 dict.entries['web']['discord'] = "Discord to darmowa aplikacja VoIP i platforma dystrybucji cyfrowej przeznaczona dla społeczności gier wideo, która specjalizuje się w komunikacji tekstowej, graficznej, wideo i audio między użytkownikami kanału czatu.";
 dict.entries['web']['ekg2'] = "EKG2 to program komunikacyjny typu open source dla systemów UNIX. Program ma strukturę opartą na wtyczkach i obsługuje wiele protokołów, obecnie Jabber, ICQ, Gadu-Gadu, IRC, RivChat, PolChat, NNTP i RSS.";
 dict.entries['web']['empathy'] = "Komunikator obsługujący przesyłanie tekstu, głosu, wideo, plików oraz komunikację między aplikacjami za pośrednictwem wielu różnych protokołów, wliczając w to: AIM, Windows Live (MSN), Google Talk (Jabber/XMPP), Yahoo!, Salut, Gadu-Gadu, Groupwise i ICQ.";
+dict.entries['web']['franz'] = "Franz jest aplikacją do przesyłania wiadomości / byłym Cesarzem Austrii i łączy usługi czatu i wiadomości w jedną aplikację. Franz obecnie obsługuje Slack, WhatsApp, WeChat, HipChat, Facebook Messenger, Telegram, Google Hangouts, GroupMe, Skype i wiele innych.";
 dict.entries['web']['gajim'] = "Gajim jest klientem sieci Jabber. Udostępnia interfejs użytkownika zawierający zakładki do normalnej rozmowy, rozmów grupowych oraz wiele funkcji umożliwiających obsługę: TLS, GPG, SSL, wielu kont, awatarów, przesyłania plików, rozmów audio/wideo, D-Bus i metakontaktów.";
 dict.entries['web']['hexchat'] = "HexChat jest graficznym klientem IRC z interfejsem opartym na GTK+. Funkcje obejmują obsługę skryptów w języku Python i Perl, interfejs API wtyczek, wiele okien serwera / kanału, sprawdzanie pisowni, wiele metod uwierzytelniania, w tym SASL, oraz dostosowywalne powiadomienia.";
 dict.entries['web']['ircii'] = "Program ircII to pełnoekranowy interfejs oparty na termcap dla Internet Relay Chat. Daje pełny dostęp do wszystkich normalnych funkcji IRC, a także wiele dodatkowych opcji. Ta wersja jest w stanie wyświetlać kolory mIRC.";
