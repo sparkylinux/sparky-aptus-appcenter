@@ -1,7 +1,7 @@
 // Polish localization file for main
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2019/01/09 by pavroo
+// Last update 2019/01/11 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Aplikacje";
@@ -48,8 +48,10 @@ dict.entries['main']['webbrowsers'] = "Przeglądarki WWW";
 // multimedia
 dict.entries['main']['audioeditors'] = "Edytory Audio";
 dict.entries['main']['audioplayers'] = "Odtwarzacze Audio";
+dict.entries['main']['audiotools'] = "Narzędzia Audio";
 dict.entries['main']['burn'] = "Nagrywanie CD/DVD";
 dict.entries['main']['codecs'] = "Kodeki";
+dict.entries['main']['mixers'] = "Miksery";
 dict.entries['main']['subtitles'] = "Napisy";
 dict.entries['main']['videoeditors'] = "Edytory Wideo";
 dict.entries['main']['videoplayers'] = "Odtwarzacze Wideo";
