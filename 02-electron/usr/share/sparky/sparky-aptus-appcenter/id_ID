@@ -1,0 +1,32 @@
+# Indonesian localization file for Sparky APTus AppCenter
+# It based on: webbrowser-installer, 
+# Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu> 2017/08/19
+# Under the GNU GPL v3
+# Last update 2018/12/21 by pavroo
+# Translated to Indonesian by les kompie
+LOCAL001="Keluar"
+LOCAL002="Pastikan daftar paket sudah diperbarui, sebelum memulai ini.\n\nApakah anda mau menginstal sekarang?"
+LOCAL003="Uji koneksi internet gagal!\n\nMungkin anda tidak terhubung ke Internet, atau server repositori utama sedang mati.\n\nPeriksa dan coba lagi."
+LOCAL004="Aplikasi ini hanya tersedia untuk arsitektur AMD64."
+LOCAL005="Keluar"
+LOCAL006="Versi sistem operasi anda terlalu tua untuk paket ini."
+LOCAL007="Ini tidak bisa di-instal di versi Debian/Sparky anda."
+LOCAL008="Hapus"
+LOCAL009="Instal ulang"
+LOCAL010="Instal"
+LOCAL011="Paket ini sudah ter-instal."
+LOCAL012="Apa yang anda mau lakukan sekarang?"
+LOCAL013="Ada yang salah! \nMungkin anda menghentikan proses instal, atau koneksi internet anda terputus, atau paket tidak tersedia untuk versi sistem anda.\nPeriksa dan coba lagi."
+LOCAL014="Apakah anda mau menginstal paket yang anda pilih?"
+LOCAL015="Paket telah berhasil di-instal."
+LOCAL016="Paket ini tidak tersedia untuk versi sistem anda."
+LOCAL017="Anda menjalankan"
+LOCAL018="jadi TIDAK BISA dihapus sekarang."
+LOCAL019="Login lagi ke desktop yang lain, lalu coba lagi."
+LOCAL020="Jika semuanya berjalan dengan baik, desktop anda sudah dihapus dari sistem."
+LOCAL021="Ini akan menginstal desktop baru yang sudah anda pilih, menggantikan pengaturan lama desktop di folder home anda jika sudah ada sebelumnya.\n\nIni juga bisa membuat beberapa perubahan kecil di pengaturan desktop yang sudah anda instal."
+LOCAL022="Folder home milik user tidak ada, sehingga file konfigurasi desktop baru TIDAK akan disalin."
+LOCAL023="Jika semuanya berjalan dengan baik, desktop baru sudah di-instal dan dikonfigurasikan.\n\nLogout dan login ke desktop baru untuk melihat hasilnya."
+LOCAL024="Ada yang salah!\n\nFile desktop baru tidak ditemukan, sehingga pengaturan user TIDAK akan disalin ke direktori home anda."
+LOCAL025="LibreOffice ter-instal! \n\nUninstal LibreOffice sebelum anda menginstal OpenOffice."
+LOCAL026="OpenOffice ter-instal! \n\nUninstal LibreOffice sebelum anda menginstal LibreOffice."

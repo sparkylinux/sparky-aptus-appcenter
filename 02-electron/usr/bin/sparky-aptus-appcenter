@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /opt/electron/node_modules/.bin/
+./electron /opt/sparky-appcenter/index.js
+
+exit 0
