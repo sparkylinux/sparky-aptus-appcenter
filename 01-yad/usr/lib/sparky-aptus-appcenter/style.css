@@ -2,7 +2,7 @@
 APTus AppCenter by pavroo <pavroo@onet.eu> 2018
 Improvenments by Piotr "MoroS" Mrożek
 License: GNU GPL 3
-Last update: Dec 7, 2018 by pavroo
+Last update: Dec 28, 2019 by pavroo
 */
 
 body {
@@ -12,7 +12,7 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #181B20;
-	background: url("images/background.png") center no-repeat;
+	background: url("images0/background.png") center no-repeat;
 }
 
 h1, h2, h3 {
@@ -78,7 +78,7 @@ img.aligncenter {
 /* Header */
 
 #header {
-	background: url('images/sparky-header0.png') center repeat-x;
+	background: url('images0/sparky-header0.png') center repeat-x;
 	width: 100%; /* 796px; */
 	height: 120px;
 	margin: 0px auto;

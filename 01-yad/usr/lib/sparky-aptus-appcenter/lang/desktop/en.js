@@ -1,7 +1,7 @@
 // English localization file for Desktop
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/17 by pavroo
+// Last update 2019/12/28 by pavroo
 dict.entries['desktop'] = {};
 // desktops
 dict.entries['desktop']['awesome'] = "A highly configurable dynamic window manager , next generation framework window manager for X. It is very fast, extensible and licensed under the GNU GPLv2 license. It is primarily targeted at power users, developers and any people dealing with every day computing tasks and who want to have fine-grained control on their graphical environment.";
@@ -9,6 +9,7 @@ dict.entries['desktop']['bspwm'] = "bspwm is a tiling window manager that repres
 dict.entries['desktop']['budgie'] = "Budgie-Desktop is a GTK+ based desktop environment which focuses on simplicity and elegance. It provides a traditional desktop metaphor based interface utilising customisable panel based menu driven system. Budgie-Desktop is written from scratch utilising many GNOME based sub-systems such as GNOME-Session and Mutter.";
 dict.entries['desktop']['cde'] = "Open source graphics environment for Unix-like operating systems. It was developed by The Open Group, its creation aimed at unifying the programming environment operating on many systems from different manufacturers. CDE is the basic graphic environment of many systems such as: Solaris, HP-UX, Tru64, AIX and OpenVMS.";
 dict.entries['desktop']['cinnamon'] = "Cinnamon is a desktop environment which provides advanced innovative features and a traditional user experience. The desktop layout is similar to GNOME 2. The underlying technology is forked from gnome-shell. The emphasis is put on making users feel at home and providing them with an easy to use and comfortable desktop experience.";
+dict.entries['desktop']['draco'] = "Lightweight Qt5-based desktop environment forked from Lumina.";
 dict.entries['desktop']['enlightenment'] = "Enlightenment is an advanced window manager for X11. Unique features include: a fully animated background, nice drop shadows around windows, backed by an extremely clean and optimized foundation of APIs.";
 dict.entries['desktop']['fluxbox'] = "Highly configurable and low resource X11 Window manager which is similar to blackbox, from which it is derived, but has been extended with features such as pwm-style window tabs, configurable key bindings, toolbar, and an iconbar. It also includes some cosmetic fixes over blackbox.";
 dict.entries['desktop']['gnomeflashback'] = "GNOME Flashback continues the traditional desktop interface which was used in GNOME 2.x, but using modern GNOME technologies.";

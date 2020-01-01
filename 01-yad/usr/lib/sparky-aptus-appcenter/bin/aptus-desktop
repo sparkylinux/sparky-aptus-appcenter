@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2019/01/11 by pavroo
+# last update 2019/12/28 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -65,6 +65,19 @@ else
 	echo "x terminal emulator is missing... exiting..."
 	exit 1
 fi
+# checking Sparky 4/5/6
+SPARKYVERCHECK6="`cat /etc/os-release | grep Tolo`"
+SPARKYVERCHECK5="`cat /etc/os-release | grep Nibiru`"
+SPARKYVERCHECK4="`cat /etc/os-release | grep Tyche`"
+if [ "$SPARKYVERCHECK6" != "" ]; then
+	TDEREPO="bullseye"
+elif [ "$SPARKYVERCHECK5" != "" ]; then
+	TDEREPO="buster"
+elif [ "$SPARKYVERCHECK4" != "" ]; then
+	TDEREPO="stretch"
+else
+	TDEREPO="sid"
+fi
 # check connection
 PINGTEST=$(ping -c 1 debian.org | grep [0-9])
 
@@ -108,6 +121,21 @@ case $1 in
 	WMAN="cinnamon"
 	INSPACKS="sparky-desktop-$PACKAGE"
 	REMPACKS="sparky-desktop-$PACKAGE ^cinnamon*"
+     ;;
+  draco)
+	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $OKBUTTON
+		exit 1
+	fi
+	if [ "$SPARKYVERCHECK4" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $OKBUTTON
+		exit 1
+	fi
+	PACKAGE="draco"
+	DESKTOP="Draco"
+	WMAN="openbox"
+	INSPACKS="sparky-desktop-$PACKAGE"
+	REMPACKS="sparky-desktop-$PACKAGE ^draco*"
      ;;
   enlightenment)
 	PACKAGE="enlightenment"
@@ -198,6 +226,10 @@ case $1 in
 	REMPACKS="sparky-desktop-$PACKAGE ^lxqt*"
      ;;
   manokwari)
+	if [ "$SPARKYVERCHECK6" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $OKBUTTON
+		exit 1
+	fi
 	PACKAGE="manokwari"
 	DESKTOP="Manokwari"
 	WMAN="manokwari"
@@ -218,7 +250,7 @@ case $1 in
 		REMPACKS="sparky-desktop-$PACKAGE ^openbox*"
 	else
 		PACKAGE="openbox"
-		INSPACKS="sparky-desktop-$PACKAGE obmenu-generator"
+		INSPACKS="sparky-desktop-$PACKAGE sparky-obmenu"
 		REMPACKS="sparky-desktop-$PACKAGE ^openbox*"
 	fi
 	DESKTOP="Openbox"
@@ -226,6 +258,10 @@ case $1 in
      ;;
   pantheon)
 	if [ "$ARCHARM" != "" ]; then
+		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $OKBUTTON
+		exit 1
+	fi
+	if [ "$SPARKYVERCHECK6" != "" ]; then
 		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $OKBUTTON
 		exit 1
 	fi
@@ -265,23 +301,6 @@ case $1 in
      ;;
 esac
 
-# checking Debian stable 8 Jessie
-#OLDSTABLECHECK1="`cat /etc/issue | grep 8`"
-# checking Sparky 3 Annagerman based on Debian stable 8
-#OLDSTABLECHECK2="`cat /etc/issue | grep 3`"
-# checking Debian 9/10 and Sparky 4/5
-SPARKYVERCHECK5="`cat /etc/issue | grep 5`"
-SPARKYVERCHECK4="`cat /etc/issue | grep 4`"
-DEBIANVERCHECK10="`cat /etc/issue | grep buster`"
-DEBIANVERCHECK9="`cat /etc/issue | grep stretch`"
-if [ "$SPARKYVERCHECK5" != "" ] || [ "$DEBIANVERCHECK10" != "" ]; then
-	TDEREPO="buster"
-elif [ "$SPARKYVERCHECK4" != "" ] || [ "$DEBIANVERCHECK9" != "" ]; then
-	TDEREPO="stretch"
-else
-	TDEREPO="sid"
-fi
-
 # install, reinstall or remove a desktop now
 # no arm = cde, pantheon
 
@@ -300,8 +319,7 @@ if [ "$1" = "pantheon" ]; then
 			$SPARKYXTERM "$AUTOREMOVE"
 			if [ ! -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
 				NEWCONFIG="no"
-				rm -f /etc/apt/sources.list.d/pantheon-debian.list
-				rm -f /etc/apt/sources.list.d/appcenter.list
+				$SPARKYXTERM "$UNINSTALL pantheon-debian-repos -y"
 				$SPARKYXTERM "$UPDATE"
 				$DIALOG $TEXT"\n$LOCAL020" $TITLE"$TITLETEXT" $OKBUTTON
 				exit 1
@@ -327,24 +345,29 @@ if [ "$1" = "pantheon" ]; then
 				NEWCONFIG="no"
 				exit 1
 			fi
-			if [ "$SPARKYVERCHECK5" != "" ] || [ "$DEBIANVERCHECK10" != "" ]; then
-				if [ -f /etc/apt/sources.list.d/pantheon-debian.list ]; then
-					rm -f /etc/apt/sources.list.d/pantheon-debian.list
-				fi
-				echo "deb http://gandalfn.ovh/debian testing-daily main contrib" > /etc/apt/sources.list.d/pantheon-debian.list
+
+			# sparky 4 only
+			if [ "$SPARKYVERCHECK4" != "" ]; then
 				$SPARKYXTERM "wget http://gandalfn.ovh/debian/pantheon-debian.gpg.key -O- | apt-key add -"
+				$SPARKYXTERM "$UPDATE"
+				$SPARKYXTERM "$INSTALL apt-transport-https software-properties-common pantheon-debian-repos -y"
 				$SPARKYXTERM "$UPDATE"
 				$SPARKYXTERM "$INSTALL $INSPACKS"
 				$SPARKYXTERM "$INSTALL -f"
-			elif [ "$SPARKYVERCHECK4" != "" ] || [ "$DEBIANVERCHECK9" != "" ]; then
-				if [ -f /etc/apt/sources.list.d/pantheon-debian.list ]; then
-					rm -f /etc/apt/sources.list.d/pantheon-debian.list
+				if [ -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
+					$SPARKYXTERM "$INSTALL sddm-theme-sparky --no-install-recommends -y"
 				fi
-				echo "deb http://gandalfn.ovh/debian stretch-loki main contrib" > /etc/apt/sources.list.d/pantheon-debian.list
+			# sparky 5 only (doesn't work on 6 testing)
+			elif [ "$SPARKYVERCHECK5" != "" ]; then
 				$SPARKYXTERM "wget http://gandalfn.ovh/debian/pantheon-debian.gpg.key -O- | apt-key add -"
+				$SPARKYXTERM "$UPDATE"
+				$SPARKYXTERM "$INSTALL software-properties-common pantheon-debian-repos -y"
 				$SPARKYXTERM "$UPDATE"
 				$SPARKYXTERM "$INSTALL $INSPACKS"
 				$SPARKYXTERM "$INSTALL -f"
+				if [ -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
+					$SPARKYXTERM "$INSTALL sddm-theme-sparky --no-install-recommends -y"
+				fi
 			fi
 
 			if [ ! -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
@@ -405,20 +428,15 @@ elif [ "$1" = "trinity" ]; then
 			if [ -f /etc/apt/sources.list.d/trinity.list ]; then
 				rm -f /etc/apt/sources.list.d/trinity.list
 			fi
-			touch /etc/apt/sources.list.d/trinity.list
-
-			if [ "$SPARKYVERCHECK5" != "" ] || [ "$DEBIANVERCHECK10" != "" ]; then
-				$SPARKYXTERM "apt-key adv --keyserver keys.gnupg.net --recv-key A04BE668"
-				echo "deb http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
-				echo "deb-src http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
-			elif [ "$SPARKYVERCHECK4" != "" ] || [ "$DEBIANVERCHECK9" != "" ]; then
-				$SPARKYXTERM "apt-key adv --keyserver keys.gnupg.net --recv-key A04BE668"
-				echo "deb http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
-				echo "deb-src http://mirror.xcer.cz/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
-			fi	
+			$SPARKYXTERM "$UPDATE"
+			$SPARKYXTERM "$INSTALL trinity-keyring -y"
+			echo "deb http://mirror.ppa.trinitydesktop.org/trinity/deb/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
+			echo "deb-src http://mirror.ppa.trinitydesktop.org/trinity/deb/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
 			$SPARKYXTERM "$UPDATE"
 			$SPARKYXTERM "$INSTALL $INSPACKS"
 			$SPARKYXTERM "$INSTALL -f"
+			$SPARKYXTERM "$UNINSTALL tdm-trinity -y"
+			$SPARKYXTERM "dpkg-reconfigure lightdm"
 
 			if [ ! -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
 				$DIALOG $TEXT"\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
@@ -732,6 +750,14 @@ elif [ "$1" = "cinnamon" ]; then
 		DESKTOPCHECK="1"
 	fi
 
+elif [ "$1" = "draco" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-draco ]; then
+		echo "installation draco desktop ok, no extra files to be installed"
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
 elif [ "$1" = "enlightenment" ]; then
 	if [ -d /usr/share/doc/sparky-desktop-enlightenment ] && [ -d /usr/share/sparky-desktop-data/enlightenment/skel ]; then
 		if [ -d /home/$TARGETUSER/.e ]; then
@@ -878,14 +904,14 @@ elif [ "$1" = "gnomeshell" ]; then
 		mkdir -p /home/$TARGETUSER/.config/dconf
 		rsync -a /usr/share/sparky-desktop-data/gnome-sh/skel/.config/dconf /home/$TARGETUSER/.config/
 
-		CHECKDM=`cat /etc/X11/default-display-manager | grep gdm`
-		if [ "$CHECKDM" != "" ]; then
-			sed -i -e 's/gdm3/lightdm/g' /etc/X11/default-display-manager
-			if [ -f /usr/lib/systemd/system/lightdm.service ] && [ -f /etc/systemd/system/display-manager.service ]; then
-				rm -f /etc/systemd/system/display-manager.service
-				ln -s /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
-			fi
-		fi
+		#CHECKDM=`cat /etc/X11/default-display-manager | grep gdm`
+		#if [ "$CHECKDM" != "" ]; then
+		#	sed -i -e 's/gdm3/lightdm/g' /etc/X11/default-display-manager
+		#	if [ -f /usr/lib/systemd/system/lightdm.service ] && [ -f /etc/systemd/system/display-manager.service ]; then
+		#		rm -f /etc/systemd/system/display-manager.service
+		#		ln -s /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
+		#	fi
+		#fi
 
 		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
 			rm -f /home/$TARGETUSER/.gtkrc-2.0
@@ -938,8 +964,8 @@ elif [ "$1" = "i3" ]; then
 		if [ -d /home/$TARGETUSER/.config/dunst ]; then
 			rm -rf /home/$TARGETUSER/.config/dunst
 		fi
-		mkdir -p /home/$TARGETUSER/.config/dunst
-		cp /usr/share/sparky-desktop-data/i3/skel/.config/dunst/dunstrc /home/$TARGETUSER/.config/dunst/dunstrc
+		#mkdir -p /home/$TARGETUSER/.config/dunst
+		#cp /usr/share/sparky-desktop-data/i3/skel/.config/dunst/dunstrc /home/$TARGETUSER/.config/dunst/dunstrc
 
 		if [ -d /home/$TARGETUSER/.config/lxterminal ]; then
 			rm -rf /home/$TARGETUSER/.config/lxterminal
@@ -1447,43 +1473,41 @@ elif [ "$1" = "openbox" ]; then
 		fi
 		mkdir -p /home/$TARGETUSER/.config/lxsession
 		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/lxsession /home/$TARGETUSER/.config/
-		
+	
 		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
 			rm -rf /home/$TARGETUSER/.config/nitrogen
 		fi
 		mkdir -p /home/$TARGETUSER/.config/nitrogen
 		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/nitrogen /home/$TARGETUSER/.config/
-		
+	
 		if [ -d /home/$TARGETUSER/.config/obmenu-generator ]; then
 			rm -rf /home/$TARGETUSER/.config/obmenu-generator
 		fi
 		mkdir -p /home/$TARGETUSER/.config/obmenu-generator
 		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/obmenu-generator /home/$TARGETUSER/.config/
-		
+	
 		if [ -d /home/$TARGETUSER/.config/openbox ]; then
 			rm -rf /home/$TARGETUSER/.config/openbox
 		fi
 		mkdir -p /home/$TARGETUSER/.config/openbox
 		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/openbox /home/$TARGETUSER/.config/
-		
+	
 		if [ -d /home/$TARGETUSER/.config/pcmanfm ]; then
 			rm -rf /home/$TARGETUSER/.config/pcmanfm
 		fi
 		mkdir -p /home/$TARGETUSER/.config/pcmanfm
 		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/pcmanfm /home/$TARGETUSER/.config/
-		
+	
 		if [ -f /usr/bin/tint2 ] && [ -d /home/$TARGETUSER/.config/tint2 ]; then
 			rm -rf /home/$TARGETUSER/.config/tint2
 		fi
 		mkdir -p /home/$TARGETUSER/.config/tint2
 		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/tint2 /home/$TARGETUSER/.config/
-
-		if [ -f /usr/bin/fbpanel ] && [ -d /home/$TARGETUSER/.config/fbpanel ]; then
+			if [ -f /usr/bin/fbpanel ] && [ -d /home/$TARGETUSER/.config/fbpanel ]; then
 			rm -rf /home/$TARGETUSER/.config/fbpanel
 		fi
 		mkdir -p /home/$TARGETUSER/.config/fbpanel
 		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/fbpanel /home/$TARGETUSER/.config/
-
 		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
 			rm -f /home/$TARGETUSER/.gtkrc-2.0
 		fi
@@ -1495,13 +1519,13 @@ elif [ "$1" = "openbox" ]; then
 		fi
 		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
 		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
-		
+	
 		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
 			rm -rf /home/$TARGETUSER/.config/gtk-3.0
 		fi
 		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
 		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
-		
+	
 		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
 			rm -f /home/$TARGETUSER/.config/Trolltech.conf
 		fi
@@ -1530,12 +1554,12 @@ elif [ "$1" = "openbox" ]; then
 			mkdir -p /home/$TARGETUSER/.config/pnmixer
 		fi
 		cp /usr/share/sparky-desktop-data/openbox/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
-		if [ -f /home/$TARGETUSER/.config/pnmixer/config ] && [ "$ARCHARM" != "" ]; then
-			CHECKPNMIXER=`cat /home/$TARGETUSER/.config/pnmixer/config | grep pavucontrol`
-			if [ "$CHECKPNMIXER" != "" ]; then
-				sed -i -e 's/pavucontrol/x-terminal-emulator -e alsamixer/g' /home/$TARGETUSER/.config/pnmixer/config
-			fi
-		fi
+		#if [ -f /home/$TARGETUSER/.config/pnmixer/config ] && [ "$ARCHARM" != "" ]; then
+		#	CHECKPNMIXER=`cat /home/$TARGETUSER/.config/pnmixer/config | grep pavucontrol`
+		#	if [ "$CHECKPNMIXER" != "" ]; then
+		#		sed -i -e 's/pavucontrol/x-terminal-emulator -e alsamixer/g' /home/$TARGETUSER/.config/pnmixer/config
+		#	fi
+		#fi
 		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config/pnmixer
 
 		if [ -f /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml ]; then
@@ -1550,6 +1574,100 @@ elif [ "$1" = "openbox" ]; then
 	else
 		DESKTOPCHECK="1"
 	fi
+
+elif [ "$1" = "openbox-arm" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-openbox-arm ] && [ -d /usr/share/sparky-desktop-data/openbox-arm/skel ]; then
+		if [ ! -d /home/$TARGETUSER/.alsaplayer ]; then
+			mkdir -p /home/$TARGETUSER/.alsaplayer
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.alsaplayer/config /home/$TARGETUSER/.alsaplayer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.alsaplayer
+
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -f /usr/bin/fbpanel ] && [ -d /home/$TARGETUSER/.config/fbpanel ]; then
+			rm -rf /home/$TARGETUSER/.config/fbpanel
+		fi
+		mkdir -p /home/$TARGETUSER/.config/fbpanel
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/fbpanel /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/lxsession ]; then
+			rm -rf /home/$TARGETUSER/.config/lxsession
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxsession
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/lxsession /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/nitrogen /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/openbox ]; then
+			rm -rf /home/$TARGETUSER/.config/openbox
+		fi
+		mkdir -p /home/$TARGETUSER/.config/openbox
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/openbox /home/$TARGETUSER/.config/
+	
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config/pnmixer
+
+		if [ -f /usr/bin/tint2 ] && [ -d /home/$TARGETUSER/.config/tint2 ]; then
+			rm -rf /home/$TARGETUSER/.config/tint2
+		fi
+		mkdir -p /home/$TARGETUSER/.config/tint2
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/tint2 /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml ]; then
+			rm -f /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml ]; then
+			mkdir -p /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml
+
+		if [ -f /home/$TARGETUSER/.config/QtProject.conf ]; then
+			rm -f /home/$TARGETUSER/.config/QtProject.conf
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.config/QtProject.conf /home/$TARGETUSER/.config/QtProject.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+
+		if [ -f /etc/xdg/menus/sparky-pi.menu ]; then
+			rm -f /etc/xdg/menus/sparky-pi.menu
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/etc/sparky-pi.menu /etc/xdg/menus/sparky-pi.menu
+		chown -R root:root /etc/xdg/menus/sparky-pi.menu
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+#elif [ "$1" = "pantheon" ]; then
+#	$DIALOG $TEXT"\nThe Pantheon desktop is temporary not available." $TITLE"$LOCAL6" $OKBUTTON
+#	exit 1
 
 elif [ "$1" = "pantheon" ]; then
 	if [ -d /usr/share/doc/sparky-desktop-pantheon ] && [ -d /usr/share/sparky-desktop-data/pantheon/skel ]; then
@@ -1594,14 +1712,14 @@ elif [ "$1" = "pantheon" ]; then
 		fi
 		cp /usr/share/sparky-desktop-data/pantheon/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
 		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
-		
+		# force change lightdm to sddm (slim works fine too)
 		CHECKDM=`cat /etc/X11/default-display-manager | grep lightdm`
 		if [ "$CHECKDM" != "" ]; then
-			sed -i -e 's/lightdm/slim/g' /etc/X11/default-display-manager
+			sed -i -e 's/lightdm/sddm/g' /etc/X11/default-display-manager
 			sed -i -e 's/sbin/bin/g' /etc/X11/default-display-manager
-			if [ -f /lib/systemd/system/slim.service ] && [ -f /etc/systemd/system/display-manager.service ]; then
+			if [ -f /lib/systemd/system/sddm.service ] && [ -f /etc/systemd/system/display-manager.service ]; then
 				rm -f /etc/systemd/system/display-manager.service
-				ln -s /lib/systemd/system/slim.service /etc/systemd/system/display-manager.service
+				ln -s /lib/systemd/system/sddm.service /etc/systemd/system/display-manager.service
 			fi
 		fi
 		DESKTOPCHECK="0"
@@ -1785,16 +1903,17 @@ if [ -f /home/$TARGETUSER/.xsession ]; then
 fi
 
 if [ "$DESKTOPCHECK" = "0" ]; then
-	$DIALOG $TEXT"\n$LOCAL023" $TITLE"$TITLETEXT" $OKBUTTON
+	$DIALOG $TEXT"\n$LOCAL10" $TITLE"$LOCAL6" $OKBUTTON
 	exit 0
 elif [ "$DESKTOPCHECK" = "1" ]; then
-	$DIALOG $TEXT"\n$LOCAL024\n\n$LOCAL005" $TITLE"$TITLETEXT" $OKBUTTON
+	$DIALOG $TEXT"\n$LOCAL13" $TITLE"$LOCAL6" $OKBUTTON
 	exit 0
 else
 	echo "It shoudn't happen, report it to Sparky forums, please..."
 	exit 0
 fi
 
+# close NEWCONFIG now
 fi
 
 exit 0

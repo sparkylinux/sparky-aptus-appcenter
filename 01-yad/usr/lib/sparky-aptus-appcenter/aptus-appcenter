@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Created by Piotr "MoroS" Mrożek 2018
-# Last update by Paweł "pavroo" Pijanowski Jan 09, 2019
+# Last update by Paweł "pavroo" Pijanowski Dec 28, 2019
 
 LANGUAGE=${LANG:0:2}
 #DE=`echo $LANGUAGE | grep de`
@@ -35,9 +35,16 @@ else
 fi
 
 testroot="`whoami`"
-if [ "$testroot" != "root" ]; then
-	echo "Must be root... Exiting..."
-	exit 1
-fi
+#if [ "$testroot" != "root" ]; then
+#	echo "Must be root... Exiting..."
+#	exit 1
+#fi
 
-yad --window-icon=system-software-install --center --width 880 --height 630 --html --browser --uri="index.html" --user-agent="$LANGUAGE" --uri-handler="./handler.sh %s"
+#if [ "$1" = "" ]; then
+yad --window-icon=system-software-install --center --width 880 --height 630 --html --browser --uri="index.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# webbrowsers
+#elif [ "$1" = "web01" ]; then
+#	yad --window-icon=system-software-install --center --width 880 --height 630 --html --browser --uri="net-webbrowser.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+#fi
+
+exit 0

@@ -1,7 +1,7 @@
 // Polish localization file for Office
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/22 by pavroo
+// Last update 2020/01/01 by pavroo
 dict.entries['office'] = {};
 // office addressbook
 dict.entries['office']['abook'] = "abook jest programem książki adresowej z interfejsem tekstowym opartym na bibliotece ncurses. Zawiera wiele informacji z różnych dziedzin użytkownika. abook jest przeznaczony do użycia z mutt, ale może być używany samodzielnie.";
@@ -18,6 +18,8 @@ dict.entries['office']['gnomecalculator'] = "Kalkulator GNOME to potężny kalku
 dict.entries['office']['kcalc'] = "KCalc jest kalkulatorem naukowym. KCalc zapewnia: funkcje trygonometryczne, operacje logiczne i obliczenia statystyczne; obliczenia w systemie dziesiętnym, szesnastkowym, ósemkowym i dwójkowym; funkcje zapamiętywania wyników obliczeń; pełny zestaw stałych matematycznych.";
 dict.entries['office']['keurocalc'] = "KEurocalc jest uniwersalnym konwerterem i kalkulatorem waluty. Pobiera najnowsze wskaźniki wymiany bezpośrednio z Europejskiego Banku Centralnego oraz Time Genie.";
 dict.entries['office']['matecalc'] = "MATE-calc to potężny kalkulator graficzny z trybami finansowymi, logicznymi i naukowymi. Używa pakietu o wielu precyzjach do wykonywania arytmetyki, aby zapewnić wysoki stopień dokładności.";
+dict.entries['office']['qalculategtk'] = "Qalculate! to mały i łatwy w użyciu kalkulator, ale cechujący się dużym potencjalem i wszechstronnością zastosowań. Obsługuje konfigurowanie funkcji, jednostek obliczeniowych, dowolnej dokładności, kreślenie obrazów graficznych, a ponadto udostępnia graficzny interfejs, który sprawdza wprowadzone wyrażenia, eliminując błędy.";
+dict.entries['office']['qcalculator'] = "Prosty i mały kalkulator, bazujący na Qt.";
 dict.entries['office']['wcalc'] = "Wcalc to bardzo przydatny kalkulator. Ma standardowe funkcje (sin, asin i sinh, na przykład, w radianach lub stopniach), wiele predefiniowanych stałych (pi, e, c itd.), obsługę zmiennych, 'aktywnych' zmiennych, historia poleceń , wejście / wyjście szesnastkowe / ósemkowe / binarne, konwersje jednostek, osadzone komentarze i rozwijane pole do wprowadzania wyrażeń. Ocenia wyrażenia za pomocą standardowej kolejności operacji.";
 // office document
 dict.entries['office']['atril'] = "Atril jest prostą, wielostronicową przeglądarką plików zawierających dokumentację. Umożliwia wyświetlanie i drukowanie następujących formatów plików: PostScript (PS), Encapsulated PostScript (EPS), DJVU, DVI i Portable Document Format (PDF).";
@@ -56,6 +58,7 @@ dict.entries['office']['pyspread'] = "Pyspread to wieloplatformowa aplikacja do 
 dict.entries['office']['scoffice'] = "SC (Spreadsheet Calculator) jest zmodyfikowaną wersją sc dostępnego w domenie publicznej, który kilka lat temu został opublikowany w serwisie Usenet przez Marka Weisera jako vc, pierwotnie autorstwa Jamesa Goslinga. Opiera się na tabelach, podobnie jak arkusz kalkulacyjny. Jego klawisze są znane użytkownikom 'vi' a większość funkcji ma czysty arkusz kalkulacyjny, ale brakuje w nim grafów i zapisów w obcych formatach. Jest bardzo stabilny i całkiem łatwy w użyciu, gdy już trochę się nauczysz.";
 // office suite
 dict.entries['office']['calligra'] = "Calligra Suite to zestaw aplikacji napisanych, aby pomóc Ci wykonać pracę. Obejmuje aplikacje biurowe, takie jak procesor tekstu, arkusz kalkulacyjny, program prezentacji, aplikację bazy danych itp. oraz narzędzia grafiki rastrowej i wektorowej.";
+dict.entries['office']['freeoffice'] = "FreeOffice to kompletny pakiet biurowy zawierający edytor tekstu, arkusz kalkulacyjny i program do prezentacji — wszystkie zgodne ze swoimi odpowiednikami w pakiecie Microsoft Office.";
 dict.entries['office']['libreoffice'] = "LibreOffice to w pełni funkcjonalny pakiet biurowy, który zapewnia zastępstwo dla pakietu Microsoft (R) Office. Spowoduje to zainstalowanie wszystkich komponentów: edytora tekstu, arkusza kalkulacyjnego, prezentacji, rysunku, bazy danych, edytora równań.";
 dict.entries['office']['msonlineapps'] = "Instaluje skróty Menu dla aplikacji internetowych firmy Microsoft.";
 dict.entries['office']['onlyoffice'] = "ONLYOFFICE DesktopEditors to aplikacja do edytowania dokumentów biurowych (dokumentów tekstowych, arkuszy kalkulacyjnych i prezentacji) na komputerze lokalnym bez użycia przeglądarki, od portalu biurowego ONLYOFFICE.";
@@ -63,6 +66,7 @@ dict.entries['office']['openoffice'] = "Apache OpenOffice to pakiet oprogramowan
 dict.entries['office']['wpsoffice'] = "WPS Office (dawniej znany jako Kingsoft Office) to pakiet biurowy. Charakteryzuje go szybkość działania oraz fakt, że jest dostępny za darmo. W skład pakietu wchodzą aplikacje: Presentation będąca narzędziem do tworzenia prezentacji multimedialnych, Writer edytor tekstu oraz arkusz kalkulacyjny Spreadsheets.";
 // office text
 dict.entries['office']['abiword'] = "AbiWord jest w pełni funkcjonalnym, wydajnym procesorem tekstu. Jest przydatny w wielu zastosowaniach związanych z przetwarzaniem tekstu, a dzięki różnym wtyczkom można rozszerzyć jego możliwości. Pakiet zawiera wiele z dostępnych wtyczek importu/eksportu umożliwiających programowi AbiWord obsługę formatów ODT, WordPerfect i wielu innych. Zawiera wtyczki umożliwiające współpracę w czasie rzeczywistym użytkowników AbiWorda na Linuksie i Windowsie (używając TCP lub Jabber/XMPP), tłumaczenie przez WWW, obsługę słowników i wiele innych funkcji.";
+dict.entries['office']['atom'] = "Desktopowy edytor programistycznych kodów źródłowych z kolorowaniem składni dla wielu języków. Można w nim też edytować wszystkie pliki tekstowe txt.";
 dict.entries['office']['bluefish'] = "Bluefish to rozbudowany edytor przeznaczony dla programistów oraz web deweloperów. Posiada wiele opcji przydatnych podczas tworzenia stron internetowych, pisania skryptów oraz programowania. Obsługuje szeroką gamę języków programowania oraz języków znaczników.";
 dict.entries['office']['bluegriffon'] = "BlueGriffon to edytor treści typu WYSIWYG dla stron World Wide Web. Obsługiwany przez Gecko, silnik renderujący Firefoksa, jest nowoczesnym i niezawodnym rozwiązaniem do edycji stron internetowych zgodnie z najnowszymi standardami sieci.";
 dict.entries['office']['emacs'] = "GNU Emacs jest rozszerzalnym samodokumentującym się edytorem tekstu. To metapakiet, który zawsze będzie zależeć od najnowszego zalecanego wariantu Emacsa (obecnie emacs-gtk).";

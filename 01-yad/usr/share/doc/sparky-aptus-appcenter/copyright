@@ -5,7 +5,8 @@ Files: *
     Copyright (C) 2018-2019 Paweł Pijanowski
     License: GPL-2+
 
-Files: lang/menu/en.js; lang/categories/en.js, apptus-appcenter; handler.sh; 
+### translations ###
+Files: lang/menu/en.js; lang/categories/en.js, apptus-appcenter; handler; 
     Oryginally created by Piotr "MoroS" Mrożek
     License: GPL-2+
 
@@ -54,6 +55,8 @@ File: ru
 File: quick-list*
     Copyright (C) 2018 Elton Fabricio Ferreira & pavroo
     License: GPL-2+
+
+### end translations ###
 
 License:
 
@@ -332,197 +335,93 @@ The following shall not be protected by copyright:
 3. works of folklore,
 4. communications concerning events and facts that have an informational character.
 
-Files: ardour.png, cantata.png, clementine.png, gnome-subtitles.png, hexchat.png, hydrogen.png, imagemagick.png, kate.png, qsynth.png, radio.png, skype.png are a part of ultra-flat-icons package
-Copyright: Ultra-Flat-Icons by Steftrikia <steftrikia@gmail.com>
-License: Attribution-NonCommercial-ShareAlike 4.0 International Public License
+### end flags ###
+
+### applications icons in images dir ###
+
+Files: images/*
+Vince Liuice <vinceliuice@hotmail.com>
+Tela icon theme (https://github.com/vinceliuice/Tela-icon-theme)
+License: GNU GPL-3
+
+### end applications icons in images dur ###
 
 ### application icons ###
 
-File: brave.png
-Copyright: Brave Software Inc.
-License: ?
-
-File: caprine.png
-Copyright: Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
-License: MIT License
-
-File: corebird.png
-Copyright: Timm Bäder <mail@baedert.org>
-License: GNU GPL 3+
-
-File: cyberfox.png
+File: images0/cyberfox.png
 Copyright: cyberfox.8pecxstudios.com
 License: ?
 
-File: dillo.png
+File: images0/dillo.png
 Copyright John Grantham
 License: GNU GPL 2+
 
-File: discord.png
-Copyright/Source: https://discordapp.com/branding
-License: ?
-
-File: dooble.png
+File: images0/dooble.png
 Copyright (c) 2008 - present, Alexis Megas.
 License: ?
 
-File: falkon.png
+File: images0/falkon.png
 Copyright: 2010-2018 David Rosca <nowrep@gmail.com>
 License: GPL-3.0+
 
-File: filezilla.png
-Copyright: Tim Kosse
-License: GNU GPL
-
-File: franz.png
-Copyright: Stefan Malzner <stefan@adlk.io>
-License: Apache-2.0 License
-
-File: gajim.png
-Copyright: Gajim Team
-License: GNU GPL
-
-File: gftp.png
-Copyright: Brian Masney
-License: GNU GPL
-
-File: gradio.png
-Copyright: 2016 Felix Häcker
-License: GPL-3.0+
-
-File: icecat.png
+File: images0/icecat.png
 Author: Hitflip
 Source: Wikipedia
 License: Mozilla's MPL / GPL / LGPL tri-license
 
-File: iridium.png
+File: images0/iridium.png
 Copyright: https://iridiumbrowser.de/
 License: ?
 
-File: iron.png
+File: images0/iron.png
 Copyright: https://www.srware.net/en/software_srware_iron.php
 License: ?
 
-Files: jajuk.png
-Copyright: public domain
-License: public-domain
-
-File: juk.png (a prt of breeze-icons)
-Copyright: Andreas Kainz <kainz.a@gmail.com>, Uri Herrera <uri_herrera@nitrux.in>, Andrew Lake <jamboarder@gmail.com>, Marco Martin <notmart@gmail.com>, Harald Sitter <sitter@kde.org>, Jonathan Riddell <jr@jriddell.org>, Ken Vermette <vermette@gmail.com>, Aleix Pol <aleixpol@kde.org>, David Faure <faure@kde.org>, Albert Vaca <albertvaka@gmail.com>, Luca Beltrame <lbeltrame@kde.org>, Gleb Popov <6yearold@gmail.com>, Nuno Pinheiro <nuno.pinheiro@kdab.com>, Alex Richardson <arichardson.kde@gmail.com>, Jan Grulich <jgrulich@redhat.com>, Bernhard Landauer <oberon@manjaro.org>, Heiko Becker <heirecka@exherbo.org>, Volker Krause <vkrause@kde.org>, David Rosca <nowrep@gmail.com>, Phil Schaf <flying-sheep@web.de>
-License: GNU LGPL
-
-File: kadu.png
-Copyright: Kadu Team
-Source: https://commons.wikimedia.org/wiki/File:Kadu_logo.png
-License: Creative Commons Attribution-Share Alike 3.0 Unported, 2.5 Generic, 2.0 Generic and 1.0 Generic license
-
-File: kscd.png
-Copyright: Bouchikhi Mohamed-Amine <bouchikhi.amine@gmail.com>
-           Dembele Karim
-           Gastellu Sylvain <sylvain.gastellu@gmail.com>
-           Sovanramy Var <mastasushi@gmail.com>
-           1997, Bernd Johannes <wuebben@math.cornell.edu>
-           2002-2003, Aaron J. Seigo <aseigo@kde.org>
-           2004, Alexander Kern <alex.kern@gmx.de>
-           2003-2006, Richard Lärkäng <nouseforaname@home.se>
-           2008, Amine Bouchikhi <bouchikhi.amine@gmail.com>
-           2008, Laurent Montel <montel@kde.org>
-           2008, Stanislas Krzywda <stanislas.krzywda@gmail.com>
-License: GPL-2+
-
-File: kvirc.png
-Copyright: http://kvirc.virg0.org/
-Source: https://en.wikipedia.org/wiki/File:Kvirclogo.png
-License: Creative Commons Attribution-ShareAlike 2.5 License. 
-
-File: lftp.png
-Copyright: Alexander V. Lukyanov
-License: GNU GPL 3
-
-File: mega.png
-Copyright: 2013, Mega Limited
-License: MEGA LIMITED CODE REVIEW LICENCE
+File: images0/midori.svg
+Copyright: Christian Dywan & Nancy Runge of the Midori project
+License: GNU Lesser General Public License
 
 File: min.png
 Copyright: https://minbrowser.github.io/min/
 License: Apache License Version 2.0
 
-File: motionbox.png
+File: images0/motionbox.png
 Copyright (C) 2018 Benjamin Arnaud <bunjee@omega.gg>
 License: GPL3
 
-File: musique.png
+File: images0/musique.png
 Copyright: 2011 Flavio Tordini
 License: GPL-3+
 
-File: netsurf.png
+File: images0/netsurf.png
 Copyright: 2008-2015 Michael Drake <tlsa@netsurf-browser.org>
 License: MIT
 
-File: otter.png
+File: images0/otter.png
 Copyright: 2013 - 2018 Michal Dutkiewicz aka Emdek <michal@emdek.pl>
 License: GPL-3.0+
 
-File: palemoon.png
+File: images0/palemoon.png
 Copyright: M.C. Straver BASc, AKA "Moonchild"
 License: Freeware
 
-File: parole.png
-Copyright: 2009-2010 Ali Abdallah <aliov@xfce.org> and others
-License: GPL-2+
-
-File: pragha.png
-Copyright: 2007-2009 Sujith Manoharan <m.sujith@gmail.com>
-           2009-2015 Matias de Lellis <mati86dl@gmail.com>
-           2012-2013 Pavel Vasin
-License: GPL-3+
-
-File: qmmp.png
-Copyright: Qt-based Multimedia Player (Qmmp)
-License: GNU GPL
-
-File: qutebrowser.png
+File: images0/qutebrowser.png
 Copyright: Florian Bruhin
 License: GNU GPL
 
-File: rage.png
-Copyright (C) 2014 Carsten Haitzler and various contributors (see AUTHORS)
-All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-   1. Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-   2. Redistributions in binary form must reproduce the above copyright 
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
-OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-File: ring.png
-Source: http://ring.cx/profiles/tatooine/themes/naboo/images/ring/logo-ring-coul.svg
-License: ?
-
-File: sayonara.png
-Copyright: Lucio Carreras <luciocarreras@gmail.com>
-License: GNU GPL-3
-
-File: seamonkey.png
+File: images0/seamonkey.png
 Copyright: Alex Butin for Mozilla Foundation https://www.seamonkey-project.org/
 License: MPL/LGPL/GPL tri-license
 
-File: smtube.png
-Copyright: 2015-2018 Ricardo Villalba
+File: images0/sparky-tube.svg
+Copyright: lami07 & pavroo
 License: GNU GPL
 
-File: tor-browser.png, tor-messenger.png
+File: images0/strawberry.svg
+Copyright: David Sansome <me@davidsansome.com>
+License: GPL-3+
+
+File: images0/tor-browser.png
 Copyright (c) 2007-2013, The Tor Project, Inc.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -548,113 +447,81 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-File: tkabber.png
-Copyright: Artem Bannikov
-License: GNU GPL
-
-File: twinkle.png
-Copyright: Michel de Boer, Luboš Doležel
-License: GNU GPL
-
-File: vivaldi.png
-Source:	https://vivaldi.com/press/
-Copyright: Vivaldi Technologies™
-
-File: vokoscreen.png
-Copyrigt: Volker Kohaupt
-License: GNU GPL2
-
-File: waterfox.png
-Source:	https://www.waterfoxproject.org
-Copyright Milos Mirkovic
-License: Mozilla Public License Version 2
-
-File: weechat.png
-Copyright: Sébastien Helleu aka FlashCode
-Source: https://commons.wikimedia.org/wiki/File:Weechat_logo.png
-License: GNU Free Documentation License, Version 1.2 or any later
-
-File: yarock.png
-Copyright: Sebastien Amardeilh
-License: GNU GPL 3
-
-File: youtube-dlg.png
-Copyright: MrS0m30n3 <ytubedlg@gmail.com>
-License: The Unlicense
+### end applications ###
 
 ### desktop icons ###
 
-File: awesome.png
+File: images0/awesome.png
 Copyright (C) The awesome team
 Source: https://awesome.naquadah.org/
 License: GNU GPL-2
 
-File: bspwm.png
+File: images0/bspwm.png
 Copyright (C) Bastien Dejean
 Source: https://github.com/baskerville/bspwm
 License: BSD
 
-File: budgie.png
+File: images0/budgie.png
 Copyright (C) Ikey Doherty
 Source: https://github.com/solus-project/budgie-desktop
 License: GNU GPL 2
 
-File: cde.png
+File: images0/cde.png
 Copyright (C) Copyright 1993-2012 The Open Group
 Copyright (C) 2012-2016 CDE Project contributors
 Source: https://sourceforge.net/p/cdesktopenv/
 License: GNU LGPL 2+
 
-File: cinnamon.png
+File: images0/cinnamon.png
 Copyright (C) Clement Lefebvre
 Source: https://commons.wikimedia.org/wiki/File:Linux_Mint_logo_without_wordmark.svg
 License: Creative Commons Attribution 3.0 Unported
 
-File: elementary.png
+File: images0/elementary.png
 Copyright (C) Dan Rabbit
 Source: https://commons.wikimedia.org/wiki/File:Elementary_logo.svg
 License: GNU GPL2+
 
-File: enlightenment.png
+File: images0/enlightenment.png
 Copyright (C) Carsten Haitzler and various contributors
 Source: https://en.wikipedia.org/wiki/File:E17_enlightenment_logo_shiny_black_curved.svg
 License: BSD
 
-File: fluxbox.png
+File: images0/fluxbox.png
 Copyright (C) Oliwier Ptak, <aleczapka at gmx dot net>
 Source: https://commons.wikimedia.org/wiki/File:Fluxbox-logo.png
 License: GNU GPL2+
 
-File: gnome*.png
+File: images0/gnome*.png
 Copyright (C) GhePeU
 Source: https://commons.wikimedia.org/wiki/File:Gnomelogo-footprint.svg
 License: GNU LGPL
 
-File: i3.png
+File: images0/i3.png
 Copyright (C) Michael Stapelberg
 Source: https://commons.wikimedia.org/wiki/File:I3_window_manager_logo.png
 License: Creative Commons Attribution-Share Alike 3.0 Unported
 
-File: icewm.png
+File: images0/icewm.png
 Copyright (C) Marko Maček
 Source: https://commons.wikimedia.org/wiki/File:IceWM_Logo.png
 License: Creative Commons Attribution-Share Alike 3.0 Unported
 
-File: jade.png
+File: images0/jade.png
 Vitor Lopes <vmnlop@gmail.com>
 License: GPL
 
-File: jwm.png
+File: images0/jwm.png
 Copyright (C) Joe Wingbermuehle
 Source: http://joewing.net/projects/jwm/
 License: GNU GPL v2
 
-File: kde.png
+File: images0/kde.png
 Copyright (C) KDE
 Source: https://commons.wikimedia.org/wiki/File:KDE_Logo_Official_Lineart_Detailed.svg
 License: GNU GPL v2
 
-File: lumina.png
+File: images0/lumina.png
 Copyright 2012-2016, Ken Moore (moorekou@gmail.com)
 All rights reserved
 Source: https://github.com/trueos/lumina
@@ -680,47 +547,55 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
 
-File: lxde.png
+File: images0/lxde.png
 Copyright (C) Mario Behling
 Source: https://commons.wikimedia.org/wiki/File:LXDE_logo.jpg
 License: LGPL
 
-File: lxqt.png
+File: images0/lxqt.png
 Copyright (C) Caig
 Source: https://commons.wikimedia.org/wiki/File:Helix_lxqt.svg
 License: Creative Commons Attribution-Share Alike 3.0 Unported
 
-File: manokwari.png
+File: images0/manokwari.png
 Copyright (C) Manokwari team
 Source: http://manokwari.blankonlinux.or.id/
 License: GNU GPL
 
-File: mate.png
+File: images0/mate.png
 Copyright (C) MATE team / Joseph Krieger
 Source: https://commons.wikimedia.org/wiki/File:Mate_icon.png
 License: GNU GPL
 
-File: openbox.png
+File: images0/openbox.png
 Copyright (C) David Barr
 Source: http://openbox.org/wiki/File:Openbox-72.png
 License: GNU GPL 2+
 
-File: pekwm.png
+File: images0/pekwm.png
 Copyright (C) PekWM team
 Source: https://www.pekwm.org/
 License: GNU GPL
 
-File: tde.png
+File: images0/tde.png
 Copyright (C) KDE, Pearson Computing
 Source: https://commons.wikimedia.org/wiki/File:Trinity_DE_logo_crystal.png
 License: LGPL
 
-File: wmaker.png
+File: images0/wmaker.png
 Copyright (C) Window Maker developers
 Source: http://windowmaker.org/
 License: GNU GPL v2
 
-File: xfce.png
+File: images0/xfce.png
 Copyright (C) Xfce Team, Sav_vas
 Source: https://commons.wikimedia.org/wiki/File:Xfce_logo.svg
 License: LGPL
+
+### end desktops ###
+
+Files: images0/sparky-header*, images0/background*
+Copyright (C) 2019 Paweł Pijanowski <pavroo@onet.eu>
+Source: https://sparkylinux.org
+License: GNU GPL
+

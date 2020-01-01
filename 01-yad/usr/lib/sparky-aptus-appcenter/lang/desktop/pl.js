@@ -1,7 +1,7 @@
 // Polish localization file for Desktop
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/17 by pavroo
+// Last update 2019/12/28 by pavroo
 dict.entries['desktop'] = {};
 // desktops
 dict.entries['desktop']['awesome'] = "Wysoce konfigurowalny dynamiczny manager okien nowej generacji dla X. Jest bardzo szybki, rozszerzalny i licencjonowany na licencji GNU GPLv2. Jest skierowany przede wszystkim do zaawansowanych użytkowników, programistów i osób zajmujących się codziennymi zadaniami komputerowymi i chcących mieć precyzyjną kontrolę nad swoim środowiskiem graficznym.";
@@ -9,6 +9,7 @@ dict.entries['desktop']['bspwm'] = "bspwm to kafelkowy menedżer okien, który r
 dict.entries['desktop']['budgie'] = "Budgie-Desktop to środowisko graficzne oparte na GTK+, które koncentruje się na prostocie i elegancji. Zapewnia tradycyjny interfejs pulpitu, wykorzystujący konfigurowalny system oparty na panelach. Budgie-Desktop jest napisany od podstaw z wykorzystaniem wielu podsystemów opartych na GNOME, takich jak GNOME-Session i Mutter.";
 dict.entries['desktop']['cde'] = "Otwartoźródłowe środowisko graficzne przeznaczone dla systemów uniksowych. Zostało ono opracowane przez The Open Group, powstanie jego miało na celu ujednolicenie środowiska programistycznego działającego na wielu systemach pochodzących od różnych producentów. CDE jest podstawowym środowiskiem graficznym w wielu systemach takich jak: Solaris, HP-UX, Tru64, AIX i OpenVMS.";
 dict.entries['desktop']['cinnamon'] = "Cynamon to środowisko graficzne, które zapewnia zaawansowane innowacyjne funkcje i tradycyjny komfort użytkowania. Układ na pulpicie jest podobny do GNOME 2. Podstawowa technologia jest pochodną GNOME-Shell. Nacisk kładziony jest na to, aby użytkownicy czuli się jak u siebie w domu i otrzymali łatwy w obsłudze i komfortowy interfejs.";
+dict.entries['desktop']['draco'] = "Lekkie, bazujące na bibliotekach Qt środowisko graficzne wywądzące się z Lumina Desktop.";
 dict.entries['desktop']['enlightenment'] = "Enlightenment to zaawansowany menedżer okien dla X11. Unikalne funkcje obejmują: w pełni animowane tło, ładne cienie wokół okien, wspierane przez wyjątkowo czysty i zoptymalizowany fundament interfejsów API.";
 dict.entries['desktop']['fluxbox'] = "Wysoce konfigurowalny, lekki menedżer okien X11 podobny do blackboksa, z którego się wywodzi, ale został rozszerzony o takie funkcje jak zakładki okien w stylu pwm, konfigurowalne przypisania klawiszy, panel i panel z ikonami. Zawiera również kosmetyczne poprawki w porównaniu do blackboksa.";
 dict.entries['desktop']['gnomeflashback'] = "GNOME Flashback kontynuuje tradycyjny interfejs pulpitu, który był używany w GNOME 2.x, ale przy użyciu nowoczesnych technologii GNOME.";

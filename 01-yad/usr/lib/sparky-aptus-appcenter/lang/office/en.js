@@ -1,7 +1,7 @@
 // English localization file for Office
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/22 by pavroo
+// Last update 2020/01/01 by pavroo
 dict.entries['office'] = {};
 // office addressbook
 dict.entries['office']['abook'] = "abook is a text-based ncurses address book application. It provides many different fields of user info. abook is designed for use with mutt, but can be used independently.";
@@ -13,11 +13,13 @@ dict.entries['office']['osmo'] = "Osmo is a personal organizer, which includes c
 dict.entries['office']['apcalc'] = "Apcalc (original name: Calc) is an arbitrary precision arithmetic system that uses a C-like language. Calc is useful as a calculator, an algorithm prototyper and as a mathematical research tool. More importantly, calc provides one with a machine independent means of computation. Calc comes with a rich set of builtin mathematical and programmatic functions.";
 dict.entries['office']['calcoo'] = "Calcoo is a scientific calculator designed to provide maximum usability.";
 dict.entries['office']['concalc'] = "Concalc is a calculator for the Linux console. It is just the parser-algorithm of extcalc packed into a simple console program. You can use it if you need a calculator in your shell. concalc is also able to run scripts written in a C-like programming language.";
+dict.entries['office']['qalculategtk'] = "Qalculate! is small and simple to use but with much power and versatility underneath. Features include customizable functions, units, arbitrary precision, plotting, and a graphical interface that uses a one-line fault-tolerant expression entry.";
 dict.entries['office']['galculator'] = "Galculator is a scientific calculator. It supports different number bases (DEC/HEX/OCT/BIN) and angles bases (DEG/RAD/GRAD) and features a wide range of mathematical (basic arithmetic operations, trigonometric functions, etc) and other useful functions (memory, etc) at the moment. galculator can be used in algebraic mode as well as in Reverse Polish Notation (RPN).";
 dict.entries['office']['gnomecalculator'] = "The GNOME calculator is a powerful graphical calculator with financial, logical and scientific modes. It uses a multiple precision package to do its arithmetic to give a high degree of accuracy.";
 dict.entries['office']['kcalc'] = "KCalc is a scientific calculator. KCalc provides: Trigonometric functions, logic operations, and statistical calculations; Calculation in decimal, hexadecimal, octal, and binary bases; Memory functions for storing results; A comprehensive collection of mathematical constants.";
 dict.entries['office']['keurocalc'] = "KEurocalc is a universal currency converter and calculator. It downloads latest exchange rates directly from the European Central Bank and Time Genie.";
 dict.entries['office']['matecalc'] = "MATE-calc is a powerful graphical calculator with financial, logical and scientific modes. It uses a multiple precision package to do its arithmetic to give a high degree of accuracy.";
+dict.entries['office']['qcalculator'] = "Simply and small Qt based Calculator.";
 dict.entries['office']['wcalc'] = "Wcalc is a very capable calculator. It has standard functions (sin, asin, and sinh for example, in either radians or degrees), many pre-defined constants (pi, e, c, etc.), support for using variables, 'active' variables, a command history, hex/octal/binary input and output, unit conversions, embedded comments, and an expandable expression entry field. It evaluates expressions using the standard order of operations.";
 // office document
 dict.entries['office']['atril'] = "Atril is a simple multi-page document viewer. It can display and print PostScript (PS), Encapsulated PostScript (EPS), DJVU, DVI and Portable Document Format (PDF) files.";
@@ -56,6 +58,7 @@ dict.entries['office']['pyspread'] = "Pyspread is a cross-platform Python spread
 dict.entries['office']['scoffice'] = "Spreadsheet Calculator is a much modified version of the public- domain spread sheet sc, which was posted to Usenet several years ago by Mark Weiser as vc, originally by James Gosling. It is based on rectangular table much like a financial spreadsheet. Its keybindings are familiar to users of 'vi', and it has most features that a pure spreadsheet would, but lacks things like graphing and saving in foreign formats. It's very stable and quite easy to use once you've put a little effort into learning it.";
 // office suite
 dict.entries['office']['calligra'] = "Calligra Suite is a set of applications written to help you to accomplish your work. It includes office applications such as a word processor, a spreadsheet, a presentation program, a database application, etc., and raster and vector graphics tools.";
+dict.entries['office']['freeoffice'] = "FreeOffice is a complete Office suite with a word processor, a spreadsheet application and a presentation program – all compatible with their counterparts in Microsoft Office.";
 dict.entries['office']['libreoffice'] = "LibreOffice is a full-featured office productivity suite that provides a near drop-in replacement for Microsoft(R) Office. This installs all components of: Word processor, Spreadsheet, Presentation, Drawing, Database, Equation editor.";
 dict.entries['office']['msonlineapps'] = "It installs Menu shorcuts for Microsoft Online Applications.";
 dict.entries['office']['onlyoffice'] = "ONLYOFFICE DesktopEditors is an application for editing office documents (text documents, spreadsheets and presentations) from ONLYOFFICE cloud portal on local computer without browser using.";
@@ -63,6 +66,7 @@ dict.entries['office']['openoffice'] = "Apache OpenOffice is the open-source off
 dict.entries['office']['wpsoffice'] = "WPS Office (formerly known as Kingsoft Office) is an office suite. It is characterized by the speed of action and the fact that it is available for free. The package includes the following applications: Presentation which is a tool for creating multimedia presentations, Writer text editor and spreadsheets spreadsheet.";
 // office text
 dict.entries['office']['abiword'] = "AbiWord is a full-featured, efficient word processing application. It is suitable for a wide variety of word processing tasks, and is extensible with a variety of plugins. This package includes many of the available import/export plugins allowing AbiWord to interact with ODT, WordPerfect, and other formats. It also includes tools plugins, offering live collaboration with AbiWord users on Linux and Windows (using TCP or Jabber/XMPP), web translation and dictionary support, and more.";
+dict.entries['office']['atom'] = "A text editor of programming source codes with syntax highlighting for many languages. You can also edit all txt files as well.";
 dict.entries['office']['bluefish'] = "Bluefish is a powerful editor targeted towards programmers and web developers, with many options to write websites, scripts and programming code. Bluefish supports a wide variety of programming and markup languages and has many features.";
 dict.entries['office']['bluegriffon'] = "BlueGriffon is a WYSIWYG content editor for the World Wide Web. Powered by Gecko, the rendering engine of Firefox, it's a modern and robust solution to edit Web pages in conformance to the latest Web Standards.";
 dict.entries['office']['emacs'] = "GNU Emacs is the extensible self-documenting text editor. This is a metapackage that will always depend on the latest recommended Emacs variant (currently emacs-gtk).";

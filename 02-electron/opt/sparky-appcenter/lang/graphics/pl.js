@@ -1,7 +1,7 @@
 // Polish localization file for Graphics
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/19 by pavroo
+// Last update 2019/12/30 by pavroo
 dict.entries['graphics'] = {};
 // graphics editors
 dict.entries['graphics']['blender'] = "Blender jest zintegrowanym pakietem narzędziowym służącym do trójwymiarowego modelowania, animacji, renderingu, postprodukcji, interaktywnego tworzenia i odtwarzania (gier). Blender dysponuje własnym, wyjątkowym interfejsem użytkownika, stworzonym w całości w oparciu o OpenGL i zaprojektowanym z myślą o szybkości.";
@@ -26,6 +26,7 @@ dict.entries['graphics']['xpaint'] = "XPaint jest programem do tworzenia prostyc
 dict.entries['graphics']['camorama'] = "Camorama to małe narzędzie do przeglądania i zapisywania obrazów z kamery internetowej lub jakiegokolwiek urządzenia Video4Linux. Potrafi stosować szereg filtrów i dokonywać zdalnego przechwycenia.";
 dict.entries['graphics']['gtkam'] = "GTKam to graficzna aplikacja oparta na GTK+ umożliwiająca pobieranie obrazów i filmów z aparatów cyfrowych.";
 dict.entries['graphics']['kamera'] = "Obsługa aparatów cyfrowych do aplikacji KDE. Pakiet pozwala aplikacjom KDE na dostęp i manipulację obrazami w aparatach cyfrowych.";
+dict.entries['graphics']['qcamera'] = "Prosta i mała, bazująca na Qt aplikacja do obsługi  kamery internetowej.";
 // graphics screenshots
 dict.entries['graphics']['flameshot'] = "Flameshot to potężne, ale proste w obsłudze oprogramowanie do zrzutu ekranu. Godne uwagi funkcje to konfigurowalny wygląd, edycja zrzutu ekranu w aplikacji, interfejs D-Bus, eksperymentalna obsługa GNOME / KDE Wayland, integracja z Imgur oraz obsługa interfejsu GUI i CLI.";
 dict.entries['graphics']['gnomescreenshot'] = "Aplikacja do GNOME robiąca zrzuty ekranu. Narzędzie pobierające obraz pulpitu lub okna i zapisujące go do pliku.";

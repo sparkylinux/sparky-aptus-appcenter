@@ -1,7 +1,7 @@
 // English localization file for Graphics
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2018/12/19 by pavroo
+// Last update 2019/12/30 by pavroo
 dict.entries['graphics'] = {};
 // graphics editors
 dict.entries['graphics']['blender'] = "Blender is an integrated 3d suite for modelling, animation, rendering, post-production, interactive creation and playback (games). Blender has its own particular user interface, which is implemented entirely in OpenGL and designed with speed in mind.";
@@ -26,6 +26,7 @@ dict.entries['graphics']['xpaint'] = "XPaint is suitable for producing simple gr
 dict.entries['graphics']['camorama'] = "Camorama is a small utility to view and save images from a webcam or any other Video4Linux device. It can apply a number of image filters and make remote captures.";
 dict.entries['graphics']['gtkam'] = "GTKam is a graphical application based on GTK+ that allows you to transfer pictures and movies from a digital camera.";
 dict.entries['graphics']['kamera'] = "Digital camera support for KDE applications. This package allows any KDE application to access and manipulate pictures on a digital camera.";
+dict.entries['graphics']['qcamera'] = "Simply and small Qt based webcam viewer.";
 // graphics screenshots
 dict.entries['graphics']['flameshot'] = "Flameshot is a powerful yet simple-to-use screenshot software. Notable features include customizable appearance, in-app screenshot editing, D-Bus interface, experimental GNOME/KDE Wayland support, integration with Imgur and support for both GUI and CLI interface.";
 dict.entries['graphics']['gnomescreenshot'] = "Screenshot application for GNOME. This tool takes a picture of the desktop or of a window and saves it into a file.";

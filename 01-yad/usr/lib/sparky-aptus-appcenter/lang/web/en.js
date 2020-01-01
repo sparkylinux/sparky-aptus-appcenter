@@ -1,7 +1,7 @@
 // English localization file for Web
 // Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2019/01/11 by pavroo
+// Last update 2019/12/30 by pavroo
 dict.entries['web'] = {};
 // web communication
 dict.entries['web']['bti'] = "bti sends a tweet message to twitter.com. bti provides an easy way to send tweet messages directly from the command line or a script. It reads the message on standard input and uses the account and password settings either from the command line options or from a config file to deliver the message.";
@@ -23,15 +23,19 @@ dict.entries['web']['linphone'] = "Linphone is an audio and video internet phone
 dict.entries['web']['loqui'] = "Loqui is a IRC/chat client based on GTK+, supports multiple servers and multiple protocols, has and the common buffer (a buffer to show messages on the channels that not currently selected).";
 dict.entries['web']['lostirc'] = "LostIRC is a simple, yet very useful IRC-client. It has features such as tab-autocompletion, multiple server support, automatic joining of servers/channels and DCC sending which should cover the needs of most people.";
 dict.entries['web']['mumble'] = "Mumble is a low-latency, high quality voice chat program for gaming. It features noise suppression, encrypted connections for both voice and instant messaging, automatic gain control and low latency audio with support for multiple audio standards. Mumble includes an in-game overlay compatible with most open-source and commercial 3D applications.";
+dict.entries['web']['nheko'] = "Nheko is a Qt-based chat client for Matrix, an open, federated communications protocol. The motivation behind the project is to provide a native desktop app for Matrix that feels more like a mainstream chat app and less like an IRC client.";
 dict.entries['web']['pidgin'] = "Pidgin is a graphical, modular instant messaging client capable of using multiple networks at once. Currently supported are: AIM/ICQ, Yahoo!, MSN, IRC, Jabber/XMPP/Google Talk, Napster, Zephyr, Gadu-Gadu, Bonjour, Groupwise, Sametime, SIMPLE, MySpaceIM, and MXit.";
 dict.entries['web']['pork'] = "Pork is an ncurses-based AOL Instant Messenger and IRC client. It uses the OSCAR protocol (the one the windows client uses) to access AIM. Pork features Perl scripting; an online help system; the ability to configure nearly all aspects of the program's look-and-feel; an alias system; and a powerful, fully-configurable key binding system.";
 dict.entries['web']['psi'] = "Psi is a free instant messaging application designed for the Jabber (XMPP) IM network (including Google Talk). It has full Unicode support, and supports many important XMPP features like file transfer, group chat, encryption etc.";
 dict.entries['web']['quassel'] = "Quassel is a modern, cross-platform, distributed IRC client, meaning that one or more clients can attach to and detach from the central core. It's much like the popular combination of screen and a text-based IRC client such as WeeChat or irssi, but graphical.";
+dict.entries['web']['quaternion'] = "Quaternion is a Qt-based chat client for the Matrix protocol. Matrix is an open, federated communications protocol.";
 dict.entries['web']['ring'] = "Ring (ring.cx) is a secure and distributed voice, video and chat communication platform that requires no centralized server and leaves the power of privacy in the hands of the user.";
+dict.entries['web']['riotweb'] = "Riot (formerly known as Vector) is a Matrix web client built using the Matrix protocol.";
 dict.entries['web']['scrollz'] = "ScrollZ is advanced IRC client based on ircII code. It adds features normally found in ircII scripts like Toolz, PhoEniX, GargOyle or Lice.";
 dict.entries['web']['sic'] = "sic is an extremely fast, small and simple irc client. It reads commands from standard input and prints all server output to standard output.";
 dict.entries['web']['skype'] = "Skype is a telecommunications application software product that specializes in providing video chat and voice calls between computers, tablets, mobile devices, the Xbox One console, and smartwatches via the Internet and to regular telephones.";
 dict.entries['web']['smuxi'] = "Smuxi is an irssi-inspired, flexible, user-friendly and cross-platform IRC client for sophisticated users, targeting the GNOME desktop.";
+dict.entries['web']['teamspeak'] = "TeamSpeak 3 Client Installer is a script which can download an installation package of the TeamSpeak 3 and run the installer";
 dict.entries['web']['telegramdesktop'] = "Telegram is a messaging app with a focus on speed and security, it is super-fast, simple and free. You can use Telegram on all your devices at the same time — your messages sync seamlessly across any number of your phones, tablets or computers.";
 dict.entries['web']['tinyirc'] = "A very small, stripped down IRC client. It doesn't have most of the more advanced commands in the ircII family of IRC Clients, nor does it have any color, but it works, and it's tiny.";
 dict.entries['web']['tkabber'] = "Tkabber is a GUI client for XMPP (Jabber) instant messaging protocol. It provides full support of basic XMPP specifications as well as many protocol extensions (XEPs), such as multi-user conferencing, file transfers, extensive handling of privacy lists and much more.";
@@ -57,6 +61,7 @@ dict.entries['web']['jftp'] = "JFtp is a graphical Java network and file transfe
 dict.entries['web']['kget'] = "KGet is an advanced download manager with support for Metalink and Bittorrent. Downloads are added to the list, where they can be paused, queued, or scheduled for later. This package is part of the KDE networking module.";
 dict.entries['web']['lftp'] = "Lftp is a file retrieving tool that supports FTP, HTTP, FISH, SFTP, HTTPS, FTPS and BitTorrent protocols under both IPv4 and IPv6. Lftp has an amazing set of features, while preserving its interface as simple and easy as possible.";
 dict.entries['web']['ncftp'] = "NcFTP allows a user to transfer files to and from a remote network site, and offers additional features that are not found in the standard interface, ftp. This version has Readline support enabled.";
+dict.entries['web']['persepolis'] = "Persepolis is a graphical user interface on the Aria2 download manager. Persepolis makes the usage of Aria2 easier by providing a graphical interface for it and in addition, it includes some extra functionalities like scheduled downloads.";
 dict.entries['web']['uftp'] = "Utility for secure, reliable, and efficient file transfer to multiple receivers simultaneously. This is useful for distributing large files to a large number of receivers, and is especially useful for data distribution over a satellite link where the inherent delay makes any TCP based communication highly inefficient.";
 dict.entries['web']['uget'] = "Uget (formerly urlgfe) is a simple, lightweight and easy-to-use download manager written in GTK+.";
 dict.entries['web']['wget'] = "Wget is a network utility to retrieve files from the web using HTTP(S) and FTP, the two most widely used internet protocols. It works non-interactively, so it will work in the background, after having logged off.";
