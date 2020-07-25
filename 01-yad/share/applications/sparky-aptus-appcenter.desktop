@@ -1,0 +1,24 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=APTus AppCenter
+GenericName=APTus AppCenter
+Comment=Keep your system up to date and clean, install and remove packages
+Comment[de]=Hält das System aktuell und sauber, installiert und entfernt Pakete
+Comment[el]=Διατηρήστε το σύστημά σας ενημερωμένο και εγκαταστήστε, απεγκαταστήστε ή καθαρίστε πακέτα λογισμικού
+Comment[es]=Mantiene su sistema actualizado y limpia, instala y elimina paquetes
+Comment[fr]=Garder votre système à jour, propre, installer et supprimer des paquets
+Comment[id]=Menjaga sistem up to date, membersihkan, menginstal dan menghapus paket
+Comment[it]=Mantieni il tuo sistema aggiornato e pulito, installa e rimuovi i pacchetti
+Comment[ja]=システムからパッケージのインストール・更新・削除します
+Comment[pl]=Utrzymuj system zaktualizowany i czysty, instaluj i usuwaj pakiety
+Comment[pt_BR]=Mantenha seu sistema atualizado e limpo, instale e remova pacotes
+Comment[pt_PT]=Mantenha seu sistema atualizado e limpo, instale/remova pacotes
+Comment[ru]=Поддержка системы в актуальном состоянии, чистка, установка и удаление пакетов
+Exec=spsudo /usr/bin/sparky-aptus-appcenter
+Icon=sparky-aptus-appcenter
+Terminal=false
+MultipleArgs=false
+Type=Application
+Categories=Applications;System
+

@@ -1,0 +1,265 @@
+#!/bin/bash
+
+# Created by Piotr "MoroS" Mrożek 2018
+# Last update by Paweł "pavroo" Pijanowski July 23, 2020
+
+LANGUAGE=${LANG:0:2}
+EN=`echo $LANGUAGE | grep en`
+PL=`echo $LANGUAGE | grep pl`
+
+if [ "$PL" != "" ]; then
+	LANGUAGE="$LANGUAGE"
+else
+	LANGUAGE="en"
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo "Must be root... Exiting..."
+	exit 1
+fi
+POS="--center --width 900 --height 650"
+HTML="--html --browser"
+# index page
+if [ "$1" = "" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="index.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# accessories archivers
+elif [ "$1" = "accarc01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-archivers.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories clipboards
+elif [ "$1" = "acccli01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-clipboards.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories devices
+elif [ "$1" = "accdev01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-devices.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories display managers
+elif [ "$1" = "accdis01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-display.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories file managers
+elif [ "$1" = "accfil01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-filemanagers.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories monitoring
+elif [ "$1" = "accmon01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-monitoring.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories others
+elif [ "$1" = "accoth01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-others.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories terminal emulators
+elif [ "$1" = "accter01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-terminals.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories usb
+elif [ "$1" = "accusb01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-usb.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# aptus tools
+elif [ "$1" = "apttool01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="tools.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# development
+elif [ "$1" = "devtoo01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="development.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# desktop
+elif [ "$1" = "desk01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="desktops.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# education
+elif [ "$1" = "educat01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="education.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+elif [ "$1" = "educat02" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="education2.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+elif [ "$1" = "educat03" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="education3.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# education games
+elif [ "$1" = "edugam01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="education-games.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# games adventure
+elif [ "$1" = "gamadv01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-adventure.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games arcade1
+elif [ "$1" = "gamarc01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-arcade.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games arcade2
+elif [ "$1" = "gamarc02" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-arcade2.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games arcade3
+elif [ "$1" = "gamarc03" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-arcade3.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games board
+elif [ "$1" = "gamboa01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-board.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games cards
+elif [ "$1" = "gamcar01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-cards.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games fps
+elif [ "$1" = "gamfps01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-fps.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games platform
+elif [ "$1" = "gampla01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-platform.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games puzzle
+elif [ "$1" = "gampuz01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-puzzle.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games rpg
+elif [ "$1" = "gamrpg01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-rpg.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games simulation
+elif [ "$1" = "gamsim01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-simulation.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games sport
+elif [ "$1" = "gamspo01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-sport.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games strategy
+elif [ "$1" = "gamstr01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-strategy.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games text
+elif [ "$1" = "gamtex01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-text.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games winapi
+elif [ "$1" = "gamwin01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-winapi.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games emulators
+elif [ "$1" = "gamemu01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-emulators.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games tools
+elif [ "$1" = "gamtoo01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-tools.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# games others
+elif [ "$1" = "gamoth01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="games-others.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# graphics editors
+elif [ "$1" = "graedi01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="graphics-editors.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# graphics others
+elif [ "$1" = "graoth01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="graphics-others.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# graphics screenshots
+elif [ "$1" = "grascr01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="graphics-screenshots.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# graphics screenshots
+elif [ "$1" = "gravie01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="graphics-viewers.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# multimedia audio players
+elif [ "$1" = "audpla01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="media-audioplayers.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# multimedia audio tools
+elif [ "$1" = "audtoo01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="media-audiotools.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# multimedia burn
+elif [ "$1" = "medbur01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="media-burn.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# multimedia codecs
+elif [ "$1" = "medcod01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="media-codecs.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# multimedia others
+elif [ "$1" = "medoth01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="media-others.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# multimedia subtitles
+elif [ "$1" = "medsub01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="media-subtitles.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# multimedia video tools
+elif [ "$1" = "videdi01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="media-videotools.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# multimedia video players
+elif [ "$1" = "vidpla01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="media-videoplayers.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# network communication
+elif [ "$1" = "netcom01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-communication.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# network email
+elif [ "$1" = "netema01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-email.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# network file transfer
+elif [ "$1" = "netfil01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-filetransfer.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# network other
+elif [ "$1" = "netoth01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-others.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# network p2p
+elif [ "$1" = "netp2p01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-p2p.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# network remote access
+elif [ "$1" = "netacc01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-access.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# network rss
+elif [ "$1" = "netrss01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-rss.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# network web browsers
+elif [ "$1" = "netweb01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-webbrowser.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# office address book
+elif [ "$1" = "offadd01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="office-addressbook.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# office calculators
+elif [ "$1" = "offcal01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="office-calculator.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# office document
+elif [ "$1" = "offdoc01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="office-document.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# office finance
+elif [ "$1" = "offfin01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="office-finance.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# office note
+elif [ "$1" = "offnot01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="office-note.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# office others
+elif [ "$1" = "offoth01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="office-others.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# office spreadsheets
+elif [ "$1" = "offspr01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="office-spreadsheet.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# office suite
+elif [ "$1" = "offsui01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="office-suite.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# office text editors
+elif [ "$1" = "offtex01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="office-text.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# search
+elif [ "$1" = "null01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="search-null.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# search more1
+elif [ "$1" = "more02" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="search-more2.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# security
+elif [ "$1" = "sectoo01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="security.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
+# system backup
+elif [ "$1" = "sysbac01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-backup.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# system disk
+elif [ "$1" = "sysdis01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-disk.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# system encrypt
+elif [ "$1" = "sysenc01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-encrypt.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# system file systems
+elif [ "$1" = "sysfil01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-filesystems.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# system kernel
+elif [ "$1" = "sysker01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-kernel.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# system file others
+elif [ "$1" = "sysoth01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-others.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# system packages
+elif [ "$1" = "syspac01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-package.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# system shells
+elif [ "$1" = "sysshe01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-shell.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# system virtual
+elif [ "$1" = "sysvir01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-virtual.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+	
+fi
+
+exit 0

@@ -1,0 +1,675 @@
+#!/bin/bash
+
+# Created by Piotr "MoroS" Mrożek 2018
+# Quick guide of YAD output codes:
+# exit 0 - Yad supports URL (goes to a next page)
+# exit 1 - Yad ignores URL (does nothing)
+# exit 2 - Yad treats URL as a file downloading (not tested yet)
+# Last update by pavroo July 23, 2020
+
+URI="$1"
+
+# ignore empty URI
+if [[ "$URI" == "" ]]; then
+	echo "no command... exiting..."
+	exit 1
+fi
+
+# html URI runs external www-browser
+if [[ "$URI" == http* ]]; then
+	echo "running external web page..."
+	x-www-browser "$URI" &
+	exit 1
+fi
+
+# local file URI opens inside YAD
+if [[ "$URI" == file* ]]; then
+	echo "running a web page from local disk..."
+	exit 0
+fi
+
+# aptus://something runs our command inside YAD
+if [[ "$URI" == aptus* ]]; then
+	# remove 'aptus:'
+	#echo "$URI"
+	CMD=`echo "$URI" | sed -e 's/aptus:\/\///'`
+	echo "running a command for $CMD..."
+	# accessories
+	CHECKACCARC=`echo "$CMD" | grep accarc`
+	CHECKACCCLI=`echo "$CMD" | grep acccli`
+	CHECKACCDEV=`echo "$CMD" | grep accdev`
+	CHECKACCDIS=`echo "$CMD" | grep accdis`
+	CHECKACCFIL=`echo "$CMD" | grep accfil`
+	CHECKACCMON=`echo "$CMD" | grep accmon`
+	CHECKACCOTH=`echo "$CMD" | grep accoth`
+	CHECKACCTER=`echo "$CMD" | grep accter`
+	CHECKACCUSB=`echo "$CMD" | grep accusb`
+	# aptus tools
+	CHECKAPTTOOL=`echo "$CMD" | grep apttool`
+	# desktops
+	CHECKDESKTOP=`echo "$CMD" | grep environment`
+	# development
+	CHECKDEVTOO=`echo "$CMD" | grep devtoo`
+	# education
+	CHECKEDUCAT1=`echo "$CMD" | grep educat1`
+	CHECKEDUCAT2=`echo "$CMD" | grep educat2`
+	CHECKEDUCAT3=`echo "$CMD" | grep educat3`
+	CHECKEDUGAM=`echo "$CMD" | grep edugam`
+	# games
+	CHECKGAMADV=`echo "$CMD" | grep gamadv`
+	CHECKGAMARC1=`echo "$CMD" | grep gamarc1`
+	CHECKGAMARC2=`echo "$CMD" | grep gamarc2`
+	CHECKGAMARC3=`echo "$CMD" | grep gamarc3`
+	CHECKGAMBOA=`echo "$CMD" | grep gamboa`
+	CHECKGAMCAR=`echo "$CMD" | grep gamcar`
+	CHECKGAMFPS=`echo "$CMD" | grep gamfps`
+	CHECKGAMPLA=`echo "$CMD" | grep gampla`
+	CHECKGAMPUZ=`echo "$CMD" | grep gampuz`
+	CHECKGAMRPG=`echo "$CMD" | grep gamrpg`
+	CHECKGAMSIM=`echo "$CMD" | grep gamsim`
+	CHECKGAMSPO=`echo "$CMD" | grep gamspo`
+	CHECKGAMSTR=`echo "$CMD" | grep gamstr`
+	CHECKGAMTEX=`echo "$CMD" | grep gamtex`
+	CHECKGAMWIN=`echo "$CMD" | grep gamwin`
+	CHECKGAMEMU=`echo "$CMD" | grep gamemu`
+	CHECKGAMTOO=`echo "$CMD" | grep gamtoo`
+	CHECKGAMOTH=`echo "$CMD" | grep gamoth`
+	# graphics
+	CHECKGRAEDI=`echo "$CMD" | grep graedi`
+	CHECKGRAOTH=`echo "$CMD" | grep graoth`
+	CHECKGRASCR=`echo "$CMD" | grep grascr`
+	CHECKGRAVIE=`echo "$CMD" | grep gravie`
+	# multimedia
+	CHECKAUDPLA=`echo "$CMD" | grep audpla`
+	CHECKAUDTOO=`echo "$CMD" | grep audtoo`
+	CHECKMEDBUR=`echo "$CMD" | grep medbur`
+	CHECKMEDCOD=`echo "$CMD" | grep medcod`
+	CHECKMEDOTH=`echo "$CMD" | grep medoth`
+	CHECKMEDSUB=`echo "$CMD" | grep medsub`
+	CHECKVIDEDI=`echo "$CMD" | grep videdi`
+	CHECKVIDPLA=`echo "$CMD" | grep vidpla`
+	# network
+	CHECKNETCOM=`echo "$CMD" | grep netcom`
+	CHECKNETEMA=`echo "$CMD" | grep netema`
+	CHECKNETFIL=`echo "$CMD" | grep netfil`
+	CHECKNETOTH=`echo "$CMD" | grep netoth`
+	CHECKNETP2P=`echo "$CMD" | grep netp2p`
+	CHECKNETACC=`echo "$CMD" | grep netacc`
+	CHECKNETRSS=`echo "$CMD" | grep netrss`
+	CHECKNETWEB=`echo "$CMD" | grep netweb`
+	CHECKWEBEXTRA=`echo "$CMD" | grep webextra`
+	#office
+	CHECKOFFADD=`echo "$CMD" | grep offadd`
+	CHECKOFFCAL=`echo "$CMD" | grep offcal`
+	CHECKOFFDOC=`echo "$CMD" | grep offdoc`
+	CHECKOFFFIN=`echo "$CMD" | grep offfin`
+	CHECKOFFNOT=`echo "$CMD" | grep offnot`
+	CHECKOFFOTH=`echo "$CMD" | grep offoth`
+	CHECKOFFSPR=`echo "$CMD" | grep offspr`
+	CHECKOFFSUI=`echo "$CMD" | grep offsui`
+	CHECKOFFTEX=`echo "$CMD" | grep offtex`
+	# search
+	CHECKSEARCH=`echo "$CMD" | grep narz`
+	# security
+	CHECKSECTOO=`echo "$CMD" | grep sectoo`
+	# system
+	CHECKSYSBAC=`echo "$CMD" | grep sysbac`
+	CHECKSYSDIS=`echo "$CMD" | grep sysdis`
+	CHECKSYSENC=`echo "$CMD" | grep sysenc`
+	CHECKSYSFIL=`echo "$CMD" | grep sysfil`
+	CHECKSYSKER=`echo "$CMD" | grep sysker`
+	CHECKSYSOTH=`echo "$CMD" | grep sysoth`
+	CHECKSYSPAC=`echo "$CMD" | grep syspac`
+	CHECKSYSSHE=`echo "$CMD" | grep sysshe`
+	CHECKSYSVIR=`echo "$CMD" | grep sysvir`	
+	#CHECKAPP=`echo "$CMD" | grep app`
+	
+	# accessories-archivers
+	if [ "$CHECKACCARC" != "" ]; then
+		RUNACCARC=`echo "$CMD" | sed -e 's/accarc_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCARC
+		./aptus-appcenter accarc01
+		exit 0
+	# accessories-clipboards
+	elif [ "$CHECKACCCLI" != "" ]; then
+		RUNACCCLI=`echo "$CMD" | sed -e 's/acccli_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCCLI
+		./aptus-appcenter acccli01
+		exit 0
+	# accessories-devices
+	elif [ "$CHECKACCDEV" != "" ]; then
+		RUNACCDEV=`echo "$CMD" | sed -e 's/accdev_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCDEV
+		./aptus-appcenter accdev01
+		exit 0
+	# accessories-display-managers
+	elif [ "$CHECKACCDIS" != "" ]; then
+		RUNACCDIS=`echo "$CMD" | sed -e 's/accdis_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCDIS
+		./aptus-appcenter accdis01
+		exit 0
+	# accessories-file-managers
+	elif [ "$CHECKACCFIL" != "" ]; then
+		RUNACCFIL=`echo "$CMD" | sed -e 's/accfil_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCFIL
+		./aptus-appcenter accfil01
+		exit 0
+	# accessories-monitoring
+	elif [ "$CHECKACCMON" != "" ]; then
+		RUNACCMON=`echo "$CMD" | sed -e 's/accmon_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCMON
+		./aptus-appcenter accmon01
+		exit 0
+	# accessories-others
+	elif [ "$CHECKACCOTH" != "" ]; then
+		RUNACCOTH=`echo "$CMD" | sed -e 's/accoth_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCOTH
+		./aptus-appcenter accoth01
+		exit 0
+	# accessories-terminals
+	elif [ "$CHECKACCTER" != "" ]; then
+		RUNACCTER=`echo "$CMD" | sed -e 's/accter_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCTER
+		./aptus-appcenter accter01
+		exit 0
+	# accessories-usb
+	elif [ "$CHECKACCUSB" != "" ]; then
+		RUNACCUSB=`echo "$CMD" | sed -e 's/accusb_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCUSB
+		./aptus-appcenter accusb01
+		exit 0
+	
+	# aptus-tools
+	elif [ "$CHECKAPTTOOL" != "" ]; then
+		RUNAPTTOOL=`echo "$CMD" | sed -e 's/apttool_//'`
+		killall -9 yad
+		./bin/aptus-tools $RUNAPTTOOL
+		./aptus-appcenter apttool01
+		exit 0
+	
+	# desktops
+	elif [ "$CHECKDESKTOP" != "" ]; then
+		RUNDESKTOP=`echo "$CMD" | sed -e 's/environment_//'`
+		killall -9 yad
+		./bin/aptus-desktop $RUNDESKTOP
+		./aptus-appcenter desk01
+		exit 0
+	
+	# development
+	elif [ "$CHECKDEVTOO" != "" ]; then
+		RUNDEVTOO=`echo "$CMD" | sed -e 's/devtoo_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNDEVTOO
+		./aptus-appcenter devtoo01
+		exit 0
+	
+	# education1
+	elif [ "$CHECKEDUCAT1" != "" ]; then
+		RUNEDUCAT1=`echo "$CMD" | sed -e 's/educat1_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNEDUCAT1
+		./aptus-appcenter educat01
+		exit 0
+	# education2
+	elif [ "$CHECKEDUCAT2" != "" ]; then
+		RUNEDUCAT2=`echo "$CMD" | sed -e 's/educat2_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNEDUCAT2
+		./aptus-appcenter educat02
+		exit 0
+	# education3
+	elif [ "$CHECKEDUCAT3" != "" ]; then
+		RUNEDUCAT3=`echo "$CMD" | sed -e 's/educat3_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNEDUCAT3
+		./aptus-appcenter educat03
+		exit 0
+	# education-games
+	elif [ "$CHECKEDUGAM" != "" ]; then
+		RUNEDUGAM=`echo "$CMD" | sed -e 's/edugam_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNEDUGAM
+		./aptus-appcenter edugam01
+		exit 0
+	
+	# game-adventure
+	elif [ "$CHECKGAMADV" != "" ]; then
+		RUNGAMADV=`echo "$CMD" | sed -e 's/gamadv_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMADV
+		./aptus-appcenter gamadv01
+		exit 0
+	# game-arcade1
+	elif [ "$CHECKGAMARC1" != "" ]; then
+		RUNGAMARC1=`echo "$CMD" | sed -e 's/gamarc1_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMARC1
+		./aptus-appcenter gamarc01
+		exit 0
+	# game-arcade2
+	elif [ "$CHECKGAMARC2" != "" ]; then
+		RUNGAMARC2=`echo "$CMD" | sed -e 's/gamarc2_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMARC2
+		./aptus-appcenter gamarc02
+		exit 0
+	# game-arcade3
+	elif [ "$CHECKGAMARC3" != "" ]; then
+		RUNGAMARC3=`echo "$CMD" | sed -e 's/gamarc3_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMARC3
+		./aptus-appcenter gamarc03
+		exit 0
+	# game-board
+	elif [ "$CHECKGAMBOA" != "" ]; then
+		RUNGAMBOA=`echo "$CMD" | sed -e 's/gamboa_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMBOA
+		./aptus-appcenter gamboa01
+		exit 0
+	# game-cards
+	elif [ "$CHECKGAMCAR" != "" ]; then
+		RUNGAMCAR=`echo "$CMD" | sed -e 's/gamcar_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMCAR
+		./aptus-appcenter gamcar01
+		exit 0
+	# game-fps
+	elif [ "$CHECKGAMFPS" != "" ]; then
+		RUNGAMFPS=`echo "$CMD" | sed -e 's/gamfps_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMFPS
+		./aptus-appcenter gamfps01
+		exit 0
+	# game-platform
+	elif [ "$CHECKGAMPLA" != "" ]; then
+		RUNGAMPLA=`echo "$CMD" | sed -e 's/gampla_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMPLA
+		./aptus-appcenter gampla01
+		exit 0
+	# game-puzzle
+	elif [ "$CHECKGAMPUZ" != "" ]; then
+		RUNGAMPUZ=`echo "$CMD" | sed -e 's/gampuz_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMPUZ
+		./aptus-appcenter gampuz01
+		exit 0
+	# game-rpg
+	elif [ "$CHECKGAMRPG" != "" ]; then
+		RUNGAMRPG=`echo "$CMD" | sed -e 's/gamrpg_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMRPG
+		./aptus-appcenter gamrpg01
+		exit 0
+	# game-simulation
+	elif [ "$CHECKGAMSIM" != "" ]; then
+		RUNGAMSIM=`echo "$CMD" | sed -e 's/gamsim_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMSIM
+		./aptus-appcenter gamsim01
+		exit 0
+	# game-sport
+	elif [ "$CHECKGAMSPO" != "" ]; then
+		RUNGAMSPO=`echo "$CMD" | sed -e 's/gamspo_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMSPO
+		./aptus-appcenter gamspo01
+		exit 0
+	# game-strategy
+	elif [ "$CHECKGAMSTR" != "" ]; then
+		RUNGAMSTR=`echo "$CMD" | sed -e 's/gamstr_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMSTR
+		./aptus-appcenter gamstr01
+		exit 0
+	# game-text
+	elif [ "$CHECKGAMTEX" != "" ]; then
+		RUNGAMTEX=`echo "$CMD" | sed -e 's/gamtex_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMTEX
+		./aptus-appcenter gamtex01
+		exit 0
+	# game-winapi
+	elif [ "$CHECKGAMWIN" != "" ]; then
+		RUNGAMWIN=`echo "$CMD" | sed -e 's/gamwin_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMWIN
+		./aptus-appcenter gamwin01
+		exit 0
+	# game-emulators
+	elif [ "$CHECKGAMEMU" != "" ]; then
+		RUNGAMEMU=`echo "$CMD" | sed -e 's/gamemu_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMEMU
+		./aptus-appcenter gamemu01
+		exit 0
+	# game-tools
+	elif [ "$CHECKGAMTOO" != "" ]; then
+		RUNGAMTOO=`echo "$CMD" | sed -e 's/gamtoo_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMTOO
+		./aptus-appcenter gamtoo01
+		exit 0
+	# game-others
+	elif [ "$CHECKGAMOTH" != "" ]; then
+		RUNGAMOTH=`echo "$CMD" | sed -e 's/gamoth_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGAMOTH
+		./aptus-appcenter gamoth01
+		exit 0
+	
+	# graphics-editors
+	elif [ "$CHECKGRAEDI" != "" ]; then
+		RUNGRAEDI=`echo "$CMD" | sed -e 's/graedi_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGRAEDI
+		./aptus-appcenter graedi01
+		exit 0
+	# graphics-others
+	elif [ "$CHECKGRAOTH" != "" ]; then
+		RUNGRAOTH=`echo "$CMD" | sed -e 's/graoth_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGRAOTH
+		./aptus-appcenter graoth01
+		exit 0
+	# graphics-screenshots
+	elif [ "$CHECKGRASCR" != "" ]; then
+		RUNGRASCR=`echo "$CMD" | sed -e 's/grascr_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGRASCR
+		./aptus-appcenter grascr01
+		exit 0
+	# graphics-viewers
+	elif [ "$CHECKGRAVIE" != "" ]; then
+		RUNGRAVIE=`echo "$CMD" | sed -e 's/gravie_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNGRAVIE
+		./aptus-appcenter gravie01
+		exit 0
+	
+	# media-audio-players
+	elif [ "$CHECKAUDPLA" != "" ]; then
+		RUNAUDPLA=`echo "$CMD" | sed -e 's/audpla_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNAUDPLA
+		./aptus-appcenter audpla01
+		exit 0
+	# media-audio-tools
+	elif [ "$CHECKAUDTOO" != "" ]; then
+		RUNAUDTOO=`echo "$CMD" | sed -e 's/audtoo_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNAUDTOO
+		./aptus-appcenter audtoo01
+		exit 0
+	# media-burn
+	elif [ "$CHECKMEDBUR" != "" ]; then
+		RUNMEDBUR=`echo "$CMD" | sed -e 's/medbur_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNMEDBUR
+		./aptus-appcenter medbur01
+		exit 0
+	# media-codecs
+	elif [ "$CHECKMEDCOD" != "" ]; then
+		RUNMEDCOD=`echo "$CMD" | sed -e 's/medcod_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNMEDCOD
+		./aptus-appcenter medcod01
+		exit 0
+	# media-others
+	elif [ "$CHECKMEDOTH" != "" ]; then
+		RUNMEDOTH=`echo "$CMD" | sed -e 's/medoth_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNMEDOTH
+		./aptus-appcenter medoth01
+		exit 0
+	# media-subtitles
+	elif [ "$CHECKMEDSUB" != "" ]; then
+		RUNMEDSUB=`echo "$CMD" | sed -e 's/medsub_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNMEDSUB
+		./aptus-appcenter medsub01
+		exit 0
+	# media-video-tools
+	elif [ "$CHECKVIDEDI" != "" ]; then
+		RUNVIDEDI=`echo "$CMD" | sed -e 's/videdi_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNVIDEDI
+		./aptus-appcenter videdi01
+		exit 0
+	# media-video-players
+	elif [ "$CHECKVIDPLA" != "" ]; then
+		RUNVIDPLA=`echo "$CMD" | sed -e 's/vidpla_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNVIDPLA
+		./aptus-appcenter vidpla01
+		exit 0
+	
+	# net-communication
+	elif [ "$CHECKNETCOM" != "" ]; then
+		RUNNETCOM=`echo "$CMD" | sed -e 's/netcom_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNNETCOM
+		./aptus-appcenter netcom01
+		exit 0
+	# net-email
+	elif [ "$CHECKNETEMA" != "" ]; then
+		RUNNETEMA=`echo "$CMD" | sed -e 's/netema_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNNETEMA
+		./aptus-appcenter netema01
+		exit 0
+	# net-filetransfer
+	elif [ "$CHECKNETFIL" != "" ]; then
+		RUNNETFIL=`echo "$CMD" | sed -e 's/netfil_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNNETFIL
+		./aptus-appcenter netfil01
+		exit 0
+	# net-other
+	elif [ "$CHECKNETOTH" != "" ]; then
+		RUNNETOTH=`echo "$CMD" | sed -e 's/netoth_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNNETOTH
+		./aptus-appcenter netoth01
+		exit 0
+	# net-p2p
+	elif [ "$CHECKNETP2P" != "" ]; then
+		RUNNETP2P=`echo "$CMD" | sed -e 's/netp2p_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNNETP2P
+		./aptus-appcenter netp2p01
+		exit 0
+	# net-access
+	elif [ "$CHECKNETACC" != "" ]; then
+		RUNNETACC=`echo "$CMD" | sed -e 's/netacc_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNNETACC
+		./aptus-appcenter netacc01
+		exit 0
+	# net-rss
+	elif [ "$CHECKNETRSS" != "" ]; then
+		RUNNETRSS=`echo "$CMD" | sed -e 's/netrss_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNNETRSS
+		./aptus-appcenter netrss01
+		exit 0
+	# net-webbrowsers
+	elif [ "$CHECKNETWEB" != "" ]; then
+		RUNNETWEB=`echo "$CMD" | sed -e 's/netweb_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNNETWEB
+		./aptus-appcenter netweb01
+		exit 0
+	# net web extra
+	elif [ "$CHECKWEBEXTRA" != "" ]; then
+		killall -9 yad
+		remsu /usr/bin/teamspeak-installer
+		./aptus-appcenter netcom01
+		exit 0
+	
+	# office-addressbook
+	elif [ "$CHECKOFFADD" != "" ]; then
+		RUNOFFADD=`echo "$CMD" | sed -e 's/offadd_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNOFFADD
+		./aptus-appcenter offadd01
+		exit 0
+	# office-calculators
+	elif [ "$CHECKOFFCAL" != "" ]; then
+		RUNOFFCAL=`echo "$CMD" | sed -e 's/offcal_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNOFFCAL
+		./aptus-appcenter offcal01
+		exit 0
+	# office-document
+	elif [ "$CHECKOFFDOC" != "" ]; then
+		RUNOFFDOC=`echo "$CMD" | sed -e 's/offdoc_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNOFFDOC
+		./aptus-appcenter offdoc01
+		exit 0
+	# office-finance
+	elif [ "$CHECKOFFFIN" != "" ]; then
+		RUNOFFFIN=`echo "$CMD" | sed -e 's/offfin_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNOFFFIN
+		./aptus-appcenter offfin01
+		exit 0
+	# office-note
+	elif [ "$CHECKOFFNOT" != "" ]; then
+		RUNOFFNOT=`echo "$CMD" | sed -e 's/offnot_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNOFFNOT
+		./aptus-appcenter offnot01
+		exit 0
+	# office-others
+	elif [ "$CHECKOFFOTH" != "" ]; then
+		RUNOFFOTH=`echo "$CMD" | sed -e 's/offoth_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNOFFOTH
+		./aptus-appcenter offoth01
+		exit 0
+	# office-spreadsheet
+	elif [ "$CHECKOFFSPR" != "" ]; then
+		RUNOFFSPR=`echo "$CMD" | sed -e 's/offspr_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNOFFSPR
+		./aptus-appcenter offspr01
+		exit 0
+	# office-suite
+	elif [ "$CHECKOFFSUI" != "" ]; then
+		RUNOFFSUI=`echo "$CMD" | sed -e 's/offsui_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNOFFSUI
+		./aptus-appcenter offsui01
+		exit 0
+	# office-text editors
+	elif [ "$CHECKOFFTEX" != "" ]; then
+		RUNOFFTEX=`echo "$CMD" | sed -e 's/offtex_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNOFFTEX
+		./aptus-appcenter offtex01
+		exit 0
+	
+	# search
+	elif [ "$CHECKSEARCH" != "" ]; then
+		killall -9 yad
+		./bin/aptus-search
+		exit 0
+	
+	# security
+	elif [ "$CHECKSECTOO" != "" ]; then
+		RUNSECTOO=`echo "$CMD" | sed -e 's/sectoo_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNSECTOO
+		./aptus-appcenter sectoo01
+		exit 0
+	
+	# system backup
+	elif [ "$CHECKSYSBAC" != "" ]; then
+		RUNSYSBAC=`echo "$CMD" | sed -e 's/sysbac_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNSYSBAC
+		./aptus-appcenter sysbac01
+		exit 0
+	# system disk
+	elif [ "$CHECKSYSDIS" != "" ]; then
+		RUNSYSDIS=`echo "$CMD" | sed -e 's/sysdis_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNSYSDIS
+		./aptus-appcenter sysdis01
+		exit 0
+	# system encrypt
+	elif [ "$CHECKSYSENC" != "" ]; then
+		RUNSYSENC=`echo "$CMD" | sed -e 's/sysenc_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNSYSENC
+		./aptus-appcenter sysenc01
+		exit 0
+	# system file systems
+	elif [ "$CHECKSYSFIL" != "" ]; then
+		RUNSYSFIL=`echo "$CMD" | sed -e 's/sysfil_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNSYSFIL
+		./aptus-appcenter sysfil01
+		exit 0
+	# system kernel
+	elif [ "$CHECKSYSKER" != "" ]; then
+		RUNSYSKER=`echo "$CMD" | sed -e 's/sysker_//'`
+		killall -9 yad
+		./bin/aptus-tools $RUNSYSKER
+		./aptus-appcenter sysker01
+		exit 0
+	# system others
+	elif [ "$CHECKSYSOTH" != "" ]; then
+		RUNSYSOTH=`echo "$CMD" | sed -e 's/sysoth_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNSYSOTH
+		./aptus-appcenter sysoth01
+		exit 0
+	# system package management
+	elif [ "$CHECKSYSPAC" != "" ]; then
+		RUNSYSPAC=`echo "$CMD" | sed -e 's/syspac_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNSYSPAC
+		./aptus-appcenter syspac01
+		exit 0
+	# system shell
+	elif [ "$CHECKSYSSHE" != "" ]; then
+		RUNSYSSHE=`echo "$CMD" | sed -e 's/sysshe_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNSYSSHE
+		./aptus-appcenter sysshe01
+		exit 0
+	# system virtual
+	elif [ "$CHECKSYSVIR" != "" ]; then
+		RUNSYSVIR=`echo "$CMD" | sed -e 's/sysvir_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNSYSVIR
+		./aptus-appcenter sysvir01
+		exit 0
+	
+	### apps
+	#elif [ "$CHECKAPP" != "" ]; then
+	#	RUNAPP=`echo "$CMD" | sed -e 's/app_//'`
+	#	./bin/aptus-app $RUNAPP
+	#	killall -9 yad
+	#	./aptus-appcenter
+	#	exit 0
+	else
+		echo "unknown command... exiting"
+		exit 0
+	fi
+fi
+
+exit 0

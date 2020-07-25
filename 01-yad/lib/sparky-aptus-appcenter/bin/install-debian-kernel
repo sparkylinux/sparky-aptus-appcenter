@@ -1,0 +1,160 @@
+#!/bin/bash
+
+# install-debian-kernel script lets you install the default Debian's Linux kernel
+# Copyright 2018-2020 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
+# Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
+# Created 2018/02/18
+# Last update 2020/07/17
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG=de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG=es`" != "" ]; then
+. $DEFLOCDIR/es
+elif [ "`cat /etc/default/locale | grep LANG=fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG=hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG=id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG=it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG=pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG=pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG=pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG=zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo " Must be root... Exiting"
+	exit 1
+fi
+
+DIALOG="yad --window-icon=sparky-aptus-appcenter --width=500 --height=300 --center"
+TITLE="--always-print-result --dialog-sep --image=sparky-aptus-appcenter --title="
+TEXT="--text="
+MENU="--list --column=$LOCAL049 --column=$LOCAL050"
+OKEXIT=" --button=Ok:0 --button=$LOCAL001:1"
+MSGBOX="--button=Ok:0"
+TITLETEXT="APTus AppCenter"
+ARCH=`uname -r | grep "amd64"`
+TESTDEBIAN64=`dpkg-query -l | grep linux-image-amd64`
+TESTDEBIAN32=`dpkg-query -l | grep linux-image-686 | grep -v pae`
+TESTDEBIAN32PAE=`dpkg-query -l | grep linux-image-686-pae`
+if [ -f /usr/bin/sparky-xterm ];then
+	SPARKYXTERM="/usr/bin/sparky-xterm"
+else
+	echo "sparky-xterm is missing... Exiting..."
+	exit 1
+fi
+
+# check connection
+#PINGTEST=$(ping -c 1 sparkylinux.org | grep [0-9])
+#
+#if [ "$PINGTEST" = "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL16"
+#	exit 1
+#fi
+
+# check arm arch
+ARCHARM="`uname -m | grep arm`"
+if [ "$ARCHARM" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL051"
+	exit 1
+fi
+
+mainmenu () {
+CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
+NON_PAE "$LOCAL053" \
+PAE "$LOCAL054" \
+64 "$LOCAL055" \
+Exit "$LOCAL056"`
+
+if [ "$?" = "0" ]; then
+	CHOICE=`echo $CHOICES | cut -d "|" -f 1`
+else
+	exit 0
+fi
+
+if [ "$CHOICE" = "NON_PAE" ]; then
+	nonpaemenu
+elif [ "$CHOICE" = "PAE" ]; then
+	paemenu
+elif [ "$CHOICE" = "64" ]; then
+	amd64menu
+elif [ "$CHOICE" = "Exit" ]; then
+	exit 0
+else
+	exit 0
+fi
+}
+
+nonpaemenu () {
+if [ "$ARCH" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
+	mainmenu
+fi
+
+# check is the Debian kernel installed already
+if [ "$TESTDEBIAN32" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+	mainmenu
+fi
+
+# install i686 NON-PAE Debian kernel and headers
+$SPARKYXTERM "apt-get update"
+$SPARKYXTERM "apt-get install linux-image-686 linux-headers-686"
+
+$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+exit 0
+}
+
+paemenu () {
+if [ "$ARCH" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
+	mainmenu
+fi
+
+# check is the Debian kernel installed already
+if [ "$TESTDEBIAN32PAE" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+	mainmenu
+fi
+
+# install i686 PAE Debian kernel and headers
+$SPARKYXTERM "apt-get update"
+$SPARKYXTERM "apt-get install linux-image-686-pae linux-headers-686-pae"
+
+$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+exit 0
+}
+
+amd64menu () {
+if [ "$ARCH" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
+	mainmenu
+fi
+
+# check is the Debian kernel installed already
+if [ "$TESTDEBIAN64" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+	mainmenu
+fi
+
+# install 64 bit Debian kernel and headers
+$SPARKYXTERM "apt-get update"
+$SPARKYXTERM "apt-get install linux-image-amd64 linux-headers-amd64"
+
+$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+exit 0
+}
+
+mainmenu

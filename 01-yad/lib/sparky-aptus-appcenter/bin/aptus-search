@@ -1,0 +1,378 @@
+#!/bin/bash
+
+# It looks for a package name in the html files
+# Copyright 2020 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2020/07/23 by pavroo
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG=de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG=es`" != "" ]; then
+. $DEFLOCDIR/es
+elif [ "`cat /etc/default/locale | grep LANG=fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG=hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG=id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG=it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG=pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG=pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG=pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG=zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo "Must be root... Exiting now..."
+	exit 1
+fi
+
+DIALOG="yad --window-icon=preferences-system-search --width=500 --height=200 --center"
+TITLE="--always-print-result --dialog-sep --image=preferences-system-search --title="
+TEXT="--text="
+OKEXIT=" --button=Ok:0 --button=$LOCAL001:1"
+ENTRY="--entry "
+TITLETEXT="APTus AppCenter"
+
+SEARCHPACK1=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $ENTRY $TEXT"\n$LOCAL077"`
+cd /usr/lib/sparky-aptus-appcenter
+#SEARCHPACK2=`grep -iRl $SEARCHPACK1 | grep -v bin | grep -v images | grep .html | head -n1`
+#SEARCHPACK2=`grep -iRl $SEARCHPACK1 | grep -v bin | grep -v images | grep .html`
+if [ -f /tmp/appcentermore ]; then
+	rm -f /tmp/appcentermore*
+fi
+grep -iRl $SEARCHPACK1 | grep -v bin | grep -v images | grep .html >> /tmp/appcentermore
+SEARCHPACK3=`grep -iRl $SEARCHPACK1 | grep -v bin | grep -v images | grep .html | wc -l`
+if [ -f /usr/lib/sparky-aptus-appcenter/search-more2.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/search-more2.html
+fi
+if [ -f /usr/lib/sparky-aptus-appcenter/search-null.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/search-null.html
+fi
+
+if [ "$SEARCHPACK3" = "1" ]; then
+	SEARCHPACK2=`cat /tmp/appcentermore`
+elif [ "$SEARCHPACK3" = "2" ]; then
+	PAGE1=`cat /tmp/appcentermore | head -n1`
+	echo $PAGE1 | sed -e 's/.html//g' >> /tmp/appcentermore1
+	PAGE2=`cat /tmp/appcentermore1`
+	
+	PAGE3=`cat /tmp/appcentermore | tail -n1`
+	echo $PAGE3 | sed -e 's/.html//g' >> /tmp/appcentermore2
+	PAGE4=`cat /tmp/appcentermore2`
+	
+	PASTE1="&nbsp;1. -> <b><a href="$PAGE1">$PAGE2</a></b><br />
+&nbsp;2. -> <b><a href="$PAGE3">$PAGE4</a></b><br />"
+elif [ "$SEARCHPACK3" >\ "2" ]; then
+	PAGE1=`cat /tmp/appcentermore | head -n1`
+	echo $PAGE1 | sed -e 's/.html//g' >> /tmp/appcentermore1
+	PAGE2=`cat /tmp/appcentermore1`
+	
+	PAGE5=`cat /tmp/appcentermore | head -n2 | tail -n1`
+	echo $PAGE5 | sed -e 's/.html//g' >> /tmp/appcentermore3
+	PAGE6=`cat /tmp/appcentermore3`
+	
+	PAGE3=`cat /tmp/appcentermore | tail -n1`
+	echo $PAGE3 | sed -e 's/.html//g' >> /tmp/appcentermore2
+	PAGE4=`cat /tmp/appcentermore2`
+	
+	PASTE1="&nbsp;1. -> <b><a href="$PAGE1">$PAGE2</a></b><br />
+&nbsp;2. -> <b><a href="$PAGE5">$PAGE6</a></b><br />
+&nbsp;3. -> <b><a href="$PAGE3">$PAGE4</a></b><br />"
+else
+	SEARCHPACK2="null01"
+fi
+
+if [ "$SEARCHPACK3" = "0" ]; then
+cat > /usr/lib/sparky-aptus-appcenter/search-null.html << FOO
+<!DOCTYPE html>
+<html>
+<!--
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: July 15, 2020 by pavroo
+-->
+	<head>
+		<title>Search Null | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper">
+		<ul id="menu">
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+					<div class="entry">
+<p>&nbsp;<br />
+<span><script>dict.print('main', 'info12');</script></span> <b>$SEARCHPACK1</b>
+&nbsp;<br />
+&nbsp;<br />
+<img src="images1/redface.svg"><br />
+&nbsp;<br />
+&nbsp;<br />
+<span><script>dict.print('main', 'info13');</script></span><br />
+<span><script>dict.print('main', 'info14');</script></span><br />
+&nbsp;<br />
+&nbsp;<br />
+<span><script>dict.print('main', 'info15');</script></span>&nbsp; -> <b><a href="index.html"><span><script>dict.print('main', 'info16');</script></span></a></b><br />
+</p>	
+					</div>
+				</div>
+				<div>&nbsp;</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</dev>
+	<!-- end #page -->
+</div>
+
+</body>
+</html>
+FOO
+	SEARCHPACK2="null01"
+elif [ "$SEARCHPACK3" = "1" ]; then
+	SEARCHPACK2=`cat /tmp/appcentermore`
+else
+cat > /usr/lib/sparky-aptus-appcenter/search-more2.html << FOO
+<!DOCTYPE html>
+<html>
+<!--
+APTus AppCenter by pavroo <pavroo@onet.eu> 2020
+License: GNU GPL 3
+Last update: July 20, 2020 by pavroo
+-->
+	<head>
+		<title>Search More than One | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper">
+		<ul id="menu">
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+					<div class="entry">
+<p>&nbsp;<br />
+<span><script>dict.print('main', 'info17');</script></span> <b>$SEARCHPACK1</b> <span><script>dict.print('main', 'info20');</script></span><br />
+&nbsp;<br />
+&nbsp;<br />
+<img src="images1/greenface.svg"><br />
+&nbsp;<br />
+&nbsp;<br />
+<span><script>dict.print('main', 'info18');</script></span><br />
+<span><script>dict.print('main', 'info19');</script></span><br />
+&nbsp;<br />
+$PASTE1
+</p>	
+					</div>
+				</div>
+				<div>&nbsp;</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</dev>
+	<!-- end #page -->
+</div>
+
+</body>
+</html>
+FOO
+	SEARCHPACK2="search-more2.html"
+fi
+
+if [ "$SEARCHPACK2" = "development.html" ]; then
+	OPT1="devtoo01"
+elif [ "$SEARCHPACK2" = "desktops.html" ]; then
+	OPT1="desk01"
+elif [ "$SEARCHPACK2" = "games-adventure.html" ]; then
+	OPT1="gamadv01"
+elif [ "$SEARCHPACK2" = "games-arcade.html" ]; then
+	OPT1="gamarc01"
+elif [ "$SEARCHPACK2" = "ames-arcade2.html" ]; then
+	OPT1="gamarc02"
+elif [ "$SEARCHPACK2" = "ames-arcade3.html" ]; then
+	OPT1="gamarc03"
+elif [ "$SEARCHPACK2" = "games-board.html" ]; then
+	OPT1="gamboa01"
+elif [ "$SEARCHPACK2" = "games-cards.html" ]; then
+	OPT1="gamcar01"
+elif [ "$SEARCHPACK2" = "games-fps.html" ]; then
+	OPT1="gamfps01"
+elif [ "$SEARCHPACK2" = "games-platform.html" ]; then
+	OPT1="gampla01"
+elif [ "$SEARCHPACK2" = "games-puzzle.html" ]; then
+	OPT1="gampuz01"
+elif [ "$SEARCHPACK2" = "games-rpg.html" ]; then
+	OPT1="gamrpg01"
+elif [ "$SEARCHPACK2" = "games-simulation.html" ]; then
+	OPT1="gamsim01"
+elif [ "$SEARCHPACK2" = "games-sport.html" ]; then
+	OPT1="gamsim01"
+elif [ "$SEARCHPACK2" = "games-strategy.html" ]; then
+	OPT1="gamstr01"
+elif [ "$SEARCHPACK2" = "games-text.html" ]; then
+	OPT1="gamtex01"
+elif [ "$SEARCHPACK2" = "games-winapi.html" ]; then
+	OPT1="gamwin01"
+elif [ "$SEARCHPACK2" = "games-emulators.html" ]; then
+	OPT1="gamemu01"
+elif [ "$SEARCHPACK2" = "games-tools.html" ]; then
+	OPT1="gamtoo01"
+elif [ "$SEARCHPACK2" = "games-others.html" ]; then
+	OPT1="gamoth01"
+elif [ "$SEARCHPACK2" = "graphics-editors.html" ]; then
+	OPT1="graedi01"
+elif [ "$SEARCHPACK2" = "graphics-others.html" ]; then
+	OPT1="graoth01"
+elif [ "$SEARCHPACK2" = "graphics-screenshots.html" ]; then
+	OPT1="grascr01"
+elif [ "$SEARCHPACK2" = "graphics-viewers.html" ]; then
+	OPT1="gravie01"
+elif [ "$SEARCHPACK2" = "media-audioplayers.html" ]; then
+	OPT1="audpla01"
+elif [ "$SEARCHPACK2" = "media-audiotools.html" ]; then
+	OPT1="audtoo01"
+elif [ "$SEARCHPACK2" = "media-burn.html" ]; then
+	OPT1="medbur01"
+elif [ "$SEARCHPACK2" = "media-codecs.html" ]; then
+	OPT1="medcod01"
+elif [ "$SEARCHPACK2" = "media-others.html" ]; then
+	OPT1="medoth01"
+elif [ "$SEARCHPACK2" = "media-subtitles.html" ]; then
+	OPT1="medsub01"
+elif [ "$SEARCHPACK2" = "media-videotools.html" ]; then
+	OPT1="videdi01"
+elif [ "$SEARCHPACK2" = "media-videoplayers.html" ]; then
+	OPT1="vidpla01"
+elif [ "$SEARCHPACK2" = "net-communication.html" ]; then
+	OPT1="netcom01"
+elif [ "$SEARCHPACK2" = "net-email.html" ]; then
+	OPT1="netema01"
+elif [ "$SEARCHPACK2" = "net-filetransfer.html" ]; then
+	OPT1="netfil01"
+elif [ "$SEARCHPACK2" = "net-others.html" ]; then
+	OPT1="netoth01"
+elif [ "$SEARCHPACK2" = "net-p2p.html" ]; then
+	OPT1="netp2p01"
+elif [ "$SEARCHPACK2" = "net-access.html" ]; then
+	OPT1="netacc01"
+elif [ "$SEARCHPACK2" = "net-rss.html" ]; then
+	OPT1="netrss01"
+elif [ "$SEARCHPACK2" = "net-webbrowser.html" ]; then
+	OPT1="netweb01"
+elif [ "$SEARCHPACK2" = "office-addressbook.html" ]; then
+	OPT1="offadd01"
+elif [ "$SEARCHPACK2" = "office-calculator.html" ]; then
+	OPT1="offcal01"
+elif [ "$SEARCHPACK2" = "office-document.html" ]; then
+	OPT1="offdoc01"
+elif [ "$SEARCHPACK2" = "office-finance.html" ]; then
+	OPT1="offfin01"
+elif [ "$SEARCHPACK2" = "office-note.html" ]; then
+	OPT1="offnot01"
+elif [ "$SEARCHPACK2" = "office-others.html" ]; then
+	OPT1="offoth01"
+elif [ "$SEARCHPACK2" = "office-spreadsheet.html" ]; then
+	OPT1="offspr01"
+elif [ "$SEARCHPACK2" = "office-suite.html" ]; then
+	OPT1="offsui01"
+elif [ "$SEARCHPACK2" = "office-text.html" ]; then
+	OPT1="offtex01"
+elif [ "$SEARCHPACK2" = "tools.html" ]; then
+	OPT1="apttool01"
+elif [ "$SEARCHPACK2" = "education.html" ]; then
+	OPT1="educat01"
+elif [ "$SEARCHPACK2" = "education2.html" ]; then
+	OPT1="educat02"
+elif [ "$SEARCHPACK2" = "education3.html" ]; then
+	OPT1="educat03"
+elif [ "$SEARCHPACK2" = "education-games.html" ]; then
+	OPT1="edugam01"
+elif [ "$SEARCHPACK2" = "accessories-archivers.html" ]; then
+	OPT1="accarc01"
+elif [ "$SEARCHPACK2" = "accessories-clipboards.html" ]; then
+	OPT1="acccli01"
+elif [ "$SEARCHPACK2" = "accessories-display.html" ]; then
+	OPT1="accdis01"
+elif [ "$SEARCHPACK2" = "accessories-filemanagers.html" ]; then
+	OPT1="accfil01"
+elif [ "$SEARCHPACK2" = "accessories-monitoring.html" ]; then
+	OPT1="accmon01"
+elif [ "$SEARCHPACK2" = "accessories-others.html" ]; then
+	OPT1="accoth01"
+elif [ "$SEARCHPACK2" = "accessories-terminals.html" ]; then
+	OPT1="accmon01"
+elif [ "$SEARCHPACK2" = "accessories-usb.html" ]; then
+	OPT1="accusb01"
+elif [ "$SEARCHPACK2" = "system-backup.html" ]; then
+	OPT1="sysbac01"
+elif [ "$SEARCHPACK2" = "system-disk.html" ]; then
+	OPT1="sysdis01"
+elif [ "$SEARCHPACK2" = "system-encrypt.html" ]; then
+	OPT1="sysenc01"
+elif [ "$SEARCHPACK2" = "system-filesystems.html" ]; then
+	OPT1="sysfil01"
+elif [ "$SEARCHPACK2" = "system-kernel.html" ]; then
+	OPT1="sysker01"
+elif [ "$SEARCHPACK2" = "system-package.html" ]; then
+	OPT1="syspac01"
+elif [ "$SEARCHPACK2" = "system-shell.html" ]; then
+	OPT1="sysshe01"
+elif [ "$SEARCHPACK2" = "system-virtual.html" ]; then
+	OPT1="sysvir01"
+elif [ "$SEARCHPACK2" = "security.html" ]; then
+	OPT1="sectoo01"
+elif [ "$SEARCHPACK2" = "search-more2.html" ]; then
+	OPT1="more02"
+elif [ "$SEARCHPACK2" = "null01" ]; then
+	OPT1="null01"
+else
+	OPT1="null01"
+fi
+
+if [ "$SEARCHPACK1" != "" ]; then
+	killall -9 yad
+	./aptus-appcenter $OPT1
+else
+	killall -9 yad
+	./aptus-appcenter null01
+fi
+
+exit 0
