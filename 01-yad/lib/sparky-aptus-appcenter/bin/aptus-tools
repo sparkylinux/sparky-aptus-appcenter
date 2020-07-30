@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Last update 2020/07/17 by pavroo
+# Last update 2020/07/30 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -93,6 +93,7 @@ elif [ "$1" = "installdebrepo" ]; then
 	fi
 # install package from local disk
 elif [ "$1" = "installdeblocal" ]; then
+	cd /home
 	DEBFILE=`$DIALOG800 $TITLE"$TITLETEXT" $TEXT"$LOCAL032" $FILESELECTION $FILTER="deb file |*.deb"`
 	if [ "$?" != "0" ]; then
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
