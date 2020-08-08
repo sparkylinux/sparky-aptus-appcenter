@@ -4,7 +4,7 @@
 # Copyright 2018-2020 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2018/02/18
-# Last update 2020/07/17
+# Last update 2020/08/08
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -26,6 +26,8 @@ elif [ "`cat /etc/default/locale | grep LANG=pt_BR`" != "" ]; then
 . $DEFLOCDIR/pt_BR
 elif [ "`cat /etc/default/locale | grep LANG=pt_PT`" != "" ]; then
 . $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG=ru`" != "" ]; then
+. $DEFLOCDIR/ru
 elif [ "`cat /etc/default/locale | grep LANG=zh_CN`" != "" ]; then
 . $DEFLOCDIR/zh_CN
 else

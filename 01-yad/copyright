@@ -14,6 +14,10 @@ Files: de
     Copyright (C) 2015 Pete B.
     License: GPL-3+
 
+Files: en
+    Copyright (C) 2020 pavroo
+    License: GPL-3+
+
 Files: es
     Copyright (C) 2016 Fernando "seacat" Velo <seacat.linux@gmail.com>
     License: GPL-3+
@@ -35,6 +39,10 @@ Files: it
     Copyright (C) 2015 Carlo‚ "malato" Troiani <abbassolafrangetta@gmail.com>
     License: GPL-3+
 
+Files: pl
+    Copyright (C) 2020 pavroo
+    License: GPL-3+
+
 Files: pt_BR
     Copyright (C) 2015 Claudio Cesar de Sá "ccs1664" <ccs1664@gmail.com>
     Copyright (C) 2018 Elton Fabricio Ferreira
@@ -42,6 +50,10 @@ Files: pt_BR
 
 Files: pt_PT
     Copyright (C) 2016 Joel Chaves "Flacc" <joel_chaves@icloud.com>
+    License: GPL-3+
+
+Files: ru
+    Copyright (C) 2020 ChourS
     License: GPL-3+
 
 File: zh_CN

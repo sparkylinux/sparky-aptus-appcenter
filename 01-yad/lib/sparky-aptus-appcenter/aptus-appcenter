@@ -1,16 +1,19 @@
 #!/bin/bash
 
 # Created by Piotr "MoroS" Mrożek 2018
-# Last update by Paweł "pavroo" Pijanowski July 30, 2020
+# Last update by Paweł "pavroo" Pijanowski August 08, 2020
 
 LANGUAGE=${LANG:0:2}
 EN=`echo $LANGUAGE | grep en`
 HU=`echo $LANGUAGE | grep hu`
 PL=`echo $LANGUAGE | grep pl`
+RU=`echo $LANGUAGE | grep ru`
 
 if [ "$HU" != "" ]; then
 	LANGUAGE="$LANGUAGE"
 elif [ "$PL" != "" ]; then
+	LANGUAGE="$LANGUAGE"
+elif [ "$RU" != "" ]; then
 	LANGUAGE="$LANGUAGE"
 else
 	LANGUAGE="en"

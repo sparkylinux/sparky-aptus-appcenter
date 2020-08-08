@@ -1,4 +1,15 @@
 -------------------------------------------------------------------------------
+  Version 20200808~sparky6~0 (2020-07-30)
+-------------------------------------------------------------------------------
+  * Added Russian locale
+  * Added Warpinator, Gmail Desktop, Joplin, NixNote2, Electrum, Electric, OpenShot
+  * Removed jeex, lpe, chemtool, gabedit, monteverdi, munipack, sigviewer, snap,
+acm, freedroid, garden-of-coloured-lights, luola, spout, xblast-tnt,
+xtron, dossizola, gbatnav, gtkboard, shogivar, sjeng, ezquake, gfpoken, naev, 
+slashem-gtk, slimevolley, biloba, bygfoot, nettoe, pcsxr, freedroidrpg, gnuminishogi,
+gnushogi, lives, ncftp, trojita, xpra, litecoin-qt, bitcoin-qt, i2pd
+
+-------------------------------------------------------------------------------
   Version 20200730~sparky6~0 (2020-07-30)
 -------------------------------------------------------------------------------
   * Changed Riot Desktop to Element Desktop
