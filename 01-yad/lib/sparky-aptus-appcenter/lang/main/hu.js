@@ -2,15 +2,15 @@
 // English localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2020/07/20 by pavroo
+// Last update 2020/08/23 by pavroo
 dict.entries['main'] = {};
-// főmenü
+// main menu
 dict.entries['main']['applications'] = "Alkalmazások";
 dict.entries['main']['categories'] = "Kategóriák";
 dict.entries['main']['aptus'] = "APTus";
 dict.entries['main']['info'] = "Információk";
 dict.entries['main']['translation'] = "Fordítások:";
-// kategóriák
+// categories
 dict.entries['main']['accessories'] = "Tartozékok";
 dict.entries['main']['desktops'] = "Munkaasztalok";
 dict.entries['main']['development'] = "Fejlesztés";
@@ -24,7 +24,7 @@ dict.entries['main']['office'] = "Iroda";
 dict.entries['main']['science'] = "Tudomány";
 dict.entries['main']['security'] = "Biztonság";
 dict.entries['main']['system'] = "Rendszer";
-// információ
+// info
 dict.entries['main']['info01'] = "A Sparky APTus AppCenter lehetővé teszi Önnek számos feladat elvégzését csomagokkal grafikus módban, mint például:";
 dict.entries['main']['info02'] = "csomagok frissítése";
 dict.entries['main']['info03'] = "népszerű alkalmazások telepítése";
@@ -36,7 +36,7 @@ dict.entries['main']['info08'] = "Ha bármilyen problémával találkozik, kérj
 dict.entries['main']['info09'] = "A Sparky APTus AppCenter a GNU GPL 3.0 Licenc alá tartozik.";
 dict.entries['main']['info10'] = "Közreműködők:";
 dict.entries['main']['info11'] = "Fordítások (Az APTus-on alapulva):";
-// tartozékok
+// accesories
 dict.entries['main']['archivers'] = "Tárolók";
 dict.entries['main']['clipboards'] = "Vágólapok";
 dict.entries['main']['devices'] = "Eszközök";
@@ -45,7 +45,8 @@ dict.entries['main']['filemanagers'] = "Fájlkezelők";
 dict.entries['main']['monitor'] = "Monitoring";
 dict.entries['main']['term'] = "Terminálok";
 dict.entries['main']['usb'] = "USB";
-// játékok
+dict.entries['main']['weather'] = "Időjárás";
+// games
 dict.entries['main']['adventure'] = "Kaland";
 dict.entries['main']['arcade'] = "Árkád";
 dict.entries['main']['board'] = "Tábla";
@@ -62,7 +63,7 @@ dict.entries['main']['text'] = "Szöveg (Text)";
 dict.entries['main']['emulators'] = "Emulátorok";
 dict.entries['main']['tools'] = "Eszközök/Tools";
 dict.entries['main']['winapi'] = "Win API";
-// grafika
+// graphics
 dict.entries['main']['graphicseditors'] = "Grafikus Javítók/szerkesztők";
 dict.entries['main']['graphicsviewers'] = "Grafikus Megjelenítők";
 dict.entries['main']['graphicsscreenshots'] = "Képernyőkép";
@@ -74,7 +75,7 @@ dict.entries['main']['p2p'] = "p2p";
 dict.entries['main']['rss'] = "RSS";
 dict.entries['main']['universalaccess'] = "Univerzális Elérés/hozzáférés";
 dict.entries['main']['webbrowsers'] = "Webböngészők";
-// multimédia
+// multimedia
 dict.entries['main']['audioeditors'] = "Audioszerkesztők";
 dict.entries['main']['audioplayers'] = "Audiolejátszók";
 dict.entries['main']['audiotools'] = "Audioeszközök";
@@ -84,7 +85,7 @@ dict.entries['main']['mixers'] = "Keverők";
 dict.entries['main']['subtitles'] = "Alcímek/feliratok";
 dict.entries['main']['videoeditors'] = "Videóeszközök";
 dict.entries['main']['videoplayers'] = "Videólejátszók";
-// iroda
+// office
 dict.entries['main']['addressbooks'] = "Címjegyzékek";
 dict.entries['main']['calculators'] = "Számológépek";
 dict.entries['main']['documentviewers'] = "Iratmegjelenítők";
@@ -93,11 +94,11 @@ dict.entries['main']['notes'] = "Jegyzetek";
 dict.entries['main']['officesuite'] = "Irodai Készlet";
 dict.entries['main']['spreadsheet'] = "Táblázatok";
 dict.entries['main']['texteditors'] = "Szövegszerkesztők";
-// egyebek
+// others
 dict.entries['main']['others'] = "Egyebek";
 dict.entries['main']['next'] = "Következő oldal";
 dict.entries['main']['back'] = "Utolsó oldal";
-// rendszer
+// system
 dict.entries['main']['backup'] = "Biztonsági mentés";
 dict.entries['main']['disk'] = "Lemez";
 dict.entries['main']['encrypt'] = "Titkosítás";
@@ -106,7 +107,7 @@ dict.entries['main']['kernel'] = "Kernelek";
 dict.entries['main']['package'] = "Csomagok";
 dict.entries['main']['shells'] = "Shell-ek";
 dict.entries['main']['virtual'] = "Virtuális";
-// keresés
+// search
 dict.entries['main']['search'] = "Keresés";
 dict.entries['main']['info12'] = "Keresési eredmény a következő szóra:";
 dict.entries['main']['info13'] = "Sajnos, NEM található amit Ön keres.";

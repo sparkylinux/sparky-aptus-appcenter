@@ -5,7 +5,7 @@
 # exit 0 - Yad supports URL (goes to a next page)
 # exit 1 - Yad ignores URL (does nothing)
 # exit 2 - Yad treats URL as a file downloading (not tested yet)
-# Last update by pavroo July 23, 2020
+# Last update by pavroo August 23, 2020
 
 URI="$1"
 
@@ -44,6 +44,7 @@ if [[ "$URI" == aptus* ]]; then
 	CHECKACCOTH=`echo "$CMD" | grep accoth`
 	CHECKACCTER=`echo "$CMD" | grep accter`
 	CHECKACCUSB=`echo "$CMD" | grep accusb`
+	CHECKACCWEA=`echo "$CMD" | grep accwea`
 	# aptus tools
 	CHECKAPTTOOL=`echo "$CMD" | grep apttool`
 	# desktops
@@ -186,6 +187,13 @@ if [[ "$URI" == aptus* ]]; then
 		killall -9 yad
 		./bin/aptus-app $RUNACCUSB
 		./aptus-appcenter accusb01
+		exit 0
+	# accessories-weather
+	elif [ "$CHECKACCWEA" != "" ]; then
+		RUNACCWEA=`echo "$CMD" | sed -e 's/accwea_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNACCWEA
+		./aptus-appcenter accwea01
 		exit 0
 	
 	# aptus-tools

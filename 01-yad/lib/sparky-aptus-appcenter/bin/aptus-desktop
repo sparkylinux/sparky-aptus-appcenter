@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2020/08/08 by pavroo
+# last update 2020/08/18 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -67,13 +67,10 @@ SPARKYVERCHECK6="`cat /etc/lsb-release | grep Tolo`"
 SPARKYVERCHECK5="`cat /etc/lsb-release | grep Nibiru`"
 SPARKYVERCHECK4="`cat /etc/lsb-release | grep Tyche`"
 if [ "$SPARKYVERCHECK6" != "" ]; then
-	TDEREPO="bullseye"
-elif [ "$SPARKYVERCHECK5" != "" ]; then
-	TDEREPO="buster"
-elif [ "$SPARKYVERCHECK4" != "" ]; then
-	TDEREPO="stretch"
+	TDEREPO="trinity-testing bullseye deps main"
 else
-	TDEREPO="sid"
+	echo "not supported... exiting..."
+	exit 1
 fi
 # check connection
 PINGTEST=$(ping -c 1 debian.org | grep [0-9])
@@ -357,8 +354,8 @@ if [ "$1" = "trinity" ]; then
 			fi
 			#$SPARKYXTERM "$UPDATE"
 			$SPARKYXTERM "$UPDATE && $INSTALL trinity-keyring -y"
-			echo "deb http://mirror.ppa.trinitydesktop.org/trinity/deb/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
-			echo "deb-src http://mirror.ppa.trinitydesktop.org/trinity/deb/trinity-sb $TDEREPO deps-r14 main-r14" >> /etc/apt/sources.list.d/trinity.list
+			echo "deb http://mirror.ppa.trinitydesktop.org/trinity/deb/$TDEREPO" >> /etc/apt/sources.list.d/trinity.list
+			echo "deb-src http://mirror.ppa.trinitydesktop.org/trinity/deb/$TDEREPO" >> /etc/apt/sources.list.d/trinity.list
 			#$SPARKYXTERM "$UPDATE"
 			$SPARKYXTERM "$UPDATE && $INSTALL $INSPACKS"
 			$SPARKYXTERM "$INSTALL -f"
