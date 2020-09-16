@@ -2,7 +2,7 @@
 # It based on Sparky APTus 
 # Copyright 2017 Carlo Troiani <abbassolafrangetta@gmail.com>
 # Rilasciato sotto licenza GNU GPL v3
-# Last update 2020/07/14 by pavroo
+# Last update 2020/09/06 by Carlo
 LOCAL001="Esci"
 LOCAL002="Assicurati che la lista dei pacchetti sia aggiornata, prima di iniziare la procedura.\n\nVuoi procedere con l'installazione adesso?"
 LOCAL003="Test della connessione ionternet fallito!\n\nProbabilmente NON sei connesso ad internet od il server del repository principale e' offline.\n\nControlla e prova di nuovo."
@@ -31,8 +31,8 @@ LOCAL025="Rilevata la presenza di LibreOffice nel sistema! \n\nDisinallalo prima
 LOCAL026="Rilevata la presenza di OpenOffice nel sistema! \n\nDisinallalo prima di procedere con l'installazione di LibreOffice."
 LOCAL027="Pacchetto"
 LOCAL028="Versione"
-LOCAL029="Installed size"
-LOCAL030="Download size"
+LOCAL029="Dimmensioni dell'installazione"
+LOCAL030="Dimensioni del download"
 LOCAL031="Fatto! \n\nClicca su OK per terminare."
 LOCAL032="Seleziona il file DEB da installare da locale"
 LOCAL033="Nulla e' stato cambiato! \n\nClicca su OK per terminare."
@@ -77,6 +77,6 @@ LOCAL071="Non puo' esserer rimosso!"
 LOCAL072="Il kernel in uso adesso e'"
 LOCAL073="Scegli il kernel da rimuovere"
 LOCAL074="Devo rimuovere questo kernel?"
-LOCAL075="Can NOT download the package information."
-LOCAL076="Refresh package list and try again."
+LOCAL075="NON posso scaricare informazioni sul pacchetto."
+LOCAL076="Aggiorna la lista dei pacchetti e prova di nuovo."
 LOCAL077="Scrivi quello che vuoi ricercare.\n\nAssicurati che il tuo sistema sia aggiornato prima di iniziare la ricerca."

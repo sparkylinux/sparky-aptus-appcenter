@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
+  Version 20200916~sparky6~0 (2020-09-16)
+-------------------------------------------------------------------------------
+  * Added Browsh, Ciano, Thonny, Synapse, Default-JRE
+  * Added Italian locale
+  * Install virtualbox-qt instead of virtualbox-6.1
+  * Removed android-sdk, anki, tuxtype, tuxmatch, efp, monster-masher, termtris, desmume, geekcode, gmidimonitor, denemo, patchage, youtube-dlg, grsync, aqemu
+
+-------------------------------------------------------------------------------
   Version 20200823~sparky6~0 (2020-08-23)
 -------------------------------------------------------------------------------
   * Updated Trinity repo
