@@ -1,4 +1,4 @@
-// English localization file for main
+// Portuguese-Brazil localization file for main by eltonff
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
 // Last update 2020/08/23 by pavroo
