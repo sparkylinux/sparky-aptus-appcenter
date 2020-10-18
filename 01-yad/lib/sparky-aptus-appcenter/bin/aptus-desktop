@@ -1,30 +1,30 @@
 #!/bin/bash
 
-# last update 2020/08/18 by pavroo
+# last update 2020/10/15 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
-if [ "`cat /etc/default/locale | grep LANG=de`" != "" ]; then
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
 . $DEFLOCDIR/de
-elif [ "`cat /etc/default/locale | grep LANG=es`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
 . $DEFLOCDIR/es
-elif [ "`cat /etc/default/locale | grep LANG=fr`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
 . $DEFLOCDIR/fr
-elif [ "`cat /etc/default/locale | grep LANG=hu`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
 . $DEFLOCDIR/hu
-elif [ "`cat /etc/default/locale | grep LANG=id_ID`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
 . $DEFLOCDIR/id_ID
-elif [ "`cat /etc/default/locale | grep LANG=it`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
 . $DEFLOCDIR/it
-elif [ "`cat /etc/default/locale | grep LANG=pl`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
 . $DEFLOCDIR/pl
-elif [ "`cat /etc/default/locale | grep LANG=pt_BR`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
 . $DEFLOCDIR/pt_BR
-elif [ "`cat /etc/default/locale | grep LANG=pt_PT`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
 . $DEFLOCDIR/pt_PT
-elif [ "`cat /etc/default/locale | grep LANG=ru`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
 . $DEFLOCDIR/ru
-elif [ "`cat /etc/default/locale | grep LANG=zh_CN`" != "" ]; then
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
 . $DEFLOCDIR/zh_CN
 else
 . $DEFLOCDIR/en
@@ -256,6 +256,13 @@ case $1 in
 	INSPACKS="sparky-desktop-$PACKAGE"
 	REMPACKS="sparky-desktop-$PACKAGE ^trinity* ^tde*"
      ;;
+  ukui)
+	PACKAGE="ukui"
+	DESKTOP="UKUI"
+	WMAN="ukwm"
+	INSPACKS="sparky-desktop-$PACKAGE"
+	REMPACKS="sparky-desktop-$PACKAGE ^ukui* ukwm"
+     ;;
   wmaker)
 	PACKAGE="wmaker"
 	DESKTOP="WindowMaker"
@@ -297,6 +304,8 @@ elif [ "$1" = "openbox-noir" ]; then
 	SHOWAPP1=`apt show sparky-desktop-openbox-noir | sed -e 's/&/and/g' | sed '/Priority\|Section\|Depends\|Conflicts\|Provides\|Maintainer\|::\|Suggests\|Breaks\|Replaces\|Recommends\|Vendor\|APT-Source\|APT-Manual/d'`
 elif [ "$1" = "trinity" ]; then
 	SHOWAPP1=`apt show tde-core-trinity | sed -e 's/&/and/g' | sed '/Priority\|Section\|Depends\|Conflicts\|Provides\|Maintainer\|::\|Suggests\|Breaks\|Replaces\|Recommends\|Vendor\|APT-Source\|APT-Manual/d'`
+elif [ "$1" = "ukui" ]; then
+	SHOWAPP1=`apt show sparky-desktop-ukui | sed -e 's/&/and/g' | sed '/Priority\|Section\|Depends\|Conflicts\|Provides\|Maintainer\|::\|Suggests\|Breaks\|Replaces\|Recommends\|Vendor\|APT-Source\|APT-Manual/d'`
 elif [ "$1" = "xfce" ]; then
 	SHOWAPP1=`apt show xfce4 | sed -e 's/&/and/g' | sed '/Priority\|Section\|Depends\|Conflicts\|Provides\|Maintainer\|::\|Suggests\|Breaks\|Replaces\|Recommends\|Vendor\|APT-Source\|APT-Manual/d'`
 else
@@ -1829,6 +1838,14 @@ elif [ "$1" = "trinity" ]; then
 		DESKTOPCHECK="0"
 	else
 		DESKTOPCHECK="1"	
+	fi
+
+elif [ "$1" = "ukui" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-ukui ]; then
+		echo "installation ukui desktop ok, no extra files to be installed"
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
 	fi
 
 elif [ "$1" = "wmaker" ]; then

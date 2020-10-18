@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
+  Version 20201018~sparky6~0 (2020-10-18)
+-------------------------------------------------------------------------------
+  * sparky-su replaced by sparky-remsu
+  * Added Brackets, Jeex, Cheerytree, Zim, Drawing, MellowPlayer, Elisa, UKUI desktop, Falkon
+  * Don't ping on startup
+  * Added pt_BR locale
+  * Updated locale checking
+
+-------------------------------------------------------------------------------
   Version 20200916~sparky6~0 (2020-09-16)
 -------------------------------------------------------------------------------
   * Added Browsh, Ciano, Thonny, Synapse, Default-JRE
