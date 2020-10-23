@@ -2,7 +2,7 @@
 # It based on Sparky APTus 
 # Copyright 2017 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Under the GNU GPL v3
-# Last update 2020/07/16 by pavroo
+# Last update 2020/10/20 by pavroo
 LOCAL001="Wyjście"
 LOCAL002="Upewnij się, czy lista pakietów jest aktualna, zanim rozpoczniesz.\n\nCzy chcesz zainstalować teraz?"
 LOCAL003="Połączenie z internetem nieudane!\n\nPrawdopodobnie NIE jesteś połączony z internetem lub główny serwer repozytoriów jest niedostępny.\n\nSprawdź to i spróbuj ponownie."
@@ -80,3 +80,9 @@ LOCAL074="Czy mam usunąć to jądro"
 LOCAL075="Pobranie informacji o pakiecie NIE jest możliwe."
 LOCAL076="Odśwież listę pakietów i spróbuj ponownie."
 LOCAL077="Wpisz nazwę pakietu, który chcesz znaleźć.\n\nUpewnij się, że system jest zaktualizowany zanim rozpoczniesz."
+LOCAL078="Działa tylko z jądrem x86_64...\n\nWyjście..."
+LOCAL079="Instalacja najnowszego jądra Linux XanMod"
+LOCAL080="Instalacja stabilnego jądra Linux XanMod"
+LOCAL081="Instalacja jądra Linux Long Term Support XanMod"
+LOCAL082="Instalacja najnowszego jądra Linux czasu rzeczywistego XanMod"
+LOCAL083="Instalacja stabilnego jądra Linux czasu rzeczywistego XanMod"

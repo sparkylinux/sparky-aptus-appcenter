@@ -2,7 +2,7 @@
 # Copyright 2015 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # It based on Sparky APTus 
 # Under the GNU GPL v3
-# Last update 2020/07/14 by pavroo
+# Last update 2020/10/20 by pavroo
 LOCAL001="Kilépés"
 LOCAL002="Legyen biztos benne, hogy a csomaglista naprakész, mielőtt ezt elindítja!\n\nKívánja most telepíteni?"
 LOCAL003="Az Internet kapcsolati teszt sikertelen!\n\nLehet, hogy Ön NEM kapcsolódik az Internet-hálózatra vagy a fő tárolószerver nem érhető el.\nEllenőrizze és próbálja újra!”
@@ -53,7 +53,7 @@ LOCAL047="Nincs érvényes felhasználó, így nem távolítható el a felhaszn�
 LOCAL048="Eltávolítsak mind gyorsítótárat a felhasználó ´home´ könyvtárából?"
 LOCAL049="Válasszon"
 LOCAL050="Információ"
-LOCAL051="Ez csak x86 és x86_64 kernelekkel működik…\n\nKilépés most..."
+LOCAL051="Ez csak x86 és x86_64 kernelekkel működik...\n\nKilépés most..."
 LOCAL052="Kérjük, válasszon opciót!"
 LOCAL053="Telepítse a legutolsó i686 NON-PAE Debian kernelt!"
 LOCAL054="Telepítse a legutolsó i686-PAE Debian kernelt!"
@@ -80,3 +80,9 @@ LOCAL074="Eltávolíthatom ezt a kernelt?"
 LOCAL075="NEM tölthető le a csomaginformáció!"
 LOCAL076="Frissítse a csomaglistát és próbálja újra!"
 LOCAL077="Gépelje be a keresni kívánt kulcsszót.\n\nGyőződjön meg róla, hogy rendszere naprakész mielőtt elindítja azt!"
+LOCAL078="Ez csak x86_64 kernelekkel működik...\n\nKilépés most..."
+LOCAL079="Install latest XanMod Linux kernel"
+LOCAL080="Install current stable XanMod Linux kernel"
+LOCAL081="Install Long Term Support XanMod kernel"
+LOCAL082="Install latest Real-time XanMod Linux kernel"
+LOCAL083="Install stable Real-time XanMod Linux kernel"

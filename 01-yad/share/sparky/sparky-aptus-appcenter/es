@@ -3,7 +3,7 @@
 # Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 # Under the GNU GPL v3
 # Translated by 2017/11/02 by seacat
-# Last update 2020/07/14 by pavroo
+# Last update 2020/10/20 by pavroo
 LOCAL001="Salir"
 LOCAL002="Antes de comenzar, asegúrese que la lista de paquetes está actualizada.\n\n¿Desea instalar ahora?"
 LOCAL003="¡Falló la prueba de la conexión de Internet!\n\nProbablemente NO esté conectado a Internet o el servidor principal del repositorio esté caído.\n\nVerifique esto y vuelva a intentarlo."
@@ -81,3 +81,9 @@ LOCAL074="Should I remove this kernel"
 LOCAL075="Can NOT download the package information."
 LOCAL076="Refresh package list and try again."
 LOCAL077="Type a keyword you'd like to search.\n\nMake sure your system is up to date before you start that."
+LOCAL078="It works with x86_64 kernels only...\n\nExiting now..."
+LOCAL079="Install latest XanMod Linux kernel"
+LOCAL080="Install current stable XanMod Linux kernel"
+LOCAL081="Install Long Term Support XanMod kernel"
+LOCAL082="Install latest Real-time XanMod Linux kernel"
+LOCAL083="Install stable Real-time XanMod Linux kernel"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Last update 2020/10/05 by pavroo
+# Last update 2020/10/22 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -37,7 +37,8 @@ if [ "$TESTROOT" != "root" ]; then
 fi
 
 DIALOG="yad --window-icon=sparky-aptus-appcenter --width=450 --height=200 --center"
-DIALOG450="yad --window-icon=sparky-aptus-appcenter --width=450 --height=250 --center"
+DIALOG450="yad --window-icon=sparky-aptus-appcenter --width=450 --height=250 --center --fixed"
+DIALOG550="yad --window-icon=sparky-aptus-appcenter --width=450 --height=250 --center"
 DIALOG800="yad --window-icon=sparky-aptus-appcenter --width=800 --height=600 --center"
 TITLE="--always-print-result --dialog-sep --image=sparky-aptus-appcenter --title="
 TEXT="--text="
@@ -84,7 +85,7 @@ elif [ "$1" = "fullupgrade" ]; then
 	exit 0
 # install package from repo
 elif [ "$1" = "installdebrepo" ]; then
-	PACK1=`$DIALOG450 $TITLE"$TITLETEXT" $OKEXIT $ENTRY $TEXT"\n$LOCAL034"`
+	PACK1=`$DIALOG550 $TITLE"$TITLETEXT" $OKEXIT $ENTRY $TEXT"\n$LOCAL034"`
 	if [ "$?" != "0" ]; then
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
 		exit 0
@@ -112,7 +113,7 @@ elif [ "$1" = "fixpackages" ]; then
 	exit 0
 # remove package
 elif [ "$1" = "aptremove" ]; then
-	PACK2=`$DIALOG450 $TITLE"$TITLETEXT" $OKEXIT $ENTRY $TEXT"\n$LOCAL035"`
+	PACK2=`$DIALOG550 $TITLE"$TITLETEXT" $OKEXIT $ENTRY $TEXT"\n$LOCAL035"`
 	if [ "$?" != "0" ]; then
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
 		exit 1
@@ -202,6 +203,10 @@ elif [ "$1" = "liqkernel" ]; then
 # install sparky kernel
 elif [ "$1" = "spakernel" ]; then
 	/usr/lib/sparky-aptus-appcenter/bin/install-sparky-kernel
+	exit 0
+# install xanmod kernel
+elif [ "$1" = "xankernel" ]; then
+	/usr/lib/sparky-aptus-appcenter/bin/install-xanmod-kernel
 	exit 0
 # remove old kernel
 elif [ "$1" = "remkernel" ]; then

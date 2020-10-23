@@ -3,7 +3,7 @@
 # Copyright 2016 hiver <hiver@club-internet.fr> 2016/06/05
 # Copyright 2018 Jean-Albert Caire
 # Sous licence GNU GPL v3
-# last update 2020/07/14 by pavroo
+# last update 2020/10/20 by pavroo
 LOCAL001="Quitter"
 LOCAL002="Vérifiez que la liste des paquets est à jour avant de commencer.\n\nVoulez-vous installer maintenant?"
 LOCAL003="Échec du test de la connexion internet!\n\nVous n'êtes probablement pas connecté à Internet ou bien le serveur du projet est hors-service.\n\nVérifiez et essayez à nouveau."
@@ -54,7 +54,7 @@ LOCAL047="No vailid user found, so can't remove the user cache."
 LOCAL048="Have I remove all cache from home directory of user"
 LOCAL049="Choisir"
 LOCAL050="Information"
-LOCAL051="Fonctionne uniquement avec les noyaux x86 and x86_64 ...\n\nSortons maintenant..."
+LOCAL051="Fonctionne uniquement avec les noyaux x86 and x86_64...\n\nSortons maintenant..."
 LOCAL052="S'il vous plaît, choisissez une option:"
 LOCAL053="Installer le dernier noyau Debian i686 NON-PAE"
 LOCAL054="Installer le dernier noyau Debian i686 PAE"
@@ -81,3 +81,9 @@ LOCAL074="Dois-je supprimer ce noyau?"
 LOCAL075="Can NOT download the package information."
 LOCAL076="Refresh package list and try again."
 LOCAL077="Type a keyword you'd like to search.\n\nMake sure your system is up to date before you start that."
+LOCAL078="Fonctionne uniquement avec les noyaux x86_64...\n\nSortons maintenant..."
+LOCAL079="Install latest XanMod Linux kernel"
+LOCAL080="Install current stable XanMod Linux kernel"
+LOCAL081="Install Long Term Support XanMod kernel"
+LOCAL082="Install latest Real-time XanMod Linux kernel"
+LOCAL083="Install stable Real-time XanMod Linux kernel"

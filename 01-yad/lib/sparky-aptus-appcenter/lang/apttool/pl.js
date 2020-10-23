@@ -1,7 +1,7 @@
 // Polish localization file for APTus Tools
 // Copyright 2020 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2020/06/18 by pavroo
+// Last update 2020/10/20 by pavroo
 dict.entries['apttool'] = {};
 // aptus tools
 dict.entries['apttool']['refresh'] = "Odśwież listę pakietów";
@@ -22,5 +22,6 @@ dict.entries['apttool']['usercache'] = "Usuń cache z katalogu domowego";
 dict.entries['apttool']['debkernel'] = "Zainstaluj Debian kernel";
 dict.entries['apttool']['liqkernel'] = "Zainstaluj Liquorix kernel";
 dict.entries['apttool']['spakernel'] = "Zainstaluj Sparky kernel";
+dict.entries['apttool']['xankernel'] = "Zainstaluj XanMod kernel";
 dict.entries['apttool']['remkernel'] = "Usuń stary kernel";
 

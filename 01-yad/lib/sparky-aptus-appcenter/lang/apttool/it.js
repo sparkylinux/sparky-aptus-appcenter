@@ -1,7 +1,7 @@
  // File di localizzazione itliano per APTus Tools
 // Copyright 2020 Carlo Troiani <pescaragdr@gmail.com>
 // Rilasciato sotto licenza GNU GPL v3
-// Ultimo Aggiornamento 2020/09/06 by carlo
+// Ultimo Aggiornamento 2020/10/20 by carlo
 dict.entries['apttool'] = {};
 // aptus tools
 dict.entries['apttool']['refresh'] = "Aggiorna la lista dei pacchetti";
@@ -22,4 +22,5 @@ dict.entries['apttool']['usercache'] = "Pulisci la directory di cache della home
 dict.entries['apttool']['debkernel'] = "Installa un kernel Debian";
 dict.entries['apttool']['liqkernel'] = "Installa un kernel Liquorix";
 dict.entries['apttool']['spakernel'] = "Installa un kernel Sparky";
+dict.entries['apttool']['xankernel'] = "Installa un kernel XanMod";
 dict.entries['apttool']['remkernel'] = "Rimuovi i vecchi kernel dal sistema";

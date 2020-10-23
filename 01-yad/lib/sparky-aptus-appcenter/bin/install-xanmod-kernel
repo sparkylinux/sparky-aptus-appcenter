@@ -3,7 +3,7 @@
 # install-liquorix script lets you install the 3th party Liquorix Linux kernel
 # Copyright 2015-2020 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
-# Created 2015/05/18
+# Created 2020/10/20
 # Last update 2020/10/20
 
 # get default's locale file
@@ -40,7 +40,7 @@ if [ "$testroot" != "root" ]; then
 	exit 1
 fi
 
-DIALOG="yad --window-icon=sparky-aptus-appcenter --width=500 --height=300 --center"
+DIALOG="yad --window-icon=sparky-aptus-appcenter --width=550 --height=350 --center"
 TITLE="--always-print-result --dialog-sep --image=sparky-aptus-appcenter --title="
 TEXT="--text="
 MENU="--list --column=$LOCAL049 --column=$LOCAL050"
@@ -48,7 +48,7 @@ OKEXIT=" --button=Ok:0 --button=$LOCAL001:1"
 MSGBOX="--button=Ok:0"
 TITLETEXT="APTus AppCenter"
 ARCH=`uname -r | grep "amd64" | awk '{print $1}'`
-TESTLIQ=`dpkg-query -l | grep linux-image-liquorix*`
+TESTXANREPO=`dpkg-query -l | grep xanmod-repository`
 if [ -f /usr/bin/sparky-xterm ]; then
 	SPARKYXTERM="/usr/bin/sparky-xterm"
 else
@@ -56,11 +56,11 @@ else
 	exit 1
 fi
 
-# check is the Liquorix kernel installed already
-if [ "$TESTLIQ" != "" ]; then
-	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL061"
-	exit 1
-fi
+# check is the XanMod kernel installed already
+#if [ "$TESTXAN" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL25"
+#	exit 1
+#fi
 
 # check connection
 PINGTEST=$(ping -c 1 debian.org | grep [0-9])
@@ -69,17 +69,18 @@ if [ "$PINGTEST" = "" ]; then
 	exit 1
 fi
 
-# check arm arch
-ARCHARM="`uname -m | grep arm`"
-if [ "$ARCHARM" != "" ]; then
-	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL051"
+# check arch64
+if [ "$ARCH" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL078"
 	exit 1
 fi
 
 CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
-NON_PAE "$LOCAL062" \
-PAE "$LOCAL063" \
-64 "$LOCAL064" \
+EDGE "$LOCAL079" \
+STABLE "$LOCAL080" \
+LTS "$LOCAL081" \
+RTEDGE "$LOCAL082" \
+RTSTABLE "$LOCAL083" \
 Exit "$LOCAL056"`
 
 if [ "$?" = "0" ]; then
@@ -88,58 +89,27 @@ else
 	exit 0
 fi
 
-if [ "$CHOICE" = "NON_PAE" ]; then
-	if [ "$ARCH" != "" ]; then
-		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
-		exit 1
-	fi
-elif [ "$CHOICE" = "PAE" ]; then
-	if [ "$ARCH" != "" ]; then
-		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
-		exit 1
-	fi
-elif [ "$CHOICE" = "64" ]; then
-	if [ "$ARCH" = "" ]; then
-		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
-		exit 1
-	fi
-fi
-
 if [ "$CHOICE" != "Exit" ]; then
-	# install Liquorix keyring
-	$SPARKYXTERM "apt-get update"
-	$SPARKYXTERM "apt-get install apt-transport-https -y --force-yes"
-	$SPARKYXTERM "curl https://liquorix.net/linux-liquorix.pub | apt-key add -"
-	
-	# check the Liquorix list
-	if [ -f /etc/apt/sources.list.d/liquorix.list ]; then
-		rm -f /etc/apt/sources.list.d/liquorix.list
+	if [ "$TESTXANREPO" = "" ]; then
+		$SPARKYXTERM "apt-get update && apt-get install xanmod-repository -y"
 	fi
-	# create new list
-cat > /etc/apt/sources.list.d/liquorix.list <<FOO
-# Liquorix kernel
-deb http://liquorix.net/debian sid main
-deb-src http://liquorix.net/debian sid main
-FOO
-
-	$SPARKYXTERM "apt-get update"
 fi
 
-if [ "$CHOICE" = "NON_PAE" ]; then
-	# install i686 NON-PAE Liquorix kernel
-	$SPARKYXTERM "apt-get install linux-image-liquorix-686 linux-headers-liquorix-686"
-	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL065"
-	exit 0
-elif [ "$CHOICE" = "PAE" ]; then
-	# install i686 PAE Liquorix kernel
-	$SPARKYXTERM "apt-get install linux-image-liquorix-686-pae linux-headers-liquorix-686-pae"
-	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL065"
-	exit 0
-elif [ "$CHOICE" = "64" ]; then
-	# install 64 bit Liquorix kernel
-	$SPARKYXTERM "apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64"
-	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL065"
-	exit 0
+if [ "$CHOICE" = "EDGE" ]; then
+	# install latest EDGE kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-edge"
+elif [ "$CHOICE" = "STABLE" ]; then
+	# install current STABLE kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod"
+elif [ "$CHOICE" = "LTS" ]; then
+	# install stable LTS kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-lts"
+elif [ "$CHOICE" = "RTEDGE" ]; then
+	# install latest EDGE real-time kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-rt-edge"
+elif [ "$CHOICE" = "RTSTABLE" ]; then
+	# install current STABLE real-time kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-rt-edge"
 elif [ "$CHOICE" = "Exit" ]; then
 	exit 1
 else

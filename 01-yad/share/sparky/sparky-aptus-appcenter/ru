@@ -2,7 +2,7 @@
 # Основан на Sparky APTus 
 # Copyright 2018 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Под лицензией GNU GPL v3
-# Last update 2020/07/14 by pavroo
+# Last update 2020/10/20 by pavroo
 LOCAL001="Выйти"
 LOCAL002="Прежде чем начинать, убедитесь, что список пакетов обновлен.\n\nХотите установить сейчас?"
 LOCAL003="Тест подключения к интернету не пройден!\n\nВозможно, вы НЕ подключены к Интернету или основной сервер хранилища не работает.\n\nПроверьте это и попробуйте снова."
@@ -80,3 +80,9 @@ LOCAL074="Удалить это ядро сейчас"
 LOCAL075="НЕ МОЖЕТ загрузить информацию о пакете."
 LOCAL076="Обновите список пакетов и попробуйте снова."
 LOCAL077="Введите ключевое слово, которое вы хотите найти.\n\nПрежде чем начать, убедитесь, что ваша система обновлена."
+LOCAL078="Работает только с ядрами x86_64...\n\nВыходим..."
+LOCAL079="Install latest XanMod Linux kernel"
+LOCAL080="Install current stable XanMod Linux kernel"
+LOCAL081="Install Long Term Support XanMod kernel"
+LOCAL082="Install latest Real-time XanMod Linux kernel"
+LOCAL083="Install stable Real-time XanMod Linux kernel"

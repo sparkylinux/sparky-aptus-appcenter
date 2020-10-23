@@ -2,7 +2,7 @@
 # It based on Sparky APTus 
 # Copyright 2017 Carlo Troiani <abbassolafrangetta@gmail.com>
 # Rilasciato sotto licenza GNU GPL v3
-# Last update 2020/09/06 by Carlo
+# Last update 2020/10/20 by pavroo
 LOCAL001="Esci"
 LOCAL002="Assicurati che la lista dei pacchetti sia aggiornata, prima di iniziare la procedura.\n\nVuoi procedere con l'installazione adesso?"
 LOCAL003="Test della connessione ionternet fallito!\n\nProbabilmente NON sei connesso ad internet od il server del repository principale e' offline.\n\nControlla e prova di nuovo."
@@ -80,3 +80,9 @@ LOCAL074="Devo rimuovere questo kernel?"
 LOCAL075="NON posso scaricare informazioni sul pacchetto."
 LOCAL076="Aggiorna la lista dei pacchetti e prova di nuovo."
 LOCAL077="Scrivi quello che vuoi ricercare.\n\nAssicurati che il tuo sistema sia aggiornato prima di iniziare la ricerca."
+LOCAL078="Funziona solamente con kernel x86_64...\n\nSto uscendo..."
+LOCAL079="Install latest XanMod Linux kernel"
+LOCAL080="Install current stable XanMod Linux kernel"
+LOCAL081="Install Long Term Support XanMod kernel"
+LOCAL082="Install latest Real-time XanMod Linux kernel"
+LOCAL083="Install stable Real-time XanMod Linux kernel"

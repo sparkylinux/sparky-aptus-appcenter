@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2020/10/15 by pavroo
+# last update 2020/10/22 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -36,7 +36,7 @@ if [ "$testroot" != "root" ]; then
 	exit 1
 fi
 
-DIALOG="`which yad` --width=550 --height=300 --window-icon=sparky-aptus-appcenter --image=sparky-aptus-appcenter --center"
+DIALOG="`which yad` --width=550 --height=300 --window-icon=sparky-aptus-appcenter --image=sparky-aptus-appcenter --center --fixed"
 TEXT="--text="
 TITLE="--title="
 TITLETEXT="APTus AppCenter"

@@ -3,7 +3,7 @@
 # It based on Sparky APTus 
 # Copyright 2020 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Under the GNU GPL v3
-# Last update 2020/07/14 by pavroo
+# Last update 2020/10/20 by pavroo
 LOCAL001="退出"
 LOCAL002="Make sure that the package list is up to date, before starting this.\n\nWould you like to install now?"
 LOCAL003="网络连接测试失败！\n\n也也许您没有连接到互联网或者主软件仓库服务器不在线。\n\n请检查并重试。"
@@ -80,4 +80,10 @@ LOCAL073="请选择一个要卸载的内核"
 LOCAL074="需要卸载该内核吗"
 LOCAL075="Can NOT download the package information."
 LOCAL076="Refresh package list and try again."
-LOCAL036="请输入您想搜索的文字。\n\n请在开始前 确保您的系统已最新。"
+LOCAL077="请输入您想搜索的文字。\n\n请在开始前 确保您的系统已最新。"
+LOCAL078="它只适用于 x86_64 内核……\n\n退出中……"
+LOCAL079="Install latest XanMod Linux kernel"
+LOCAL080="Install current stable XanMod Linux kernel"
+LOCAL081="Install Long Term Support XanMod kernel"
+LOCAL082="Install latest Real-time XanMod Linux kernel"
+LOCAL083="Install stable Real-time XanMod Linux kernel"

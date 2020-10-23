@@ -3,7 +3,7 @@
 # Copyright 2017 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Sob a licença GNU GPL v3
 # Traduzido por Elton Fabrício Ferreira "eltonfabricio10" <eltonfabricio10@gmail.com> 2018/02/17
-# Last update 2020/07/14 by pavroo
+# Last update 2020/10/20 by pavroo
 LOCAL001="Sair"
 LOCAL002="Certifique-se de que a lista de pacotes esteja atualizada antes de iniciar isso.\n\nDeseja instalar agora?"
 LOCAL003="A conexão com a Internet falhou!\n\nProvavelmente você NÂO está conectado na Internet ou o servidor do repositório principal está desligado.\n\nVerifique e tente novamente."
@@ -54,7 +54,7 @@ LOCAL047="Nenhum usuário válido foi encontrado, portanto, não é possível re
 LOCAL048="Deseja remover todo o cache do diretório home do usuário"
 LOCAL049="Selecione"
 LOCAL050="Info"
-LOCAL051="Funciona apenas com kernels x86 e x86_64 ...\n\nSaindo agora ..."
+LOCAL051="Funciona apenas com kernels x86 e x86_64...\n\nSaindo agora..."
 LOCAL052="Por favor, selecione uma opção:"
 LOCAL053="Instalar o mais recente kernel Debian i686 NON-PAE"
 LOCAL054="Instalar o mais recente kernel Debian i686-PAE"
@@ -81,3 +81,9 @@ LOCAL074="Devo remover este kernel?"
 LOCAL075="Can NOT download the package information."
 LOCAL076="Refresh package list and try again."
 LOCAL077="Digite uma palavra chave que você deseja pesquisar.\n\nCertifique-se de que seu sistema está atualizado antes de iniciar isso."
+LOCAL078="Funciona apenas com kernels x86_64...\n\nSaindo agora..."
+LOCAL079="Install latest XanMod Linux kernel"
+LOCAL080="Install current stable XanMod Linux kernel"
+LOCAL081="Install Long Term Support XanMod kernel"
+LOCAL082="Install latest Real-time XanMod Linux kernel"
+LOCAL083="Install stable Real-time XanMod Linux kernel"
