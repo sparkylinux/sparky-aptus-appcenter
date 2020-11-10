@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2020 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2020/10/22 by pavroo
+# Last update 2020/11/09 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -38,25 +38,7 @@ if [ "$testroot" != "root" ]; then
 	exit 1
 fi
 
-DIALOG="`which yad` --width=550 --height=300 --window-icon=sparky-aptus-appcenter --image=sparky-aptus-appcenter --center"
-DIALOGAPP="yad --width=650 --height=450 --window-icon=sparky-aptus-appcenter --image=sparky-aptus-appcenter --center --fixed"
-TEXT="--text="
-TITLE="--title="
-OKEXIT="--button=Ok:0 --button=$LOCAL001:1"
-MSGBOX="--button=Ok:0"
-BUTTONREMOVE="--button=$LOCAL008:3"
-BUTTONREINSTALL="--button=$LOCAL009:4"
-BUTTONINSTALL="--button=$LOCAL010:0"
-BUTTONEXIT="--button=$LOCAL001:1"
-TITLETEXT="APTus AppCenter"
 PINGTEST=$(ping -c 1 debian.org | grep [0-9])
-WORKDIR="/tmp/sparky-appcenter"
-SERVERG="https://dl.google.com/linux/direct"
-PACKG64="google-chrome-stable_current_amd64.deb"
-SERVERE="https://dl.google.com/dl/earth/client/current"
-PACKE64="google-earth-pro-stable_current_amd64.deb"
-SERVER64SKYPE="https://go.skype.com"
-PACK64SKYPE="skypeforlinux-64.deb"
 if [ -f /usr/bin/spterm ]; then
 	SPARKYXTERM="spterm -e"
 elif [ -f /usr/bin/sparky-xterm ]; then
@@ -67,246 +49,202 @@ else
 	echo "x terminal emulator is missing... exiting..."
 	exit 1
 fi
-INSTALL="apt-get install"
-REINSTALL="apt-get install --reinstall"
-UNINSTALL="apt-get purge"
-UPDATE="apt-get update"
-APTKEY="apt-key"
 ARCH64="`uname -m | grep x86_64`"
 ARCH32="`uname -m | grep 686`"
 ARCHARM="`uname -m | grep arm`"
 # checking Sparky 4/5/6
-SPARKYVERCHECK6="`cat /etc/lsb-release | grep Tolo`"
-SPARKYVERCHECK5="`cat /etc/lsb-release | grep Nibiru`"
-SPARKYVERCHECK4="`cat /etc/lsb-release | grep Tyche`"
+#SPARKYVERCHECK6="`cat /etc/lsb-release | grep Tolo`"
+#SPARKYVERCHECK5="`cat /etc/lsb-release | grep Nibiru`"
+#SPARKYVERCHECK4="`cat /etc/lsb-release | grep Tyche`"
+
+if [ -f /usr/lib/sparky-aptus-appcenter/page-error.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/page-error.html
+fi
+
+if [ -f /usr/lib/sparky-aptus-appcenter/page-install.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/page-install.html
+fi
 
 ##### games tools #####
 if [ "$1" = "itch" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
-#elif [ "$1" = "lutris" ]; then
-#	if [ "$ARCHARM" != "" ]; then
-#		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-#		exit 1
-#	fi
-#	PACKAGE="$1"
+elif [ "$1" = "lutris" ]; then
+	if [ "$ARCH32" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 
 ##### graphics editors #####
 elif [ "$1" = "darktable" ]; then
-	if [ "$ARCH32" != "" ] || [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "lazpaint" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "lightzone" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "opentoonz" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "xnview" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### multimedia audio players #####
 elif [ "$1" = "deadbeef" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
-	fi
-	PACKAGE="$1"
-elif [ "$1" = "deepin-music" ]; then
-	if [ "$SPARKYVERCHECK4" != "" ] || [ "$DEBIANVERCHECK9" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
-	fi
-	PACKAGE="$1"
-elif [ "$1" = "pragha" ]; then
-	if [ "$SPARKYVERCHECK4" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "sayonara" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "spotify-client" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "yarock" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
-	fi
-	PACKAGE="$1"
-
-##### multimedia burners #####
-elif [ "$1" = "kylin-burner" ]; then
-	if [ "$SPARKYVERCHECK4" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### multimedia video players #####
 elif [ "$1" = "electronplayer" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "motionbox" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "popcorn-time" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "rage" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "stremio" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### multimedia video tools #####
 elif [ "$1" = "ciano" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "clipgrab" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "mystiq" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "shutter-encoder" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### office note #####
 elif [ "$1" = "boostnote" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "cherrytree" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "joplin" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### office text #####
 elif [ "$1" = "atom" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "cudatext" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
-elif [ "$1" = "featherpad" ]; then
-	if [ "$SPARKYVERCHECK4" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+elif [ "$1" = "hiero" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "lite-editor" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "notepadqq" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### office suite #####
 elif [ "$1" = "freeoffice" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="softmaker-freeoffice-2018"
 elif [ "$1" = "libreoffice" ]; then
 	# check is OpenOffice installed
 	CHECKOO=`apt-cache policy openoffice | head -n2 | tail -n1 | grep [0-9]`
 	if [ "$CHECKOO" != "" ]; then
-		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL026\n\n$LOCAL005"
-		exit 1
+		ERROROFFICE="openoff"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "openoffice" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	# check is LibreOffice installed
 	if [ -f /usr/bin/libreoffice ]; then
-		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL025\n\n$LOCAL005"
-		exit 1
+		ERROROFFICE="libreoff"
 	fi
 	PACKAGE="$1"
 	OOPACKAGES="openoffice-brand-en-us openoffice-brand-writer openoffice-brand-calc openoffice-brand-impress openoffice-brand-base openoffice-brand-draw openoffice-brand-math openoffice-pyuno openoffice-ooofonts openoffice-ooolinguistic openoffice-debian-menus"
 elif [ "$1" = "wps-office" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 	WPSPACKAGES="wps-office-fonts"
@@ -314,278 +252,368 @@ elif [ "$1" = "wps-office" ]; then
 ##### web email #####
 elif [ "$1" = "gmail-desktop" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### web communication #####
 elif [ "$1" = "caprine" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "deltachat-desktop" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "discord" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "element-desktop" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "franz" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "skypeforlinux" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
-	fi
-	PACKAGE="$1"
-elif [ "$1" = "telegram-desktop" ]; then
-	if [ "$SPARKYVERCHECK4" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "tor-messenger" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### web others #####
 elif [ "$1" = "dropbox" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "google-earth-pro-stable" ]; then
-	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
 	fi
-	PACKAGE="$1"
-	if [ "$ARCH64" != "" ]; then
-		PACKEARTH="$PACKE64"
-	else
-		#PACKEARTH="$PACKE32"
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
-	fi
+	PACKEARTH="$PACKE64"
 elif [ "$1" = "megasync" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "spideroakone" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### web browsers #####
 elif [ "$1" = "beaker-browser" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "brave-browser" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "cyberfox" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "dooble" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "falkon" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "firefox-latest" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
-	fi
-	if [ "$SPARKYVERCHECK4" != "" ] || [ "$SPARKYVERCHECK5" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL006\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="firefox"
 elif [ "$1" = "google-chrome-stable" ]; then
 	if [ "$ARCH64" = "" ]; 	then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "icecat" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "iridium-browser" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "iron" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "min" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "opera-stable" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "seamonkey" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "tor-browser" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "waterfox-classic-kpe" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "waterfox-current-kpe" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 # net remote access
 elif [ "$1" = "anydesk" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "teamviewer" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 # accessories usb
 elif [ "$1" = "balena-etcher-electron" ]; then
 	if [ "$ARCHARM" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL007\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+	
 # accessories terminals
 elif [ "$1" = "edex-ui" ]; then
 	if [ "$ARCH32" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL016\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
-
+# accessories monitoring
+elif [ "$1" = "cpu-x" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+	
 # development
 elif [ "$1" = "brackets" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "code" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "codium" ]; then
 	if [ "$ARCH64" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL004\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-		exit 1
+		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 else
 	PACKAGE="$1"
 fi
 
-APPVER=`apt-cache policy $PACKAGE | head -n3 | tail -n1 | grep [0-9] | cut -f4 -d " "`
-APPINSTSIZE=`apt show $PACKAGE | grep Installed-Size | cut -f2,3 -d " "`
-APPDOWNSIZE=`apt show $PACKAGE | grep Download-Size | cut -f2,3 -d " "`
-#if [ "$PACKAGE" = "testdisk" ]; then
+if [ "$ERROROFFICE" = "openoff" ]; then
+	ERRORTEXT="$LOCAL025"
+elif [ "$ERROROFFICE" = "libreoff" ]; then
+	ERRORTEXT="$LOCAL025"
+else
+	ERRORTEXT="$LOCAL016"
+fi
+
+if [ "$SYSTEM" = "wrong" ]; then
+
+cat > /usr/lib/sparky-aptus-appcenter/page-error.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: October 26, 2020 by pavroo
+-->
+	<head>
+		<title>Package Error | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="aptus://back_back"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<br />&nbsp;
+		$ERRORTEXT <br />
+		<br />&nbsp;
+		<a href="aptus://back_back" class="buttonmenu"><<-- Back</a><br />
+		<br />
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+	killall -9 yad
+	./aptus-appcenter error01
+	exit 0
+fi
+
+### system=wrong end
+killall -9 yad
+if [ "$SYSTEM" != "wrong" ]; then
+
 if [ -f /tmp/sparky-app1 ]; then
 	rm -f /tmp/sparky-app1
 fi
-apt show $PACKAGE | sed -e 's/&/and/g' | sed -e 's/<//g' | sed -e 's/>//g' | sed '/Priority\|Replaces\|Section\|Built-Using\|Source\|Depends\|Conflicts\|Provides\|Maintainer\|Bugs\|::\|Suggests\|Breaks\|Recommends\|Vendor\|APT-Source\|APT-Manual/d' > /tmp/sparky-app1
-SHOWAPP1=`cat /tmp/sparky-app1 | head -n 35`
-#else
-#SHOWAPP1=`apt show $PACKAGE | sed -e 's/&/and/g' | sed -e 's/<//g' | sed -e 's/>//g' | sed '/Priority\|Replaces\|Section\|Built-Using\|Source\|Depends\|Conflicts\|Provides\|Maintainer\|::\|Suggests\|Breaks\|Recommends\|Vendor\|APT-Source\|APT-Manual/d'`
-#fi
-if [ "$SHOWAPP1" = "" ]; then	
+apt show $PACKAGE > /tmp/sparky-app1
+PACKAGE=`cat /tmp/sparky-app1 | grep Package:`
+if [ "$1" = "discord" ]; then
+	PACKAGE="discord"
+elif [ "$1" = "google-chrome-stable" ]; then
+	PACKAGE="google-chrome-stable"
+elif [ "$1" = "google-earth-pro-stable" ]; then
+	PACKAGE="google-earth-pro-stable"
+elif [ "$1" = "openoffice" ]; then
+	PACKAGE="openoffice"
+elif [ "$1" = "skypeforlinux" ]; then
+	PACKAGE="skypeforlinux"
+elif [ "$1" = "wps-office" ]; then
+	PACKAGE="wps-office"
+else
+	PACKAGE="$PACKAGE"
+fi
+VERSION=`cat /tmp/sparky-app1 | grep Version:`
+if [ "$VERSION" != "" ]; then
+	VERSION="$VERSION"
+else
+	VERSION=""
+fi
+SECTION=`cat /tmp/sparky-app1 | grep Section:`
+if [ "$SECTION" != "" ]; then
+	SECTION="$SECTION"
+else
+	SECTION=""
+fi
+MAINTAINER=`cat /tmp/sparky-app1 | grep Maintainer:`
+if [ "$MAINTAINER" != "" ]; then
+	MAINTAINER="$MAINTAINER"
+else
+	MAINTAINER=""
+fi
+DOWNSIZE=`cat /tmp/sparky-app1 | grep Download-Size:`
+if [ "$DOWNSIZE" != "" ]; then
+	DOWNSIZE="$DOWNSIZE"
+else
+	DOWNSIZE=""
+fi
+INSTSIZE=`cat /tmp/sparky-app1 | grep Installed-Size:`
+if [ "$INSTSIZE" != "" ]; then
+	INSTSIZE="$INSTSIZE"
+else
+	INSTSIZE=""
+fi
+DEPS=`cat /tmp/sparky-app1 | grep Depends: | grep -v Pre-Depends:`
+if [ "$DEPS" != "" ]; then
+	DEPS="$DEPS"
+else
+	DEPS=""
+fi
+DESCRIPTION1=`cat /tmp/sparky-app1 | grep Description:`
+if [ "$DESCRIPTION1" != "" ]; then
+	DESCRIPTION1="$DESCRIPTION1"
+else
+	DESCRIPTION1=""
+fi
+DESCRIPTION2=`cat /tmp/sparky-app1 | grep -v Version: | grep -v Priority: | grep -v Package: | grep -v Replaces: | grep -v Section: | grep -v Built-Using | grep -v Source: | grep -v Depends: | grep -v Conflicts: | grep -v Provides: | grep -v Maintainer: | grep -v Installed-Size: | grep -v Download-Size: | grep -v APT-Manual-Installed: | grep -v Bugs: | grep -v :: | grep -v Suggests: | grep -v Breaks: | grep -v Homepage: | grep -v Tag: | grep -v Recommends: | grep -v Vendor: | grep -v APT-Sources: | grep -v APT-Manual: | grep -v Description:`
+if [ "$DESCRIPTION2" != "" ]; then
+	DESCRIPTION2="$DESCRIPTION2"
+else
+	DESCRIPTION2=""
+fi
+
+if [ "$DESCRIPTION2" = "" ]; then	
 	if [ "$1" = "discord" ]; then
-		SHOWAPP1="$LOCAL027: $PACKAGE\n\n$LOCAL075"
+		DESCRIPTION2="$LOCAL075"
 	elif [ "$1" = "google-chrome-stable" ]; then
-		SHOWAPP1="$LOCAL027: $PACKAGE\n\n$LOCAL075"
+		DESCRIPTION2="$LOCAL075"
 	elif [ "$1" = "google-earth-pro-stable" ]; then
-		SHOWAPP1="$LOCAL027: $PACKAGE\n\n$LOCAL075"
+		DESCRIPTION2="$LOCAL075"
 	elif [ "$1" = "openoffice" ]; then
-		SHOWAPP1="$LOCAL027: $PACKAGE\n\n$LOCAL075"
-	elif [ "$1" = "skype" ]; then
-		SHOWAPP1="$LOCAL027: $PACKAGE\n\n$LOCAL075"
+		DESCRIPTION2="$LOCAL075"
+	elif [ "$1" = "skypeforlinux" ]; then
+		DESCRIPTION2="$LOCAL075"
 	elif [ "$1" = "wps-office" ]; then
-		SHOWAPP1="$LOCAL027: $PACKAGE\n\n$LOCAL075"
+		DESCRIPTION2="$LOCAL075"
 	else
-		SHOWAPP1="$LOCAL075\n\n$LOCAL76"
+		DESCRIPTION2="$DESCRIPTION2"
 	fi
 else
-	SHOWAPP1="$SHOWAPP1"
+	DESCRIPTION2="$DESCRIPTION2"
 fi
 
 CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
@@ -593,240 +621,90 @@ CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
 # install, reinstall or remove discord
 if [ "$1" = "discord" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
-		ret=$?
-		if [[ $ret -eq 3 ]]; then
-			$SPARKYXTERM "$UNINSTALL $PACKAGE"
-		elif [[ $ret -eq 4 ]]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL005"
-				exit 1
-			fi
-			rm -rf $WORKDIR
-			mkdir -p $WORKDIR
-			cd $WORKDIR
-			$SPARKYXTERM `wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"`
-			$SPARKYXTERM "$INSTALL ./discord.deb"
-			rm -rf $WORKDIR
-		else
-			exit 1
-		fi
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"	
 	elif [ "$CHECKPACKAGE0" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL014\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
-		if [ "$?" = "0" ]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL014"
-				exit 1
-			fi
-			rm -rf $WORKDIR
-			mkdir -p $WORKDIR
-			cd $WORKDIR
-			$SPARKYXTERM `wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"`
-			$SPARKYXTERM "$INSTALL ./discord.deb"
-			rm -rf $WORKDIR
-			CHECKPACKAGE1=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
-			if [ "$CHECKPACKAGE1" = "" ]; then
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			else
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZE\n\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			fi
-
-		elif [ "$?" != "0" ]; then
-			exit 1
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
 # install, reinstall or remove google-chrome
 elif [ "$1" = "google-chrome-stable" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
-		ret=$?
-		if [[ $ret -eq 3 ]]; then
-			$SPARKYXTERM "$UNINSTALL $PACKAGE"
-		elif [[ $ret -eq 4 ]]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL005"
-				exit 1
-			fi
-			rm -rf $WORKDIR
-			mkdir -p $WORKDIR
-			cd $WORKDIR
-			$SPARKYXTERM "wget $SERVERG/$PACKG64"
-			$SPARKYXTERM "$INSTALL ./$PACKG64"
-			rm -rf $WORKDIR
-		else
-			exit 1
-		fi
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL014\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
-		if [ "$?" = "0" ]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL014"
-				exit 1
-			fi
-			rm -rf $WORKDIR
-			mkdir -p $WORKDIR
-			cd $WORKDIR
-			$SPARKYXTERM "wget $SERVERG/$PACKG64"
-			$SPARKYXTERM "$INSTALL ./$PACKG64"
-			rm -rf $WORKDIR
-			CHECKPACKAGE1=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
-			if [ "$CHECKPACKAGE1" = "" ]; then
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			else
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZE\n\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			fi
-
-		elif [ "$?" != "0" ]; then
-			exit 1
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
 # install, reinstall or remove google-earth
 elif [ "$1" = "google-earth-pro-stable" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
-		ret=$?
-		if [[ $ret -eq 3 ]]; then
-			$SPARKYXTERM "$UNINSTALL $PACKAGE"
-		elif [[ $ret -eq 4 ]]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL005"
-				exit 1
-			fi
-			rm -rf $WORKDIR
-			mkdir -p $WORKDIR
-			cd $WORKDIR
-			$SPARKYXTERM "wget $SERVERE/$PACKEARTH"
-			$SPARKYXTERM "$INSTALL ./$PACKEARTH"
-			rm -rf $WORKDIR
-		else
-			exit 1
-		fi
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL014\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
-		if [ "$?" = "0" ]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL014"
-				exit 1
-			fi
-			rm -rf $WORKDIR
-			mkdir -p $WORKDIR
-			cd $WORKDIR
-			$SPARKYXTERM "wget $SERVERE/$PACKEARTH"
-			$SPARKYXTERM "$INSTALL ./$PACKEARTH"
-			rm -rf $WORKDIR
-			CHECKPACKAGE1=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
-			if [ "$CHECKPACKAGE1" = "" ]; then
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			else
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZE\n\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			fi
-
-		elif [ "$?" != "0" ]; then
-			exit 1
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
 # install, reinstall or remove openoffice.org
 elif [ "$1" = "openoffice" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
-		ret=$?
-		if [[ $ret -eq 3 ]]; then
-			$SPARKYXTERM "$UNINSTALL $PACKAGE $OOPACKAGES"
-		elif [[ $ret -eq 4 ]]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL005"
-				exit 1
-			fi
-			$SPARKYXTERM "$INSTALL $OOPACKAGES"
-		else
-			exit 1
-		fi
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL014\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
-		if [ "$?" = "0" ]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL014"
-				exit 1
-			fi
-			if [ -f /etc/apt/sources.list.d/openoffice.list ]; then
-				rm -f /etc/apt/sources.list.d/openoffice.list
-			fi
-cat > /etc/apt/sources.list.d/openoffice.list <<FOO
-# Unofficial OpenOffice repository for Debian
-deb http://downloads.sourceforge.net/project/apacheoo-deb/debian testing main
-FOO
-			# install keyring
-			$SPARKYXTERM "$APTKEY adv --keyserver keys.gnupg.net --recv-keys 90127F5B"
-			$SPARKYXTERM "$UPDATE"
-			$SPARKYXTERM "$INSTALL $OOPACKAGES"
-			CHECKPACKAGE1=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
-			if [ "$CHECKPACKAGE1" = "" ]; then
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZE\n\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			else
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZE\n\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			fi
-
-		elif [ "$?" != "0" ]; then
-			exit 1
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
 # install, reinstall or remove skype
-elif [ "$1" = "skype" ]; then
+elif [ "$1" = "skypeforlinux" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
-		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
-		ret=$?
-		if [[ $ret -eq 3 ]]; then
-			$SPARKYXTERM "$UNINSTALL $PACKAGE"
-		elif [[ $ret -eq 4 ]]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL005"
-				exit 1
-			fi
-			rm -rf $WORKDIR
-			mkdir -p $WORKDIR
-			cd $WORKDIR
-			$SPARKYXTERM "wget $SERVER64SKYPE/$PACK64SKYPE"
-			$SPARKYXTERM "$INSTALL ./$PACK64SKYPE"
-			rm -rf $WORKDIR
-		else
-			exit 1
-		fi
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
-		$DIALOG $TEXT"\n$LOCAL014\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
-		if [ "$?" = "0" ]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL014"
-				exit 1
-			fi
-			rm -rf $WORKDIR
-			mkdir -p $WORKDIR
-			cd $WORKDIR
-			$SPARKYXTERM "wget $SERVER64SKYPE/$PACK64SKYPE"
-			$SPARKYXTERM "$INSTALL ./$PACK64SKYPE"
-			rm -rf $WORKDIR
-			CHECKPACKAGE1=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
-			if [ "$CHECKPACKAGE1" = "" ]; then
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n\n$LOCAL030: $APPDOWNSIZ\n\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			else
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZE\n\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			fi
-
-		elif [ "$?" != "0" ]; then
-			exit 1
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
@@ -838,77 +716,119 @@ elif [ "$1" = "vmware" ]; then
 # install, reinstall or remove wps-office
 elif [ "$1" = "wps-office" ]; then
 	if [ -f /usr/bin/wps ]; then
-		$DIALOG $TEXT"\n$LOCAL011\n$LOCAL012\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT
-		ret=$?
-		if [[ $ret -eq 3 ]]; then
-			$SPARKYXTERM "$UNINSTALL $PACKAGE $WPSPACKAGES"
-		elif [[ $ret -eq 4 ]]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL005"
-				exit 1
-			fi
-			$SPARKYXTERM "$INSTALL $PACKAGE $WPSPACKAGES"
-		else
-			exit 1
-		fi
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ ! -f /usr/bin/wps ]; then
-		$DIALOG $TEXT"\n$LOCAL014\n\n$SHOWAPP1" $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT
-		if [ "$?" = "0" ]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL014"
-				exit 1
-			fi
-			$SPARKYXTERM "$INSTALL $PACKAGE $WPSPACKAGES"
-			if [ ! -f /usr/bin/wps ]; then
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZ\n\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			else
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZ\n\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			fi
-
-		elif [ "$?" != "0" ]; then
-			exit 1
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
 # install, reinstall or remove anything else
 else
 	if [ "$CHECKPACKAGE0" != "" ]; then
-		$DIALOGAPP $TITLE"$TITLETEXT" $BUTTONREMOVE $BUTTONREINSTALL $BUTTONEXIT $TEXT"\n$LOCAL011\n$LOCAL012\n\n$SHOWAPP1"
-		ret=$?
-		if [[ $ret -eq 3 ]]; then
-			$SPARKYXTERM "$UNINSTALL $PACKAGE"
-		elif [[ $ret -eq 4 ]]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL005"
-				exit 1
-			fi
-			$SPARKYXTERM "$REINSTALL $PACKAGE"
-		else
-			exit 1
-		fi
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
-		$DIALOGAPP $TITLE"$TITLETEXT" $BUTTONINSTALL $BUTTONEXIT $TEXT"\n$LOCAL014\n\n$SHOWAPP1"
-		if [ "$?" = "0" ]; then
-			if [ "$PINGTEST" = "" ]; then
-				$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL005"
-				exit 1
-			fi
-			$SPARKYXTERM "$INSTALL $PACKAGE"
-			CHECKPACKAGE1=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
-			if [ "$CHECKPACKAGE1" = "" ]; then
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZE\n\n$LOCAL013\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			else
-				$DIALOG $TEXT"\n$LOCAL027: $PACKAGE\n$LOCAL028: $APPVER\n$LOCAL029: $APPINSTSIZE\n$LOCAL030: $APPDOWNSIZE\n\n$LOCAL015\n\n$LOCAL005" $TITLE"$TITLETEXT" $MSGBOX
-				exit 1
-			fi
-
-		elif [ "$?" != "0" ]; then
-			exit 1
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 fi
 
+cat > /usr/lib/sparky-aptus-appcenter/page-install.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: October 26, 2020 by pavroo
+-->
+	<head>
+		<title>$PACKTITLE | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="aptus://back_back"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+
+
+
+
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<b>$PACKAGE</b><br />
+		<br />
+		$VERSION<br />
+		$SECTION<br />
+		$MAINTAINER<br />
+		$DOWNSIZE<br />
+		$INSTSIZE<br />
+		$DEPS<br />
+		<br />
+		<b>&nbsp;&nbsp;$DESCRIPTION1</b><br />
+		<br />
+		$DESCRIPTION2<br />
+		<br />&nbsp;
+		$PACKTEXT<br />
+		<br />
+		$PACKBUTTONS<br />
+		<br />
+		</td>
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+killall -9 yad
+./aptus-appcenter packinst01
+
+fi
+### system !=wrong end
 exit 0

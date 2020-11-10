@@ -1,7 +1,14 @@
 -------------------------------------------------------------------------------
+  Version 20201109~sparky6~0 (2020-11-10)
+-------------------------------------------------------------------------------
+  * Added Hiero, BPyTop, CPU-X, LazPaint]
+  * Removed a few packs
+  * Rewriten package and desktop installation modules
+
+-------------------------------------------------------------------------------
   Version 20201023~sparky6~0 (2020-10-23)
 -------------------------------------------------------------------------------
-  * Added Boostnote, OnionShare, Timekpr-nExt, XanMod kernel installer
+  * Added Boostnote, OnionShare, Timekpr-nExt, XanMod kernel installer, FFQueue
   * Removed calamares, xpdf
   * Small fixes
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Created by Piotr "MoroS" Mrożek 2018
-# Last update by Paweł "pavroo" Pijanowski September 28, 2020
+# Last update by Paweł "pavroo" Pijanowski November 9, 2020
 
 LANGUAGE=${LANG:0:2}
 EN=`echo $LANGUAGE | grep en`
@@ -274,7 +274,20 @@ elif [ "$1" = "sysshe01" ]; then
 # system virtual
 elif [ "$1" = "sysvir01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="system-virtual.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
-	
+
+# error
+elif [ "$1" = "error01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="page-error.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# install
+elif [ "$1" = "packinst01" ] || [ "$1" = "deskinst01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="page-install.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# remove
+elif [ "$1" = "packremo01" ] || [ "$1" = "deskremo01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="page-install.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# reinstall
+elif [ "$1" = "packrein01" ] || [ "$1" = "deskrein01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="page-install.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+
 fi
 
 exit 0

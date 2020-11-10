@@ -5,7 +5,7 @@
 # exit 0 - Yad supports URL (goes to a next page)
 # exit 1 - Yad ignores URL (does nothing)
 # exit 2 - Yad treats URL as a file downloading (not tested yet)
-# Last update by pavroo August 23, 2020
+# Last update by pavroo November 9, 2020
 
 URI="$1"
 
@@ -122,7 +122,17 @@ if [[ "$URI" == aptus* ]]; then
 	CHECKSYSOTH=`echo "$CMD" | grep sysoth`
 	CHECKSYSPAC=`echo "$CMD" | grep syspac`
 	CHECKSYSSHE=`echo "$CMD" | grep sysshe`
-	CHECKSYSVIR=`echo "$CMD" | grep sysvir`	
+	CHECKSYSVIR=`echo "$CMD" | grep sysvir`
+	#
+	CHECKERROR=`echo "$CMD" | grep error`
+	CHECKBACK=`echo "$CMD" | grep back`
+	CHECKPACK=`echo "$CMD" | grep packinst`
+	CHECKDEBINSTALL=`echo "$CMD" | grep debinst`
+	CHECKDEBREINSTALL=`echo "$CMD" | grep debrein`
+	CHECKDEBREMOVE=`echo "$CMD" | grep debremo`
+	CHECKDESINSTALL=`echo "$CMD" | grep desinst`
+	CHECKDESREINSTALL=`echo "$CMD" | grep desrein`
+	CHECKDESREMOVE=`echo "$CMD" | grep desremo`
 	#CHECKAPP=`echo "$CMD" | grep app`
 	
 	# accessories-archivers
@@ -665,6 +675,55 @@ if [[ "$URI" == aptus* ]]; then
 		killall -9 yad
 		./bin/aptus-app $RUNSYSVIR
 		./aptus-appcenter sysvir01
+		exit 0
+	
+	# pack error page
+	elif [ "$CHECKERROR" != "" ]; then
+		./aptus-appcenter error01
+		exit 0
+	# back
+	elif [ "$CHECKBACK" != "" ]; then
+		killall -9 yad
+		exit 0
+	# pack install page
+	elif [ "$CHECKPACK" != "" ]; then
+		./aptus-appcenter packinst01
+		exit 0
+	# install deb
+	elif [ "$CHECKDEBINSTALL" != "" ]; then
+		RUNDEBINSTALL=`echo "$CMD" | sed -e 's/debinst_//'`
+		killall -9 yad
+		./bin/aptus-package-install $RUNDEBINSTALL
+		exit 0
+	# reinstall deb
+	elif [ "$CHECKDEBREINSTALL" != "" ]; then
+		RUNDEBREINSTALL=`echo "$CMD" | sed -e 's/debrein_//'`
+		killall -9 yad
+		./bin/aptus-package-reinstall $RUNDEBREINSTALL
+		exit 0
+	# remove deb
+	elif [ "$CHECKDEBREMOVE" != "" ]; then
+		RUNDEBREMOVE=`echo "$CMD" | sed -e 's/debremo_//'`
+		killall -9 yad
+		./bin/aptus-package-remove $RUNDEBREMOVE
+		exit 0
+	# install desktop
+	elif [ "$CHECKDESINSTALL" != "" ]; then
+		RUNDESINSTALL=`echo "$CMD" | sed -e 's/desinst_//'`
+		killall -9 yad
+		./bin/aptus-desktop-install $RUNDESINSTALL
+		exit 0
+	# reinstall desktop
+	elif [ "$CHECKDESREINSTALL" != "" ]; then
+		RUNDESREINSTALL=`echo "$CMD" | sed -e 's/desrein_//'`
+		killall -9 yad
+		./bin/aptus-desktop-reinstall $RUNDESREINSTALL
+		exit 0
+	# remove desktop
+	elif [ "$CHECKDESREMOVE" != "" ]; then
+		RUNDESREMOVE=`echo "$CMD" | sed -e 's/desremo_//'`
+		killall -9 yad
+		./bin/aptus-desktop-remove $RUNDESREMOVE
 		exit 0
 	
 	### apps
