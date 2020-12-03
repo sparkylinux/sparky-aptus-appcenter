@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2020 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2020/11/09 by pavroo
+# Last update 2020/12/03 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -120,7 +120,19 @@ elif [ "$1" = "spotify-client" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+elif [ "$1" = "strawberry" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "yarock" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### multimedia audio tools #####
+elif [ "$1" = "simplest-studio" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
@@ -371,12 +383,22 @@ elif [ "$1" = "min" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+elif [ "$1" = "next" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "opera-stable" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "seamonkey" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "slimjet" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
 	fi

@@ -1,7 +1,7 @@
 // English localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2020/09/06 by Carlo
+// Last update 2020/12/03 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Applicazioni";
@@ -22,7 +22,7 @@ dict.entries['main']['multimedia'] = "Multimedia";
 dict.entries['main']['office'] = "Ufficio";
 dict.entries['main']['science'] = "Scienza";
 dict.entries['main']['security'] = "Sicurezza";
-dict.entries['main']['system'] = "Systema";
+dict.entries['main']['system'] = "Sistema";
 // informazioni
 dict.entries['main']['info01'] = "Sparky APTus AppCenter ti permette di eseguire molte operazioni con i pacchetti tramite interfaccia grafica, comme:";
 dict.entries['main']['info02'] = "aggiornare la lista dei pacchetti";
