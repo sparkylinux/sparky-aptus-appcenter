@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Dependencies:
 -------------
-adduser apt coreutils curl dctrl-tools dialog dpkg gdebi-core gettext-base grep gawk iputils-ping libc6 (>= 2.31) sparky-apt sparky-desktop-data sparky-editor sparky-info sparky-remsu (>= 0.2.14) sparky-xterm spterm ssft teamspeak-installer vmplayer-installer vrms wget yad (>= 5.0~sparky6~0) zenity
+adduser apt coreutils curl dconf-cli dctrl-tools dialog dpkg gdebi-core gettext-base grep gawk iputils-ping libc6 (>= 2.31) sparky-apt sparky-desktop-data sparky-editor sparky-info sparky-remsu (>= 0.2.14) sparky-xterm spterm ssft teamspeak-installer vmplayer-installer vrms wget yad (>= 5.0~sparky6~0) zenity
 
 Install:
 -------------

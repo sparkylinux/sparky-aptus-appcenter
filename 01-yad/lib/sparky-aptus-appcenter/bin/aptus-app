@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2020 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2020/12/15 by pavroo
+# Last update 2020/12/23 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -442,13 +442,7 @@ elif [ "$1" = "balena-etcher-electron" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
-	
-# accessories terminals
-elif [ "$1" = "edex-ui" ]; then
-	if [ "$ARCH32" != "" ]; then
-		SYSTEM="wrong"
-	fi
-	PACKAGE="$1"
+
 # accessories monitoring
 elif [ "$1" = "cpu-x" ]; then
 	if [ "$ARCHARM" != "" ]; then

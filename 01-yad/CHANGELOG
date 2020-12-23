@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
+  Version 20201223~sparky6~0 (2020-12-23)
+-------------------------------------------------------------------------------
+  * Added netdata
+  * Install edex-ui on i386 too
+  * Removed APTus and APTus AppCenter from the list
+  * Removed second entry of KDE Connect
+  * Removed stretchplayer, kradio4
+
+-------------------------------------------------------------------------------
   Version 20201217~sparky6~0 (2020-12-17)
 -------------------------------------------------------------------------------
   * Added Pogo, KDEConnect, Zettlr, cpufrequtils, cpupower-gui, Rescuezilla
