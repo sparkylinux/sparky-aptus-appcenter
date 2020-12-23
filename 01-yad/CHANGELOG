@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
   Version 20201223~sparky6~0 (2020-12-23)
 -------------------------------------------------------------------------------
-  * Added netdata
+  * Added netdata, cozy
   * Install edex-ui on i386 too
   * Removed APTus and APTus AppCenter from the list
   * Removed second entry of KDE Connect
