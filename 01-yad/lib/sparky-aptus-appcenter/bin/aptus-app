@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application installer
-# Copyright 2017-2020 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2020/12/23 by pavroo
+# Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2021/01/21 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -463,6 +463,11 @@ elif [ "$1" = "code" ]; then
 	PACKAGE="$1"
 elif [ "$1" = "codium" ]; then
 	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "deepl-linux" ]; then
+	if [ "$ARCH64" = "" ] || [ "$ARCH32" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
