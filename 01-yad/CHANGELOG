@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
+  Version 20210219~sparky6~0 (2021-02-19)
+-------------------------------------------------------------------------------
+  * Added installation of Debian RealTime Linux kernel
+  * Separated installation of 32 and 64 kernels
+  * Refresh package list before start
+  * Added packages gomuks, tutanota-desktop, steamtinkerlaunch, guake, kopete
+
+-------------------------------------------------------------------------------
   Version 20210121.1~sparky6~0 (2021-01-21)
 -------------------------------------------------------------------------------
   * Small fixes

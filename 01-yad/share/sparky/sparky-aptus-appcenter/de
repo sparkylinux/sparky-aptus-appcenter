@@ -2,7 +2,7 @@
 # It based on Sparky APTus 
 # Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 # Under the GNU GPL v3
-# Last update 2020/10/20 by pavroo
+# Last update 2021/02/18 by pavroo
 LOCAL001="Exit"
 LOCAL002="Stelle sicher, das die Paketliste aktuell ist, bevor du dieses startest.\n\nMöchtest du nun installieren?"
 LOCAL003="Internet Verbindungstest fehlgeschlagen!\n\nWahrscheinlich bist du NICHT mit dem Internet verbunden oder der Hauptversionsserver ist nicht verfügbar..\n\nÜberprüfe das und versuche es erneut."
@@ -86,3 +86,6 @@ LOCAL080="Install current stable XanMod Linux kernel"
 LOCAL081="Install Long Term Support XanMod kernel"
 LOCAL082="Install latest Real-time XanMod Linux kernel"
 LOCAL083="Install stable Real-time XanMod Linux kernel"
+LOCAL084="You can use APTus AppCenter anyway, but package list is out of date so installation of new packages can be limited."
+LOCAL085="Refreshing package list..."
+LOCAL086="Please wait..."

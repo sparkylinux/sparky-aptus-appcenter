@@ -3,7 +3,7 @@
 # Copyright 2017 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 # Under the GNU GPL v3
 # Translated by 2017/11/02 by seacat
-# Last update 2020/10/20 by pavroo
+# Last update 2021/02/18 by pavroo
 LOCAL001="Salir"
 LOCAL002="Antes de comenzar, asegúrese que la lista de paquetes está actualizada.\n\n¿Desea instalar ahora?"
 LOCAL003="¡Falló la prueba de la conexión de Internet!\n\nProbablemente NO esté conectado a Internet o el servidor principal del repositorio esté caído.\n\nVerifique esto y vuelva a intentarlo."
@@ -87,3 +87,6 @@ LOCAL080="Install current stable XanMod Linux kernel"
 LOCAL081="Install Long Term Support XanMod kernel"
 LOCAL082="Install latest Real-time XanMod Linux kernel"
 LOCAL083="Install stable Real-time XanMod Linux kernel"
+LOCAL084="You can use APTus AppCenter anyway, but package list is out of date so installation of new packages can be limited."
+LOCAL085="Refreshing package list..."
+LOCAL086="Please wait..."

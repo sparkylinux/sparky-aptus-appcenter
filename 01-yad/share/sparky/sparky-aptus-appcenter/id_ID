@@ -3,7 +3,7 @@
 # Copyright 2017 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Under the GNU GPL v3
 # Translated to Indonesian by les kompie
-# Last update 2020/10/20 by pavroo
+# Last update 2021/02/18 by pavroo
 LOCAL001="Keluar"
 LOCAL002="Pastikan daftar paket sudah diperbarui, sebelum memulai ini.\n\nApakah anda mau menginstal sekarang?"
 LOCAL003="Uji koneksi internet gagal!\n\nMungkin anda tidak terhubung ke Internet, atau server repositori utama sedang mati.\n\nPeriksa dan coba lagi."
@@ -87,3 +87,6 @@ LOCAL080="Install current stable XanMod Linux kernel"
 LOCAL081="Install Long Term Support XanMod kernel"
 LOCAL082="Install latest Real-time XanMod Linux kernel"
 LOCAL083="Install stable Real-time XanMod Linux kernel"
+LOCAL084="You can use APTus AppCenter anyway, but package list is out of date so installation of new packages can be limited."
+LOCAL085="Refreshing package list..."
+LOCAL086="Please wait..."
