@@ -2,7 +2,7 @@
 APTus AppCenter by pavroo <pavroo@onet.eu> 2018
 Improvenments by Piotr "MoroS" Mrożek
 License: GNU GPL 3
-Last update: October 26, 2020 by pavroo
+Last update: March 2, 2021 by pavroo
 */
 
 body {
@@ -441,8 +441,8 @@ img.aligncenter {
 	/*background-color: #727272;*/
 	background-color: white;
 	border-radius: 3px;
-	width: 120px;
-	height: 120px;
+	width: 110px;
+	height: 110px;
 	/*color: white;*/
 	color: black;
 	padding: 16px 16px;

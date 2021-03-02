@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20210302~sparky6~0 (2021-03-02)
+-------------------------------------------------------------------------------
+  * Small fixes
+  * Added linphone-desktop, amarok, alacritty, cool-retro-term, tilix, sparky-system, tbsm, bemenu, fbpanel
+  * Removed flashplayer-chromium, flashplayer-mozilla, plm
+
+-------------------------------------------------------------------------------
   Version 20210219~sparky6~0 (2021-02-19)
 -------------------------------------------------------------------------------
   * Added installation of Debian RealTime Linux kernel
