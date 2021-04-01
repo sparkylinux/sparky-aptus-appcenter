@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # old-kernel-remover by pavroo <pavroo@onet.eu>
-# Last update 2021/03/08
+# Last update 2021/04/01
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
 if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
 . $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
 elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
 . $DEFLOCDIR/es
 elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then

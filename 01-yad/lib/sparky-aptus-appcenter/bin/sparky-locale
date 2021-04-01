@@ -2,13 +2,15 @@
 
 # Sparky APTus Locale script will install missing language packages
 # Created by Paweł "pavroo" Pijanowski 2014/05/21
-# Copyright 2014-2020 under the GNU GPL2 License
-# Last update 2020/10/05
+# Copyright 2014-2021 under the GNU GPL2 License
+# Last update 2021/04/01
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
 if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
 . $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
 elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
 . $DEFLOCDIR/es
 elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
@@ -39,13 +41,75 @@ if [ "$testroot" != "root" ]; then
 	exit 1
 fi
 
-action=$(yad --width 400 --entry --title "APTus" \
-    --image=preferences-desktop-locale \
-    --window-icon=sparky-aptus-appcenter \
-    --button=Ok:0 --button=$LOCAL001:1 \
-    --text "APTus Locale $LOCAL038:" \
-    --entry-text \
-    "Afrikaans" "Albanian" "Arabic" "Armenian" "Belarusian" "Bengali" "Bosnian" "Bulgarian" "Croatian" "Czech" "Danish" "Dutch" "EnglishGB" "Esperanto" "Estonian" "Finnish" "French" "German" "Greek" "Hebrew" "Hindi" "Hungarian" "Icelandic" "Indonesian" "Italian" "Irish" "Japanese" "Kashubian" "Kazakh" "Korean" "Latvian" "Lithuanian" "Macedonian" "Nepali" "Norwegian" "Persian" "Polish" "PortugueseBR" "PortuguesePT" "Romanian" "Russian" "Serbian" "Slovak" "Slovenian" "Spanish" "Swedish" "Thai" "Turkish" "Uganda" "Ukrainian" "Vietnamese" "ChineseCN" "ChineseTR" "Zulu")
+DIALOG="`which yad` --window-icon=preferences-desktop-locale --width=500 --height=650 --center"
+TITLE="--always-print-result --dialog-sep --image=preferences-desktop-locale --title="
+TEXT="--text="
+TITLETEXT="APTus AppCenter Locale"
+OKEXIT=" --button=OK:0 --button=$LOCAL001:1 "
+MENU="--list --column=$LOCAL049 --column=$LOCAL050"
+
+CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"APTus AppCenter Locale $LOCAL038:" \
+Afrikaans "Afrikaans" \
+Albanian "Albanian" \
+Arabic "Arabic" \
+Armenian "Armenian" \
+Belarusian "Belarusian" \
+bengali "Bengali" \
+Bosnian "Bosnian" \
+Bulgarian "Bulgarian" \
+Croatian "Croatian" \
+Czech "Czech" \
+Danish "Danish" \
+Dutch "Dutch" \
+EnglishGB "EnglishGB" \
+Esperanto "Esperanto" \
+Estonian "Estonian" \
+Finnish "Finnish" \
+Frenach "French" \
+German "German" \
+Greek "Greek" \
+Hebrew "Hebrew" \
+Hindi "Hindi" \
+Hungarian "Hungarian" \
+Icelandic "Icelandic" \
+Indonesian "Indonesian" \
+Italian "Italian" \
+Irish "Irish" \
+Japanese "Japanese" \
+Kashubian "Kashubian" \
+Kazakh "Kazakh" \
+Korean "Korean" \
+Latvian "Latvian" \
+Lithuanian "Lithuanian" \
+Macedonian "Macedonian" \
+Nepali "Nepali" \
+Norwegian "Norwegian" \
+Persian "Persian" \
+Polish "Polish" \
+PortugueseBR "PortugueseBR" \
+PortuguesePT "PortuguesePT" \
+Romanian "Romanian" \
+Russian "Russian" \
+Serbian "Serbian" \
+Slovak "Slovak" \
+Slovenian "Slovenian" \
+Spanish "Spanish" \
+Swedish "Swedish" \
+Thai "Thai" \
+Turkish "Turkish" \
+Uganda "Uganda" \
+Ukrainian "Ukrainian" \
+Vietnamese "Vietnamese" \
+ChineseCN "ChineseCN" \
+ChineseTR "ChineseTR" \
+Zulu "Zulu" \
+Exit "$LOCAL001"`
+
+if [ "$?" = "0" ]; then
+	ACTION=`echo $CHOICES | cut -d "|" -f 1`
+else
+	exit 0
+fi
 
 if [ -d /tmp/sparkylocale ]; then
 	rm -rf /tmp/sparkylocale
@@ -54,7 +118,7 @@ fi
 mkdir -p /tmp/sparkylocale
 cp -a /usr/lib/sparky-aptus-appcenter/bin/sparky-locale-exe /tmp/sparkylocale
 
-case $action in
+case $ACTION in
     Afrikaans*)
         sed -i -e 's/$LANG/Afrikaans/' /tmp/sparkylocale/sparky-locale-exe
 	sed -i -e 's/$COUNTRY/af/' /tmp/sparkylocale/sparky-locale-exe

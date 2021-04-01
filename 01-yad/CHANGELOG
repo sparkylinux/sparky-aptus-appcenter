@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20210401~sparky6~0 (2021-04-01)
+-------------------------------------------------------------------------------
+  * Added polo-file-manager, gaupol, aegisub, pqiv, mirage, sxiv, qiv, phototonic, posterazor, fotoxx
+  * Added el_GR locale
+  * Fixed locale installation menu
+
+-------------------------------------------------------------------------------
   Version 20210312~sparky6~0 (2021-03-12)
 -------------------------------------------------------------------------------
   * Remove signed-template package from linux-image list of old-kernel-remover

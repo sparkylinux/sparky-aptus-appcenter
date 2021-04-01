@@ -2,12 +2,14 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/03/02 by pavroo
+# Last update 2021/04/01 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
 if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
 . $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
 elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
 . $DEFLOCDIR/es
 elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
@@ -452,6 +454,13 @@ elif [ "$1" = "anydesk" ]; then
 	PACKAGE="$1"
 elif [ "$1" = "teamviewer" ]; then
 	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# accesories file managers
+elif [ "$1" = "polo-file-manager" ]; then
+	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"

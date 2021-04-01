@@ -2,13 +2,15 @@
 
 # Sparky Locale Exe script is a part of sparky-locale
 # Created by Paweł "pavroo" Pijanowski 2014/05/21
-# Copyright 2014-2020 under the GNU GPL2 License
-# Last update 2020/10/05
+# Copyright 2014-2021 under the GNU GPL2 License
+# Last update 2021/04/01
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
 if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
 . $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
 elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
 . $DEFLOCDIR/es
 elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then

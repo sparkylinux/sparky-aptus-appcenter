@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Created by Piotr "MoroS" Mrożek 2018
-# Last update by Paweł "pavroo" Pijanowski November 9, 2020
+# Last update by Paweł "pavroo" Pijanowski April 1, 2021
 
 LANGUAGE=${LANG:0:2}
+EL=`echo $LANGUAGE | grep el`
 EN=`echo $LANGUAGE | grep en`
 HU=`echo $LANGUAGE | grep hu`
 IT=`echo $LANGUAGE | grep it`
@@ -11,7 +12,9 @@ PL=`echo $LANGUAGE | grep pl`
 PTBR=`echo $LANGUAGE | grep pt_BR`
 RU=`echo $LANGUAGE | grep ru`
 
-if [ "$HU" != "" ]; then
+if [ "$EL" != "" ]; then
+	LANGUAGE="$LANGUAGE"
+elif [ "$HU" != "" ]; then
 	LANGUAGE="$LANGUAGE"
 elif [ "$IT" != "" ]; then
 	LANGUAGE="$LANGUAGE"
