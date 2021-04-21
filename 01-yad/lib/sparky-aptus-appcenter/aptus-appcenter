@@ -9,7 +9,7 @@ EN=`echo $LANGUAGE | grep en`
 HU=`echo $LANGUAGE | grep hu`
 IT=`echo $LANGUAGE | grep it`
 PL=`echo $LANGUAGE | grep pl`
-PTBR=`echo $LANGUAGE | grep pt_BR`
+PT=`echo $LANGUAGE | grep pt`
 RU=`echo $LANGUAGE | grep ru`
 
 if [ "$EL" != "" ]; then
@@ -20,7 +20,7 @@ elif [ "$IT" != "" ]; then
 	LANGUAGE="$LANGUAGE"
 elif [ "$PL" != "" ]; then
 	LANGUAGE="$LANGUAGE"
-elif [ "$PTBR" != "" ]; then
+elif [ "$PT" != "" ]; then
 	LANGUAGE="$LANGUAGE"
 elif [ "$RU" != "" ]; then
 	LANGUAGE="$LANGUAGE"
