@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20210421~sparky6~0 (2021-04-21)
+-------------------------------------------------------------------------------
+  * Renamed pt_BR locale to pt
+  * Added filmulator, micro, ventoy, ventoy-gui, sunflower, rocketchat, protonmail-bridge
+  * Removed dolphin-emu, ppsspp
+
+-------------------------------------------------------------------------------
   Version 20210401~sparky6~0 (2021-04-01)
 -------------------------------------------------------------------------------
   * Added polo-file-manager, gaupol, aegisub, pqiv, mirage, sxiv, qiv, phototonic, posterazor, fotoxx

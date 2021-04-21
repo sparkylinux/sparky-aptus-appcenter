@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/04/01 by pavroo
+# Last update 2021/04/21 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -81,6 +81,11 @@ elif [ "$1" = "lutris" ]; then
 
 ##### graphics editors #####
 elif [ "$1" = "darktable" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "filmulator-gui" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
@@ -279,6 +284,11 @@ elif [ "$1" = "gmail-desktop" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+elif [ "$1" = "protonmail-bridge" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "tutanota-desktop" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
@@ -318,6 +328,11 @@ elif [ "$1" = "gomuks" ]; then
 	PACKAGE="$1"
 elif [ "$1" = "kopete" ]; then
 	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "rocketchat" ]; then
+	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
