@@ -5,7 +5,7 @@
 # exit 0 - Yad supports URL (goes to a next page)
 # exit 1 - Yad ignores URL (does nothing)
 # exit 2 - Yad treats URL as a file downloading (not tested yet)
-# Last update by pavroo November 9, 2020
+# Last update by pavroo May 24, 2021
 
 URI="$1"
 
@@ -97,6 +97,7 @@ if [[ "$URI" == aptus* ]]; then
 	CHECKNETP2P=`echo "$CMD" | grep netp2p`
 	CHECKNETACC=`echo "$CMD" | grep netacc`
 	CHECKNETRSS=`echo "$CMD" | grep netrss`
+	CHECKNETVPN=`echo "$CMD" | grep netvpn`
 	CHECKNETWEB=`echo "$CMD" | grep netweb`
 	CHECKWEBEXTRA=`echo "$CMD" | grep webextra`
 	#office
@@ -520,6 +521,13 @@ if [[ "$URI" == aptus* ]]; then
 		killall -9 yad
 		./bin/aptus-app $RUNNETRSS
 		./aptus-appcenter netrss01
+		exit 0
+	# net-vpn
+	elif [ "$CHECKNETVPN" != "" ]; then
+		RUNNETVPN=`echo "$CMD" | sed -e 's/netvpn_//'`
+		killall -9 yad
+		./bin/aptus-app $RUNNETVPN
+		./aptus-appcenter netvpn01
 		exit 0
 	# net-webbrowsers
 	elif [ "$CHECKNETWEB" != "" ]; then

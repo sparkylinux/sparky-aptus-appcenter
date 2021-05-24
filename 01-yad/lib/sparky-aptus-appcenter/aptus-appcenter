@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Created by Piotr "MoroS" Mrożek 2018
-# Last update by Paweł "pavroo" Pijanowski April 1, 2021
+# Last update by Paweł "pavroo" Pijanowski May 24, 2021
 
 LANGUAGE=${LANG:0:2}
 EL=`echo $LANGUAGE | grep el`
@@ -207,6 +207,9 @@ elif [ "$1" = "netacc01" ]; then
 # network rss
 elif [ "$1" = "netrss01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-rss.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# network vpn
+elif [ "$1" = "netvpn01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-vpn.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
 # network web browsers
 elif [ "$1" = "netweb01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-webbrowser.html" --user-agent="$LANGUAGE" --uri-handler="./handler"

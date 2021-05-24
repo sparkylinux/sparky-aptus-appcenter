@@ -1,7 +1,7 @@
 // Portuguese-Brazil localization file for main by eltonff
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2020/08/23 by pavroo
+// Last update 2021/05/24 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Programas";
@@ -73,6 +73,7 @@ dict.entries['main']['filetransfer'] = "Transferência de arquivo";
 dict.entries['main']['p2p'] = "P2P";
 dict.entries['main']['rss'] = "RSS";
 dict.entries['main']['universalaccess'] = "Acesso universal";
+dict.entries['main']['vpn'] = "VPN";
 dict.entries['main']['webbrowsers'] = "Navegadores da Web";
 // multimedia
 dict.entries['main']['audioeditors'] = "Editores de áudio";

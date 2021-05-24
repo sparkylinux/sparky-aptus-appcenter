@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20210524~sparky6~0 (2021-05-24)
+-------------------------------------------------------------------------------
+  * Separated instalation of openjdk and openjre
+  * Added librewolf, gnome-boxes, nmh, mmh, mailutils, fetchmail, getmail6, alot, astroid, citadel-client, fdm, gnumail.app, bsd-mailx, neomutt, notmuch, procmail, roundcube, riseup-vpn, protonvpn, connman-vpn, gadmin-openvpn-client, network-manager-openvpn-gnome, network-manager-vpnc-gnome, openfortivpn, softether-vpnclient, vpnc
+  * Added new subcategory VPN
+
+-------------------------------------------------------------------------------
   Version 20210517~sparky6~0 (2021-05-17)
 -------------------------------------------------------------------------------
   * Added changelog page

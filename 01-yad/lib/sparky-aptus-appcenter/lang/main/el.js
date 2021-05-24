@@ -1,7 +1,7 @@
 // Greek localization file for main
 // Originally created by Piotr "MoroS" MroÅ¼ek 2018
 // Under the GNU GPL v3
-// Last update 2021/02/28 by jidan
+// Last update 2021/05/24 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Εφαρμογές";
@@ -73,6 +73,7 @@ dict.entries['main']['filetransfer'] = "Μεταφορά αρχείων";
 dict.entries['main']['p2p'] = "Δίκτυα χρήστης-προς-χρήστη (p2p)";
 dict.entries['main']['rss'] = "Ροές Ειδήσεων (RSS)";
 dict.entries['main']['universalaccess'] = "Βοηθήματα Πρόσβασης";
+dict.entries['main']['vpn'] = "VPN";
 dict.entries['main']['webbrowsers'] = "Περιηγητές διαδικτύου";
 // multimedia
 dict.entries['main']['audioeditors'] = "Επεξεργαστές Ήχου";

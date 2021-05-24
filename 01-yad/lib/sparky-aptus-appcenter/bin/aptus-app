@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/05/15 by pavroo
+# Last update 2021/05/24 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -434,6 +434,11 @@ elif [ "$1" = "iron" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+elif [ "$1" = "librewolf" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "min" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
@@ -470,6 +475,18 @@ elif [ "$1" = "waterfox-classic-kpe" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "waterfox-current-kpe" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# web vpn #
+elif [ "$1" = "riseup-vpn" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "protonvpn" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
@@ -638,6 +655,8 @@ elif [ "$1" = "google-earth-pro-stable" ]; then
 	PACKAGE="google-earth-pro-stable"
 elif [ "$1" = "openoffice" ]; then
 	PACKAGE="openoffice"
+elif [ "$1" = "protonvpn" ]; then
+	PACKAGE="protonvpn"
 elif [ "$1" = "skypeforlinux" ]; then
 	PACKAGE="skypeforlinux"
 elif [ "$1" = "wps-office" ]; then
@@ -702,6 +721,8 @@ if [ "$DESCRIPTION2" = "" ]; then
 	elif [ "$1" = "google-earth-pro-stable" ]; then
 		DESCRIPTION2="$LOCAL075"
 	elif [ "$1" = "openoffice" ]; then
+		DESCRIPTION2="$LOCAL075"
+	elif [ "$1" = "protonvpn" ]; then
 		DESCRIPTION2="$LOCAL075"
 	elif [ "$1" = "skypeforlinux" ]; then
 		DESCRIPTION2="$LOCAL075"
@@ -787,7 +808,7 @@ elif [ "$1" = "openoffice" ]; then
 			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
-
+	
 # install, reinstall or remove skype
 elif [ "$1" = "skypeforlinux" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
