@@ -97,7 +97,7 @@ if [[ "$URI" == aptus* ]]; then
 	CHECKNETP2P=`echo "$CMD" | grep netp2p`
 	CHECKNETACC=`echo "$CMD" | grep netacc`
 	CHECKNETRSS=`echo "$CMD" | grep netrss`
-	CHECKNETVPN=`echo "$CMD" | grep netvpn`
+	CHECKNETPRV=`echo "$CMD" | grep netprv`
 	CHECKNETWEB=`echo "$CMD" | grep netweb`
 	CHECKWEBEXTRA=`echo "$CMD" | grep webextra`
 	#office
@@ -523,11 +523,11 @@ if [[ "$URI" == aptus* ]]; then
 		./aptus-appcenter netrss01
 		exit 0
 	# net-vpn
-	elif [ "$CHECKNETVPN" != "" ]; then
-		RUNNETVPN=`echo "$CMD" | sed -e 's/netvpn_//'`
+	elif [ "$CHECKNETPRV" != "" ]; then
+		RUNNETPRV=`echo "$CMD" | sed -e 's/netprv_//'`
 		killall -9 yad
-		./bin/aptus-app $RUNNETVPN
-		./aptus-appcenter netvpn01
+		./bin/aptus-app $RUNNETPRV
+		./aptus-appcenter netprv01
 		exit 0
 	# net-webbrowsers
 	elif [ "$CHECKNETWEB" != "" ]; then

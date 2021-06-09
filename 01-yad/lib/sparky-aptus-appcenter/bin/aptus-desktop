@@ -312,6 +312,7 @@ FOO
 
 killall -9 yad
 ./aptus-appcenter deskinst01
+exit 0
 
 ### system !=wrong end
 fi

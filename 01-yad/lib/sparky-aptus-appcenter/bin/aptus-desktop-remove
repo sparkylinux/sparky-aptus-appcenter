@@ -272,7 +272,7 @@ FOO
 killall -9 yad
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
-			
+exit 0		
 fi
 
 else		
@@ -346,7 +346,7 @@ FOO
 killall -9 yad
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
-
+exit 0
 fi
 
 exit 0

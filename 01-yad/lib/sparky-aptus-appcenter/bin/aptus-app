@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/05/24 by pavroo
+# Last update 2021/06/09 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -152,6 +152,11 @@ elif [ "$1" = "simplest-studio" ]; then
 
 ##### multimedia video players #####
 elif [ "$1" = "electronplayer" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "freetube" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
@@ -310,6 +315,11 @@ elif [ "$1" = "tutanota-desktop" ]; then
 	PACKAGE="$1"
 
 ##### web communication #####
+elif [ "$1" = "android-messages-desktop" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "caprine" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
@@ -337,6 +347,11 @@ elif [ "$1" = "franz" ]; then
 	PACKAGE="$1"
 elif [ "$1" = "gomuks" ]; then
 	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "hamsket" ]; then
+	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -947,6 +962,7 @@ FOO
 
 killall -9 yad
 ./aptus-appcenter packinst01
+exit 0
 
 fi
 ### system !=wrong end

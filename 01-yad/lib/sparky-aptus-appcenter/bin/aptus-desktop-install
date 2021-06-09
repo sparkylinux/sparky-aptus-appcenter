@@ -148,6 +148,7 @@ FOO
 killall -9 yad
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
+exit 0
 fi
 
 if [ ! -d /home/$TARGETUSER ]; then
@@ -215,7 +216,7 @@ FOO
 killall -9 yad
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
-
+exit 0
 fi
 
 # replace old desktop configs with the default ones
@@ -1776,7 +1777,7 @@ FOO
 killall -9 yad
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
-
+exit 0
 fi
 # end of replace old desktop configs with the default ones
 

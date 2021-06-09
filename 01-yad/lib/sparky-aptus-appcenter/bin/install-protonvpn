@@ -1,4 +1,0 @@
-CHECKPROTONVPN=`apt-cache policy protonvpn-stable-release | head -n2 | tail -n1 | grep [0-9]`
-	if [ "$CHECKPROTONVPN" = "" ]; then
-		
-	exit 0

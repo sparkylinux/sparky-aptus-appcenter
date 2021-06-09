@@ -208,7 +208,7 @@ elif [ "$1" = "netacc01" ]; then
 elif [ "$1" = "netrss01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-rss.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
 # network vpn
-elif [ "$1" = "netvpn01" ]; then
+elif [ "$1" = "netprv01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="net-vpn.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
 # network web browsers
 elif [ "$1" = "netweb01" ]; then
