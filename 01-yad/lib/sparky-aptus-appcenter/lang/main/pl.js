@@ -1,7 +1,7 @@
 // Polish localization file for main
 // Copyright 2018 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2021/05/25 by pavroo
+// Last update 2021/06/13 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Aplikacje";
@@ -97,6 +97,7 @@ dict.entries['main']['texteditors'] = "Edytory Tekstu";
 dict.entries['main']['others'] = "Inne";
 dict.entries['main']['next'] = "Następna Strona";
 dict.entries['main']['back'] = "Poprzednia Strona";
+dict.entries['main']['exit'] = "Zakończ";
 // system
 dict.entries['main']['backup'] = "Backup";
 dict.entries['main']['disk'] = "Dysk";

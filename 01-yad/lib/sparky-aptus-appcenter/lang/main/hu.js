@@ -2,7 +2,7 @@
 // English localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2021/05/24 by pavroo
+// Last update 2021/06/13 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Alkalmazások";
@@ -99,6 +99,7 @@ dict.entries['main']['texteditors'] = "Szövegszerkesztők";
 dict.entries['main']['others'] = "Egyebek";
 dict.entries['main']['next'] = "Következő oldal";
 dict.entries['main']['back'] = "Utolsó oldal";
+dict.entries['main']['exit'] = "Befejez";
 // system
 dict.entries['main']['backup'] = "Biztonsági mentés";
 dict.entries['main']['disk'] = "Lemez";

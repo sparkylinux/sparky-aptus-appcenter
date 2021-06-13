@@ -1,7 +1,7 @@
 // English localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2021/05/24 by pavroo
+// Last update 2021/06/13 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Applicazioni";
@@ -9,7 +9,7 @@ dict.entries['main']['categories'] = "Categorie";
 dict.entries['main']['aptus'] = "APTus";
 dict.entries['main']['info'] = "Informazioni";
 dict.entries['main']['translation'] = "Traduzioni:";
-// categorie
+// categories
 dict.entries['main']['accessories'] = "Accessori";
 dict.entries['main']['desktops'] = "Desktops";
 dict.entries['main']['development'] = "Sviluppo";
@@ -23,7 +23,7 @@ dict.entries['main']['office'] = "Ufficio";
 dict.entries['main']['science'] = "Scienza";
 dict.entries['main']['security'] = "Sicurezza";
 dict.entries['main']['system'] = "Sistema";
-// informazioni
+// info
 dict.entries['main']['info01'] = "Sparky APTus AppCenter ti permette di eseguire molte operazioni con i pacchetti tramite interfaccia grafica, comme:";
 dict.entries['main']['info02'] = "aggiornare la lista dei pacchetti";
 dict.entries['main']['info03'] = "installare applicazioni popolari";
@@ -45,7 +45,7 @@ dict.entries['main']['monitor'] = "Monitoraggio";
 dict.entries['main']['term'] = "Terminali";
 dict.entries['main']['usb'] = "USB";
 dict.entries['main']['weather'] = "Previsioni";
-// giochi
+// games
 dict.entries['main']['adventure'] = "Avventure";
 dict.entries['main']['arcade'] = "Arcade";
 dict.entries['main']['board'] = "da Tavolo";
@@ -62,7 +62,7 @@ dict.entries['main']['text'] = "Testuali";
 dict.entries['main']['emulators'] = "Emulatori";
 dict.entries['main']['tools'] = "Strumenti";
 dict.entries['main']['winapi'] = "Win API";
-// grafica
+// graphics
 dict.entries['main']['graphicseditors'] = "Editor Grafici";
 dict.entries['main']['graphicsviewers'] = "VIsualizzatori";
 dict.entries['main']['graphicsscreenshots'] = "ScreenShot";
@@ -85,7 +85,7 @@ dict.entries['main']['mixers'] = "Mixers";
 dict.entries['main']['subtitles'] = "Sottotitoli";
 dict.entries['main']['videoeditors'] = "Strumenti Video";
 dict.entries['main']['videoplayers'] = "Riroduttori Video";
-// ufficio
+// office
 dict.entries['main']['addressbooks'] = "Rubrica";
 dict.entries['main']['calculators'] = "Calcolatrici";
 dict.entries['main']['documentviewers'] = "VIsualizzatori di Documenti";
@@ -94,11 +94,12 @@ dict.entries['main']['notes'] = "Note";
 dict.entries['main']['officesuite'] = "Suite Office";
 dict.entries['main']['spreadsheet'] = "Fogli di Calcolo";
 dict.entries['main']['texteditors'] = "Editor di Testo";
-// varie
+// others
 dict.entries['main']['others'] = "Vari";
 dict.entries['main']['next'] = "Prossima Pagina";
 dict.entries['main']['back'] = "Ultima Pagina";
-// sistema
+dict.entries['main']['exit'] = "Finire";
+// system
 dict.entries['main']['backup'] = "Backup";
 dict.entries['main']['disk'] = "Dischi";
 dict.entries['main']['encrypt'] = "Crittazione";
@@ -107,7 +108,7 @@ dict.entries['main']['kernel'] = "Kernels";
 dict.entries['main']['package'] = "Pacchetti";
 dict.entries['main']['shells'] = "Shells";
 dict.entries['main']['virtual'] = "Virtual";
-// ricerca
+// search
 dict.entries['main']['search'] = "Cerca";
 dict.entries['main']['info12'] = "Cerca risultati per la parola:";
 dict.entries['main']['info13'] = "Mi spiace, non riesco a trovare quello che cerchi.";

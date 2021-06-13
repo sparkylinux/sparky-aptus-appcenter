@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2021/04/01 by pavroo
+# last update 2021/06/13 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -113,6 +113,7 @@ Last update: November 9, 2020 by pavroo
 			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
 			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
 			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+			<li><a href="aptus://zero_exit"><span><script>dict.print('main', 'exit');</script></span></a></li>
 		</ul>
 	</div>
 	<div id="page">
@@ -181,6 +182,7 @@ Last update: November 9, 2020 by pavroo
 			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
 			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
 			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+			<li><a href="aptus://zero_exit"><span><script>dict.print('main', 'exit');</script></span></a></li>
 		</ul>
 	</div>
 	<div id="page">
@@ -1742,6 +1744,7 @@ Last update: November 9, 2020 by pavroo
 			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
 			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
 			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+			<li><a href="aptus://zero_exit"><span><script>dict.print('main', 'exit');</script></span></a></li>
 		</ul>
 	</div>
 	<div id="page">

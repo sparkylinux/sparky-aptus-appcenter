@@ -1,7 +1,7 @@
 // Russian localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2021/05/24 by pavroo
+// Last update 2021/06/13 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Приложения";
@@ -98,6 +98,7 @@ dict.entries['main']['texteditors'] = "Текстовые редакторы";
 dict.entries['main']['others'] = "Другие";
 dict.entries['main']['next'] = "Следующая страница";
 dict.entries['main']['back'] = "Предыдущая страница";
+dict.entries['main']['exit'] = "Заканчивать";
 // system
 dict.entries['main']['backup'] = "Резервное копирование";
 dict.entries['main']['disk'] = "Диск";
