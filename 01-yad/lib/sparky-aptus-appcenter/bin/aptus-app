@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/06/13 by pavroo
+# Last update 2021/07/23 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -85,6 +85,11 @@ elif [ "$1" = "darktable" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+elif [ "$1" = "enve" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "filmulator-gui" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
@@ -117,7 +122,17 @@ elif [ "$1" = "deadbeef" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+elif [ "$1" = "nuclear" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "sayonara" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "shortwave" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
@@ -189,6 +204,11 @@ elif [ "$1" = "ciano" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "clipgrab" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "lightworks" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
@@ -398,6 +418,13 @@ elif [ "$1" = "spideroakone" ]; then
 	fi
 	PACKAGE="$1"
 
+##### web p2p #####
+elif [ "$1" = "frostwire" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+	
 ##### web browsers #####
 elif [ "$1" = "beaker-browser" ]; then
 	if [ "$ARCH64" = "" ]; then
@@ -484,6 +511,11 @@ elif [ "$1" = "tor-browser" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+elif [ "$1" = "viper-browser" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="viper-browser"
 elif [ "$1" = "waterfox-classic-kpe" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
@@ -543,6 +575,11 @@ elif [ "$1" = "cpu-x" ]; then
 # accesories other
 elif [ "$1" = "bemenu" ]; then
 	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "komorebi" ]; then
+	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
