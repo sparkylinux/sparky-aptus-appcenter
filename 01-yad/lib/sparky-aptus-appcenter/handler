@@ -5,7 +5,7 @@
 # exit 0 - Yad supports URL (goes to a next page)
 # exit 1 - Yad ignores URL (does nothing)
 # exit 2 - Yad treats URL as a file downloading (not tested yet)
-# Last update by pavroo June 13, 2021
+# Last update by pavroo July 24, 2021
 
 URI="$1"
 
@@ -127,7 +127,7 @@ if [[ "$URI" == aptus* ]]; then
 	CHECKSYSVIR=`echo "$CMD" | grep sysvir`
 	#
 	CHECKERROR=`echo "$CMD" | grep error`
-	CHECKBACK=`echo "$CMD" | grep back`
+	CHECKIDZI=`echo "$CMD" | grep idzi`
 	CHECKPACK=`echo "$CMD" | grep packinst`
 	CHECKDEBINSTALL=`echo "$CMD" | grep debinst`
 	CHECKDEBREINSTALL=`echo "$CMD" | grep debrein`
@@ -695,8 +695,8 @@ if [[ "$URI" == aptus* ]]; then
 	elif [ "$CHECKERROR" != "" ]; then
 		./aptus-appcenter error01
 		exit 0
-	# back
-	elif [ "$CHECKBACK" != "" ]; then
+	# idzi (old back)
+	elif [ "$CHECKIDZI" != "" ]; then
 		killall -9 yad
 		exit 0
 	# pack install page

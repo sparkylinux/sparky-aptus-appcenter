@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/07/23 by pavroo
+# Last update 2021/07/24 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -647,7 +647,7 @@ Last update: October 26, 2020 by pavroo
 	</div>
 	<div id="menu-wrapper-back">
 		<ul id="menu">
-			<li><a href="aptus://back_back"><span>&laquo;-- </span></a></li>
+			<li><a href="aptus://idzi_idzi"><span>&laquo;-- </span></a></li>
 			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
 			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
 			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
@@ -667,7 +667,7 @@ Last update: October 26, 2020 by pavroo
 		<br />&nbsp;
 		$ERRORTEXT <br />
 		<br />&nbsp;
-		<a href="aptus://back_back" class="buttonmenu"><<-- Back</a><br />
+		<a href="aptus://idzi_idzi" class="buttonmenu"><<-- Back</a><br />
 		<br />
 	</tr>
 </tbody>
@@ -698,24 +698,24 @@ if [ -f /tmp/sparky-app1 ]; then
 	rm -f /tmp/sparky-app1
 fi
 apt show $PACKAGE > /tmp/sparky-app1
-PACKAGE=`cat /tmp/sparky-app1 | grep Package:`
-if [ "$1" = "discord" ]; then
-	PACKAGE="discord"
-elif [ "$1" = "google-chrome-stable" ]; then
-	PACKAGE="google-chrome-stable"
-elif [ "$1" = "google-earth-pro-stable" ]; then
-	PACKAGE="google-earth-pro-stable"
-elif [ "$1" = "openoffice" ]; then
-	PACKAGE="openoffice"
-elif [ "$1" = "protonvpn" ]; then
-	PACKAGE="protonvpn"
-elif [ "$1" = "skypeforlinux" ]; then
-	PACKAGE="skypeforlinux"
-elif [ "$1" = "wps-office" ]; then
-	PACKAGE="wps-office"
-else
-	PACKAGE="$PACKAGE"
-fi
+#PACKAGE=`cat /tmp/sparky-app1 | grep Package:`
+#if [ "$1" = "discord" ]; then
+#	PACKAGE="discord"
+#elif [ "$1" = "google-chrome-stable" ]; then
+#	PACKAGE="google-chrome-stable"
+#elif [ "$1" = "google-earth-pro-stable" ]; then
+#	PACKAGE="google-earth-pro-stable"
+#elif [ "$1" = "openoffice" ]; then
+#	PACKAGE="openoffice"
+#elif [ "$1" = "protonvpn" ]; then
+#	PACKAGE="protonvpn"
+#elif [ "$1" = "skypeforlinux" ]; then
+#	PACKAGE="skypeforlinux"
+#elif [ "$1" = "wps-office" ]; then
+#	PACKAGE="wps-office"
+#else
+#	PACKAGE="$PACKAGE"
+#fi
 VERSION=`cat /tmp/sparky-app1 | grep Version:`
 if [ "$VERSION" != "" ]; then
 	VERSION="$VERSION"
@@ -794,16 +794,16 @@ if [ "$1" = "discord" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
 		PACKTITLE="Remove or Reinstall Package"
 		PACKTEXT="$LOCAL011 $LOCAL012"
-		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"	
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"	
 	elif [ "$CHECKPACKAGE0" = "" ]; then
 		if [ "$PINGTEST" = "" ]; then
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL003 $LOCAL005"
-			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		else
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL014"
-			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
@@ -812,16 +812,16 @@ elif [ "$1" = "google-chrome-stable" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
 		PACKTITLE="Remove or Reinstall Package"
 		PACKTEXT="$LOCAL011 $LOCAL012"
-		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
 		if [ "$PINGTEST" = "" ]; then
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL003 $LOCAL005"
-			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		else
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL014"
-			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
@@ -830,16 +830,16 @@ elif [ "$1" = "google-earth-pro-stable" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
 		PACKTITLE="Remove or Reinstall Package"
 		PACKTEXT="$LOCAL011 $LOCAL012"
-		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
 		if [ "$PINGTEST" = "" ]; then
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL003 $LOCAL005"
-			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		else
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL014"
-			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
@@ -848,16 +848,16 @@ elif [ "$1" = "openoffice" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
 		PACKTITLE="Remove or Reinstall Package"
 		PACKTEXT="$LOCAL011 $LOCAL012"
-		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
 		if [ "$PINGTEST" = "" ]; then
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL003 $LOCAL005"
-			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		else
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL014"
-			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 	
@@ -866,16 +866,16 @@ elif [ "$1" = "skypeforlinux" ]; then
 	if [ "$CHECKPACKAGE0" != "" ]; then
 		PACKTITLE="Remove or Reinstall Package"
 		PACKTEXT="$LOCAL011 $LOCAL012"
-		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
 		if [ "$PINGTEST" = "" ]; then
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL003 $LOCAL005"
-			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		else
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL014"
-			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
@@ -889,16 +889,16 @@ elif [ "$1" = "wps-office" ]; then
 	if [ -f /usr/bin/wps ]; then
 		PACKTITLE="Remove or Reinstall Package"
 		PACKTEXT="$LOCAL011 $LOCAL012"
-		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ ! -f /usr/bin/wps ]; then
 		if [ "$PINGTEST" = "" ]; then
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL003 $LOCAL005"
-			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		else
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL014"
-			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 
@@ -907,16 +907,16 @@ else
 	if [ "$CHECKPACKAGE0" != "" ]; then
 		PACKTITLE="Remove or Reinstall Package"
 		PACKTEXT="$LOCAL011 $LOCAL012"
-		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ "$CHECKPACKAGE0" = "" ]; then
 		if [ "$PINGTEST" = "" ]; then
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL003 $LOCAL005"
-			PACKBUTTONS="<a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		else
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL014"
-			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://back_back" class="buttonmenu">$LOCAL001</a><br />"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 		fi
 	fi
 fi
@@ -942,7 +942,7 @@ Last update: October 26, 2020 by pavroo
 	</div>
 	<div id="menu-wrapper-back">
 		<ul id="menu">
-			<li><a href="aptus://back_back"><span>&laquo;-- </span></a></li>
+			<li><a href="aptus://idzi_idzi"><span>&laquo;-- </span></a></li>
 			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
 			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
 			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
