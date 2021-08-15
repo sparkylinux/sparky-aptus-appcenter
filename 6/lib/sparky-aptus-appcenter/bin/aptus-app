@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/08/01 by pavroo
+# Last update 2021/08/15 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -200,6 +200,11 @@ elif [ "$1" = "stremio" ]; then
 ##### multimedia video tools #####
 elif [ "$1" = "ciano" ]; then
 	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "cin" ]; then
+	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -574,6 +579,11 @@ elif [ "$1" = "cpu-x" ]; then
 
 # accesories other
 elif [ "$1" = "bemenu" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "gammy" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
