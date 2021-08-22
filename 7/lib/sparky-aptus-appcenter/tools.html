@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2020
+License: GNU GPL 3
+Last update: June 13, 2021 by pavroo
+-->
+	<head>
+		<title>APTus Tools | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+			<li><a href="aptus://zero_exit"><span><script>dict.print('main', 'exit');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+				<br />
+<!-- table 1 -->
+<div style="text-align: center;">
+<div class="column9">
+<div class="column10">
+<div class="column11">
+<div class="column12">
+	<tr>
+		<!-- refresh package list -->
+		<td><a href="aptus://apttool_refresh" class="button2"><img src="images/system-refresh.svg" class="appicon"><br /><span><script>dict.print('apttool', 'refresh');</script></span></a>
+		</td>
+		<!-- upgrade -->
+		<td><a href="aptus://apttool_upgrade" class="button2"><img src="images/system-upgrade.svg" class="appicon"><br /><span><script>dict.print('apttool', 'upgrade');</script></span></a>
+		</td>
+		<!-- full upgrade -->
+		<td><a href="aptus://apttool_fullupgrade" class="button2"><img src="images/system-upgrade-full.svg" class="appicon"><br /><span><script>dict.print('apttool', 'fullupgrade');</script></span></a>
+		</td>
+		<!-- quick list -->
+		<td><a href="aptus://apttool_quicklist" class="button2"><img src="images/yellow-folder-saved-search.svg" class="appicon"><br /><span><script>dict.print('apttool', 'quicklist');</script></span></a>
+		</td>
+	</tr>
+	<tr>
+		<!-- install package from repo -->
+		<td><a href="aptus://apttool_installdebrepo" class="button2"><img src="images/deb.svg" class="appicon"><br /><span><script>dict.print('apttool', 'installdebrepo');</script></span></a>
+		</td>
+		<!-- install package from local disk -->
+		<td><a href="aptus://apttool_installdeblocal" class="button2"><img src="images/red-folder-download.svg" class="appicon"><br /><span><script>dict.print('apttool', 'installdeblocal');</script></span></a>
+		</td>
+		<tr>
+		<!-- remove package -->
+		<td><a href="aptus://apttool_aptremove" class="button2"><img src="images/default-icon.svg" class="appicon"><br /><span><script>dict.print('apttool', 'aptremove');</script></span></a>
+		</td>
+		<!-- apt autoremove -->
+		<td><a href="aptus://apttool_aptautoremove" class="button2"><img src="images/user-trash.svg" class="appicon"><br /><span><script>dict.print('apttool', 'aptautoremove');</script></span></a>
+		</td>
+	</tr>
+	<tr>	
+		<!-- apt clean -->
+		<td><a href="aptus://apttool_aptclean" class="button2"><img src="images/user-trash-full.svg" class="appicon"><br /><span><script>dict.print('apttool', 'aptclean');</script></span></a>
+		</td>
+		<!-- fix broken packages -->
+		<td><a href="aptus://apttool_fixpackages" class="button2"><img src="images/default-icon.svg" class="appicon"><br /><span><script>dict.print('apttool', 'fixpackages');</script></span></a>
+		</td>
+		<!-- edit main repo -->
+		<td><a href="aptus://apttool_mainrepo" class="button2"><img src="images/text-plain.svg" class="appicon"><br /><span><script>dict.print('apttool', 'mainrepo');</script></span></a>
+		</td>
+		<!-- edit custom repo -->
+		<td><a href="aptus://apttool_customrepo" class="button2"><img src="images/application-text.svg" class="appicon"><br /><span><script>dict.print('apttool', 'customrepo');</script></span></a>
+		</td>
+	</tr>
+	<tr>
+		<!-- install lang packages -->
+		<td><a href="aptus://apttool_lang" class="button2"><img src="images/preferences-desktop-locale.svg" class="appicon"><br /><span><script>dict.print('apttool', 'lang');</script></span></a>
+		</td>
+		<!-- remove non-free -->
+		<td><a href="aptus://apttool_nonfree" class="button2"><img src="images/nonfree.svg" class="appicon"><br /><span><script>dict.print('apttool', 'nonfree');</script></span></a>
+		</td>
+		<!-- clean user cache -->
+		<td><a href="aptus://apttool_usercache" class="button2"><img src="images/user.svg" class="appicon"><br /><span><script>dict.print('apttool', 'usercache');</script></span></a>
+		</td>
+		<!-- empty -->
+		<td>
+		</td>
+	</tr>
+</tbody>
+</div>
+</div>
+</div>
+</div>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+
+</body>
+</html>

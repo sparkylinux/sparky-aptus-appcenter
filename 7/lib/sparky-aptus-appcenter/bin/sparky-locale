@@ -1,0 +1,462 @@
+#! /bin/bash
+
+# Sparky APTus Locale script will install missing language packages
+# Created by Paweł "pavroo" Pijanowski 2014/05/21
+# Copyright 2014-2021 under the GNU GPL2 License
+# Last update 2021/04/01
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+. $DEFLOCDIR/es
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo "Must be root... Exiting now..."
+	exit 1
+fi
+
+DIALOG="`which yad` --window-icon=preferences-desktop-locale --width=500 --height=650 --center"
+TITLE="--always-print-result --dialog-sep --image=preferences-desktop-locale --title="
+TEXT="--text="
+TITLETEXT="APTus AppCenter Locale"
+OKEXIT=" --button=OK:0 --button=$LOCAL001:1 "
+MENU="--list --column=$LOCAL049 --column=$LOCAL050"
+
+CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"APTus AppCenter Locale $LOCAL038:" \
+Afrikaans "Afrikaans" \
+Albanian "Albanian" \
+Arabic "Arabic" \
+Armenian "Armenian" \
+Belarusian "Belarusian" \
+bengali "Bengali" \
+Bosnian "Bosnian" \
+Bulgarian "Bulgarian" \
+Croatian "Croatian" \
+Czech "Czech" \
+Danish "Danish" \
+Dutch "Dutch" \
+EnglishGB "EnglishGB" \
+Esperanto "Esperanto" \
+Estonian "Estonian" \
+Finnish "Finnish" \
+Frenach "French" \
+German "German" \
+Greek "Greek" \
+Hebrew "Hebrew" \
+Hindi "Hindi" \
+Hungarian "Hungarian" \
+Icelandic "Icelandic" \
+Indonesian "Indonesian" \
+Italian "Italian" \
+Irish "Irish" \
+Japanese "Japanese" \
+Kashubian "Kashubian" \
+Kazakh "Kazakh" \
+Korean "Korean" \
+Latvian "Latvian" \
+Lithuanian "Lithuanian" \
+Macedonian "Macedonian" \
+Nepali "Nepali" \
+Norwegian "Norwegian" \
+Persian "Persian" \
+Polish "Polish" \
+PortugueseBR "PortugueseBR" \
+PortuguesePT "PortuguesePT" \
+Romanian "Romanian" \
+Russian "Russian" \
+Serbian "Serbian" \
+Slovak "Slovak" \
+Slovenian "Slovenian" \
+Spanish "Spanish" \
+Swedish "Swedish" \
+Thai "Thai" \
+Turkish "Turkish" \
+Uganda "Uganda" \
+Ukrainian "Ukrainian" \
+Vietnamese "Vietnamese" \
+ChineseCN "ChineseCN" \
+ChineseTR "ChineseTR" \
+Zulu "Zulu" \
+Exit "$LOCAL001"`
+
+if [ "$?" = "0" ]; then
+	ACTION=`echo $CHOICES | cut -d "|" -f 1`
+else
+	exit 0
+fi
+
+if [ -d /tmp/sparkylocale ]; then
+	rm -rf /tmp/sparkylocale
+fi
+
+mkdir -p /tmp/sparkylocale
+cp -a /usr/lib/sparky-aptus-appcenter/bin/sparky-locale-exe /tmp/sparkylocale
+
+case $ACTION in
+    Afrikaans*)
+        sed -i -e 's/$LANG/Afrikaans/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/af/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/saf/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Albanian*)
+	sed -i -e 's/$LANG/Albanian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/sq/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/al/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Arabic*)
+        sed -i -e 's/$LANG/Arabic/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/arabic/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/ar/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/ps/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Armenian*)
+	sed -i -e 's/$LANG/Armenian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/hy-am/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/am/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Belarusian*)
+        sed -i -e 's/$LANG/Belarusian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/balerusian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/be/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/by/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Bengali*)
+        sed -i -e 's/$LANG/Bengali/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/bengali/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/bn-in/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/in/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Bosnian*)
+        sed -i -e 's/$LANG/Bosnian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/bosnian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/bs/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/bos/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Bulgarian*)
+        sed -i -e 's/$LANG/Bulgarian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/bulgarian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/bg/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/bg/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Croatian*)
+	sed -i -e 's/$LANG/Croatian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/croatian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/hr/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/hr/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Czech*)
+        sed -i -e 's/$LANG/Czech/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/czech/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/cs/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/cz/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Danish*)
+        sed -i -e 's/$LANG/Danish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/danish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/da/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/dk/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Dutch*)
+	sed -i -e 's/$LANG/Dutch/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/dutch/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/nl/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/nl/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    EnglishGB*)
+        sed -i -e 's/$LANG/EnglishGB/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/calligra-l10n-$COUNTRY/calligra-l10n-engb/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/british/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/aspell-$COUNTRY/aspell-en/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/en-gb/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/uk/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Esperanto*)
+	sed -i -e 's/$LANG/Esperanto/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/esperanto/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/eo/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/esp/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Estonian*)
+        sed -i -e 's/$LANG/Estonian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/estonian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/et/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/ee/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Finnish*)
+	sed -i -e 's/$LANG/Finnish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/finnish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/fi/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/fi/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    French*)
+	sed -i -e 's/$LANG/French/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/french/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/fr/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/fr/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    German*)
+        sed -i -e 's/$LANG/German/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/german/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/myspell-$COUNTRY/myspell-de-de/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/de/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/de/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Greek*)
+        sed -i -e 's/$LANG/Greek/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/greek/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/el/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/gr/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Hebrew*)
+	sed -i -e 's/$LANG/Hebrew/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/hebrew/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/he/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/il/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Hindi*)
+	sed -i -e 's/$LANG/Hindi/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/hindi/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/hi-in/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/in/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Hungarian*)
+	sed -i -e 's/$LANG/Hungarian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/hungarian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/hu/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/hu/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Icelandic*)
+	sed -i -e 's/$LANG/Icelandic/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/icelandic/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/is/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/is/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Indonesian*)
+	sed -i -e 's/$LANG/Indonesian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/indonesian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/id/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/indo/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Irish*)
+	sed -i -e 's/$LANG/Irish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/calligra-l10n-$COUNTRY/calligra-l10n-engb/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/irish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/aspell-$COUNTRY/aspell-en/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/en-gb/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/ir/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Italian*)
+	sed -i -e 's/$LANG/Italian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/italian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/it/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/it/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Japanese*)
+	sed -i -e 's/$LANG/Japanese/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/japanese/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/ja/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/jp/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Kashubian*)
+	sed -i -e 's/$LANG/Kashubian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/csb/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/pl/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Kazakh*)
+	sed -i -e 's/$LANG/Kazakh/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/kazakh/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/kk/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/kaz/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Korean*)
+	sed -i -e 's/$LANG/Korean/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/korean/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/ko/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/kr/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Latvian*)
+	sed -i -e 's/$LANG/Latvian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/latvian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/lv/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/lat/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Lithuanian*)
+	sed -i -e 's/$LANG/Lithuanian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/lithuanian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/lt/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/lt/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Macedonian*)
+	sed -i -e 's/$LANG/Macedonian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/macedonian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/mk/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/mk/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Nepali*)
+	sed -i -e 's/$LANG/Nepali/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/nepali/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/ne/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/ne/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Norwegian*)
+	sed -i -e 's/$LANG/Norwegian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/norwegian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/nn-no/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/no/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Persian*)
+	sed -i -e 's/$LANG/Persian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/persian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/fa/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/per/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Polish*)
+	sed -i -e 's/$LANG/Polish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/polish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/pl/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/pl/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    PortugueseBR*)
+	sed -i -e 's/$LANG/PortugueseBR/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/calligra-l10n-$COUNTRY/calligra-l10n-ptbr/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/brazilian-portuguese/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/pt-br/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/br/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    PortuguesePT*)
+	sed -i -e 's/$LANG/PortuguesePT/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/libreoffice-help-$COUNTRY/libreoffice-help-pt/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/calligra-l10n-$COUNTRY/calligra-l10n-pt/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/portuguese/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/pt-pt/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/pt/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Romanian*)
+	sed -i -e 's/$LANG/Romanian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/romanian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/ro/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/ro/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Russian*)
+        sed -i -e 's/$LANG/Russian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/russian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/ru/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/ru/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Serbian*)
+	sed -i -e 's/$LANG/Serbian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/serbian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/sr/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/sr/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Slovak*)
+	sed -i -e 's/$LANG/Slovak/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/slovak/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/sk/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/sk/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Slovenian*)
+	sed -i -e 's/$LANG/Slovenian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/slovenian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/sl/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/si/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Spanish*)
+        sed -i -e 's/$LANG/Spanish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/calligra-l10n-$COUNTRY/calligra-l10n-es/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/libreoffice-help-$COUNTRY/libreoffice-help-es/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/spanish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/es-es/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/es/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Swedish*)
+	sed -i -e 's/$LANG/Swedish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/swedish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/aspell-$COUNTRY/aspell-sv/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/sv-se/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/se/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Thai*)
+	sed -i -e 's/$LANG/Thai/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/thai/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/th/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/th/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Turkish*)
+	sed -i -e 's/$LANG/Turkish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/turkish/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/tr/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/tr/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Uganda*)
+	sed -i -e 's/$LANG/Uganda/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/ach/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/ug/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Ukrainian*)
+	sed -i -e 's/$LANG/Ukrainian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/ukrainian/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/uk/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/ua/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Vietnamese*)
+	sed -i -e 's/$LANG/Vietnamese/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/vietnamese/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/vi/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/vn/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    ChineseCN*)
+	sed -i -e 's/$LANG/ChineseCN/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/calligra-l10n-$COUNTRY/calligra-l10n-zhcn/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/chinese-s/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/zh-cn/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/zh/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    ChineseTR*)
+	sed -i -e 's/$LANG/ChineseTR/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/calligra-l10n-$COUNTRY/calligra-l10n-zhtw/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$LANGTASK/chinese-t/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/zh-tw/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/zh/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    Zulu*)
+	sed -i -e 's/$LANG/Zulu/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$COUNTRY/zu/' /tmp/sparkylocale/sparky-locale-exe
+	sed -i -e 's/$IMG/saf/' /tmp/sparkylocale/sparky-locale-exe
+	;;
+    *) exit 1 ;;        
+esac
+
+eval exec $cmd
+
+chmod a+x /tmp/sparkylocale/sparky-locale-exe
+/tmp/sparkylocale/sparky-locale-exe
+rm -rf /tmp/sparkylocale
+
+exit 0

@@ -1,0 +1,1023 @@
+#!/bin/bash
+
+# Application installer
+# Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2021/08/15 by pavroo
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+. $DEFLOCDIR/es
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo "Must be root... Exiting now..."
+	exit 1
+fi
+
+PINGTEST=$(ping -c 1 debian.org | grep [0-9])
+if [ -f /usr/bin/spterm ]; then
+	SPARKYXTERM="spterm -e"
+elif [ -f /usr/bin/sparky-xterm ]; then
+	SPARKYXTERM="sparky-xterm"
+elif [ -f /usr/bin/x-terminal-emulator ]; then
+	SPARKYXTERM="x-terminal-emulator -e"
+else
+	echo "x terminal emulator is missing... exiting..."
+	exit 1
+fi
+ARCH64="`uname -m | grep x86_64`"
+ARCH32="`uname -m | grep 686`"
+ARCHARM="`uname -m | grep arm`"
+# checking Sparky 4/5/6
+#SPARKYVERCHECK6="`cat /etc/lsb-release | grep Tolo`"
+#SPARKYVERCHECK5="`cat /etc/lsb-release | grep Nibiru`"
+#SPARKYVERCHECK4="`cat /etc/lsb-release | grep Tyche`"
+
+if [ -f /usr/lib/sparky-aptus-appcenter/page-error.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/page-error.html
+fi
+
+if [ -f /usr/lib/sparky-aptus-appcenter/page-install.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/page-install.html
+fi
+
+##### games tools #####
+if [ "$1" = "itch" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "lutris" ]; then
+	if [ "$ARCH32" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### graphics editors #####
+elif [ "$1" = "darktable" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "enve" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "filmulator-gui" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "lazpaint" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "lightzone" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "opentoonz" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "xnview" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### multimedia audio players #####
+elif [ "$1" = "deadbeef" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "nuclear" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "sayonara" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "shortwave" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "spotify-client" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "strawberry" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "yarock" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### multimedia audio tools #####
+elif [ "$1" = "amarok" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "simplest-studio" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### multimedia video players #####
+elif [ "$1" = "electronplayer" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "freetube" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "motionbox" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "popcorn-time" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "rage" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "stremio" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### multimedia video tools #####
+elif [ "$1" = "ciano" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "cin" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "clipgrab" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "lightworks" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "mystiq" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "shutter-encoder" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### office note #####
+elif [ "$1" = "boostnote" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "cherrytree" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "joplin" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "zettlr" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### office others #####
+elif [ "$1" = "tagspaces" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### office text #####
+elif [ "$1" = "atom" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "cudatext" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "hiero" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "lite-editor" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "notepadqq" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### office suite #####
+elif [ "$1" = "freeoffice" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="softmaker-freeoffice-2018"
+elif [ "$1" = "libreoffice" ]; then
+	# check is OpenOffice installed
+	CHECKOO=`apt-cache policy openoffice | head -n2 | tail -n1 | grep [0-9]`
+	if [ "$CHECKOO" != "" ]; then
+		ERROROFFICE="openoff"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "openoffice" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	# check is LibreOffice installed
+	if [ -f /usr/bin/libreoffice ]; then
+		ERROROFFICE="libreoff"
+	fi
+	PACKAGE="$1"
+	OOPACKAGES="openoffice-brand-en-us openoffice-brand-writer openoffice-brand-calc openoffice-brand-impress openoffice-brand-base openoffice-brand-draw openoffice-brand-math openoffice-pyuno openoffice-ooofonts openoffice-ooolinguistic openoffice-debian-menus"
+elif [ "$1" = "wps-office" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+	WPSPACKAGES="wps-office-fonts"
+
+##### web download #####
+elif [ "$1" = "uget-integrator" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### web email #####
+elif [ "$1" = "gmail-desktop" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "protonmail-bridge" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "tutanota-desktop" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### web communication #####
+elif [ "$1" = "android-messages-desktop" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "caprine" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "deltachat-desktop" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "discord" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "element-desktop" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "franz" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "gomuks" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "hamsket" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "kopete" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "rocketchat" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "skypeforlinux" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "tor-messenger" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### web others #####
+elif [ "$1" = "dropbox" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "google-earth-pro-stable" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKEARTH="$PACKE64"
+elif [ "$1" = "megasync" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "spideroakone" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### web p2p #####
+elif [ "$1" = "frostwire" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+	
+##### web browsers #####
+elif [ "$1" = "beaker-browser" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "brave-browser" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "cyberfox" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "dooble" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "falkon" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "firefox-latest" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="firefox"
+elif [ "$1" = "google-chrome-stable" ]; then
+	if [ "$ARCH64" = "" ]; 	then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "icecat" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "iridium-browser" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "iron" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "librewolf" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "min" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "next" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "opera-stable" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "seamonkey" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "slimjet" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "tor-browser" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "viper-browser" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="viper-browser"
+elif [ "$1" = "waterfox-classic-kpe" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "waterfox-current-kpe" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# web vpn #
+elif [ "$1" = "riseup-vpn" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "protonvpn" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# net remote access
+elif [ "$1" = "anydesk" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "teamviewer" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# accesories file managers
+elif [ "$1" = "polo-file-manager" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# accessories usb
+elif [ "$1" = "balena-etcher-electron" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# accessories monitoring
+elif [ "$1" = "cpu-x" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# accesories other
+elif [ "$1" = "bemenu" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "gammy" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "komorebi" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# accesories terminal
+elif [ "$1" = "alacritty" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# development
+elif [ "$1" = "brackets" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "code" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "codium" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "deepl-linux" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+##### system backup #####
+elif [ "$1" = "systemback" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+else
+	PACKAGE="$1"
+fi
+
+if [ "$ERROROFFICE" = "openoff" ]; then
+	ERRORTEXT="$LOCAL025"
+elif [ "$ERROROFFICE" = "libreoff" ]; then
+	ERRORTEXT="$LOCAL025"
+else
+	ERRORTEXT="$LOCAL016"
+fi
+
+if [ "$SYSTEM" = "wrong" ]; then
+
+cat > /usr/lib/sparky-aptus-appcenter/page-error.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: October 26, 2020 by pavroo
+-->
+	<head>
+		<title>Package Error | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="aptus://idzi_idzi"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<br />&nbsp;
+		$ERRORTEXT <br />
+		<br />&nbsp;
+		<a href="aptus://idzi_idzi" class="buttonmenu"><<-- Back</a><br />
+		<br />
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+	killall -9 yad
+	./aptus-appcenter error01
+	exit 0
+fi
+
+### system=wrong end
+killall -9 yad
+if [ "$SYSTEM" != "wrong" ]; then
+
+if [ -f /tmp/sparky-app1 ]; then
+	rm -f /tmp/sparky-app1
+fi
+apt show $PACKAGE > /tmp/sparky-app1
+#PACKAGE=`cat /tmp/sparky-app1 | grep Package:`
+#if [ "$1" = "discord" ]; then
+#	PACKAGE="discord"
+#elif [ "$1" = "google-chrome-stable" ]; then
+#	PACKAGE="google-chrome-stable"
+#elif [ "$1" = "google-earth-pro-stable" ]; then
+#	PACKAGE="google-earth-pro-stable"
+#elif [ "$1" = "openoffice" ]; then
+#	PACKAGE="openoffice"
+#elif [ "$1" = "protonvpn" ]; then
+#	PACKAGE="protonvpn"
+#elif [ "$1" = "skypeforlinux" ]; then
+#	PACKAGE="skypeforlinux"
+#elif [ "$1" = "wps-office" ]; then
+#	PACKAGE="wps-office"
+#else
+#	PACKAGE="$PACKAGE"
+#fi
+VERSION=`cat /tmp/sparky-app1 | grep Version:`
+if [ "$VERSION" != "" ]; then
+	VERSION="$VERSION"
+else
+	VERSION=""
+fi
+SECTION=`cat /tmp/sparky-app1 | grep Section:`
+if [ "$SECTION" != "" ]; then
+	SECTION="$SECTION"
+else
+	SECTION=""
+fi
+MAINTAINER=`cat /tmp/sparky-app1 | grep Maintainer:`
+if [ "$MAINTAINER" != "" ]; then
+	MAINTAINER="$MAINTAINER"
+else
+	MAINTAINER=""
+fi
+DOWNSIZE=`cat /tmp/sparky-app1 | grep Download-Size:`
+if [ "$DOWNSIZE" != "" ]; then
+	DOWNSIZE="$DOWNSIZE"
+else
+	DOWNSIZE=""
+fi
+INSTSIZE=`cat /tmp/sparky-app1 | grep Installed-Size:`
+if [ "$INSTSIZE" != "" ]; then
+	INSTSIZE="$INSTSIZE"
+else
+	INSTSIZE=""
+fi
+DEPS=`cat /tmp/sparky-app1 | grep Depends: | grep -v Pre-Depends:`
+if [ "$DEPS" != "" ]; then
+	DEPS="$DEPS"
+else
+	DEPS=""
+fi
+DESCRIPTION1=`cat /tmp/sparky-app1 | grep Description:`
+if [ "$DESCRIPTION1" != "" ]; then
+	DESCRIPTION1="$DESCRIPTION1"
+else
+	DESCRIPTION1=""
+fi
+DESCRIPTION2=`cat /tmp/sparky-app1 | grep -v Version: | grep -v Priority: | grep -v Package: | grep -v Replaces: | grep -v Section: | grep -v Built-Using | grep -v Source: | grep -v Depends: | grep -v Conflicts: | grep -v Provides: | grep -v Maintainer: | grep -v Installed-Size: | grep -v Download-Size: | grep -v APT-Manual-Installed: | grep -v Bugs: | grep -v :: | grep -v Suggests: | grep -v Breaks: | grep -v Homepage: | grep -v Tag: | grep -v Recommends: | grep -v Vendor: | grep -v APT-Sources: | grep -v APT-Manual: | grep -v Description:`
+if [ "$DESCRIPTION2" != "" ]; then
+	DESCRIPTION2="$DESCRIPTION2"
+else
+	DESCRIPTION2=""
+fi
+
+if [ "$DESCRIPTION2" = "" ]; then	
+	if [ "$1" = "discord" ]; then
+		DESCRIPTION2="$LOCAL075"
+	elif [ "$1" = "google-chrome-stable" ]; then
+		DESCRIPTION2="$LOCAL075"
+	elif [ "$1" = "google-earth-pro-stable" ]; then
+		DESCRIPTION2="$LOCAL075"
+	elif [ "$1" = "openoffice" ]; then
+		DESCRIPTION2="$LOCAL075"
+	elif [ "$1" = "protonvpn" ]; then
+		DESCRIPTION2="$LOCAL075"
+	elif [ "$1" = "skypeforlinux" ]; then
+		DESCRIPTION2="$LOCAL075"
+	elif [ "$1" = "wps-office" ]; then
+		DESCRIPTION2="$LOCAL075"
+	else
+		DESCRIPTION2="$DESCRIPTION2"
+	fi
+else
+	DESCRIPTION2="$DESCRIPTION2"
+fi
+
+CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
+
+# install, reinstall or remove discord
+if [ "$1" = "discord" ]; then
+	if [ "$CHECKPACKAGE0" != "" ]; then
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"	
+	elif [ "$CHECKPACKAGE0" = "" ]; then
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		fi
+	fi
+
+# install, reinstall or remove google-chrome
+elif [ "$1" = "google-chrome-stable" ]; then
+	if [ "$CHECKPACKAGE0" != "" ]; then
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	elif [ "$CHECKPACKAGE0" = "" ]; then
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		fi
+	fi
+
+# install, reinstall or remove google-earth
+elif [ "$1" = "google-earth-pro-stable" ]; then
+	if [ "$CHECKPACKAGE0" != "" ]; then
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	elif [ "$CHECKPACKAGE0" = "" ]; then
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		fi
+	fi
+
+# install, reinstall or remove openoffice.org
+elif [ "$1" = "openoffice" ]; then
+	if [ "$CHECKPACKAGE0" != "" ]; then
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	elif [ "$CHECKPACKAGE0" = "" ]; then
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		fi
+	fi
+	
+# install, reinstall or remove skype
+elif [ "$1" = "skypeforlinux" ]; then
+	if [ "$CHECKPACKAGE0" != "" ]; then
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	elif [ "$CHECKPACKAGE0" = "" ]; then
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		fi
+	fi
+
+# run vmware installer
+elif [ "$1" = "vmware" ]; then
+	/usr/bin/sparky-vmplayer-installer
+	exit 0
+	
+# install, reinstall or remove wps-office
+elif [ "$1" = "wps-office" ]; then
+	if [ -f /usr/bin/wps ]; then
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	elif [ ! -f /usr/bin/wps ]; then
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		fi
+	fi
+
+# install, reinstall or remove anything else
+else
+	if [ "$CHECKPACKAGE0" != "" ]; then
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	elif [ "$CHECKPACKAGE0" = "" ]; then
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		fi
+	fi
+fi
+
+cat > /usr/lib/sparky-aptus-appcenter/page-install.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: October 26, 2020 by pavroo
+-->
+	<head>
+		<title>$PACKTITLE | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="aptus://idzi_idzi"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+
+
+
+
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<b>$PACKAGE</b><br />
+		<br />
+		$VERSION<br />
+		$SECTION<br />
+		$MAINTAINER<br />
+		$DOWNSIZE<br />
+		$INSTSIZE<br />
+		$DEPS<br />
+		<br />
+		<b>&nbsp;&nbsp;$DESCRIPTION1</b><br />
+		<br />
+		$DESCRIPTION2<br />
+		<br />&nbsp;
+		$PACKTEXT<br />
+		<br />
+		$PACKBUTTONS<br />
+		<br />
+		</td>
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+killall -9 yad
+./aptus-appcenter packinst01
+exit 0
+
+fi
+### system !=wrong end
+exit 0

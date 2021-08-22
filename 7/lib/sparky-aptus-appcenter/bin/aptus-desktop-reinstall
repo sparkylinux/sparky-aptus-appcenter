@@ -1,0 +1,1785 @@
+#!/bin/bash
+
+# last update 2021/06/13 by pavroo
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+. $DEFLOCDIR/es
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+UPDATE="apt-get update"
+INSTALL="apt-get install"
+REINSTALL="apt-get install --reinstall"
+USER1000=`cat /etc/passwd | grep 1000 | awk -F: '{ print $1 }'`
+ARCHARM="`uname -m | grep arm`"
+if [ -f /usr/bin/spterm ]; then
+	SPARKYXTERM="spterm -e"
+elif [ -f /usr/bin/sparky-xterm ]; then
+	SPARKYXTERM="sparky-xterm"
+elif [ -f /usr/bin/x-terminal-emulator ]; then
+	SPARKYXTERM="x-terminal-emulator -e"
+else
+	echo "x terminal emulator is missing... exiting..."
+	exit 1
+fi
+# trinity bullseye repo
+TDEREPO="trinity-testing bullseye deps main"
+USER1000=`cat /etc/passwd | grep 1000 | awk -F: '{ print $1 }'`
+TARGETUSER="$USER1000"
+TARGETUSER=`echo $TARGETUSER | cut -d "|" -f 1`
+
+if [ -f /usr/lib/sparky-aptus-appcenter/page-error.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/page-error.html
+fi
+
+# install desktop now
+killall -9 yad
+
+if [ "$1" = "trinity" ]; then
+	if [ -f /etc/apt/sources.list.d/trinity.list ]; then
+		rm -f /etc/apt/sources.list.d/trinity.list
+	fi
+	$SPARKYXTERM "$UPDATE && $INSTALL trinity-keyring -y"
+	echo "deb http://mirror.ppa.trinitydesktop.org/trinity/deb/$TDEREPO" >> /etc/apt/sources.list.d/trinity.list
+	echo "deb-src http://mirror.ppa.trinitydesktop.org/trinity/deb/$TDEREPO" >> /etc/apt/sources.list.d/trinity.list
+	PACKAGE="sparky-desktop-$1"
+	$SPARKYXTERM "$UPDATE && $REINSTALL $PACKAGE"
+	#$SPARKYXTERM "$UNINSTALL tdm-trinity -y"
+	#$SPARKYXTERM "dpkg-reconfigure lightdm"
+elif [ "$1" = "openbox" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		PACKAGE="sparky-desktop-openbox-arm"
+		$SPARKYXTERM "$UPDATE && $REINSTALL $PACKAGE"
+	else
+		PACKAGE="sparky-desktop-$1"
+		$SPARKYXTERM "$UPDATE && $REINSTALL $PACKAGE"
+	fi
+else
+	PACKAGE="sparky-desktop-$1"
+	$SPARKYXTERM "$UPDATE && $REINSTALL $PACKAGE"
+fi
+
+if [ ! -f /usr/share/doc/$PACKAGE/copyright ]; then
+	DIALOGTEXT="$LOCAL013<br /><br />$LOCAL005"
+
+cat > /usr/lib/sparky-aptus-appcenter/page-error.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: November 9, 2020 by pavroo
+-->
+	<head>
+		<title>Installation Status | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="index.html"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<br />&nbsp;
+		$DIALOGTEXT<br />
+		<br />&nbsp;
+		<a href="index.html" class="buttonmenu">$LOCAL001</a><br />
+		<br />
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+killall -9 yad
+cd /usr/lib/sparky-aptus-appcenter
+./aptus-appcenter error01
+exit 0
+fi
+
+if [ ! -d /home/$TARGETUSER ]; then
+	DIALOGTEXT="$LOCAL022<br /><br />$LOCAL005"
+
+cat > /usr/lib/sparky-aptus-appcenter/page-error.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: November 9, 2020 by pavroo
+-->
+	<head>
+		<title>Installation Status | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="index.html"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<br />&nbsp;
+		$DIALOGTEXT<br />
+		<br />&nbsp;
+		<a href="index.html" class="buttonmenu">$LOCAL001</a><br />
+		<br />
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+killall -9 yad
+cd /usr/lib/sparky-aptus-appcenter
+./aptus-appcenter error01
+exit 0
+fi
+
+# replace old desktop configs with the default ones
+if [ -d /home/$TARGETUSER ]; then
+
+if [ "$1" = "awesome" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-awesome ] && [ -d /usr/share/sparky-desktop-data/awesome/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/awesome ]; then
+			rm -rf /home/$TARGETUSER/.config/awesome
+		fi
+		mkdir -p /home/$TARGETUSER/.config/awesome
+		rsync -a /usr/share/sparky-desktop-data/awesome/skel/.config/awesome /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/awesome/skel/.config/nitrogen /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/awesome/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/awesome/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/awesome/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/awesome/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "bspwm" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-bspwm ] && [ -d /usr/share/sparky-desktop-data/bspwm/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/bspwm ]; then
+			rm -rf /home/$TARGETUSER/.config/bspwm
+		fi
+		mkdir -p /home/$TARGETUSER/.config/bspwm
+		rsync -a /usr/share/sparky-desktop-data/bspwm/skel/.config/bspwm /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/sxhkd ]; then
+			rm -rf /home/$TARGETUSER/.config/sxhkd
+		fi
+		mkdir -p /home/$TARGETUSER/.config/sxhkd
+		rsync -a /usr/share/sparky-desktop-data/bspwm/skel/.config/sxhkd /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/kupfer ]; then
+			rm -rf /home/$TARGETUSER/.config/kupfer
+		fi
+		mkdir -p /home/$TARGETUSER/.config/kupfer
+		rsync -a /usr/share/sparky-desktop-data/bspwm/skel/.config/kupfer /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.Xresources ]; then
+			rm -f /home/$TARGETUSER/.Xresources
+		fi
+		cp /usr/share/sparky-desktop-data/bspwm/skel/.Xresources /home/$TARGETUSER/.Xresources
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.Xresources
+		
+		if [ -d /home/$TARGETUSER/.config/lxterminal ]; then
+			rm -rf /home/$TARGETUSER/.config/lxterminal
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxterminal
+		rsync -a /usr/share/sparky-desktop-data/bspwm/skel/.config/lxterminal /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/bspwm/skel/.config/nitrogen /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/bspwm/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/bspwm/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/bspwm/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/bspwm/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		
+		if [ -d /home/$TARGETUSER/.config/tint2 ]; then
+			rm -rf /home/$TARGETUSER/.config/tint2
+		fi
+		mkdir -p /home/$TARGETUSER/.config/tint2
+		rsync -a /usr/share/sparky-desktop-data/bspwm/skel/.config/tint2 /home/$TARGETUSER/.config/
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "budgie" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-budgie ] && [ -d /usr/share/sparky-desktop-data/budgie/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/gnome-control-center/backgrounds ]; then
+			rm -rf /home/$TARGETUSER/.config/gnome-control-center/backgrounds
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gnome-control-center/backgrounds
+		rsync -a /usr/share/sparky-desktop-data/budgie/skel/.config/gnome-control-center/backgrounds /home/$TARGETUSER/.config/gnome-control-center/
+		
+		if [ -d /home/$TARGETUSER/.config/dconf ]; then
+			rm -rf /home/$TARGETUSER/.config/dconf
+		fi
+		mkdir -p /home/$TARGETUSER/.config/dconf
+		rsync -a /usr/share/sparky-desktop-data/budgie/skel/.config/dconf /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/budgie/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/budgie/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/budgie/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "cde" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-cde ]; then
+		echo "installation cde desktop ok, no extra files to be installed"
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "cinnamon" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-cinnamon ] && [ -d /usr/share/sparky-desktop-data/cinnamon/skel ]; then
+		if [ -d /home/$TARGETUSER/.cinnamon ]; then
+			rm -rf /home/$TARGETUSER/.cinnamon
+		fi
+		mkdir -p /home/$TARGETUSER/.cinnamon
+		rsync -a /usr/share/sparky-desktop-data/cinnamon/skel/.cinnamon /home/$TARGETUSER/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.cinnamon
+
+		if [ -d /home/$TARGETUSER/.config/dconf ]; then
+			rm -rf /home/$TARGETUSER/.config/dconf
+		fi
+		mkdir -p /home/$TARGETUSER/.config/dconf
+		rsync -a /usr/share/sparky-desktop-data/cinnamon/skel/.config/dconf /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/cinnamon/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/cinnamon/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/cinnamon/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/cinnamon/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		
+		if [ -f /home/$TARGETUSER/.local/share/applications/synaptic.desktop ]; then
+			rm -f /home/$TARGETUSER/.local/share/applications/synaptic.desktop
+		fi
+		if [ ! -d /home/$TARGETUSER/.local/share/applications ]; then
+			mkdir -p /home/$TARGETUSER/.local/share/applications
+		fi
+		cp /usr/share/sparky-desktop-data/cinnamon/skel/.local/share/applications/synaptic.desktop /home/$TARGETUSER/.local/share/applications/synaptic.desktop
+		
+		if [ -f /home/$TARGETUSER/.local/share/applications/gufw.desktop ]; then
+			rm -f /home/$TARGETUSER/.local/share/applications/gufw.desktop
+		fi
+		cp /usr/share/sparky-desktop-data/cinnamon/skel/.local/share/applications/gufw.desktop /home/$TARGETUSER/.local/share/applications/gufw.desktop
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.local
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "draco" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-draco ]; then
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/draco/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ ! -d /home/$TARGETUSER/.config/autostart ]; then
+			mkdir -p /home/$TARGETUSER/.config/autostart
+		fi
+		if [ -f /home/$TARGETUSER/.config/autostart/sparky-gnome-polkit.desktop ]; then
+			rm -f /home/$TARGETUSER/.config/autostart/sparky-gnome-polkit.desktop
+		fi
+		if [ -f /home/$TARGETUSER/.config/autostart/sparky-pnmixer.desktop ]; then
+			rm -f /home/$TARGETUSER/.config/autostart/sparky-pnmixer.desktop
+		fi
+		rsync -a /usr/share/sparky-desktop-data/draco/skel/.config/autostart/sparky-gnome-polkit.desktop /home/$TARGETUSER/.config/autostart/
+		rsync -a /usr/share/sparky-desktop-data/draco/skel/.config/autostart/sparky-pnmixer.desktop /home/$TARGETUSER/.config/autostart/
+
+		if [ -d /home/$TARGETUSER/.config/draco ]; then
+			rm -rf /home/$TARGETUSER/.config/draco
+		fi
+		mkdir -p /home/$TARGETUSER/.config/draco
+		rsync -a /usr/share/sparky-desktop-data/draco/skel/.config/draco /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/draco/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/draco/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/draco/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+
+		if [ -d /home/$TARGETUSER/.config/qt5ct ]; then
+			rm -rf /home/$TARGETUSER/.config/qt5ct
+		fi
+		mkdir -p /home/$TARGETUSER/.config/qt5ct
+		rsync -a /usr/share/sparky-desktop-data/draco/skel/.config/qt5ct /home/$TARGETUSER/.config/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "enlightenment" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-enlightenment ] && [ -d /usr/share/sparky-desktop-data/enlightenment/skel ]; then
+		if [ -d /home/$TARGETUSER/.e ]; then
+			rm -rf /home/$TARGETUSER/.e
+		fi
+		mkdir -p /home/$TARGETUSER/.e
+		rsync -a /usr/share/sparky-desktop-data/enlightenment/skel/.e /home/$TARGETUSER/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.e
+
+		rsync -a /usr/share/sparky-desktop-data/enlightenment/applications /usr/share/
+
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/enlightenment/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/enlightenment/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/enlightenment/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/enlightenment/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "fluxbox" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-fluxbox ] && [ -d /usr/share/sparky-desktop-data/fluxbox/skel ] && [ -f /opt/sparky/sparky-fluxbox ]; then
+		if [ -d /home/$TARGETUSER/.fluxbox ]; then
+			rm -rf /home/$TARGETUSER/.fluxbox
+		fi
+		mkdir -p /home/$TARGETUSER/.fluxbox
+		rsync -a /usr/share/sparky-desktop-data/fluxbox/skel/.fluxbox /home/$TARGETUSER/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.fluxbox
+
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/fluxbox/skel/.config/nitrogen /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/fluxbox/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/fluxbox/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/fluxbox/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/fluxbox/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "gnomeflashback" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-gnome-flashback ] && [ -d /usr/share/sparky-desktop-data/gnome-fl/skel ]
+	then
+		if [ -d /home/$TARGETUSER/.config/gnome-control-center/backgrounds ]; then
+			rm -rf /home/$TARGETUSER/.config/gnome-control-center/backgrounds
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gnome-control-center/backgrounds
+		rsync -a /usr/share/sparky-desktop-data/gnome-fl/skel/.config/gnome-control-center/backgrounds /home/$TARGETUSER/.config/gnome-control-center/
+		
+		if [ -d /home/$TARGETUSER/.config/dconf ]; then
+			rm -rf /home/$TARGETUSER/.config/dconf
+		fi
+		mkdir -p /home/$TARGETUSER/.config/dconf
+		rsync -a /usr/share/sparky-desktop-data/gnome-fl/skel/.config/dconf /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/gnome-fl/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/gnome-fl/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/gnome-fl/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/gnome-fl/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "gnomeshell" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-gnome-shell ] && [ -d /usr/share/sparky-desktop-data/gnome-sh/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/gnome-control-center/backgrounds ]; then
+			rm -rf /home/$TARGETUSER/.config/gnome-control-center/backgrounds
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gnome-control-center/backgrounds
+		rsync -a /usr/share/sparky-desktop-data/gnome-sh/skel/.config/gnome-control-center/backgrounds /home/$TARGETUSER/.config/gnome-control-center/
+
+		if [ -d /home/$TARGETUSER/.config/dconf ]; then
+			rm -rf /home/$TARGETUSER/.config/dconf
+		fi
+		mkdir -p /home/$TARGETUSER/.config/dconf
+		rsync -a /usr/share/sparky-desktop-data/gnome-sh/skel/.config/dconf /home/$TARGETUSER/.config/
+
+		#CHECKDM=`cat /etc/X11/default-display-manager | grep gdm`
+		#if [ "$CHECKDM" != "" ]; then
+		#	sed -i -e 's/gdm3/lightdm/g' /etc/X11/default-display-manager
+		#	if [ -f /usr/lib/systemd/system/lightdm.service ] && [ -f /etc/systemd/system/display-manager.service ]; then
+		#		rm -f /etc/systemd/system/display-manager.service
+		#		ln -s /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
+		#	fi
+		#fi
+
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/gnome-sh/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/gnome-sh/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/gnome-sh/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/gnome-sh/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "i3" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-i3 ] && [ -d /usr/share/sparky-desktop-data/i3/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/i3 ]; then
+			rm -rf /home/$TARGETUSER/.config/i3
+		fi
+		mkdir -p /home/$TARGETUSER/.config/i3
+		rsync -a /usr/share/sparky-desktop-data/i3/skel/.config/i3 /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.i3blocks.conf ]; then
+			rm -f /home/$TARGETUSER/.i3blocks.conf
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.i3blocks.conf /home/$TARGETUSER/.i3blocks.conf
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.i3blocks.conf
+
+		if [ -f /home/$TARGETUSER/.Xresources ]; then
+			rm -f /home/$TARGETUSER/.Xresources
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.Xresources /home/$TARGETUSER/.Xresources
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.Xresources
+
+		if [ -d /home/$TARGETUSER/.config/dunst ]; then
+			rm -rf /home/$TARGETUSER/.config/dunst
+		fi
+		#mkdir -p /home/$TARGETUSER/.config/dunst
+		#cp /usr/share/sparky-desktop-data/i3/skel/.config/dunst/dunstrc /home/$TARGETUSER/.config/dunst/dunstrc
+
+		if [ -d /home/$TARGETUSER/.config/lxterminal ]; then
+			rm -rf /home/$TARGETUSER/.config/lxterminal
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxterminal
+		rsync -a /usr/share/sparky-desktop-data/i3/skel/.config/lxterminal /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/i3/skel/.config/nitrogen /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/i3/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/i3/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "icewm" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-icewm ] && [ -d /usr/share/sparky-desktop-data/icewm/skel ]; then
+		if [ -d /home/$TARGETUSER/.icewm ]; then
+			rm -rf /home/$TARGETUSER/.icewm
+		fi
+		mkdir -p /home/$TARGETUSER/.icewm
+		rsync -a /usr/share/sparky-desktop-data/icewm/skel/.icewm /home/$TARGETUSER/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.icewm
+
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/icewm/skel/.config/nitrogen /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/icewm/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/icewm/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/icewm/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/icewm/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "jwm" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-jwm ] && [ -d /usr/share/sparky-desktop-data/jwm/skel ]; then
+		if [ -f /home/$TARGETUSER/.jwmrc ]; then
+			rm -f /home/$TARGETUSER/.jwmrc
+		fi
+		cp /usr/share/sparky-desktop-data/jwm/skel/.jwmrc /home/$TARGETUSER/.jwmrc
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.jwmrc
+
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/jwm/skel/.config/nitrogen /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/jwm/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/jwm/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/jwm/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/jwm/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "kde" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-kde ] && [ -d /usr/share/sparky-desktop-data/kde/skel ]; then
+		if [ -f /etc/sddm.conf ]; then
+			rm -f /etc/sddm.conf
+		fi
+		cp /usr/share/sparky-desktop-data/kde/etc/sddm.conf /etc/sddm.conf
+
+		if [ -d /home/$TARGETUSER/.config/dconf ]; then
+			rm -rf /home/$TARGETUSER/.config/dconf
+		fi
+		mkdir -p /home/$TARGETUSER/.config/dconf
+		rsync -a /usr/share/sparky-desktop-data/kde/skel/.config/dconf /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.config/gtkrc ]; then
+			rm -f /home/$TARGETUSER/.config/gtkrc
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/gtkrc /home/$TARGETUSER/.config/gtkrc
+
+		if [ -f /home/$TARGETUSER/.config/gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.config/gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/gtkrc-2.0 /home/$TARGETUSER/.config/gtkrc-2.0
+
+		if [ -f /home/$TARGETUSER/.config/kcminputrc ]; then
+			rm -f /home/$TARGETUSER/.config/kcminputrc
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/kcminputrc /home/$TARGETUSER/.config/kcminputrc
+
+		if [ -f /home/$TARGETUSER/.config/kdeglobals ]; then
+			rm -f /home/$TARGETUSER/.config/kdeglobals
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/kdeglobals /home/$TARGETUSER/.config/kdeglobals
+
+		if [ -f /home/$TARGETUSER/.config/kickoffrc ]; then
+			rm -f /home/$TARGETUSER/.config/kickoffrc
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/kickoffrc /home/$TARGETUSER/.config/kickoffrc
+
+		if [ -f /home/$TARGETUSER/.config/kscreenlockerrc ]; then
+			rm -f /home/$TARGETUSER/.config/kscreenlockerrc
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/kscreenlockerrc /home/$TARGETUSER/.config/kscreenlockerrc
+
+		if [ -f /home/$TARGETUSER/.config/ksplashrc ]; then
+			rm -f /home/$TARGETUSER/.config/ksplashrc
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/ksplashrc /home/$TARGETUSER/.config/ksplashrc
+
+		if [ -f /home/$TARGETUSER/.config/kwinrc ]; then
+			rm -f /home/$TARGETUSER/.config/kwinrc
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/kwinrc /home/$TARGETUSER/.config/kwinrc
+
+		if [ -f /home/$TARGETUSER/.config/plasma-org.kde.plasma.desktop-appletsrc ]; then
+			rm -f /home/$TARGETUSER/.config/plasma-org.kde.plasma.desktop-appletsrc
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/plasma-org.kde.plasma.desktop-appletsrc /home/$TARGETUSER/.config/plasma-org.kde.plasma.desktop-appletsrc
+
+		if [ -f /home/$TARGETUSER/.config/plasmarc ]; then
+			rm -f /home/$TARGETUSER/.config/plasmarc
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/plasmarc /home/$TARGETUSER/.config/plasmarc
+
+		if [ -f /home/$TARGETUSER/.config/plasmashellrc ]; then
+			rm -f /home/$TARGETUSER/.config/plasmashellrc
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/plasmashellrc /home/$TARGETUSER/.config/plasmashellrc
+
+		if [ -f /home/$TARGETUSER/.config/QtProject.conf ]; then
+			rm -f /home/$TARGETUSER/.config/QtProject.conf
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/QtProject.conf /home/$TARGETUSER/.config/QtProject.conf
+
+		if [ -f /home/$TARGETUSER/.config/startupconfig ]; then
+			rm -f /home/$TARGETUSER/.config/startupconfig
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/startupconfig /home/$TARGETUSER/.config/startupconfig
+
+		if [ -f /home/$TARGETUSER/.config/startupconfigfiles ]; then
+			rm -r /home/$TARGETUSER/.config/startupconfigfiles
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/startupconfigfiles /home/$TARGETUSER/.config/startupconfigfiles
+
+		if [ -f /home/$TARGETUSER/.config/startupconfigkeys ]; then
+			rm -f /home/$TARGETUSER/.config/startupconfigkeys
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/startupconfigkeys /home/$TARGETUSER/.config/startupconfigkeys
+
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/kde/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/kde/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"	
+	fi
+
+elif [ "$1" = "lumina" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-lumina ] && [ -d /usr/share/sparky-desktop-data/lumina/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/lumina-desktop ]; then
+			rm -rf /home/$TARGETUSER/.config/lumina-desktop
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lumina-desktop
+		rsync -a /usr/share/sparky-desktop-data/lumina/skel/.config/lumina-desktop /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/fluxbox/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/fluxbox/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/fluxbox/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/fluxbox/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		
+		if [ -f /home/$TARGETUSER/.config/autostart/polkit-gnome-authentication-agent-1.desktop ]
+		then
+			rm -f /home/$TARGETUSER/.config/autostart/polkit-gnome-authentication-agent-1.desktop
+		fi
+		if [ -f /home/$TARGETUSER/.config/autostart/lxpolkit.desktop ]; then
+			rm -f /home/$TARGETUSER/.config/autostart/lxpolkit.desktop
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/autostart ]; then
+			mkdir -p /home/$TARGETUSER/.config/autostart
+		fi		
+		cp /usr/share/sparky-desktop-data/lumina/skel/.config/autostart/sparky-polkit.desktop /home/$TARGETUSER/.config/autostart/sparky-polkit.desktop
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "lxde" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-lxde ] && [ -d /usr/share/sparky-desktop-data/lxde/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/lxde/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/lxde/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/lxpanel ]; then
+			rm -rf /home/$TARGETUSER/.config/lxpanel
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxpanel
+		rsync -a /usr/share/sparky-desktop-data/lxde/skel/.config/lxpanel /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/lxsession ]; then
+			rm -rf /home/$TARGETUSER/.config/lxsession
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxsession
+		rsync -a /usr/share/sparky-desktop-data/lxde/skel/.config/lxsession /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/openbox/lxde-rc.xml ]
+		then
+			rm -f /home/$TARGETUSER/.config/openbox/lxde-rc.xml
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/openbox ]; then
+			mkdir -p /home/$TARGETUSER/.config/openbox
+		fi
+		cp /usr/share/sparky-desktop-data/lxde/skel/.config/openbox/lxde-rc.xml /home/$TARGETUSER/.config/openbox/lxde-rc.xml
+		
+		if [ -d /home/$TARGETUSER/.config/pcmanfm ]; then
+			rm -rf /home/$TARGETUSER/.config/pcmanfm
+		fi
+		mkdir -p /home/$TARGETUSER/.config/pcmanfm
+		rsync -a /usr/share/sparky-desktop-data/lxde/skel/.config/pcmanfm /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/lxde/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/lxde/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+
+		if [ -f /home/$TARGETUSER/.config/menus/lxde-applications.menu ]; then
+			rm -f /home/$TARGETUSER/.config/menus/lxde-applications.menu
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/menus ]; then
+			mkdir -p /home/$TARGETUSER/.config/menus
+		fi
+		cp /usr/share/sparky-desktop-data/lxde/skel/.config/menus/lxde-applications.menu /home/$TARGETUSER/.config/menus/
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config/menus
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "lxqt" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-lxqt ] && [ -d /usr/share/sparky-desktop-data/lxqt/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/lxqt/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/lxqt/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/lxqt ]; then
+			rm -rf /home/$TARGETUSER/.config/lxqt
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxqt
+		rsync -a /usr/share/sparky-desktop-data/lxqt/skel/.config/lxqt /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/openbox/rc.xml ]; then
+			rm -f /home/$TARGETUSER/.config/openbox/rc.xml
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/openbox ]; then
+			mkdir -p /home/$TARGETUSER/.config/openbox
+		fi
+		cp /usr/share/sparky-desktop-data/lxqt/skel/.config/openbox/rc.xml /home/$TARGETUSER/.config/openbox/rc.xml
+		cp /usr/share/sparky-desktop-data/lxqt/skel/.config/openbox/lxqt-rc.xml /home/$TARGETUSER/.config/openbox/lxqt-rc.xml
+		
+		if [ -d /home/$TARGETUSER/.config/pcmanfm-qt ]; then
+			rm -rf /home/$TARGETUSER/.config/pcmanfm-qt
+		fi
+		mkdir -p /home/$TARGETUSER/.config/pcmanfm-qt
+		rsync -a /usr/share/sparky-desktop-data/lxqt/skel/.config/pcmanfm-qt /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/lxqt/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/lxqt/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "mate" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-mate ] && [ -d /usr/share/sparky-desktop-data/mate/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/dconf ]; then
+			rm -rf /home/$TARGETUSER/.config/dconf
+		fi
+		mkdir -p /home/$TARGETUSER/.config/
+		rsync -a /usr/share/sparky-desktop-data/mate/skel/.config/dconf /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/mate ]; then
+			rm -rf /home/$TARGETUSER/.config/mate
+		fi
+		mkdir -p /home/$TARGETUSER/.config/mate
+		rsync -a /usr/share/sparky-desktop-data/mate/skel/.config/mate /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/mate-menu ]; then
+			rm -rf /home/$TARGETUSER/.config/mate-menu
+		fi
+		mkdir -p /home/$TARGETUSER/.config/mate-menu
+		rsync -a /usr/share/sparky-desktop-data/mate/skel/.config/mate-menu /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/mate/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/mate/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/mate/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/mate/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "openbox" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-openbox ] && [ -d /usr/share/sparky-desktop-data/openbox/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/lxsession ]; then
+			rm -rf /home/$TARGETUSER/.config/lxsession
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxsession
+		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/lxsession /home/$TARGETUSER/.config/
+	
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/nitrogen /home/$TARGETUSER/.config/
+	
+		if [ -d /home/$TARGETUSER/.config/obmenu-generator ]; then
+			rm -rf /home/$TARGETUSER/.config/obmenu-generator
+		fi
+		mkdir -p /home/$TARGETUSER/.config/obmenu-generator
+		if [ -d /usr/share/sparky-desktop-data/openbox/skel/.config/obmenu-generator ]; then
+			rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/obmenu-generator /home/$TARGETUSER/.config/
+		fi
+		
+		if [ -d /home/$TARGETUSER/.config/openbox ]; then
+			rm -rf /home/$TARGETUSER/.config/openbox
+		fi
+		mkdir -p /home/$TARGETUSER/.config/openbox
+		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/openbox /home/$TARGETUSER/.config/
+	
+		if [ -d /home/$TARGETUSER/.config/pcmanfm ]; then
+			rm -rf /home/$TARGETUSER/.config/pcmanfm
+		fi
+		mkdir -p /home/$TARGETUSER/.config/pcmanfm
+		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/pcmanfm /home/$TARGETUSER/.config/
+	
+		if [ -f /usr/bin/tint2 ] && [ -d /home/$TARGETUSER/.config/tint2 ]; then
+			rm -rf /home/$TARGETUSER/.config/tint2
+		fi
+		mkdir -p /home/$TARGETUSER/.config/tint2
+		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/tint2 /home/$TARGETUSER/.config/
+			if [ -f /usr/bin/fbpanel ] && [ -d /home/$TARGETUSER/.config/fbpanel ]; then
+			rm -rf /home/$TARGETUSER/.config/fbpanel
+		fi
+		mkdir -p /home/$TARGETUSER/.config/fbpanel
+		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/fbpanel /home/$TARGETUSER/.config/
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/openbox/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+	
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+	
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/openbox/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+
+		if [ -f /home/$TARGETUSER/.config/menus/lxde-applications.menu ]; then
+			rm -f /home/$TARGETUSER/.config/menus/lxde-applications.menu
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/menus ]; then
+			mkdir -p /home/$TARGETUSER/.config/menus
+		fi
+		cp /usr/share/sparky-desktop-data/lxde/skel/.config/menus/lxde-applications.menu /home/$TARGETUSER/.config/menus/
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config/menus
+
+		if [ ! -d /home/$TARGETUSER/.alsaplayer ]; then
+			mkdir -p /home/$TARGETUSER/.alsaplayer
+		fi
+		cp /usr/share/sparky-desktop-data/openbox/skel/.alsaplayer/config /home/$TARGETUSER/.alsaplayer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.alsaplayer
+
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/openbox/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		#if [ -f /home/$TARGETUSER/.config/pnmixer/config ] && [ "$ARCHARM" != "" ]; then
+		#	CHECKPNMIXER=`cat /home/$TARGETUSER/.config/pnmixer/config | grep pavucontrol`
+		#	if [ "$CHECKPNMIXER" != "" ]; then
+		#		sed -i -e 's/pavucontrol/x-terminal-emulator -e alsamixer/g' /home/$TARGETUSER/.config/pnmixer/config
+		#	fi
+		#fi
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config/pnmixer
+
+		if [ -f /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml ]; then
+			rm -f /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml ]; then
+			mkdir -p /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml
+		fi
+		cp /usr/share/sparky-desktop-data/openbox/skel/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml
+		
+		if [ -d /home/$TARGETUSER/.config/jgmenu ]; then
+			rm -rf /home/$TARGETUSER/.config/jgmenu
+		fi
+		mkdir -p /home/$TARGETUSER/.config/jgmenu
+		rsync -a /usr/share/sparky-desktop-data/openbox/skel/.config/jgmenu /home/$TARGETUSER/.config/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "openbox-arm" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-openbox-arm ] && [ -d /usr/share/sparky-desktop-data/openbox-arm/skel ]; then
+		if [ ! -d /home/$TARGETUSER/.alsaplayer ]; then
+			mkdir -p /home/$TARGETUSER/.alsaplayer
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.alsaplayer/config /home/$TARGETUSER/.alsaplayer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.alsaplayer
+
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -f /usr/bin/fbpanel ] && [ -d /home/$TARGETUSER/.config/fbpanel ]; then
+			rm -rf /home/$TARGETUSER/.config/fbpanel
+		fi
+		mkdir -p /home/$TARGETUSER/.config/fbpanel
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/fbpanel /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/lxsession ]; then
+			rm -rf /home/$TARGETUSER/.config/lxsession
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxsession
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/lxsession /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/nitrogen /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/openbox ]; then
+			rm -rf /home/$TARGETUSER/.config/openbox
+		fi
+		mkdir -p /home/$TARGETUSER/.config/openbox
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/openbox /home/$TARGETUSER/.config/
+	
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config/pnmixer
+
+		if [ -f /usr/bin/tint2 ] && [ -d /home/$TARGETUSER/.config/tint2 ]; then
+			rm -rf /home/$TARGETUSER/.config/tint2
+		fi
+		mkdir -p /home/$TARGETUSER/.config/tint2
+		rsync -a /usr/share/sparky-desktop-data/openbox-arm/skel/.config/tint2 /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml ]; then
+			rm -f /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml ]; then
+			mkdir -p /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml
+
+		if [ -f /home/$TARGETUSER/.config/QtProject.conf ]; then
+			rm -f /home/$TARGETUSER/.config/QtProject.conf
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/skel/.config/QtProject.conf /home/$TARGETUSER/.config/QtProject.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+
+		if [ -f /etc/xdg/menus/sparky-pi.menu ]; then
+			rm -f /etc/xdg/menus/sparky-pi.menu
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-arm/etc/sparky-pi.menu /etc/xdg/menus/sparky-pi.menu
+		chown -R root:root /etc/xdg/menus/sparky-pi.menu
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "openbox-noir" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-openbox-noir ] && [ -d /usr/share/sparky-desktop-data/openbox-noir/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/jgmenu ]; then
+			rm -rf /home/$TARGETUSER/.config/jgmenu
+		fi
+		mkdir -p /home/$TARGETUSER/.config/jgmenu
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/jgmenu /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/lxsession ]; then
+			rm -rf /home/$TARGETUSER/.config/lxsession
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxsession
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/lxsession /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/lxterminal ]; then
+			rm -rf /home/$TARGETUSER/.config/lxterminal
+		fi
+		mkdir -p /home/$TARGETUSER/.config/lxterminal
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/lxterminal /home/$TARGETUSER/.config/
+		
+		#if [ -f /home/$TARGETUSER/.config/menus/lxde-applications.menu ]; then
+		#	rm -f /home/$TARGETUSER/.config/menus/lxde-applications.menu
+		#fi
+		
+		#if [ ! -d /home/$TARGETUSER/.config/menus ]; then
+		#	mkdir -p /home/$TARGETUSER/.config/menus
+		#fi
+		#cp /usr/share/sparky-desktop-data/openbox-noir/skel/.config/menus/lxde-applications.menu /home/$TARGETUSER/.config/menus/
+		
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/nitrogen /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/openbox ]; then
+			rm -rf /home/$TARGETUSER/.config/openbox
+		fi
+		mkdir -p /home/$TARGETUSER/.config/openbox
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/openbox /home/$TARGETUSER/.config/
+
+		#if [ -d /home/$TARGETUSER/.config/otter ]; then
+		#	rm -rf /home/$TARGETUSER/.config/otter
+		#fi
+		#mkdir -p /home/$TARGETUSER/.config/otter
+		#rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/otter /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/pcmanfm ]; then
+			rm -rf /home/$TARGETUSER/.config/pcmanfm
+		fi
+		mkdir -p /home/$TARGETUSER/.config/pcmanfm
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/pcmanfm /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/picom ]; then
+			rm -rf /home/$TARGETUSER/.config/picom
+		fi
+		mkdir -p /home/$TARGETUSER/.config/picom
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/picom /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/plank ]; then
+			rm -rf /home/$TARGETUSER/.config/plank
+		fi
+		mkdir -p /home/$TARGETUSER/.config/plank
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/plank /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-noir/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+
+		#if [ -d /home/$TARGETUSER/.config/qt5ct ]; then
+		#	rm -rf /home/$TARGETUSER/.config/qt5ct
+		#fi
+		#mkdir -p /home/$TARGETUSER/.config/qt5ct
+		#rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/qt5ct /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/rofi ]; then
+			rm -rf /home/$TARGETUSER/.config/rofi
+		fi
+		mkdir -p /home/$TARGETUSER/.config/rofi
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/rofi /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/tint2 ]; then
+			rm -rf /home/$TARGETUSER/.config/tint2
+		fi
+		mkdir -p /home/$TARGETUSER/.config/tint2
+		rsync -a /usr/share/sparky-desktop-data/openbox-noir/skel/.config/tint2 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml ]; then
+			rm -f /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml ]; then
+			mkdir -p /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-noir/skel/.config/xfce4/xfconf/xfce-perchannel-xml/thunar-volman.xml /home/$TARGETUSER/.config/xfce4/xfconf/xfce-perchannel-xml/
+		
+		if [ ! -d /home/$TARGETUSER/.alsaplayer ]; then
+			mkdir -p /home/$TARGETUSER/.alsaplayer
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-noir/skel/.alsaplayer/config /home/$TARGETUSER/.alsaplayer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.alsaplayer
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-noir/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/openbox-noir/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config		
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "pekwm" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-pekwm ] && [ -d /usr/share/sparky-desktop-data/pekwm/skel ]; then
+		if [ -d /home/$TARGETUSER/.pekwm ]; then
+			rm -rf /home/$TARGETUSER/.pekwm
+		fi
+		mkdir -p /home/$TARGETUSER/.pekwm
+		rsync -a /usr/share/sparky-desktop-data/pekwm/skel/.pekwm /home/$TARGETUSER/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.pekwm
+
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/pekwm/skel/.config/nitrogen /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/pekwm/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/pekwm/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/pekwm/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/pekwm/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		
+		if [ -d /home/$TARGETUSER/.config/fbpanel ]; then
+			rm -rf /home/$TARGETUSER/.config/fbpanel
+		fi
+		mkdir -p /home/$TARGETUSER/.config/fbpanel
+		rsync -a /usr/share/sparky-desktop-data/pekwm/skel/.config/fbpanel /home/$TARGETUSER/.config/
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "trinity" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-trinity ] && [ -d /usr/share/sparky-desktop-data/trinity/skel ]; then
+		if [ ! -f /home/$TARGETUSER/.trinity/Autostart/*polkit*.desktop ]; then
+			if [ ! -d /home/$TARGETUSER/.trinity/Autostart ]; then
+				mkdir -p /home/$TARGETUSER/.trinity/Autostart
+			fi
+			cp /usr/share/sparky-desktop-data/trinity/skel/.trinity/Autostart/sparky-polkit.desktop /home/$TARGETUSER/.trinity/Autostart/sparky-polkit.desktop
+		else
+			rm -f /home/$TARGETUSER/.trinity/Autostart/*polkit*.desktop
+			cp /usr/share/sparky-desktop-data/trinity/skel/.trinity/Autostart/sparky-polkit.desktop /home/$TARGETUSER/.trinity/Autostart/sparky-polkit.desktop
+		fi
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.trinity
+
+		CHECKDM=`cat /etc/X11/default-display-manager | grep tdm`
+		if [ "$CHECKDM" != "" ]; then
+			rm -f /etc/X11/default-display-manager
+			echo "/usr/sbin/lightdm" > /etc/X11/default-display-manager
+			if [ -f /usr/lib/systemd/system/lightdm.service ] && [ -f /etc/systemd/system/display-manager.service ]; then
+				rm -f /etc/systemd/system/display-manager.service
+				ln -s /lib/systemd/system/lightdm.service /etc/systemd/system/display-manager.service
+			fi
+		fi
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"	
+	fi
+
+elif [ "$1" = "ukui" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-ukui ]; then
+		echo "installation ukui desktop ok, no extra files to be installed"
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "wmaker" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-wmaker ] && [ -d /usr/share/sparky-desktop-data/wmaker/skel ]; then
+		if [ -d /home/$TARGETUSER/GNUstep ]; then
+			rm -rf /home/$TARGETUSER/GNUstep
+		fi
+		mkdir -p /home/$TARGETUSER/GNUstep
+		rsync -a /usr/share/sparky-desktop-data/wmaker/skel/GNUstep /home/$TARGETUSER/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/GNUstep
+
+		if [ -d /home/$TARGETUSER/.config/nitrogen ]; then
+			rm -rf /home/$TARGETUSER/.config/nitrogen
+		fi
+		mkdir -p /home/$TARGETUSER/.config/nitrogen
+		rsync -a /usr/share/sparky-desktop-data/wmaker/skel/.config/nitrogen /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/wmaker/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/wmaker/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/wmaker/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/wmaker/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		if [ -f /home/$TARGETUSER/.config/pnmixer/config ]; then
+			rm -f /home/$TARGETUSER/.config/pnmixer/config
+		fi
+		if [ ! -d /home/$TARGETUSER/.config/pnmixer ]; then
+			mkdir -p /home/$TARGETUSER/.config/pnmixer
+		fi
+		cp /usr/share/sparky-desktop-data/i3/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "xfce" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-xfce ] && [ -d /usr/share/sparky-desktop-data/xfce/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/xfce4 ]; then
+			rm -rf /home/$TARGETUSER/.config/xfce4
+		fi
+		mkdir -p /home/$TARGETUSER/.config/xfce4
+		rsync -a /usr/share/sparky-desktop-data/xfce/skel/.config/xfce4 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/xfce/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/xfce/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/xfce/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/xfce/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+fi
+
+if [ -f /home/$TARGETUSER/.xsession ]; then
+	rm -f /home/$TARGETUSER/.xsession
+fi
+
+if [ "$DESKTOPCHECK" = "0" ]; then
+	DIALOGTEXT="$LOCAL023"	
+elif [ "$DESKTOPCHECK" = "1" ]; then
+	DIALOGTEXT="$LOCAL024"	
+else
+	echo "It shoudn't happen, report it to Sparky forums, please..."
+	DIALOGTEXT="It shoudn't happen, report it to Sparky forums, please..."	
+fi
+
+cat > /usr/lib/sparky-aptus-appcenter/page-error.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: November 9, 2020 by pavroo
+-->
+	<head>
+		<title>Installation Status | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="index.html"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<br />&nbsp;
+		$DIALOGTEXT<br />
+		<br />&nbsp;
+		<a href="index.html" class="buttonmenu">$LOCAL001</a><br />
+		<br />
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+killall -9 yad
+cd /usr/lib/sparky-aptus-appcenter
+./aptus-appcenter error01
+exit 0
+fi
+# end of replace old desktop configs with the default ones
+
+exit 0

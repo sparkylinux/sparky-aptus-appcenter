@@ -1,0 +1,129 @@
+#!/bin/bash
+
+# Sparky Locale Exe script is a part of sparky-locale
+# Created by Paweł "pavroo" Pijanowski 2014/05/21
+# Copyright 2014-2021 under the GNU GPL2 License
+# Last update 2021/08/15
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+. $DEFLOCDIR/es
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo "Must be root... Exiting now..."
+	exit 1
+fi
+
+YAD="yad"
+ZENITY="zenity"
+WIDTH="--width=450"
+HEIGHT150="--height=150"
+HEIGHT100="--height=100"
+WINDOWICON="--window-icon=preferences-desktop-locale"
+IMAGE="--image"
+TEXT="--text"
+TITLE="--title"
+TITLETEXT="APTus"
+PULSATE="--progress --pulsate"
+CLOSE="--auto-close"
+NOCANCEL="--no-cancel"
+INSTALL="apt-get install -y"
+MSGBOX="--button=Ok:0"
+BUTTON1="--button"
+
+$YAD $WIDTH $HEIGHT150 $WINDOWICON $IMAGE=/usr/share/icons/sparky/flags/48/$IMG.png $TEXT="$LOCAL039 $LANG $LOCAL040\n\n$LOCAL041" $TITLE="$TITLETEXT" $MSGBOX $BUTTON1=$LOCAL001:1
+
+if [ "$?" != "0" ]; then
+	$YAD $WIDTH $HEIGHT100 $WINDOWICON $IMAGE=/usr/share/icons/sparky/flags/48/$IMG.png $TEXT="$LOCAL033" $TITLE="$TITLETEXT" $MSGBOX
+	exit 1
+else
+	# install firefox-esr language package
+	if [ -f /usr/share/doc/firefox-esr/copyright ]; then
+		$INSTALL firefox-esr-l10n-$COUNTRY | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 Firefox-ESR $LANG $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+
+	# install firefox language package
+	if [ -f /usr/share/doc/firefox/copyright ]; then
+		$INSTALL firefox-l10n-$COUNTRY | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 Firefox $LANG $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+
+	# install thunderbird language package
+	if [ -f /usr/bin/thunderbird ]; then
+		$INSTALL thunderbird-l10n-$COUNTRY | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 Thunderbird $LANG $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+
+	# install libreoffice language package
+	if [ -f /usr/bin/libreoffice ]; then
+		$INSTALL libreoffice-help-$COUNTRY | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 LibreOffice $LANG $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+
+	# install calligra language package
+	if [ -f /usr/bin/calligrawords ]; then
+		$INSTALL calligra-l10n-$COUNTRY | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 Calligra $LANG $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+
+	# install kde task
+	if [ -d /usr/share/doc/plasma-desktop ]; then
+		$INSTALL task-$LANGTASK-kde-desktop | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 KDE task $LANG $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+
+	# install gnome task
+	if [ -d /usr/share/doc/gnome-shell ] || [ -d /usr/share/doc/gnome-session-flashback ]; then
+		$INSTALL task-$LANGTASK-gnome-desktop | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 GNOME task $LANG $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+
+	# install myspell
+	$INSTALL myspell-$COUNTRY | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 myspell dictionary $LANG $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	
+	# install aspell
+	$INSTALL aspell-$COUNTRY | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 aspell dictionary $LANG $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	
+	# install ja_JP fonts
+	if [ "`cat /etc/default/locale | grep ja_JP`" != "" ]; then
+		$INSTALL fonts-vlgothic fonts-ipafont fcitx5-mozc | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL044" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+
+	# install pt_BR task
+	if [ "`cat /etc/default/locale | grep pt_BR`" != "" ]; then
+		$INSTALL task-brazilian-portuguese | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 pt_BR task $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+	
+	# install zh_CN task
+	if [ "`cat /etc/default/locale | grep zh_CN`" != "" ]; then
+		$INSTALL fcitx5 fcitx5-pinyin fonts-wqy-microhei | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 zh_CN $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+
+	# install lxqt locale files
+	if [ -d /usr/share/doc/sparky-desktop-lxqt ]; then
+		$INSTALL pcmanfm-qt-l10n lxqt-about-l10n lxqt-admin-l10n lxqt-config-l10n lxqt-globalkeys-l10n lxqt-notificationd-l10n lxqt-openssh-askpass-l10n lxqt-panel-l10n lxqt-policykit-l10n lxqt-powermanagement-l10n lxqt-runner-l10n lxqt-session-l10n lxqt-sudo-l10n pavucontrol-qt-l10n liblxqt-l10n libfm-qt-l10n qterminal-l10n lximage-qt-l10n | $ZENITY $PULSATE $WIDTH $HEIGHT100 $CLOSE $WINDOWICON $TEXT="$LOCAL042 LXQt locales $LOCAL043" $TITLE="$TITLETEXT" $NOCANCEL
+	fi
+fi
+
+exit 0

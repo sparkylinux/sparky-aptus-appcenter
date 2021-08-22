@@ -1,0 +1,197 @@
+-------------------------------------------------------------------------------
+  Version 20210820~sparky7~0 (2021-08-20)
+-------------------------------------------------------------------------------
+  * Added Firefox Latest, Librewolf
+  * Changed exfat-utils to exfatprogs
+  
+-------------------------------------------------------------------------------
+  Version 20210815~sparky6~0 (2021-08-15)
+-------------------------------------------------------------------------------
+  * Updated locale installation
+  * Removed Firefox Latest, Librewolf
+  * Added Cinelerra, Gammy, Sparky-Backlight
+
+-------------------------------------------------------------------------------
+  Version 20210801~sparky6~0 (2021-08-01)
+-------------------------------------------------------------------------------
+  * Fixed desktop removing
+  * Added chirp, systemback
+
+-------------------------------------------------------------------------------
+  Version 20210724~sparky6~0 (2021-07-24)
+-------------------------------------------------------------------------------
+  * Small fixes
+  * Added sparky-welcome
+
+-------------------------------------------------------------------------------
+  Version 20210723~sparky6~0 (2021-07-23)
+-------------------------------------------------------------------------------
+  * Added frostwire, lightworks, nuclear, shortwave, komorebi, enve, luakit, viper-browser
+  * Removed iridium-browser
+
+-------------------------------------------------------------------------------
+  Version 20210615~sparky6~0 (2021-06-15)
+-------------------------------------------------------------------------------
+  * Removed Exit button from Install pages
+
+-------------------------------------------------------------------------------
+  Version 20210613~sparky6~0 (2021-06-13)
+-------------------------------------------------------------------------------
+  * Added Exit button
+
+-------------------------------------------------------------------------------
+  Version 20210609~sparky6~0 (2021-06-09)
+-------------------------------------------------------------------------------
+  * Added hamsket, android-messager-desktop, freetube, wireguard, freelan, openconnect, openvpn, nuntius
+  * Don't search on changelog file
+-------------------------------------------------------------------------------
+  Version 20210524~sparky6~0 (2021-05-24)
+-------------------------------------------------------------------------------
+  * Separated instalation of openjdk and openjre
+  * Added librewolf, gnome-boxes, nmh, mmh, mailutils, fetchmail, getmail6, alot, astroid, citadel-client, fdm, gnumail.app, bsd-mailx, neomutt, notmuch, procmail, roundcube, riseup-vpn, protonvpn, connman-vpn, gadmin-openvpn-client, network-manager-openvpn-gnome, network-manager-vpnc-gnome, openfortivpn, softether-vpnclient, vpnc
+  * Added new subcategory VPN
+
+-------------------------------------------------------------------------------
+  Version 20210517~sparky6~0 (2021-05-17)
+-------------------------------------------------------------------------------
+  * Added changelog page
+  * Added openjava
+
+-------------------------------------------------------------------------------
+  Version 20210515~sparky6~0 (2021-05-15)
+-------------------------------------------------------------------------------
+  * Added kget-integrator, uget-integrator, gnome-shell-mailnag, ayatana-webmail, gnubiff, tagspaces, rednotebook, videotrans, zoneminder, bombono-dvd, foobnix, freetuxtv, gmorgan, handbrake, imagination, jampal, karlyriceditor, kmidimon, qarte, retroarch, shorten, slowmovideo, smillaenlarger, spek, vcdimager, vqmt, xcutmp3, youtube-dl, youtubedl-gui
+
+-------------------------------------------------------------------------------
+  Version 20210421~sparky6~0 (2021-04-21)
+-------------------------------------------------------------------------------
+  * Renamed pt_BR locale to pt
+  * Added filmulator, micro, ventoy, ventoy-gui, sunflower, rocketchat, protonmail-bridge
+  * Removed dolphin-emu, ppsspp
+
+-------------------------------------------------------------------------------
+  Version 20210401~sparky6~0 (2021-04-01)
+-------------------------------------------------------------------------------
+  * Added polo-file-manager, gaupol, aegisub, pqiv, mirage, sxiv, qiv, phototonic, posterazor, fotoxx
+  * Added el_GR locale
+  * Fixed locale installation menu
+
+-------------------------------------------------------------------------------
+  Version 20210312~sparky6~0 (2021-03-12)
+-------------------------------------------------------------------------------
+  * Remove signed-template package from linux-image list of old-kernel-remover
+  * Added multios-usb
+
+-------------------------------------------------------------------------------
+  Version 20210303~sparky6~0 (2021-03-03)
+-------------------------------------------------------------------------------
+  * Small fix
+
+-------------------------------------------------------------------------------
+  Version 20210302~sparky6~0 (2021-03-02)
+-------------------------------------------------------------------------------
+  * Small fixes
+  * Added linphone-desktop, amarok, alacritty, cool-retro-term, tilix, sparky-system, tbsm, bemenu, fbpanel
+  * Removed flashplayer-chromium, flashplayer-mozilla, plm
+
+-------------------------------------------------------------------------------
+  Version 20210219~sparky6~0 (2021-02-19)
+-------------------------------------------------------------------------------
+  * Added installation of Debian RealTime Linux kernel
+  * Separated installation of 32 and 64 kernels
+  * Refresh package list before start
+  * Added packages gomuks, tutanota-desktop, steamtinkerlaunch, guake, kopete
+
+-------------------------------------------------------------------------------
+  Version 20210121.1~sparky6~0 (2021-01-21)
+-------------------------------------------------------------------------------
+  * Small fixes
+
+-------------------------------------------------------------------------------
+  Version 20210121~sparky6~0 (2021-01-21)
+-------------------------------------------------------------------------------
+  * Added DeepL-Linux, Cheese, Tribler, hv3, Tomboy-NG
+  * Removed spyder
+
+-------------------------------------------------------------------------------
+  Version 20201223~sparky6~0 (2020-12-23)
+-------------------------------------------------------------------------------
+  * Added netdata, cozy
+  * Install edex-ui on i386 too
+  * Removed APTus and APTus AppCenter from the list
+  * Removed second entry of KDE Connect
+  * Removed stretchplayer, kradio4
+
+-------------------------------------------------------------------------------
+  Version 20201217~sparky6~0 (2020-12-17)
+-------------------------------------------------------------------------------
+  * Added Pogo, KDEConnect, Zettlr, cpufrequtils, cpupower-gui, Rescuezilla
+  * Removed thonny, cairo-dock, jerry
+
+-------------------------------------------------------------------------------
+  Version 20201203~sparky6~0 (2020-12-03)
+-------------------------------------------------------------------------------
+  * Install Strawberry on amd64 only
+  * Removed cairo-dock-core, fbpanel, gweled
+  * Added grsync, meld, simplest-studio, next, slimjet, linux-cpupower 
+
+-------------------------------------------------------------------------------
+  Version 20201109~sparky6~0 (2020-11-10)
+-------------------------------------------------------------------------------
+  * Added Hiero, BPyTop, CPU-X, LazPaint]
+  * Removed a few packs
+  * Rewriten package and desktop installation modules
+
+-------------------------------------------------------------------------------
+  Version 20201023~sparky6~0 (2020-10-23)
+-------------------------------------------------------------------------------
+  * Added Boostnote, OnionShare, Timekpr-nExt, XanMod kernel installer, FFQueue
+  * Removed calamares, xpdf
+  * Small fixes
+
+-------------------------------------------------------------------------------
+  Version 20201018~sparky6~0 (2020-10-18)
+-------------------------------------------------------------------------------
+  * sparky-su replaced by sparky-remsu
+  * Added Brackets, Jeex, Cheerytree, Zim, Drawing, MellowPlayer, Elisa, UKUI desktop, Falkon
+  * Don't ping on startup
+  * Added pt_BR locale
+  * Updated locale checking
+
+-------------------------------------------------------------------------------
+  Version 20200916~sparky6~0 (2020-09-16)
+-------------------------------------------------------------------------------
+  * Added Browsh, Ciano, Thonny, Synapse, Default-JRE
+  * Added Italian locale
+  * Install virtualbox-qt instead of virtualbox-6.1
+  * Removed android-sdk, anki, tuxtype, tuxmatch, efp, monster-masher, termtris, desmume, geekcode, gmidimonitor, denemo, patchage, youtube-dlg, grsync, aqemu
+
+-------------------------------------------------------------------------------
+  Version 20200823~sparky6~0 (2020-08-23)
+-------------------------------------------------------------------------------
+  * Updated Trinity repo
+  * Removed qemy-kvm, cool-retro-term, opentyrian, cavezofphear, curseofwar, tetrinet-client, tome, scrcpy
+  * Added Accessories - Weather category
+
+-------------------------------------------------------------------------------
+  Version 20200808~sparky6~0 (2020-07-30)
+-------------------------------------------------------------------------------
+  * Added Russian locale
+  * Added Warpinator, Gmail Desktop, Joplin, NixNote2, Electrum, Electric, OpenShot
+  * Removed jeex, lpe, chemtool, gabedit, monteverdi, munipack, sigviewer, snap,
+acm, freedroid, garden-of-coloured-lights, luola, spout, xblast-tnt,
+xtron, dossizola, gbatnav, gtkboard, shogivar, sjeng, ezquake, gfpoken, naev, 
+slashem-gtk, slimevolley, biloba, bygfoot, nettoe, pcsxr, freedroidrpg, gnuminishogi,
+gnushogi, lives, ncftp, trojita, xpra, litecoin-qt, bitcoin-qt, i2pd
+
+-------------------------------------------------------------------------------
+  Version 20200730~sparky6~0 (2020-07-30)
+-------------------------------------------------------------------------------
+  * Changed Riot Desktop to Element Desktop
+  * Updated Hungarian locales
+  * Change dir to home before picking a deb file of local install 
+
+-------------------------------------------------------------------------------
+  Version 20200725~sparky6~0 (2020-07-25)
+-------------------------------------------------------------------------------
+  * Initial release beta1

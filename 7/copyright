@@ -1,0 +1,645 @@
+Upstream Author(s): 
+    Paweł "pavroo" Pijanowski <pavroo@onet.eu>
+
+Files: *    
+    Copyright (C) 2018-2021 Paweł Pijanowski
+    License: GPL-3+
+
+### translations ###
+Files: lang/menu/en.js; lang/categories/en.js, apptus-appcenter; handler; 
+    Oryginally created by Piotr "MoroS" Mrożek
+    License: GPL-3+
+
+Files: de
+    Copyright (C) 2015 Pete B.
+    License: GPL-3+
+
+Files: el
+    Copyright (C) 2021 jidan
+    License: GPL-3+
+    
+Files: en
+    Copyright (C) 2020 pavroo
+    License: GPL-3+
+
+Files: es
+    Copyright (C) 2016 Fernando "seacat" Velo <seacat.linux@gmail.com>
+    License: GPL-3+
+
+Files: fr
+    Copyright (C) 2016 hiver <hiver@club-internet.fr>
+    Copyright (C) 2018 Jean-Albert Caire
+    License: GPL-3+
+
+Files: hu
+    Copyright (C) 2020 Nemomen
+    License: GPL-3+
+    
+File:s id_ID
+    Copyright (C) 2018 les kompie
+    License: GPL-3+
+
+Files: it
+    Copyright (C) 2015 Carlo‚ "malato" Troiani <abbassolafrangetta@gmail.com>
+    License: GPL-3+
+
+Files: pl
+    Copyright (C) 2020 pavroo
+    License: GPL-3+
+
+Files: pt_BR
+    Copyright (C) 2015 Claudio Cesar de Sá "ccs1664" <ccs1664@gmail.com>
+    Copyright (C) 2018 Elton Fabricio Ferreira
+    License: GPL-3+
+
+Files: pt_PT
+    Copyright (C) 2016 Joel Chaves "Flacc" <joel_chaves@icloud.com>
+    License: GPL-3+
+
+Files: ru
+    Copyright (C) 2020 ChourS
+    License: GPL-3+
+
+File: zh_CN
+    Copyright (C) 2020 xingjiapeng
+    License: GPL-3+
+
+### end translations ###
+
+License:
+
+    This package is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+ 
+    This package is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+ 
+    You should have received a copy of the GNU General Public License
+    along with this package; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL'.
+
+### Flags ###
+File: al.png
+Author: John C. Meuser
+Source: https://openclipart.org/detail/26880/flag-of-albania-by-anonymous
+License: Creative Commons CC0
+
+File: am.png
+Author: Gustaf Lööv
+Source: https://openclipart.org/detail/24027/flag-of-armenia-by-anonymous-24027
+License: Creative Commons CC0
+
+File: bg.png
+Author: tobias
+Source: https://openclipart.org/detail/17739/flag-of-bulgaria-by-tobias
+License: Creative Commons CC0
+
+File: bos.png
+Author: Anonymous
+Source: https://openclipart.org/detail/110845/bosnia-and-herzegovina-by-anonymous
+License: Creative Commons CC0
+
+File: br.png
+Author: leandrosciola
+Source: https://openclipart.org/detail/63763/bandeira-do-brasil-flag-brazil
+License: Creative Commons CC0
+
+File: by.png
+Author: Anonymous
+Source: https://openclipart.org/detail/120151/belarus-by-anonymous
+License: Creative Commons CC0
+
+File: cz.png
+Author: tobias
+Source: https://openclipart.org/detail/17741/flag-of-the-czech-republic-by-tobias
+License: Creative Commons CC0
+
+File: de.png
+Author: Anonymous
+Source: https://openclipart.org/detail/12785/flag-of-germany-by-anonymous-12785
+License: Creative Commons CC0
+
+File: dk.png
+Author: tobias
+Source: https://openclipart.org/detail/17742/flag-of-denmark-by-tobias
+License: Creative Commons CC0
+
+File: ee.png
+Author: tobias
+Source: https://openclipart.org/detail/17743/flag-of-estonia-by-tobias
+License: Creative Commons CC0
+
+File: es.png
+Author: claudita
+Source: https://openclipart.org/detail/17279/flag-of-spain-by-claudita
+License: Creative Commons CC0
+
+File: esp.png
+Author: esperanton
+Source: https://openclipart.org/detail/91837/esperanta-flago-by-esperanton
+License: Creative Commons CC0
+
+File: fi.png
+Author: tobias
+Source: https://openclipart.org/detail/17744/flag-of-finland-by-tobias
+License: Creative Commons CC0
+
+File: fr.png
+Author: tobias
+Source: https://openclipart.org/detail/17736/flag-of-france-by-tobias
+License: Creative Commons CC0
+
+File: gr.png
+Author: tobias
+Source: https://openclipart.org/detail/17745/flag-of-greece-by-tobias
+License: Creative Commons CC0
+
+File: hr.png
+Author: Anonymous
+Source: https://openclipart.org/detail/12723/flag-of-croatia-by-anonymous-12723
+License: Creative Commons CC0
+
+File: hu.png
+Author: Anonymous
+Source: https://openclipart.org/detail/12811/flag-of-hungary-by-anonymous-12811
+License: Creative Commons CC0
+
+File: il.png
+Author: Anonymous
+Source: https://openclipart.org/detail/13244/flag-of-israel-by-anonymous-13244
+License: Creative Commons CC0
+
+File: in.png
+Author: eternaltyro
+Source: https://openclipart.org/detail/170714/flag-of-india-by-eternaltyro-170714
+License: Creative Commons CC0
+
+File: indo.png
+Author: Anonymous
+Source: https://openclipart.org/detail/12849/flag-of-indonesia-by-anonymous
+License: Creative Commons CC0
+
+File: ir.png
+Author: tobias
+Source: https://openclipart.org/detail/17746/flag-of-ireland
+License: Creative Commons CC0
+
+File: is.png
+Author: Aki G. Karlsson
+Source: https://openclipart.org/detail/23562/flag-of-iceland-by-anonymous-23562
+License: Creative Commons CC0
+
+File: it.png
+Author: tobias
+Source: https://openclipart.org/detail/17737/flag-of-italy-by-tobias
+License: Creative Commons CC0
+
+File: jp.png
+Author: Anonymous
+Source: https://openclipart.org/detail/106267/japan-by-anonymous
+License: Creative Commons CC0
+
+File: kr.png
+Author: Anonymous
+Source: https://openclipart.org/detail/25205/flag-of-south-korea-by-anonymous-25205
+License: Creative Commons CC0
+
+File: lat.png
+Author: tobias
+Source: https://openclipart.org/detail/17747/flag-of-latvia-by-tobias
+License: Creative Commons CC0
+
+File: lt.png
+Author: tobias
+Source: https://openclipart.org/detail/17748/flag-of-lithuania-by-tobias
+License: Creative Commons CC0
+
+File: mk.png
+Author: Anonymous
+Source: https://openclipart.org/detail/25986/flag-of-macedonia-by-anonymous-25986
+License: Creative Commons CC0
+
+File: ne.png
+Author: tobias
+Source: https://openclipart.org/detail/17772/flag-of-nepal
+License: Creative Commons CC0
+
+File: nl.png
+Author: Anonymous
+Source: https://openclipart.org/detail/13053/flag-of-the-netherlands-by-anonymous-13053
+License: Creative Commons CC0
+
+File: no.png
+Author: Christian Schaller
+Source: https://openclipart.org/detail/119089/norway-by-anonymous
+License: Creative Commons CC0
+
+File: pl.png
+Author: Cezary Biele
+Source: https://openclipart.org/detail/119593/poland-by-anonymous
+License: Creative Commons CC0
+
+File: per.png
+Author: Cezary Biele
+Source: https://openclipart.org/detail/119617/iran-by-anonymous
+License: Creative Commons CC0
+
+File: ps.png
+Author: Anonymous
+Source: https://openclipart.org/detail/13076/flag-of-palestine-by-anonymous-13076
+License: Creative Commons CC0
+
+File: pt.png
+Author: Anonymous
+Source: https://openclipart.org/detail/13125/flag-of-portugal-by-anonymous-13125
+License: Creative Commons CC0
+
+File: ro.png
+Author: tobias
+Source: https://openclipart.org/detail/17751/flag-of-romania-by-tobias
+License: Creative Commons CC0
+
+File: ru.png
+Author: Anonymous
+Source: https://openclipart.org/detail/13147/flag-of-the-russian-federation-by-anonymous
+License: Creative Commons CC0
+
+File: saf.png
+Author: Anonymous
+Source: Openclipart https://openclipart.org/detail/13204/flag-of-south-africa-by-anonymous
+License: Creative Commons CC0
+
+File: se.png
+Author: Anonymous
+Source: https://openclipart.org/detail/12589/flag-of-sweden-by-anonymous-12589
+License: Creative Commons CC0
+
+File: si.png
+Author: tobias
+Source: https://openclipart.org/detail/17753/flag-of-slovenia-by-tobias
+License: Creative Commons CC0
+
+File: sk.png
+Author: tobias
+Source: https://openclipart.org/detail/17752/flag-of-slovakia-by-tobias
+License: Creative Commons CC0
+
+File: sr.png
+Author: zlatkodesign
+Source: https://openclipart.org/detail/116983/serbian-flag-by-zlatkodesign
+License: Creative Commons CC0
+
+File: th.png
+Author: Lauris Kaplinski
+Source: https://openclipart.org/detail/106249/thailand-by-anonymous
+License: Creative Commons CC0
+
+File: tr.png
+Author: David Benbennick http://commons.wikimedia.org/wiki/User:Dbenbenn
+Source: http://commons.wikimedia.org/wiki/File:Flag_of_Turkey.svg
+License: Creative Commons CC0
+
+File: ua.png
+Author: Lauris Kaplinski
+Source: https://openclipart.org/detail/106207/ukraine-by-anonymous
+License: Creative Commons CC0
+
+File: ug.png
+Author: tobias
+Source: https://openclipart.org/detail/17789/flag-of-uganda-by-tobias
+License: Creative Commons CC0
+
+File: uk.png
+Author: tobias
+Source: https://openclipart.org/detail/17754/flag-of-the-united-kingdom-by-tobias
+License: Creative Commons CC0
+
+File: vn.png
+Author: Lauris Kaplinski
+Source: https://openclipart.org/detail/106219/viet-nam-by-anonymous
+License: Creative Commons CC0
+
+File: zh.png
+Author: Anonymous
+Source: https://openclipart.org/detail/25203/flag-of-chinese-by-anonymous-25203
+License: Creative Commons CC0
+
+About CC0 — “No Rights Reserved” http://creativecommons.org/about/cc0
+
+File: kaz.png
+Author: -xfi-
+Source: http://commons.wikimedia.org/wiki/File:Flag_of_Kazakhstan.svg
+License: Article 8. Works Not Protected by Copyright, full text of Law on Copyright and Neighboring Rights: http://portal.unesco.org/culture/admin/file_download.php/kz_copyright_1996_en.pdf?URL_ID=30379&filename=11424145143kz_copyright_1996_en.pdf&filetype=application%2Fpdf&filesize=336085&name=kz_copyright_1996_en.pdf&location=user-S/
+The following shall not be protected by copyright:
+1. official documents (laws, court decisions and other texts of a legislative, administrative, judicial or diplomatic nature) together with official translations thereof;
+2. State emblems and official signs (flags, armorial bearings, decorations, monetary signs and other State symbols and official signs);
+3. works of folklore,
+4. communications concerning events and facts that have an informational character.
+
+### end flags ###
+
+Files: sparky-aptus-appcenter.svg, sparky-aptus-appcenter.png
+Copyright (C) 2020 lami07
+License: Creative Commons 
+
+### applications icons in images dir ###
+
+Files: images/*
+Vince Liuice <vinceliuice@hotmail.com>
+Tela icon theme (https://github.com/vinceliuice/Tela-icon-theme)
+License: GNU GPL-3
+
+### end applications icons in images dir ###
+
+### applications icons in images1 dir ###
+
+Files: images1/*
+Ultra-Flat-Icons by Steftrikia <steftrikia@gmail.com>
+Theme inspired from Flattr icon theme.
+Icons are designed and developed by Uri Herrera <kaisergreymon99@gmail.com> and its contributors, except those which were added / replaced.
+License: Attribution-NonCommercial-ShareAlike 4.0 International Public License
+
+### end applications icons in images1 dir ###
+
+### application icons ###
+
+File: images0/beaker-browser.png
+Copyright (c) 2018 Blue Link Labs
+License: MIT
+
+File: images0/cyberfox.png
+Copyright: cyberfox.8pecxstudios.com
+License: ?
+
+File: images0/dillo.png
+Copyright John Grantham
+License: GNU GPL 2+
+
+File: images0/dooble.png
+Copyright (c) 2008 - present, Alexis Megas.
+License: ?
+
+File: images0/falkon.png
+Copyright: 2010-2018 David Rosca <nowrep@gmail.com>
+License: GPL-3.0+
+
+File: images0/icecat.png
+Author: Hitflip
+Source: Wikipedia
+License: Mozilla's MPL / GPL / LGPL tri-license
+
+File: images0/iridium.png
+Copyright: https://iridiumbrowser.de/
+License: ?
+
+File: images0/iron.png
+Copyright: https://www.srware.net/en/software_srware_iron.php
+License: ?
+
+File: images0/librewolf.png
+Copyright: https://gitlab.com/librewolf-community/browser/linux/-/project_members
+License: MPL-2.0
+
+File: images0/midori.svg
+Copyright: Christian Dywan & Nancy Runge of the Midori project
+License: GNU Lesser General Public License
+
+File: min.png
+Copyright: https://minbrowser.github.io/min/
+License: Apache License Version 2.0
+
+File: images0/motionbox.png
+Copyright (C) 2018 Benjamin Arnaud <bunjee@omega.gg>
+License: GPL3
+
+File: images0/musique.png
+Copyright: 2011 Flavio Tordini
+License: GPL-3+
+
+File: images0/netsurf.png
+Copyright: 2008-2015 Michael Drake <tlsa@netsurf-browser.org>
+License: MIT
+
+File: images0/onlyoffice.png
+Copyright: The ONLYOFFICE team
+License: Creative Commons
+
+File: images0/otter.png
+Copyright: 2013 - 2018 Michal Dutkiewicz aka Emdek <michal@emdek.pl>
+License: GPL-3.0+
+
+File: images0/palemoon.png
+Copyright: M.C. Straver BASc, AKA "Moonchild"
+License: Freeware
+
+File: images0/qutebrowser.png
+Copyright: Florian Bruhin
+License: GNU GPL
+
+File: images0/seamonkey.png
+Copyright: Alex Butin for Mozilla Foundation https://www.seamonkey-project.org/
+License: MPL/LGPL/GPL tri-license
+
+File: images0/sparky-tube.svg
+Copyright: lami07 & pavroo
+License: GNU GPL
+
+File: images0/strawberry.svg
+Copyright: David Sansome <me@davidsansome.com>
+License: GPL-3+
+
+File: images0/tor-browser.png
+Copyright (c) 2007-2013, The Tor Project, Inc.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+    * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+    * Neither the names of the copyright owners nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+### end applications ###
+
+### desktop icons ###
+
+File: images0/awesome.png
+Copyright (C) The awesome team
+Source: https://awesome.naquadah.org/
+License: GNU GPL-2
+
+File: images0/bspwm.png
+Copyright (C) Bastien Dejean
+Source: https://github.com/baskerville/bspwm
+License: BSD
+
+File: images0/budgie.png
+Copyright (C) Ikey Doherty
+Source: https://github.com/solus-project/budgie-desktop
+License: GNU GPL 2
+
+File: images0/cde.png
+Copyright (C) Copyright 1993-2012 The Open Group
+Copyright (C) 2012-2016 CDE Project contributors
+Source: https://sourceforge.net/p/cdesktopenv/
+License: GNU LGPL 2+
+
+File: images0/cinnamon.png
+Copyright (C) Clement Lefebvre
+Source: https://commons.wikimedia.org/wiki/File:Linux_Mint_logo_without_wordmark.svg
+License: Creative Commons Attribution 3.0 Unported
+
+File: images0/elementary.png
+Copyright (C) Dan Rabbit
+Source: https://commons.wikimedia.org/wiki/File:Elementary_logo.svg
+License: GNU GPL2+
+
+File: images0/enlightenment.png
+Copyright (C) Carsten Haitzler and various contributors
+Source: https://en.wikipedia.org/wiki/File:E17_enlightenment_logo_shiny_black_curved.svg
+License: BSD
+
+File: images0/fluxbox.png
+Copyright (C) Oliwier Ptak, <aleczapka at gmx dot net>
+Source: https://commons.wikimedia.org/wiki/File:Fluxbox-logo.png
+License: GNU GPL2+
+
+File: images0/gnome*.png
+Copyright (C) GhePeU
+Source: https://commons.wikimedia.org/wiki/File:Gnomelogo-footprint.svg
+License: GNU LGPL
+
+File: images0/i3.png
+Copyright (C) Michael Stapelberg
+Source: https://commons.wikimedia.org/wiki/File:I3_window_manager_logo.png
+License: Creative Commons Attribution-Share Alike 3.0 Unported
+
+File: images0/icewm.png
+Copyright (C) Marko Maček
+Source: https://commons.wikimedia.org/wiki/File:IceWM_Logo.png
+License: Creative Commons Attribution-Share Alike 3.0 Unported
+
+File: images0/jade.png
+Vitor Lopes <vmnlop@gmail.com>
+License: GPL
+
+File: images0/jwm.png
+Copyright (C) Joe Wingbermuehle
+Source: http://joewing.net/projects/jwm/
+License: GNU GPL v2
+
+File: images0/kde.png
+Copyright (C) KDE
+Source: https://commons.wikimedia.org/wiki/File:KDE_Logo_Official_Lineart_Detailed.svg
+License: GNU GPL v2
+
+File: images0/lumina.png
+Copyright 2012-2016, Ken Moore (moorekou@gmail.com)
+All rights reserved
+Source: https://github.com/trueos/lumina
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the organization nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+
+File: images0/lxde.png
+Copyright (C) Mario Behling
+Source: https://commons.wikimedia.org/wiki/File:LXDE_logo.jpg
+License: LGPL
+
+File: images0/lxqt.png
+Copyright (C) Caig
+Source: https://commons.wikimedia.org/wiki/File:Helix_lxqt.svg
+License: Creative Commons Attribution-Share Alike 3.0 Unported
+
+File: images0/manokwari.png
+Copyright (C) Manokwari team
+Source: http://manokwari.blankonlinux.or.id/
+License: GNU GPL
+
+File: images0/mate.png
+Copyright (C) MATE team / Joseph Krieger
+Source: https://commons.wikimedia.org/wiki/File:Mate_icon.png
+License: GNU GPL
+
+File: images0/nscde.png
+Copyright (C) Hegel3DReloaded
+Source: https://github.com/NsCDE/
+License: GNU LGPL 3+
+    
+File: images0/openbox.png
+Copyright (C) David Barr
+Source: http://openbox.org/wiki/File:Openbox-72.png
+License: GNU GPL 2+
+
+File: images0/pekwm.png
+Copyright (C) PekWM team
+Source: https://www.pekwm.org/
+License: GNU GPL
+
+File: images0/tde.png
+Copyright (C) KDE, Pearson Computing
+Source: https://commons.wikimedia.org/wiki/File:Trinity_DE_logo_crystal.png
+License: LGPL
+
+File: images0/ukui.png
+Copyright (C) 2019, Tianjin KYLIN Information Technology Co., Ltd.
+Source: https://raw.githubusercontent.com/ukui/ukui-panel/master/panel/img/startmenu.svg
+License: LGPL-2.1+
+
+File: images0/wmaker.png
+Copyright (C) Window Maker developers
+Source: http://windowmaker.org/
+License: GNU GPL v2
+
+File: images0/xfce.png
+Copyright (C) Xfce Team, Sav_vas
+Source: https://commons.wikimedia.org/wiki/File:Xfce_logo.svg
+License: LGPL
+
+### end desktops ###
+
+Files: images0/sparky-header*, images0/background*
+Copyright (C) 2019 Paweł Pijanowski <pavroo@onet.eu>
+Source: https://sparkylinux.org
+License: GNU GPL 3
+
