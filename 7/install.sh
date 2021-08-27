@@ -25,7 +25,7 @@ if [ "$1" = "uninstall" ]; then
    	rm -rf /usr/share/sparky/sparky-aptus-appcenter
 else
 	cp bin/* /usr/bin/
-	cp lib/sparky-aptus-appcenter /usr/lib/
+	cp -r lib/sparky-aptus-appcenter /usr/lib/
 	cp share/applications/* /usr/share/applications/
 	cp share/icons/hicolor/24x24/apps/sparky-aptus-appcenter.png /usr/share/icons/hicolor/24x24/apps/
 	cp share/icons/hicolor/48x48/apps/sparky-aptus-appcenter.png /usr/share/icons/hicolor/48x48/apps/
