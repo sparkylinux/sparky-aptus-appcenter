@@ -15,6 +15,7 @@ Comment[pl]=Utrzymuj system zaktualizowany i czysty, instaluj i usuwaj pakiety
 Comment[pt_BR]=Mantenha seu sistema atualizado e limpo, instale e remova pacotes
 Comment[pt_PT]=Mantenha seu sistema atualizado e limpo, instale/remova pacotes
 Comment[ru]=Поддержка системы в актуальном состоянии, чистка, установка и удаление пакетов
+Comment[zh_CN]=保持您的系统最新且干净，安装或卸载软件包
 Exec=remsu /usr/bin/sparky-aptus-appcenter
 Icon=sparky-aptus-appcenter
 Terminal=false

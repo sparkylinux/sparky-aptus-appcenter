@@ -1,29 +1,32 @@
 #!/bin/bash
 
 # Created by Piotr "MoroS" Mrożek 2018
-# Last update by Paweł "pavroo" Pijanowski May 24, 2021
+# Last update by OkayPJ Aug 28, 2021
 
-LANGUAGE=${LANG:0:2}
-EL=`echo $LANGUAGE | grep el`
-EN=`echo $LANGUAGE | grep en`
-HU=`echo $LANGUAGE | grep hu`
-IT=`echo $LANGUAGE | grep it`
-PL=`echo $LANGUAGE | grep pl`
-PT=`echo $LANGUAGE | grep pt`
-RU=`echo $LANGUAGE | grep ru`
+LANGUAGE1=${LANG:0:2}
+LANGUAGE2=${LANG:0:5}
+EL=`echo $LANGUAGE1 | grep el`
+EN=`echo $LANGUAGE1 | grep en`
+HU=`echo $LANGUAGE1 | grep hu`
+IT=`echo $LANGUAGE1 | grep it`
+PL=`echo $LANGUAGE1 | grep pl`
+PT=`echo $LANGUAGE1 | grep pt`
+ZHCN=`echo $LANGUAGE2 | grep zh_CN`
 
 if [ "$EL" != "" ]; then
-	LANGUAGE="$LANGUAGE"
+	LANGUAGE="$LANGUAGE1"
 elif [ "$HU" != "" ]; then
-	LANGUAGE="$LANGUAGE"
+	LANGUAGE="$LANGUAGE1"
 elif [ "$IT" != "" ]; then
-	LANGUAGE="$LANGUAGE"
+	LANGUAGE="$LANGUAGE1"
 elif [ "$PL" != "" ]; then
-	LANGUAGE="$LANGUAGE"
+	LANGUAGE="$LANGUAGE1"
 elif [ "$PT" != "" ]; then
-	LANGUAGE="$LANGUAGE"
+	LANGUAGE="$LANGUAGE1"
 elif [ "$RU" != "" ]; then
-	LANGUAGE="$LANGUAGE"
+	LANGUAGE="$LANGUAGE1"
+elif [ "$ZHCN" != "" ]; then
+	LANGUAGE="$LANGUAGE2"
 else
 	LANGUAGE="en"
 fi
