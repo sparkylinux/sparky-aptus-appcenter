@@ -1,7 +1,7 @@
 // Chinese（Simplified） localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2021/08/30 by OkayPJ <okaythepj@outlook.com>
+// Last update 2021/09/03 by OkayPJ <okaythepj@outlook.com>
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "应用程序";
@@ -30,11 +30,11 @@ dict.entries['main']['info03'] = "安装知名软件";
 dict.entries['main']['info04'] = "卸载软件包";
 dict.entries['main']['info05'] = "更多精彩等待发现……";
 dict.entries['main']['info06'] = "该应用程序使用了 YAD 与 HTML 的技术进行开发";
-dict.entries['main']['info07'] = "YAD 在编译时必默认启用 --html 标志。";
+dict.entries['main']['info07'] = "YAD 在编译时须默认启用 --html 标志。";
 dict.entries['main']['info08'] = "如果在使用期间发现任何问题，请将其报告在 Sparky 的论坛中。";
 dict.entries['main']['info09'] = "Sparky APTus AppCenter 在 GNU GPL 3.0 协议下发布。";
 dict.entries['main']['info10'] = "贡献者：";
-dict.entries['main']['info11'] = "翻译（部分来源于 APTus） ：";
+dict.entries['main']['info11'] = "翻译（部分来源于 APTus）：";
 // accesories
 dict.entries['main']['archivers'] = "压缩工具";
 dict.entries['main']['clipboards'] = "剪贴板";
