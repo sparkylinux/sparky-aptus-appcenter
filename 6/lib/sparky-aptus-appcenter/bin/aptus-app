@@ -629,6 +629,13 @@ elif [ "$1" = "systemback" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+
+##### system virtual #####
+elif [ "$1" = "virtualbox" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="virtualbox-6.1"
 else
 	PACKAGE="$1"
 fi

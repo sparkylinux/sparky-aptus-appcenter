@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2021/06/13 by pavroo
+# last update 2021/09/04 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -48,7 +48,7 @@ else
 	exit 1
 fi
 # trinity bullseye repo
-TDEREPO="trinity-testing bullseye deps main"
+TDEREPO="trinity-sb bullseye deps-r14 main-r14"
 USER1000=`cat /etc/passwd | grep 1000 | awk -F: '{ print $1 }'`
 TARGETUSER="$USER1000"
 TARGETUSER=`echo $TARGETUSER | cut -d "|" -f 1`
