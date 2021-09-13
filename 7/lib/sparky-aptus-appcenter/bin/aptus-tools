@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Last update 2021/04/01 by pavroo
+# Last update 2021/09/13 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -214,6 +214,11 @@ elif [ "$1" = "xankernel" ]; then
 elif [ "$1" = "remkernel" ]; then
 	/usr/lib/sparky-aptus-appcenter/bin/old-kernel-remover
 	exit 0
+# run sparky terminal
+elif [ "$1" = "sparkyterm" ]; then
+	spterm
+	exit 0
+fi
 fi
 
 exit 0
