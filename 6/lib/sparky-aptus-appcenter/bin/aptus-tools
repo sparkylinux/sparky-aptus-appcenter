@@ -214,6 +214,10 @@ elif [ "$1" = "xankernel" ]; then
 elif [ "$1" = "remkernel" ]; then
 	/usr/lib/sparky-aptus-appcenter/bin/old-kernel-remover
 	exit 0
+# run sparky terminal
+elif [ "$1" = "sparkyterm" ]; then
+	spterm
+	exit 0
 fi
 
 exit 0

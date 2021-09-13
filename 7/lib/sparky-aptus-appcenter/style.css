@@ -2,7 +2,7 @@
 APTus AppCenter by pavroo <pavroo@onet.eu> 2018
 Improvenments by Piotr "MoroS" Mrożek
 License: GNU GPL 3
-Last update: March 2, 2021 by pavroo
+Last update: September 13, 2021 by pavroo
 */
 
 body {
@@ -80,9 +80,9 @@ img.aligncenter {
 /* Header */
 
 #header {
-	background: url('images0/sparky-header1b.png') center repeat-x;
+	background: url('images0/sparky-header.png') center repeat-x;
 	width: 100%; /* 796px; */
-	height: 120px;
+	height: 90px;
 	margin: 0px auto;
 }
 

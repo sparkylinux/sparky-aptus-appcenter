@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/08/15 by pavroo
+# Last update 2021/09/13 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -155,6 +155,11 @@ elif [ "$1" = "yarock" ]; then
 
 ##### multimedia audio tools #####
 elif [ "$1" = "amarok" ]; then
+	if [ "$ARCHARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "sonobus" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
@@ -624,6 +629,11 @@ elif [ "$1" = "deepl-linux" ]; then
 	PACKAGE="$1"
 
 ##### system backup #####
+elif [ "$1" = "qt-fsarchiver" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "systemback" ]; then
 	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
