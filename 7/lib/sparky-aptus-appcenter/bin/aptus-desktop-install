@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2021/06/13 by pavroo
+# last update 2021/09/24 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -1573,6 +1573,49 @@ elif [ "$1" = "pekwm" ]; then
 			mkdir -p /home/$TARGETUSER/.config/pnmixer
 		fi
 		cp /usr/share/sparky-desktop-data/i3/skel/.config/pnmixer/config /home/$TARGETUSER/.config/pnmixer/
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "sway" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-sway ] && [ -d /usr/share/sparky-desktop-data/sway/skel ]; then
+		if [ -d /home/$TARGETUSER/.config/sway ]; then
+			rm -rf /home/$TARGETUSER/.config/sway
+		fi
+		mkdir -p /home/$TARGETUSER/.config/sway
+		rsync -a /usr/share/sparky-desktop-data/sway/skel/.config/sway /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/waybar ]; then
+			rm -rf /home/$TARGETUSER/.config/waybar
+		fi
+		mkdir -p /home/$TARGETUSER/.config/waybar
+		rsync -a /usr/share/sparky-desktop-data/sway/skel/.config/waybar /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/sway/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/sway/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/sway/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/sway/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+
 		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
 		DESKTOPCHECK="0"
 	else
