@@ -2,7 +2,7 @@
 
 # Created by Piotr "MoroS" Mrożek 2018
 # Last update by Paweł "pavroo" Pijanowski May 24, 2021
-# Last update by OkayPJ Sep 3, 2021
+# Last update by pavroo October 10, 2021
 
 LANGUAGE1=${LANG:0:2}
 LANGUAGE2=${LANG:0:5}
@@ -67,6 +67,9 @@ elif [ "$1" = "accoth01" ]; then
 # accessories terminal emulators
 elif [ "$1" = "accter01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-terminals.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories translators
+elif [ "$1" = "acctra01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-translators.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
 # accessories usb
 elif [ "$1" = "accusb01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-usb.html" --user-agent="$LANGUAGE" --uri-handler="./handler"

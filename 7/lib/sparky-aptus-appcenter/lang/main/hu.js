@@ -44,6 +44,7 @@ dict.entries['main']['display'] = "Képernyővezérlők";
 dict.entries['main']['filemanagers'] = "Fájlkezelők";
 dict.entries['main']['monitor'] = "Monitoring";
 dict.entries['main']['term'] = "Terminálok";
+dict.entries['main']['translators'] = "Fordítók";
 dict.entries['main']['usb'] = "USB";
 dict.entries['main']['weather'] = "Időjárás";
 // games

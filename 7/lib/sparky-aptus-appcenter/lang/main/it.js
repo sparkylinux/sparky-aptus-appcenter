@@ -43,6 +43,7 @@ dict.entries['main']['display'] = "Display Managers";
 dict.entries['main']['filemanagers'] = "Gestori dei File";
 dict.entries['main']['monitor'] = "Monitoraggio";
 dict.entries['main']['term'] = "Terminali";
+dict.entries['main']['translators'] = "Traduttori";
 dict.entries['main']['usb'] = "USB";
 dict.entries['main']['weather'] = "Previsioni";
 // games

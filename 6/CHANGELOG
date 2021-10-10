@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
+  Version 20211010~sparky6~0 (2021-10-10)
+-------------------------------------------------------------------------------
+  * Aded qstardict, dictconv, sdcv
+  * Added new category Translators
+
+-------------------------------------------------------------------------------
   Version 20211008~sparky6~0 (2021-10-08)
 -------------------------------------------------------------------------------
   * Added kdiskmark, kotatogram-desktop, webapp-manager, discover, vnstat, mariadb-client, mariadb-server, sqlite3, sqlitebrowser

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2021/09/24 by pavroo
+# last update 2021/10/09 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -46,8 +46,8 @@ else
 	echo "x terminal emulator is missing... exiting..."
 	exit 1
 fi
-# trinity bullseye repo
-TDEREPO="trinity-testing bullseye deps main"
+# trinity bookworm repo
+TDEREPO="trinity-testing bookworm deps main"
 USER1000=`cat /etc/passwd | grep 1000 | awk -F: '{ print $1 }'`
 TARGETUSER="$USER1000"
 TARGETUSER=`echo $TARGETUSER | cut -d "|" -f 1`

@@ -43,6 +43,7 @@ dict.entries['main']['display'] = "显示管理器";
 dict.entries['main']['filemanagers'] = "文件管理器";
 dict.entries['main']['monitor'] = "监视器";
 dict.entries['main']['term'] = "终端";
+dict.entries['main']['translators'] = "翻译员";
 dict.entries['main']['usb'] = "USB";
 dict.entries['main']['weather'] = "天气";
 // games

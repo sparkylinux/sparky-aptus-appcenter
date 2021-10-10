@@ -42,6 +42,7 @@ dict.entries['main']['display'] = "Menadżery Logowania";
 dict.entries['main']['filemanagers'] = "Menadżery Plików";
 dict.entries['main']['monitor'] = "Monitoring";
 dict.entries['main']['term'] = "Terminale";
+dict.entries['main']['translators'] = "Translatory";
 dict.entries['main']['usb'] = "USB";
 dict.entries['main']['weather'] = "Pogoda";
 // games
