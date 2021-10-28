@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/10/08 by pavroo
+# Last update 2021/10/28 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -54,6 +54,7 @@ fi
 ARCH64="`uname -m | grep x86_64`"
 ARCH32="`uname -m | grep 686`"
 ARCHARM="`uname -m | grep arm`"
+ARCH64ARM="`uname -m | grep aarch64`"
 # checking Sparky 4/5/6
 #SPARKYVERCHECK6="`cat /etc/lsb-release | grep Tolo`"
 #SPARKYVERCHECK5="`cat /etc/lsb-release | grep Nibiru`"
@@ -69,19 +70,14 @@ fi
 
 ##### games tools #####
 if [ "$1" = "itch" ]; then
-	if [ "$ARCHARM" != "" ]; then
-		SYSTEM="wrong"
-	fi
-	PACKAGE="$1"
-elif [ "$1" = "lutris" ]; then
-	if [ "$ARCH32" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### graphics editors #####
 elif [ "$1" = "darktable" ]; then
-	if [ "$ARCH64" = "" ]; then
+	if [ "$ARCH64" = "" ] || [ "$ARCH64ARM" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -96,12 +92,12 @@ elif [ "$1" = "filmulator-gui" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "lazpaint" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "lightzone" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -111,34 +107,24 @@ elif [ "$1" = "opentoonz" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "xnview" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### multimedia audio players #####
-elif [ "$1" = "deadbeef" ]; then
-	if [ "$ARCHARM" != "" ]; then
-		SYSTEM="wrong"
-	fi
-	PACKAGE="$1"
 elif [ "$1" = "nuclear" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
-elif [ "$1" = "sayonara" ]; then
-	if [ "$ARCHARM" != "" ]; then
-		SYSTEM="wrong"
-	fi
-	PACKAGE="$1"
 elif [ "$1" = "shortwave" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "spotify-client" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -148,24 +134,24 @@ elif [ "$1" = "strawberry" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "yarock" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### multimedia audio tools #####
 elif [ "$1" = "amarok" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "sonobus" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "simplest-studio" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -182,17 +168,17 @@ elif [ "$1" = "freetube" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "motionbox" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "popcorn-time" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "rage" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -214,7 +200,7 @@ elif [ "$1" = "cin" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "clipgrab" ]; then
-	if [ "$ARCH64" = "" ]; then
+	if [ "$ARCHARM"! = "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -241,7 +227,7 @@ elif [ "$1" = "boostnote" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "cherrytree" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -251,7 +237,7 @@ elif [ "$1" = "joplin" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "zettlr" ]; then
-	if [ "$ARCH64" = "" ]; then
+	if [ "$ARCH32" != "" ] || [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -280,19 +266,19 @@ elif [ "$1" = "hiero" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "lite-editor" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "notepadqq" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### office suite #####
 elif [ "$1" = "freeoffice" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="softmaker-freeoffice-2018"
@@ -304,7 +290,7 @@ elif [ "$1" = "libreoffice" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "openoffice" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	# check is LibreOffice installed
@@ -314,7 +300,7 @@ elif [ "$1" = "openoffice" ]; then
 	PACKAGE="$1"
 	OOPACKAGES="openoffice-brand-en-us openoffice-brand-writer openoffice-brand-calc openoffice-brand-impress openoffice-brand-base openoffice-brand-draw openoffice-brand-math openoffice-pyuno openoffice-ooofonts openoffice-ooolinguistic openoffice-debian-menus"
 elif [ "$1" = "wps-office" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -322,7 +308,7 @@ elif [ "$1" = "wps-office" ]; then
 
 ##### web download #####
 elif [ "$1" = "uget-integrator" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -376,7 +362,7 @@ elif [ "$1" = "franz" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "gomuks" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -386,7 +372,7 @@ elif [ "$1" = "hamsket" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "kopete" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -406,14 +392,14 @@ elif [ "$1" = "skypeforlinux" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "tor-messenger" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 ##### web others #####
 elif [ "$1" = "dropbox" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -423,12 +409,12 @@ elif [ "$1" = "google-earth-pro-stable" ]; then
 	fi
 	PACKEARTH="$PACKE64"
 elif [ "$1" = "megasync" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "spideroakone" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -457,17 +443,12 @@ elif [ "$1" = "cyberfox" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "dooble" ]; then
-	if [ "$ARCHARM" != "" ]; then
-		SYSTEM="wrong"
-	fi
-	PACKAGE="$1"
-elif [ "$1" = "falkon" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "firefox-latest" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="firefox"
@@ -477,7 +458,7 @@ elif [ "$1" = "google-chrome-stable" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "icecat" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -487,7 +468,7 @@ elif [ "$1" = "iridium-browser" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "iron" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -502,7 +483,7 @@ elif [ "$1" = "min" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "next" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -512,22 +493,22 @@ elif [ "$1" = "opera-stable" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "seamonkey" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "slimjet" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "tor-browser" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "viper-browser" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="viper-browser"
@@ -544,7 +525,7 @@ elif [ "$1" = "waterfox-g3-kpe" ]; then
 
 # web vpn #
 elif [ "$1" = "riseup-vpn" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -556,33 +537,33 @@ elif [ "$1" = "protonvpn" ]; then
 
 # net remote access
 elif [ "$1" = "anydesk" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "teamviewer" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 # accesories file managers
 elif [ "$1" = "polo-file-manager" ]; then
-	if [ "$ARCH64" = "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 # accessories usb
 elif [ "$1" = "balena-etcher-electron" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 
 # accessories monitoring
 elif [ "$1" = "cpu-x" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -594,12 +575,12 @@ elif [ "$1" = "kdiskmark" ]; then
 
 # accesories other
 elif [ "$1" = "bemenu" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "gammy" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -611,7 +592,12 @@ elif [ "$1" = "komorebi" ]; then
 
 # accesories terminal
 elif [ "$1" = "alacritty" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "spterm" ]; then
+	if [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -628,12 +614,12 @@ elif [ "$1" = "code" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "codium" ]; then
-	if [ "$ARCH64" = "" ]; then
+	if [ "$ARCH32" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "deepl-linux" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -645,10 +631,17 @@ elif [ "$1" = "qt-fsarchiver" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "systemback" ]; then
-	if [ "$ARCHARM" != "" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+	
+##### system virtual #####
+elif [ "$1" = "virtualbox" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="virtualbox-qt"
 else
 	PACKAGE="$1"
 fi

@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
+  Version 20211028~sparky7~0 (2021-10-28)
+-------------------------------------------------------------------------------
+  * Added arm64 arch
+  * Added armhf and arm64 apps otter-browser, codium, min, zettlr, yad, zenity, spterm, nscde-desktop
+  * Added new subcategory Accessories Icons
+  * Added new packages adwaita-icon-theme, arc-darkest-suru-icon-theme, breeze-icon-theme, deepin-icon-theme, elementary-xfce-icon-theme, faba-icon-theme, faenza-icon-theme, gnome-brave-icon-theme, gnome-dust-icon-theme, gnome-extra-icons, gnome-human-icon-theme, gnome-icon-theme, gnome-icon-theme-gartoon, gnome-icon-theme-nuovo, gnome-icon-theme-suede, gnome-icon-theme-yasis, gnome-illustrious-icon-theme, gnome-noble-icon-theme, gnome-wine-icon-theme, gnome-wise-icon-theme, hicolor-icon-theme, human-icon-theme, la-capitaine-icon-theme, lxde-icon-theme, mate-icon-theme, moka-icon-theme, numix-icon-theme, numix-icon-theme-circle, obsidian-icon-theme, oxygen-icon-theme, papirus-icon-theme, paper-icon-theme, sparky-icon-set, sugar-icon-theme, suru-icon-theme, tangerine-icon-theme, tango-icon-theme, tebu-icon-theme, tebu-flat-icon-theme, tela-icon-theme, ultra-flat-icons
+  * Removed ciano, cozy
+
+-------------------------------------------------------------------------------
   Version 20211015~sparky7~0 (2021-10-15)
 -------------------------------------------------------------------------------
   * Fixed locales of kernel installation

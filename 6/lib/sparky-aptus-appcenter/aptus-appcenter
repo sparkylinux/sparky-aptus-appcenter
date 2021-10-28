@@ -2,7 +2,7 @@
 
 # Created by Piotr "MoroS" Mrożek 2018
 # Last update by Paweł "pavroo" Pijanowski May 24, 2021
-# Last update by pavroo October 10, 2021
+# Last update by pavroo October 28, 2021
 
 LANGUAGE1=${LANG:0:2}
 LANGUAGE2=${LANG:0:5}
@@ -58,6 +58,9 @@ elif [ "$1" = "accdis01" ]; then
 # accessories file managers
 elif [ "$1" = "accfil01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-filemanagers.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories icons
+elif [ "$1" = "accico01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-icons.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
 # accessories monitoring
 elif [ "$1" = "accmon01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-monitoring.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
