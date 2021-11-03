@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2020-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/07/24 by pavroo
+# Last update 2021/10/02 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -88,6 +88,19 @@ elif [ "$PACKAGE" = "google-earth-pro-stable" ]; then
 	$SPARKYXTERM "$INSTALL ./$PACKEARTH"
 	rm -rf $WORKDIR
 
+elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
+	killall -9 yad
+	rm -rf $WORKDIR
+	mkdir -p $WORKDIR
+	cd $WORKDIR
+	$SPARKYXTERM "wget https://packages.microsoft.com/keys/microsoft.asc"
+	gpg --dearmor microsoft.asc > microsoft.gpg
+	install -o root -g root -m 644 *.gpg /etc/apt/trusted.gpg.d/
+	echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main" >> /etc/apt/sources.list.d/microsoft-edge.list
+	$SPARKYXTERM "$UPDATE"
+	$SPARKYXTERM "$INSTALL $PACKAGE"
+	rm -rf $WORKDIR
+	
 elif [ "$PACKAGE" = "openoffice" ]; then
 	killall -9 yad
 	if [ -f /etc/apt/sources.list.d/openoffice.list ]; then

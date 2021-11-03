@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
+  Version 20211102~sparky7~0 (2021-11-02)
+-------------------------------------------------------------------------------
+  * Added Sugar desktop
+  * Don't install edex-ui on arm64 and lumina on armhf and arm64
+  * Added packages microsoft-edge-stable, yt-dlp, ungoogled-chromium
+  * Removed packages azure-cli, clementine, gnubiff, fwbuilder
+
+-------------------------------------------------------------------------------
   Version 20211028~sparky7~0 (2021-10-28)
 -------------------------------------------------------------------------------
   * Added arm64 arch

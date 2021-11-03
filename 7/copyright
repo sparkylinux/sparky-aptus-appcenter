@@ -61,7 +61,7 @@ Files: ru
     License: GPL-3+
 
 File: zh_CN
-    Copyright (C) 2020 OkayPJ <okaythepj@outlook.com>
+    Copyright (C) 2020 xingjiapeng
     License: GPL-3+
 
 ### end translations ###
@@ -616,10 +616,10 @@ Copyright (C) PekWM team
 Source: https://www.pekwm.org/
 License: GNU GPL
 
-File: images0/sway.png
-Copyright (C) The Sway team
-Source: https://swaywm.org/
-License: MIT
+File: images0/sugar.svg
+Copyright (C) OLPC team
+Source: https://sugarlabs.org
+License: Creative Commons Attribution-Share Alike 2.5 Generic license. 
 
 File: images0/tde.png
 Copyright (C) KDE, Pearson Computing
