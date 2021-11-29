@@ -1,7 +1,7 @@
 // English localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2021/10/28 by pavroo
+// Last update 2021/11/29 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Applications";
@@ -44,6 +44,7 @@ dict.entries['main']['icons'] = "Icons";
 dict.entries['main']['filemanagers'] = "File Managers";
 dict.entries['main']['monitor'] = "Monitoring";
 dict.entries['main']['term'] = "Terminals";
+dict.entries['main']['themes'] = "Themes";
 dict.entries['main']['translators'] = "Translators";
 dict.entries['main']['usb'] = "USB";
 dict.entries['main']['weather'] = "Weather";
