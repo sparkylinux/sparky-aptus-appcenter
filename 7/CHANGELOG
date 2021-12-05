@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
+  Version 20211205~sparky7~0 (2021-12-05)
+-------------------------------------------------------------------------------
+  * Added packages finalcrypt, latte-dock, sysmontask, font-manager<br>
+  * Removed packages residualvm
+
+-------------------------------------------------------------------------------
   Version 20211129~sparky7~0 (2021-11-29)
 -------------------------------------------------------------------------------
   * Added packages adapta-gtk-theme, adapta-kde, arc-theme, awesome-theme-sparky, blackbird-gtk-theme, blackbox-themes, bluebird-gtk-theme, breeze, breeze-gtk-theme, darkblood-gtk-theme, darkcold-gtk-theme, darkfire-gtk-theme, darkmint-gtk-theme, fluxbox-theme-sparky, gnome-accessibility-themes, gnome-theme-gilouche, greybird-gtk-theme, icewm-theme-sparky, lxqt-theme-debian, lxqt-themes, mate-themes, materia-gtk-theme, materia-kde, metacity-themes, murrine-themes, numix-gtk-theme, pekwm-themes, plasma-theme-oxygen, plasma-theme-sparky, qt5-style-kvantum-themes, qt5-style-plugins, qt5-styles-ukui, shiki-brave-theme, shiki-colors, shiki-colors-metacity-theme, shiki-colors-xfwm-theme, shiki-dust-theme, shiki-human-theme, shiki-illustrious-theme, shiki-noble-theme, shiki-wine-theme, shiki-wise-theme, sparky-lxqt-theme, sparky3-theme, sparky4-theme, sparky5-theme, sparky5-lxqt-theme, sparky6-theme, ukui-themes, wmaker-theme-sparky, xfwm4-themes, xfwm4-theme-breeze, raven-reader, quickcal, quicktun, nageru, fbless, xplanet, fracplanet, planner, motrix
