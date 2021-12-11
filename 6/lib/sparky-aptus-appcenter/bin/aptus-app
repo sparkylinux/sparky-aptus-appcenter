@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/12/05 by pavroo
+# Last update 2021/12/11 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -454,6 +454,16 @@ elif [ "$1" = "firefox-latest" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="firefox"
+elif [ "$1" = "firefox-esr-sparky" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="firefox-esr-sparky"
+elif [ "$1" = "firefox-sparky" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="firefox-sparky"
 elif [ "$1" = "google-chrome-stable" ]; then
 	if [ "$ARCH64" = "" ]; 	then
 		SYSTEM="wrong"
