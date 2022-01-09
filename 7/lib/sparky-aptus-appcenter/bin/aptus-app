@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application installer
-# Copyright 2017-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/12/11 by pavroo
+# Copyright 2017-2022 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2022/01/09 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -183,9 +183,9 @@ elif [ "$1" = "stremio" ]; then
 	fi
 	PACKAGE="$1"
 
-##### multimedia video tools #####
-elif [ "$1" = "ciano" ]; then
-	if [ "$ARCHARM" != "" ]; then
+##### multimedia video tools ####
+elif [ "$1" = "ciano" ] ; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -377,6 +377,11 @@ elif [ "$1" = "kotatogram-desktop" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "rocketchat" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "signal-desktop" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
