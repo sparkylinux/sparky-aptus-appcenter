@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2022 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2022/01/09 by pavroo
+# Last update 2022/01/25 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -421,6 +421,11 @@ elif [ "$1" = "spideroakone" ]; then
 
 ##### web p2p #####
 elif [ "$1" = "frostwire" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "mullvad-vpn" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
