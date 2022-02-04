@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2022 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2022/01/25 by pavroo
+# Last update 2022/02/04 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -221,11 +221,6 @@ elif [ "$1" = "boostnote" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
-elif [ "$1" = "cherrytree" ]; then
-	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
-		SYSTEM="wrong"
-	fi
-	PACKAGE="$1"
 elif [ "$1" = "joplin" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
@@ -239,6 +234,11 @@ elif [ "$1" = "zettlr" ]; then
 
 ##### office others #####
 elif [ "$1" = "tagspaces" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "rainlendar2-lite" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
@@ -387,6 +387,11 @@ elif [ "$1" = "signal-desktop" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "skypeforlinux" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "teams" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
