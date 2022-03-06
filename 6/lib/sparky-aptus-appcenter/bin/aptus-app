@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2022 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2022/02/04 by pavroo
+# Last update 2022/03/06 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -215,6 +215,16 @@ elif [ "$1" = "shutter-encoder" ]; then
 	fi
 	PACKAGE="$1"
 
+##### office documents #####
+elif [ "$1" = "master-pdf-editor" ]; then
+	if [ "$ARCH64" != "" ]; then
+		PACKAGE="master-pdf-editor-5"
+	elif [ "$ARCH32" != "" ]; then
+		PACKAGE="master-pdf-editor"
+	elif [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+
 ##### office note #####
 elif [ "$1" = "boostnote" ]; then
 	if [ "$ARCH64" = "" ]; then
@@ -310,6 +320,11 @@ elif [ "$1" = "uget-integrator" ]; then
 
 ##### web email #####
 elif [ "$1" = "gmail-desktop" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "mailspring" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
