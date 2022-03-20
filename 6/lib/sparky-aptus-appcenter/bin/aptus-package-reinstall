@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application re-installer
-# Copyright 2020-2021 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2021/11/02 by pavroo
+# Copyright 2020-2022 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2022/03/20 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -72,16 +72,16 @@ if [ "$PINGTEST" = "" ]; then
 	exit 1
 fi
 
-if [ "$PACKAGE" = "discord" ]; then
-	killall -9 yad
-	rm -rf $WORKDIR
-	mkdir -p $WORKDIR
-	cd $WORKDIR
-	$SPARKYXTERM `wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"`
-	$SPARKYXTERM "$INSTALL ./discord.deb"
-	rm -rf $WORKDIR
-	
-elif [ "$PACKAGE" = "google-chrome-stable" ]; then
+#if [ "$PACKAGE" = "discord" ]; then
+#	killall -9 yad
+#	rm -rf $WORKDIR
+#	mkdir -p $WORKDIR
+#	cd $WORKDIR
+#	$SPARKYXTERM `wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"`
+#	$SPARKYXTERM "$INSTALL ./discord.deb"
+#	rm -rf $WORKDIR
+#	
+if [ "$PACKAGE" = "google-chrome-stable" ]; then
 	killall -9 yad
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
