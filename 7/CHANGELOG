@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
+  Version 20220529~sparky7~0 (2022-05-29)
+-------------------------------------------------------------------------------
+  * tool page fixed
+  * updated Italian translate
+  * added packages bitcoin, hypnotix, aqemu, qemu-system-gui
+  * removed package frogatto
+  * changed qemu to qemu-system
+
+-------------------------------------------------------------------------------
   Version 20220505~sparky7~0 (2022-05-05)
 -------------------------------------------------------------------------------
   * Added packages crow-translate, nala

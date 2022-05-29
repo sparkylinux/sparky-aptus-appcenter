@@ -1,6 +1,6 @@
-// English localization file for main
-// Originally created by Piotr "MoroS" Mrożek 2018
-// Under the GNU GPL v3
+// File di localizzazione in italiano per Main HTML JS
+// Ultimo aggiornamento 2022/05/18 by Yodel Sinatra <mastodon.uno/@YodelSinatra>
+// Rilasciato sotto licenzaGNU GPL v3
 // Last update 2021/11/29 by pavroo
 dict.entries['main'] = {};
 // main menu
@@ -24,13 +24,13 @@ dict.entries['main']['science'] = "Scienza";
 dict.entries['main']['security'] = "Sicurezza";
 dict.entries['main']['system'] = "Sistema";
 // info
-dict.entries['main']['info01'] = "Sparky APTus AppCenter ti permette di eseguire molte operazioni con i pacchetti tramite interfaccia grafica, comme:";
+dict.entries['main']['info01'] = "Sparky APTus AppCenter ti permette di eseguire molte operazioni con i pacchetti tramite interfaccia grafica, come:";
 dict.entries['main']['info02'] = "aggiornare la lista dei pacchetti";
 dict.entries['main']['info03'] = "installare applicazioni popolari";
 dict.entries['main']['info04'] = "rimuovere pacchetti";
 dict.entries['main']['info05'] = "e molto altro...";
 dict.entries['main']['info06'] = "L'applicazione utilizza le tecnologie YAD ed HTML per funzionare.";
-dict.entries['main']['info07'] = "YAD e' stato compilato con la flag --html attivata di default.";
+dict.entries['main']['info07'] = "YAD è stato compilato con la flag --html attivata di default.";
 dict.entries['main']['info08'] = "Se riscontri un qualsiasi problema segnalacelo sui forumm di Sparky, per favore.";
 dict.entries['main']['info09'] = "Sparky APTus AppCenter è rilasciato sotto licenza GNU GPL 3.0";
 dict.entries['main']['info10'] = "Collaboratori:";
@@ -81,7 +81,7 @@ dict.entries['main']['webbrowsers'] = "Web Browsers";
 // multimedia
 dict.entries['main']['audioeditors'] = "Editor Audio";
 dict.entries['main']['audioplayers'] = "Riproduttori Audio";
-dict.entries['main']['audiotools'] = "Strummenti Audio";
+dict.entries['main']['audiotools'] = "Strumenti Audio";
 dict.entries['main']['burn'] = "Scrivi CD/DVD";
 dict.entries['main']['codecs'] = "Codecs";
 dict.entries['main']['mixers'] = "Mixers";
@@ -91,7 +91,7 @@ dict.entries['main']['videoplayers'] = "Riroduttori Video";
 // office
 dict.entries['main']['addressbooks'] = "Rubrica";
 dict.entries['main']['calculators'] = "Calcolatrici";
-dict.entries['main']['documentviewers'] = "VIsualizzatori di Documenti";
+dict.entries['main']['documentviewers'] = "Visualizzatori di Documenti";
 dict.entries['main']['finance'] = "Finanze";
 dict.entries['main']['notes'] = "Note";
 dict.entries['main']['officesuite'] = "Suite Office";
@@ -115,11 +115,11 @@ dict.entries['main']['virtual'] = "Virtual";
 dict.entries['main']['search'] = "Cerca";
 dict.entries['main']['info12'] = "Cerca risultati per la parola:";
 dict.entries['main']['info13'] = "Mi spiace, non riesco a trovare quello che cerchi.";
-dict.entries['main']['info14'] = "Aggiorna la lista dei pacchetti e prova ad utilizzare un nome pacchetto piu' specifico.";
+dict.entries['main']['info14'] = "Aggiorna la lista dei pacchetti e prova ad utilizzare un nome pacchetto più specifico.";
 dict.entries['main']['info15'] = "Torna a:";
-dict.entries['main']['info16'] = "La PPagina Principale.";
+dict.entries['main']['info16'] = "La Pagina Principale.";
 dict.entries['main']['info17'] = "Cerca risultati per la parola:";
-dict.entries['main']['info18'] = "C'e' pppiu' di un risultato per la tua ricerca.";
-dict.entries['main']['info19'] = "Prego, scegli la pagina che meglio si adatta alla tua tastiera.";
-dict.entries['main']['info20'] = "ce n'e' piu' d'uno.";
+dict.entries['main']['info18'] = "C'è più di un risultato per la tua ricerca.";
+dict.entries['main']['info19'] = "Per favore, scegli la pagina che meglio si adatta alla tua tastiera.";
+dict.entries['main']['info20'] = "ce n'è più di uno.";
 dict.entries['main']['info21'] = "NULL";

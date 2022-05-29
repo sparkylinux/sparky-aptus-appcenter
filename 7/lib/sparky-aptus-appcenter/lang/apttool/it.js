@@ -1,11 +1,12 @@
- // File di localizzazione itliano per APTus Tools
+ // File di localizzazione italiano per APTus Tools
 // Copyright 2020 Carlo Troiani <pescaragdr@gmail.com>
 // Rilasciato sotto licenza GNU GPL v3
 // Ultimo Aggiornamento 2020/10/20 by carlo
+// Ultimo aggiornamento 2022/05/18 by Yodel Sinatra <mastodon.uno/@YodelSinatra>
 dict.entries['apttool'] = {};
 // aptus tools
 dict.entries['apttool']['refresh'] = "Aggiorna la lista dei pacchetti";
-dict.entries['apttool']['upgrade'] = "Aggiorna il sistema in modalita' sicura";
+dict.entries['apttool']['upgrade'] = "Aggiorna il sistema in modalità sicura";
 dict.entries['apttool']['fullupgrade'] = "Aggiornamento completo del sistema";
 dict.entries['apttool']['installdebrepo'] = "Installa i pacchetti dal repository";
 dict.entries['apttool']['installdeblocal'] = "Installa pacchetti dal drive locale";
