@@ -1,4 +1,14 @@
 -------------------------------------------------------------------------------
+  Version 20220626~sparky7~0 (2022-06-26)
+-------------------------------------------------------------------------------
+  * fixed skype installation and reinstallation
+  * install virtualbox-6.1 instead of virtualbox
+  * removed package amarok
+  * added packages notepadnext, winezgui
+  * removed installation of Sparky 686pae kernel
+  * added installation of Sparky LTS kernel
+
+-------------------------------------------------------------------------------
   Version 20220607~sparky7~0 (2022-06-07)
 -------------------------------------------------------------------------------
   * fixed liquorix, xanmod and sparky kernel installation
