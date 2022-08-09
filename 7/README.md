@@ -1,7 +1,7 @@
 Sparky APTus AppCenter
 This tool helps you keep your system up to date and clean, install and remove packages. It is a lightweight gui frontend to APT and DPKG tools.
 
-Copyright (C) 2020-2021 Paweł Pijanowski and others, see copyright file.
+Copyright (C) 2020-2022 Paweł Pijanowski and others, see copyright file.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
