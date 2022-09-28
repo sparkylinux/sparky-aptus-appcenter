@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
+  Version 20220928~sparky7~0 (2022-09-28)
+-------------------------------------------------------------------------------
+  * added packages kitty, lollypop, iron arm64, compiz, amberol
+  * removed package motionbox
+  * added Sparky kernel 4.9-LTS installation
+  * updated de_DE locale
+
+-------------------------------------------------------------------------------
   Version 20220809~sparky7~0 (2022-08-09)
 -------------------------------------------------------------------------------
   * added packages acm, gxemul, gotop, atop, iotop, btop, g4music, clapper

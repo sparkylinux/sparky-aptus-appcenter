@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2022 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2022/08/09 by pavroo
+# Last update 2022/09/28 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -531,7 +531,7 @@ elif [ "$1" = "iridium-browser" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "iron" ]; then
-	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
