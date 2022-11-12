@@ -145,6 +145,11 @@ elif [ "$PACKAGE" = "wps-office" ]; then
 	killall -9 yad
 	$SPARKYXTERM "$INSTALL $PACKAGE $WPSPACKAGES"
 
+elif [ "$PACKAGE" = "blisk-browser-stable" ]; then
+	$SPARKYXTERM "$INSTALL $PACKAGE"
+	if [ -f /etc/apt/sources.list.d/blisk-browser.list ]; then
+		rm -f /etc/apt/sources.list.d/blisk-browser.list
+	fi
 else
 	killall -9 yad
 	$SPARKYXTERM "$INSTALL $PACKAGE"

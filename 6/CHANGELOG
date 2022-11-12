@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20221112~sparky6~0 (2022-11-12)
+-------------------------------------------------------------------------------
+  * added packages onedrive, zfsutils-linux, ne, nedit, nvi, blisk-browser-stable, mullwad-vpn arm64
+  * removed packages karlyriceditor, between
+  * changed balena-etcher-electron to balena-etcher
+
+-------------------------------------------------------------------------------
   Version 20221012~sparky6~0 (2022-10-12)
 -------------------------------------------------------------------------------
   * added package le

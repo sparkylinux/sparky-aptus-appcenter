@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20221112~sparky7~0 (2022-11-12)
+-------------------------------------------------------------------------------
+  * added packages onedrive, zfsutils-linux, ne, nedit, nvi, blisk-browser-stable, mullwad-vpn arm64, clapper
+  * removed packages nifti2dicom, funguloids, fruit, gnubik, xjig, higan, dradio, gogglesmm, karlyriceditor, bombono-dvd, ogmrip, qtav-players, empathy, feedreader, between
+  * changed balena-etcher-electron to balena-etcher
+
+-------------------------------------------------------------------------------
   Version 20221012~sparky7~0 (2022-10-12)
 -------------------------------------------------------------------------------
   * added package le
