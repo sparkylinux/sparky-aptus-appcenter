@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application installer
-# Copyright 2017-2022 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2022/11/12 by pavroo
+# Copyright 2017-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2023/01/08 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -78,6 +78,11 @@ if [ "$1" = "itch" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+elif [ "$1" = "sc-controller" ]; then
+	if [ "$ARCH64" = "" ]]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 
 ##### graphics editors #####
 elif [ "$1" = "darktable" ]; then
@@ -112,6 +117,11 @@ elif [ "$1" = "xnview" ]; then
 	PACKAGE="$1"
 
 ##### multimedia audio players #####
+elif [ "$1" = "harmonoid" ]; then
+	if [ "$ARCH64" = "" ]]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "nuclear" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
@@ -429,6 +439,11 @@ elif [ "$1" = "skypeforlinux" ]; then
 	PACKAGE="$1"
 elif [ "$1" = "teams" ]; then
 	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "tokodon" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
