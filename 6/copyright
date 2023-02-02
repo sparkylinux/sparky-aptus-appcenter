@@ -2,7 +2,7 @@ Upstream Author(s):
     Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 
 Files: *    
-    Copyright (C) 2018-2022 Paweł Pijanowski
+    Copyright (C) 2018-2023 Paweł Pijanowski
     License: GPL-3+
 
 ### translations ###
@@ -65,6 +65,10 @@ Files: pt_PT
 Files: ru
     Copyright (C) 2020 ChourS
     License: GPL-3+
+
+File: uk
+    Copyright 2023 XalisRatt
+    License: GNU GPL-3
 
 File: zh_CN
     Copyright (C) 2020 xingjiapeng

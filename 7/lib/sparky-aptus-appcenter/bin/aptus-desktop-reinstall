@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2022/07/04 by pavroo
+# last update 2023/02/02 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -30,6 +30,8 @@ elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
 . $DEFLOCDIR/pt_PT
 elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
 . $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep uk`" != "" ]; then
+. $DEFLOCDIR/uk
 elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
 . $DEFLOCDIR/zh_CN
 else

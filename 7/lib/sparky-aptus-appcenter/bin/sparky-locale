@@ -2,8 +2,8 @@
 
 # Sparky APTus Locale script will install missing language packages
 # Created by Paweł "pavroo" Pijanowski 2014/05/21
-# Copyright 2014-2022 under the GNU GPL2 License
-# Last update 2022/07/04
+# Copyright 2014-2023 under the GNU GPL2 License
+# Last update 2023/02/02
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -33,6 +33,8 @@ elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
 . $DEFLOCDIR/pt_PT
 elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
 . $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep uk`" != "" ]; then
+. $DEFLOCDIR/uk
 elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
 . $DEFLOCDIR/zh_CN
 else

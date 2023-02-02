@@ -2,7 +2,7 @@
 
 # Created by Piotr "MoroS" Mrożek 2018
 # Last update by Paweł "pavroo" Pijanowski May 24, 2021
-# Last update by pavroo July 4, 2022
+# Last update by pavroo February 2, 2023
 
 LANGUAGE1=${LANG:0:2}
 LANGUAGE2=${LANG:0:5}
@@ -13,6 +13,8 @@ HU=`echo $LANGUAGE1 | grep hu`
 IT=`echo $LANGUAGE1 | grep it`
 PL=`echo $LANGUAGE1 | grep pl`
 PT=`echo $LANGUAGE1 | grep pt`
+RU=`echo $LANGUAGE1 | grep ru`
+UK=`echo $LANGUAGE1 | grep uk`
 ZHCN=`echo $LANGUAGE2 | grep zh_CN`
 
 if [ "$EL" != "" ]; then
@@ -28,6 +30,8 @@ elif [ "$PL" != "" ]; then
 elif [ "$PT" != "" ]; then
 	LANGUAGE="$LANGUAGE1"
 elif [ "$RU" != "" ]; then
+	LANGUAGE="$LANGUAGE1"
+elif [ "$UK" != "" ]; then
 	LANGUAGE="$LANGUAGE1"
 elif [ "$ZHCN" != "" ]; then
 	LANGUAGE="$LANGUAGE2"
