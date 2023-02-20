@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20230220~sparky7~0 (2023-02-20)
+-------------------------------------------------------------------------------
+  * added packages brave-browser arm64, heroic, olive-editor, nix, risup-vpn all, cavezofphear
+  * removed packages ventoy-gui, epsxe, xmms2, lives
+  * changed package gpaste to gpaste-2
+
+-------------------------------------------------------------------------------
   Version 20230202~sparky7~0 (2023-02-02)
 -------------------------------------------------------------------------------
   * added uk_UA locale
