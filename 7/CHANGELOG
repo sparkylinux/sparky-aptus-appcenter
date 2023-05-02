@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
+  Version 20230429~sparky7~0 (2023-04-29)
+-------------------------------------------------------------------------------
+  * added packages appimagelauncher, motionbox, wike, mullvad-browser, youtube-dl-gui, lite-xl
+  * removed packages cyberfox, dooble, lite-editor, adapta-kde
+
+-------------------------------------------------------------------------------
   Version 20230324~sparky7~0 (2023-03-24)
 -------------------------------------------------------------------------------
   * added packages blueman, l3afpad, kephra
