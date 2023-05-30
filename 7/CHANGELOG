@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20230530~sparky7~0 (2023-05-30)
+-------------------------------------------------------------------------------
+  * added packages icecat arm64, element-desktop arm64
+  * install openoffice from sparky repos, changed jami-all to jami
+  * removed packages bbrun, bitstormlite, dlume
+
+-------------------------------------------------------------------------------
   Version 20230429~sparky7~0 (2023-04-29)
 -------------------------------------------------------------------------------
   * added packages appimagelauncher, motionbox, wike, mullvad-browser, youtube-dl-gui, lite-xl

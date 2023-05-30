@@ -405,7 +405,7 @@ elif [ "$1" = "discord" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "element-desktop" ]; then
-	if [ "$ARCH64" = "" ]; then
+	if [ "$ARCH64" = "" ] || [ "$ARCH64ARM" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -558,7 +558,7 @@ elif [ "$1" = "google-chrome-stable" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "icecat" ]; then
-	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
