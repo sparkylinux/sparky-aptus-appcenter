@@ -1,0 +1,383 @@
+#!/bin/bash
+
+# last update 2023/02/02 by pavroo
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+	if [ "`cat /etc/default/locale | grep LANG= | grep es_AR`" != "" ]; then
+. $DEFLOCDIR/es_AR
+	else
+. $DEFLOCDIR/es_ES
+	fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep uk`" != "" ]; then
+. $DEFLOCDIR/uk
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+if [ -f /usr/bin/spterm ]; then
+	SPARKYXTERM="spterm -e"
+elif [ -f /usr/bin/sparky-xterm ]; then
+	SPARKYXTERM="sparky-xterm"
+elif [ -f /usr/bin/x-terminal-emulator ]; then
+	SPARKYXTERM="x-terminal-emulator -e"
+else
+	echo "x terminal emulator is missing... exiting..."
+	exit 1
+fi
+UNINSTALL="apt-get purge"
+
+# recive desktop name
+case $1 in
+  awesome)
+	PACKAGE="awesome"
+	DESKTOP="Awesome"
+	WMAN="awesome"
+	REMPACKS="sparky-desktop-$PACKAGE ^awesome*"
+     ;;
+  bspwm)
+	PACKAGE="bspwm"
+	DESKTOP="Bspwm"
+	WMAN="bspwm"
+	REMPACKS="sparky-desktop-$PACKAGE ^bspwm*"
+     ;;
+  budgie)
+	PACKAGE="budgie"
+	DESKTOP="Budgie"
+	WMAN="budgie-wm"
+	REMPACKS="sparky-desktop-$PACKAGE ^budgie*"
+     ;;
+  cde)
+	#if [ "$ARCHARM" != "" ]; then
+	#	SYSTEM="wrong"
+	#fi
+	PACKAGE="cde"
+	DESKTOP="CDE"
+	WMAN="dtsession"
+	REMPACKS="sparky-desktop-$PACKAGE ^cde-desktop*"
+     ;;
+  cinnamon)
+	PACKAGE="cinnamon"
+	DESKTOP="Cinnamon"
+	WMAN="cinnamon"
+	REMPACKS="sparky-desktop-$PACKAGE ^cinnamon*"
+     ;;
+  draco)
+	#if [ "$ARCHARM" != "" ]; then
+	#	SYSTEM="wrong"
+	#fi
+	PACKAGE="draco"
+	DESKTOP="Draco"
+	WMAN="openbox"
+	REMPACKS="sparky-desktop-$PACKAGE ^draco*"
+     ;;
+  enlightenment)
+	PACKAGE="enlightenment"
+	DESKTOP="Enlightenment"
+	WMAN="enlightenment"
+	REMPACKS="sparky-desktop-$PACKAGE efl enlightenment"
+     ;;
+  fluxbox)
+	PACKAGE="fluxbox"
+	DESKTOP="Fluxbox"
+	WMAN="fluxbox"
+	if [ -d /usr/share/doc/sparky-desktop-lumina ]; then
+		REMPACKS="sparky-desktop-$PACKAGE fluxbox-theme-sparky"
+	else
+		REMPACKS="sparky-desktop-$PACKAGE ^fluxbox*"
+	fi
+     ;;
+  gnomeflashback)
+	PACKAGE="gnome-flashback"
+	DESKTOP="GNOME Flashback"
+	WMAN="metacity"
+	REMPACKS="sparky-desktop-$PACKAGE gnome-flashback gnome-flashback-common gnome-panel gnome-session-flashback"
+     ;;
+  gnomeshell)
+	PACKAGE="gnome-shell"
+	DESKTOP="GNOME Shell"
+	WMAN="gnome-shell"
+	REMPACKS="sparky-desktop-$PACKAGE gnome-session gnome-shell"
+     ;;
+  i3)
+	PACKAGE="i3"
+	DESKTOP="i3"
+	WMAN="i3"
+	REMPACKS="sparky-desktop-$PACKAGE i3-wm i3blocks sparky-conky-i3 rofi"
+     ;;
+  icewm)
+	PACKAGE="icewm"
+	DESKTOP="IceWM"
+	WMAN="icewm"
+	REMPACKS="sparky-desktop-$PACKAGE icewm icewm-common icewm-theme-sparky"
+     ;;
+  jwm)
+	PACKAGE="jwm"
+	DESKTOP="JWM"
+	WMAN="jwm"
+	REMPACKS="sparky-desktop-$PACKAGE ^jwm*"
+     ;;
+  kde)
+	PACKAGE="kde"
+	DESKTOP="KDE Plasma"
+	WMAN="kwin_x11"
+	REMPACKS="sparky-desktop-$PACKAGE ^plasma*"
+     ;;
+  lumina)
+	PACKAGE="lumina"
+	DESKTOP="Lumina"
+	WMAN="lumina-desktop"
+	REMPACKS="sparky-desktop-$PACKAGE ^lumina*"
+     ;;
+  lxde)
+	PACKAGE="lxde"
+	DESKTOP="LXDE"
+	WMAN="lxsession"
+	REMPACKS="sparky-desktop-$PACKAGE lxappearance lxde-common lxde-core lxpanel lxsession lxsession-logout openbox-lxde-session"
+     ;;
+  lxqt)
+	PACKAGE="lxqt"
+	DESKTOP="LXQt"
+	WMAN="lxqt-session"
+	REMPACKS="sparky-desktop-$PACKAGE ^lxqt*"
+     ;;
+  mate)
+	PACKAGE="mate"
+	DESKTOP="MATE"
+	WMAN="marco"
+	REMPACKS="sparky-desktop-$PACKAGE ^mate*"
+     ;;
+  nscde)
+	PACKAGE="nscde"
+	DESKTOP="NsCDE"
+	WMAN="nscde"
+	REMPACKS="sparky-desktop-$PACKAGE ^nscde-desktop*"
+     ;;
+  openbox)
+	if [ "$ARCHARM" != "" ]; then
+		PACKAGE="openbox-arm"
+		REMPACKS="sparky-desktop-$PACKAGE ^openbox*"
+	else
+		PACKAGE="openbox"
+		REMPACKS="sparky-desktop-$PACKAGE ^openbox*"
+	fi
+	DESKTOP="Openbox"
+	WMAN="openbox"
+     ;;
+  openbox-noir)
+	PACKAGE="openbox-noir"
+	REMPACKS="sparky-desktop-$PACKAGE ^openbox*"
+	DESKTOP="Openbox-Noir"
+	WMAN="openbox"
+     ;;
+  pekwm)
+	PACKAGE="pekwm"
+	DESKTOP="PekWM"
+	WMAN="pekwm"
+	REMPACKS="sparky-desktop-$PACKAGE ^pekwm*"
+     ;;
+  sway)
+	PACKAGE="sway"
+	DESKTOP="Sway"
+	WMAN="sway"
+	REMPACKS="sparky-desktop-$PACKAGE ^sway*"
+     ;;
+  sugar)
+	PACKAGE="sugar"
+	DESKTOP="Sugar"
+	# CHECKSUGARWM=`pgrep -af python | grep sugar`
+	WMAN="sugar"
+	REMPACKS="sparky-desktop-$PACKAGE sugar*"
+     ;;
+  trinity)
+	PACKAGE="trinity"
+	DESKTOP="Trinity"
+	WMAN="twin"
+	REMPACKS="sparky-desktop-$PACKAGE ^trinity* ^tde*"
+     ;;
+  ukui)
+	PACKAGE="ukui"
+	DESKTOP="UKUI"
+	WMAN="ukwm"
+	REMPACKS="sparky-desktop-$PACKAGE ^ukui* ukwm"
+     ;;
+  wmaker)
+	PACKAGE="wmaker"
+	DESKTOP="WindowMaker"
+	WMAN="wmaker"
+	REMPACKS="sparky-desktop-$PACKAGE ^wmaker*"
+     ;;
+  xfce)
+	PACKAGE="xfce"
+	DESKTOP="Xfce"
+	WMAN="xfwm4"
+	REMPACKS="sparky-desktop-$PACKAGE xfce4 xfce4-datetime-plugin xfce4-screenshooter xfce4-taskmanager xfce4-terminal xfce4-whiskermenu-plugin xfce4-xkb-plugin"
+     ;;
+esac
+
+if [ $(pidof "$WMAN") ]; then
+	DIALOGTEXT="$LOCAL017 $DESKTOP $LOCAL018<br /><br />$LOCAL019"
+
+cat > /usr/lib/sparky-aptus-appcenter/page-error.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: November 9, 2020 by pavroo
+-->
+	<head>
+		<title>Installation Status | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="index.html"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<br />&nbsp;
+		$DIALOGTEXT<br />
+		<br />&nbsp;
+		<a href="index.html" class="buttonmenu">$LOCAL001</a><br />
+		<br />
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+killall -9 yad
+cd /usr/lib/sparky-aptus-appcenter
+./aptus-appcenter error01
+exit 0		
+
+else
+killall -9 yad	
+$SPARKYXTERM "$UNINSTALL $REMPACKS"
+
+if [ -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
+	DIALOGTEXT="$LOCAL033<br /><br />$LOCAL005"
+else
+	DIALOGTEXT="$LOCAL020<br /><br />$LOCAL005"
+fi
+
+cat > /usr/lib/sparky-aptus-appcenter/page-error.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: November 9, 2020 by pavroo
+-->
+	<head>
+		<title>Installation Status | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="index.html"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<br />&nbsp;
+		$DIALOGTEXT<br />
+		<br />&nbsp;
+		<a href="index.html" class="buttonmenu">$LOCAL001</a><br />
+		<br />
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+killall -9 yad
+cd /usr/lib/sparky-aptus-appcenter
+./aptus-appcenter error01
+exit 0
+fi
+
+exit 0

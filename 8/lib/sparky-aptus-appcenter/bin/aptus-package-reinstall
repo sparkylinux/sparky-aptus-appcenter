@@ -1,0 +1,232 @@
+#!/bin/bash
+
+# Application re-installer
+# Copyright 2020-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2023/02/02 by pavroo
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+	if [ "`cat /etc/default/locale | grep LANG= | grep es_AR`" != "" ]; then
+. $DEFLOCDIR/es_AR
+	else
+. $DEFLOCDIR/es_ES
+	fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep uk`" != "" ]; then
+. $DEFLOCDIR/uk
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+DIALOG="yad --width=550 --height=300 --window-icon=sparky-aptus-appcenter --image=sparky-aptus-appcenter --center"
+TEXT="--text="
+TITLE="--title="
+TITLETEXT="APTus AppCenter"
+MSGBOX="--button=Ok:0"
+PINGTEST=$(ping -c 1 debian.org | grep [0-9])
+WORKDIR="/tmp/sparky-appcenter"
+INSTALL="apt-get install"
+REINSTALL="apt-get install --reinstall"
+SERVERG="https://dl.google.com/linux/direct"
+PACKG64="google-chrome-stable_current_amd64.deb"
+SERVERE="https://dl.google.com/dl/earth/client/current"
+PACKE64="google-earth-pro-stable_current_amd64.deb"
+SERVER64SKYPE="https://go.skype.com"
+PACK64SKYPE="skypeforlinux-64.deb"
+OOPACKAGES="openoffice-brand-en-us openoffice-brand-writer openoffice-brand-calc openoffice-brand-impress openoffice-brand-base openoffice-brand-draw openoffice-brand-math openoffice-pyuno openoffice-ooofonts openoffice-ooolinguistic openoffice-debian-menus"
+WPSPACKAGES="wps-office-fonts"
+if [ -f /usr/bin/spterm ]; then
+	SPARKYXTERM="spterm -e"
+elif [ -f /usr/bin/sparky-xterm ]; then
+	SPARKYXTERM="sparky-xterm"
+elif [ -f /usr/bin/x-terminal-emulator ]; then
+	SPARKYXTERM="x-terminal-emulator -e"
+else
+	echo "x terminal emulator is missing... exiting..."
+	exit 1
+fi
+
+# reinstall packge now
+killall -9 yad
+PACKAGE="$1"
+#sleep 1
+
+if [ "$PINGTEST" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003 \n\n$LOCAL005"
+	exit 1
+fi
+
+#if [ "$PACKAGE" = "discord" ]; then
+#	killall -9 yad
+#	rm -rf $WORKDIR
+#	mkdir -p $WORKDIR
+#	cd $WORKDIR
+#	$SPARKYXTERM `wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"`
+#	$SPARKYXTERM "$INSTALL ./discord.deb"
+#	rm -rf $WORKDIR
+#	
+if [ "$PACKAGE" = "google-chrome-stable" ]; then
+	killall -9 yad
+	rm -rf $WORKDIR
+	mkdir -p $WORKDIR
+	cd $WORKDIR
+	$SPARKYXTERM "wget $SERVERG/$PACKG64"
+	$SPARKYXTERM "$INSTALL ./$PACKG64"
+	rm -rf $WORKDIR
+
+elif [ "$PACKAGE" = "google-earth-pro-stable" ]; then
+	killall -9 yad
+	rm -rf $WORKDIR
+	mkdir -p $WORKDIR
+	cd $WORKDIR
+	$SPARKYXTERM "wget $SERVERE/$PACKEARTH"
+	$SPARKYXTERM "$INSTALL ./$PACKEARTH"
+	rm -rf $WORKDIR
+
+elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
+	killall -9 yad
+	rm -rf $WORKDIR
+	mkdir -p $WORKDIR
+	cd $WORKDIR
+	$SPARKYXTERM "wget https://packages.microsoft.com/keys/microsoft.asc"
+	gpg --dearmor microsoft.asc > microsoft.gpg
+	if [ -f /etc/apt/trusted.gpg.d/microsoft* ]; then
+		rm -f /etc/apt/trusted.gpg.d/microsoft*
+	fi
+	install -o root -g root -m 644 *.gpg /etc/apt/trusted.gpg.d/
+	if [ -f /etc/apt/sources.list.d/microsoft-edge.list ]; then
+		rm -f /etc/apt/sources.list.d/microsoft-edge.list
+	fi
+	echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main" >> /etc/apt/sources.list.d/microsoft-edge.list
+	$SPARKYXTERM "$UPDATE"
+	$SPARKYXTERM "$INSTALL $PACKAGE"
+	rm -rf $WORKDIR
+
+elif [ "$PACKAGE" = "openoffice" ]; then
+	killall -9 yad
+	$SPARKYXTERM "$REINSTALL $OOPACKAGES"
+
+elif [ "$PACKAGE" = "skypeforlinux" ]; then
+	killall -9 yad
+	rm -rf $WORKDIR
+	mkdir -p $WORKDIR
+	cd $WORKDIR
+	$SPARKYXTERM "wget $SERVER64SKYPE/$PACK64SKYPE"
+	$SPARKYXTERM "dpkg -i $PACK64SKYPE"
+	rm -rf $WORKDIR
+	if [ -f /etc/apt/sources.list.d/skype-stable.list ]; then
+		rm -f /etc/apt/sources.list.d/skype-stable.list
+		echo "deb [signed-by=/etc/apt/trusted.gpg arch=amd64] https://repo.skype.com/deb stable main" >> /etc/apt/sources.list.d/skype-stable.list
+	fi
+
+elif [ "$PACKAGE" = "vmware" ]; then
+	/usr/bin/sparky-vmplayer-installer
+	exit 0
+
+elif [ "$PACKAGE" = "wps-office" ]; then
+	killall -9 yad
+	$SPARKYXTERM "$REINSTALL $PACKAGE $WPSPACKAGES"
+
+elif [ "$PACKAGE" = "blisk-browser-stable" ]; then
+	$SPARKYXTERM "$REINSTALL $PACKAGE"
+	if [ -f /etc/apt/sources.list.d/blisk-browser.list ]; then
+		rm -f /etc/apt/sources.list.d/blisk-browser.list
+	fi
+
+else
+	killall -9 yad
+	$SPARKYXTERM "$REINSTALL $PACKAGE"
+fi
+
+if [ -f /usr/lib/sparky-aptus-appcenter/page-error.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/page-error.html
+fi
+
+DIALOGTEXT="$LOCAL031"
+
+cat > /usr/lib/sparky-aptus-appcenter/page-error.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: October 26, 2020 by pavroo
+-->
+	<head>
+		<title>Installation Status | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="index.html"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<br />&nbsp;
+		$DIALOGTEXT<br />
+		<br />&nbsp;
+		<a href="index.html" class="buttonmenu">$LOCAL001</a><br />
+		<br />
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+killall -9 yad
+cd /usr/lib/sparky-aptus-appcenter
+./aptus-appcenter error01
+
+exit 0

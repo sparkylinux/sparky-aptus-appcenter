@@ -1,0 +1,449 @@
+-------------------------------------------------------------------------------
+  Version 20230624~sparky8~0 (2023-06-24)
+-------------------------------------------------------------------------------
+  * added packages xdman, pulsar
+  * removed sparky linux kernel 4.9 lts installation, changed sparky7 to sparky8 kernel
+  * removed packages atom, spideroakone, vuze, ddrescue-gui, python3-multibootusb, teams, gtomb
+  
+-------------------------------------------------------------------------------
+  Version 20230530~sparky7~0 (2023-05-30)
+-------------------------------------------------------------------------------
+  * added packages icecat arm64, element-desktop arm64
+  * install openoffice from sparky repos, changed jami-all to jami
+  * removed packages bbrun, bitstormlite, dlume
+
+-------------------------------------------------------------------------------
+  Version 20230429~sparky7~0 (2023-04-29)
+-------------------------------------------------------------------------------
+  * added packages appimagelauncher, motionbox, wike, mullvad-browser, youtube-dl-gui, lite-xl
+  * removed packages cyberfox, dooble, lite-editor, adapta-kde
+
+-------------------------------------------------------------------------------
+  Version 20230324~sparky7~0 (2023-03-24)
+-------------------------------------------------------------------------------
+  * added packages blueman, l3afpad, kephra
+  * added Debian rt kernel installation
+
+-------------------------------------------------------------------------------
+  Version 20230306~sparky7~0 (2023-03-06)
+-------------------------------------------------------------------------------
+  * added package kakoune
+  * removed packages adapta-gtk-theme, amule, freelan
+
+-------------------------------------------------------------------------------
+  Version 20230220~sparky7~0 (2023-02-20)
+-------------------------------------------------------------------------------
+  * added packages brave-browser arm64, heroic, olive-editor, nix, risup-vpn all, cavezofphear
+  * removed packages ventoy-gui, epsxe, xmms2, lives
+  * changed package gpaste to gpaste-2
+
+-------------------------------------------------------------------------------
+  Version 20230202~sparky7~0 (2023-02-02)
+-------------------------------------------------------------------------------
+  * added uk_UA locale
+
+-------------------------------------------------------------------------------
+  Version 20230108~sparky7~0 (2023-01-08)
+-------------------------------------------------------------------------------
+  * added packages tokodon, shellinabox, haruna, sc-controller, harmonoid
+  * install linux-image-sparky7-amd64 instead of linux-image-sparky-amd64
+  * removed packages pysolfc, freespace2, ember-media, lostirc, freelan, sshoot
+
+-------------------------------------------------------------------------------
+  Version 20221112~sparky7~0 (2022-11-12)
+-------------------------------------------------------------------------------
+  * added packages onedrive, zfsutils-linux, ne, nedit, nvi, blisk-browser-stable, mullwad-vpn arm64, clapper
+  * removed packages nifti2dicom, funguloids, fruit, gnubik, xjig, higan, dradio, gogglesmm, karlyriceditor, bombono-dvd, ogmrip, qtav-players, empathy, feedreader, between
+  * changed balena-etcher-electron to balena-etcher
+
+-------------------------------------------------------------------------------
+  Version 20221012~sparky7~0 (2022-10-12)
+-------------------------------------------------------------------------------
+  * added package le
+  * changed virtualbox-6.1 to virtualbox-7.0
+
+-------------------------------------------------------------------------------
+  Version 20220928~sparky7~0 (2022-09-28)
+-------------------------------------------------------------------------------
+  * added packages kitty, lollypop, iron arm64, compiz, amberol
+  * removed package motionbox
+  * added Sparky kernel 4.9-LTS installation
+  * updated de_DE locale
+
+-------------------------------------------------------------------------------
+  Version 20220809~sparky7~0 (2022-08-09)
+-------------------------------------------------------------------------------
+  * added packages acm, gxemul, gotop, atop, iotop, btop, g4music, clapper
+  * moved 0ad to strategy games
+
+-------------------------------------------------------------------------------
+  Version 20220704~sparky7~0 (2022-07-04)
+-------------------------------------------------------------------------------
+  * added es_ES locale
+  * removed package kopete
+
+-------------------------------------------------------------------------------
+  Version 20220626~sparky7~0 (2022-06-26)
+-------------------------------------------------------------------------------
+  * fixed skype installation and reinstallation
+  * install virtualbox-6.1 instead of virtualbox
+  * removed package amarok
+  * added packages notepadnext, winezgui
+  * removed installation of Sparky 686pae kernel
+  * added installation of Sparky LTS kernel
+
+-------------------------------------------------------------------------------
+  Version 20220607~sparky7~0 (2022-06-07)
+-------------------------------------------------------------------------------
+  * fixed liquorix, xanmod and sparky kernel installation
+  * install liquorix kernel on amd64 only
+  * added package magnus
+
+-------------------------------------------------------------------------------
+  Version 20220529~sparky7~0 (2022-05-29)
+-------------------------------------------------------------------------------
+  * tool page fixed
+  * updated Italian translate
+  * added packages bitcoin, hypnotix, aqemu, qemu-system-gui
+  * removed package frogatto
+  * changed qemu to qemu-system
+
+-------------------------------------------------------------------------------
+  Version 20220505~sparky7~0 (2022-05-05)
+-------------------------------------------------------------------------------
+  * Added packages crow-translate, nala
+  * waterfox-g4-kpe changed to waterfox-g-kpe
+
+-------------------------------------------------------------------------------
+  Version 20220414~sparky7~0 (2022-04-14)
+-------------------------------------------------------------------------------
+  * Added package badwolf
+  * Changed packages gearhead2-sdl to gearhead-sdl, gearhead2 to gearhead, cpupower-gui to linux-cpupower, jami to jami-all
+  * Removed packages gxmms2, lxmusic, lxmms2 
+
+-------------------------------------------------------------------------------
+  Version 20220320~sparky7~0 (2022-03-20)
+-------------------------------------------------------------------------------
+  * Added packages jami, fluent-reader
+  * Install discord from sparky repos now
+  * Install firefox-sparky instead of firefox
+
+-------------------------------------------------------------------------------
+  Version 20220306~sparky7~0 (2022-03-06)
+-------------------------------------------------------------------------------
+  * Added packages pulseeffects, mailspring, vala-panel, sparky-launcher
+  * Install master-pdf-editor-5 on amd64
+  * Removed packages human-icon-theme, tangerine-icon-theme, polo-file-manager, gazebo, netmaze, hexxagon, xvier, flobopuyo, gtkpool, openclonk, tetradraw, xpaint, tangerine, aegisub, kmplayer, smuxi
+
+-------------------------------------------------------------------------------
+  Version 20220204~sparky7~0 (2022-02-04)
+-------------------------------------------------------------------------------
+  * Added packages teams, rainlendar2-lite, pulsemixer
+  * Install cherrytree on armhf and arm64
+
+-------------------------------------------------------------------------------
+  Version 20220125~sparky7~0 (2022-01-25)
+-------------------------------------------------------------------------------
+  * Added packages nicotine, mullvad-vpn
+
+-------------------------------------------------------------------------------
+  Version 20220109~sparky7~0 (2022-01-09)
+-------------------------------------------------------------------------------
+  * Added package signal-desktop, cozy
+  * Don't install ciano on arm64
+  * Removed packages gnome-icon-theme-yasis. g3data, xevil, filler, spacearyarya, lix, gtans, xmpuzzles, xpuzzles, ninvaders, fs-uae-arcad, gnuboy-x, cappuccino, concalc, graphmonkey
+
+-------------------------------------------------------------------------------
+  Version 20211227~sparky7~0 (2021-12-27)
+-------------------------------------------------------------------------------
+  * Removed packages firefox-esr-sparky, firefox-sparky
+  * Added lumina-desktop armhf and arm64
+  * Changed waterfox-g3-kpe to waterfox-g4-kpe
+
+-------------------------------------------------------------------------------
+  Version 20211211~sparky7~0 (2021-12-11)
+-------------------------------------------------------------------------------
+  * Added packages firefox-sparky, firefox-esr-sparky
+
+-------------------------------------------------------------------------------
+  Version 20211205~sparky7~0 (2021-12-05)
+-------------------------------------------------------------------------------
+  * Added packages finalcrypt, latte-dock, sysmontask, font-manager<br>
+  * Removed packages residualvm
+
+-------------------------------------------------------------------------------
+  Version 20211129~sparky7~0 (2021-11-29)
+-------------------------------------------------------------------------------
+  * Added packages adapta-gtk-theme, adapta-kde, arc-theme, awesome-theme-sparky, blackbird-gtk-theme, blackbox-themes, bluebird-gtk-theme, breeze, breeze-gtk-theme, darkblood-gtk-theme, darkcold-gtk-theme, darkfire-gtk-theme, darkmint-gtk-theme, fluxbox-theme-sparky, gnome-accessibility-themes, gnome-theme-gilouche, greybird-gtk-theme, icewm-theme-sparky, lxqt-theme-debian, lxqt-themes, mate-themes, materia-gtk-theme, materia-kde, metacity-themes, murrine-themes, numix-gtk-theme, pekwm-themes, plasma-theme-oxygen, plasma-theme-sparky, qt5-style-kvantum-themes, qt5-style-plugins, qt5-styles-ukui, shiki-brave-theme, shiki-colors, shiki-colors-metacity-theme, shiki-colors-xfwm-theme, shiki-dust-theme, shiki-human-theme, shiki-illustrious-theme, shiki-noble-theme, shiki-wine-theme, shiki-wise-theme, sparky-lxqt-theme, sparky3-theme, sparky4-theme, sparky5-theme, sparky5-lxqt-theme, sparky6-theme, ukui-themes, wmaker-theme-sparky, xfwm4-themes, xfwm4-theme-breeze, raven-reader, quickcal, quicktun, nageru, fbless, xplanet, fracplanet, planner, motrix
+  * Removed package tilix i386
+  * Changed softmaker-freeoffice-2018 to -2021
+
+-------------------------------------------------------------------------------
+  Version 20211102~sparky7~0 (2021-11-02)
+-------------------------------------------------------------------------------
+  * Added Sugar desktop
+  * Don't install edex-ui on arm64 and lumina on armhf and arm64
+  * Added packages microsoft-edge-stable, yt-dlp, ungoogled-chromium
+  * Removed packages azure-cli, clementine, gnubiff, fwbuilder
+
+-------------------------------------------------------------------------------
+  Version 20211028~sparky7~0 (2021-10-28)
+-------------------------------------------------------------------------------
+  * Added arm64 arch
+  * Added armhf and arm64 apps otter-browser, codium, min, zettlr, yad, zenity, spterm, nscde-desktop
+  * Added new subcategory Accessories Icons
+  * Added new packages adwaita-icon-theme, arc-darkest-suru-icon-theme, breeze-icon-theme, deepin-icon-theme, elementary-xfce-icon-theme, faba-icon-theme, faenza-icon-theme, gnome-brave-icon-theme, gnome-dust-icon-theme, gnome-extra-icons, gnome-human-icon-theme, gnome-icon-theme, gnome-icon-theme-gartoon, gnome-icon-theme-nuovo, gnome-icon-theme-suede, gnome-icon-theme-yasis, gnome-illustrious-icon-theme, gnome-noble-icon-theme, gnome-wine-icon-theme, gnome-wise-icon-theme, hicolor-icon-theme, human-icon-theme, la-capitaine-icon-theme, lxde-icon-theme, mate-icon-theme, moka-icon-theme, numix-icon-theme, numix-icon-theme-circle, obsidian-icon-theme, oxygen-icon-theme, papirus-icon-theme, paper-icon-theme, sparky-icon-set, sugar-icon-theme, suru-icon-theme, tangerine-icon-theme, tango-icon-theme, tebu-icon-theme, tebu-flat-icon-theme, tela-icon-theme, ultra-flat-icons
+  * Removed ciano, cozy
+
+-------------------------------------------------------------------------------
+  Version 20211015~sparky7~0 (2021-10-15)
+-------------------------------------------------------------------------------
+  * Fixed locales of kernel installation
+  * Do not install Debian RT kernel
+  * Added unar
+  * Removed ranger, gadmin-openvpn-client, gtkhash
+
+-------------------------------------------------------------------------------
+  Version 20211010~sparky7~0 (2021-10-10)
+-------------------------------------------------------------------------------
+  * Aded qstardict, dictconv, sdcv
+  * Added new category Translators
+
+-------------------------------------------------------------------------------
+  Version 20211009~sparky7~0 (2021-10-09)
+-------------------------------------------------------------------------------
+  * Fixed Trinity repos and spelling
+
+-------------------------------------------------------------------------------
+  Version 20211008~sparky7~0 (2021-10-08)
+-------------------------------------------------------------------------------
+  * Added kdiskmark, kotatogram-desktop, webapp-manager, discover, vnstat, mariadb-client, mariadb-server, sqlite3, sqlitebrowser, dialect
+
+-------------------------------------------------------------------------------
+  Version 20210924.1~sparky7~0 (2021-09-24)
+-------------------------------------------------------------------------------
+  * Fixed search system-others apps
+
+-------------------------------------------------------------------------------
+  Version 20210924~sparky7~0 (2021-09-24)
+-------------------------------------------------------------------------------
+  * Replaced waterfox-current-kpe with waterfox-g3-kpe
+  * Added foot, sway desktop, meteo-qt
+
+-------------------------------------------------------------------------------
+  Version 20210913~sparky7~0 (2021-09-13)
+-------------------------------------------------------------------------------
+  * Added sonobus, jove, thelounge
+  * Removed qt-fsarchiver i386
+  * Added terminal to APTus tools
+  * Updated header to Sparky 7
+
+-------------------------------------------------------------------------------
+  Version 20210904~sparky7~0 (2021-09-04)
+-------------------------------------------------------------------------------
+  * Updated zh_CN locale
+  * Removed wbar-config
+  * Added bbrun, kdocker
+
+-------------------------------------------------------------------------------
+  Version 20210827~sparky7~0 (2021-08-27)
+-------------------------------------------------------------------------------
+  * Added litecoin-qt, pinta, ulauncher, feedreader, newsboat, gnome-feeds
+
+-------------------------------------------------------------------------------
+  Version 20210820~sparky7~0 (2021-08-20)
+-------------------------------------------------------------------------------
+  * Added Firefox Latest, Librewolf
+  * Changed exfat-utils to exfatprogs
+  
+-------------------------------------------------------------------------------
+  Version 20210815~sparky6~0 (2021-08-15)
+-------------------------------------------------------------------------------
+  * Updated locale installation
+  * Removed Firefox Latest, Librewolf
+  * Added Cinelerra, Gammy, Sparky-Backlight
+
+-------------------------------------------------------------------------------
+  Version 20210801~sparky6~0 (2021-08-01)
+-------------------------------------------------------------------------------
+  * Fixed desktop removing
+  * Added chirp, systemback
+
+-------------------------------------------------------------------------------
+  Version 20210724~sparky6~0 (2021-07-24)
+-------------------------------------------------------------------------------
+  * Small fixes
+  * Added sparky-welcome
+
+-------------------------------------------------------------------------------
+  Version 20210723~sparky6~0 (2021-07-23)
+-------------------------------------------------------------------------------
+  * Added frostwire, lightworks, nuclear, shortwave, komorebi, enve, luakit, viper-browser
+  * Removed iridium-browser
+
+-------------------------------------------------------------------------------
+  Version 20210615~sparky6~0 (2021-06-15)
+-------------------------------------------------------------------------------
+  * Removed Exit button from Install pages
+
+-------------------------------------------------------------------------------
+  Version 20210613~sparky6~0 (2021-06-13)
+-------------------------------------------------------------------------------
+  * Added Exit button
+
+-------------------------------------------------------------------------------
+  Version 20210609~sparky6~0 (2021-06-09)
+-------------------------------------------------------------------------------
+  * Added hamsket, android-messager-desktop, freetube, wireguard, freelan, openconnect, openvpn, nuntius
+  * Don't search on changelog file
+-------------------------------------------------------------------------------
+  Version 20210524~sparky6~0 (2021-05-24)
+-------------------------------------------------------------------------------
+  * Separated instalation of openjdk and openjre
+  * Added librewolf, gnome-boxes, nmh, mmh, mailutils, fetchmail, getmail6, alot, astroid, citadel-client, fdm, gnumail.app, bsd-mailx, neomutt, notmuch, procmail, roundcube, riseup-vpn, protonvpn, connman-vpn, gadmin-openvpn-client, network-manager-openvpn-gnome, network-manager-vpnc-gnome, openfortivpn, softether-vpnclient, vpnc
+  * Added new subcategory VPN
+
+-------------------------------------------------------------------------------
+  Version 20210517~sparky6~0 (2021-05-17)
+-------------------------------------------------------------------------------
+  * Added changelog page
+  * Added openjava
+
+-------------------------------------------------------------------------------
+  Version 20210515~sparky6~0 (2021-05-15)
+-------------------------------------------------------------------------------
+  * Added kget-integrator, uget-integrator, gnome-shell-mailnag, ayatana-webmail, gnubiff, tagspaces, rednotebook, videotrans, zoneminder, bombono-dvd, foobnix, freetuxtv, gmorgan, handbrake, imagination, jampal, karlyriceditor, kmidimon, qarte, retroarch, shorten, slowmovideo, smillaenlarger, spek, vcdimager, vqmt, xcutmp3, youtube-dl, youtubedl-gui
+
+-------------------------------------------------------------------------------
+  Version 20210421~sparky6~0 (2021-04-21)
+-------------------------------------------------------------------------------
+  * Renamed pt_BR locale to pt
+  * Added filmulator, micro, ventoy, ventoy-gui, sunflower, rocketchat, protonmail-bridge
+  * Removed dolphin-emu, ppsspp
+
+-------------------------------------------------------------------------------
+  Version 20210401~sparky6~0 (2021-04-01)
+-------------------------------------------------------------------------------
+  * Added polo-file-manager, gaupol, aegisub, pqiv, mirage, sxiv, qiv, phototonic, posterazor, fotoxx
+  * Added el_GR locale
+  * Fixed locale installation menu
+
+-------------------------------------------------------------------------------
+  Version 20210312~sparky6~0 (2021-03-12)
+-------------------------------------------------------------------------------
+  * Remove signed-template package from linux-image list of old-kernel-remover
+  * Added multios-usb
+
+-------------------------------------------------------------------------------
+  Version 20210303~sparky6~0 (2021-03-03)
+-------------------------------------------------------------------------------
+  * Small fix
+
+-------------------------------------------------------------------------------
+  Version 20210302~sparky6~0 (2021-03-02)
+-------------------------------------------------------------------------------
+  * Small fixes
+  * Added linphone-desktop, amarok, alacritty, cool-retro-term, tilix, sparky-system, tbsm, bemenu, fbpanel
+  * Removed flashplayer-chromium, flashplayer-mozilla, plm
+
+-------------------------------------------------------------------------------
+  Version 20210219~sparky6~0 (2021-02-19)
+-------------------------------------------------------------------------------
+  * Added installation of Debian RealTime Linux kernel
+  * Separated installation of 32 and 64 kernels
+  * Refresh package list before start
+  * Added packages gomuks, tutanota-desktop, steamtinkerlaunch, guake, kopete
+
+-------------------------------------------------------------------------------
+  Version 20210121.1~sparky6~0 (2021-01-21)
+-------------------------------------------------------------------------------
+  * Small fixes
+
+-------------------------------------------------------------------------------
+  Version 20210121~sparky6~0 (2021-01-21)
+-------------------------------------------------------------------------------
+  * Added DeepL-Linux, Cheese, Tribler, hv3, Tomboy-NG
+  * Removed spyder
+
+-------------------------------------------------------------------------------
+  Version 20201223~sparky6~0 (2020-12-23)
+-------------------------------------------------------------------------------
+  * Added netdata, cozy
+  * Install edex-ui on i386 too
+  * Removed APTus and APTus AppCenter from the list
+  * Removed second entry of KDE Connect
+  * Removed stretchplayer, kradio4
+
+-------------------------------------------------------------------------------
+  Version 20201217~sparky6~0 (2020-12-17)
+-------------------------------------------------------------------------------
+  * Added Pogo, KDEConnect, Zettlr, cpufrequtils, cpupower-gui, Rescuezilla
+  * Removed thonny, cairo-dock, jerry
+
+-------------------------------------------------------------------------------
+  Version 20201203~sparky6~0 (2020-12-03)
+-------------------------------------------------------------------------------
+  * Install Strawberry on amd64 only
+  * Removed cairo-dock-core, fbpanel, gweled
+  * Added grsync, meld, simplest-studio, next, slimjet, linux-cpupower 
+
+-------------------------------------------------------------------------------
+  Version 20201109~sparky6~0 (2020-11-10)
+-------------------------------------------------------------------------------
+  * Added Hiero, BPyTop, CPU-X, LazPaint]
+  * Removed a few packs
+  * Rewriten package and desktop installation modules
+
+-------------------------------------------------------------------------------
+  Version 20201023~sparky6~0 (2020-10-23)
+-------------------------------------------------------------------------------
+  * Added Boostnote, OnionShare, Timekpr-nExt, XanMod kernel installer, FFQueue
+  * Removed calamares, xpdf
+  * Small fixes
+
+-------------------------------------------------------------------------------
+  Version 20201018~sparky6~0 (2020-10-18)
+-------------------------------------------------------------------------------
+  * sparky-su replaced by sparky-remsu
+  * Added Brackets, Jeex, Cheerytree, Zim, Drawing, MellowPlayer, Elisa, UKUI desktop, Falkon
+  * Don't ping on startup
+  * Added pt_BR locale
+  * Updated locale checking
+
+-------------------------------------------------------------------------------
+  Version 20200916~sparky6~0 (2020-09-16)
+-------------------------------------------------------------------------------
+  * Added Browsh, Ciano, Thonny, Synapse, Default-JRE
+  * Added Italian locale
+  * Install virtualbox-qt instead of virtualbox-6.1
+  * Removed android-sdk, anki, tuxtype, tuxmatch, efp, monster-masher, termtris, desmume, geekcode, gmidimonitor, denemo, patchage, youtube-dlg, grsync, aqemu
+
+-------------------------------------------------------------------------------
+  Version 20200823~sparky6~0 (2020-08-23)
+-------------------------------------------------------------------------------
+  * Updated Trinity repo
+  * Removed qemy-kvm, cool-retro-term, opentyrian, cavezofphear, curseofwar, tetrinet-client, tome, scrcpy
+  * Added Accessories - Weather category
+
+-------------------------------------------------------------------------------
+  Version 20200808~sparky6~0 (2020-07-30)
+-------------------------------------------------------------------------------
+  * Added Russian locale
+  * Added Warpinator, Gmail Desktop, Joplin, NixNote2, Electrum, Electric, OpenShot
+  * Removed jeex, lpe, chemtool, gabedit, monteverdi, munipack, sigviewer, snap,
+acm, freedroid, garden-of-coloured-lights, luola, spout, xblast-tnt,
+xtron, dossizola, gbatnav, gtkboard, shogivar, sjeng, ezquake, gfpoken, naev, 
+slashem-gtk, slimevolley, biloba, bygfoot, nettoe, pcsxr, freedroidrpg, gnuminishogi,
+gnushogi, lives, ncftp, trojita, xpra, litecoin-qt, bitcoin-qt, i2pd
+
+-------------------------------------------------------------------------------
+  Version 20200730~sparky6~0 (2020-07-30)
+-------------------------------------------------------------------------------
+  * Changed Riot Desktop to Element Desktop
+  * Updated Hungarian locales
+  * Change dir to home before picking a deb file of local install 
+
+-------------------------------------------------------------------------------
+  Version 20200725~sparky6~0 (2020-07-25)
+-------------------------------------------------------------------------------
+  * Initial release beta1

@@ -1,0 +1,168 @@
+#!/bin/bash
+
+# install-sparky-kernel script lets you install the latest stable,
+# home roasted Linux kernel
+# Copyright 2016-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
+# Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
+# Created 2016/04/06
+# Last update 2023/06/24
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+	if [ "`cat /etc/default/locale | grep LANG= | grep es_AR`" != "" ]; then
+. $DEFLOCDIR/es_AR
+	else
+. $DEFLOCDIR/es_ES
+	fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep uk`" != "" ]; then
+. $DEFLOCDIR/uk
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo " Must be root... Exiting"
+	exit 1
+fi
+
+DIALOG="yad --window-icon=sparky-aptus-appcenter --width=550 --height=350 --center"
+TITLE="--always-print-result --dialog-sep --image=sparky-aptus-appcenter --title="
+TEXT="--text="
+MENU="--list --column=$LOCAL049 --column=$LOCAL050"
+OKEXIT=" --button=Ok:0 --button=$LOCAL001:1"
+MSGBOX="--button=Ok:0"
+TITLETEXT="APTus AppCenter"
+ARCH64=`uname -r | grep "amd64" | awk '{print $1}'`
+TESTSPARKY=`dpkg-query -l | grep linux-image-sparky*`
+if [ -f /usr/bin/sparky-xterm ]; then
+	SPARKYXTERM="/usr/bin/sparky-xterm"
+else
+	echo "sparky-xterm is missing... Exiting..."
+	exit 1
+fi
+
+# check is the Sparky kernel installed already
+#if [ "$TESTSPARKY" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL066"
+#	exit 0
+#fi
+
+# check connection
+PINGTEST=$(ping -c 1 sparkylinux.org | grep [0-9])
+if [ "$PINGTEST" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL016"
+	exit 1
+fi
+
+# check unsupported archs
+#ARCHARM="`uname -m | grep arm`"
+if [ "$ARCH64" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL051"
+	exit 1
+fi
+
+mainmenu () {
+if [ "$ARCH64" != "" ]; then
+CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
+64 "$LOCAL069" \
+64_LTS_515 "$LOCAL069 (5.15 LTS)" \
+Exit "$LOCAL056"`
+else
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL004"
+	exit 1
+fi
+
+if [ "$?" = "0" ]; then
+	CHOICE=`echo $CHOICES | cut -d "|" -f 1`
+else
+	exit 0
+fi
+
+if [ "$CHOICE" = "64_LTS_515" ]; then
+	64lts515menu
+elif [ "$CHOICE" = "64" ]; then
+	amd64menu
+elif [ "$CHOICE" = "Exit" ]; then
+	exit 0
+else
+	exit 0
+fi
+}
+
+64lts515menu () {
+$DIALOG $TITLE"$TITLETEXT" $OKEXIT $TEXT"\n$LOCAL069 5.15LTS\n\n$LOCAL014"
+
+if [ "$?" != "0" ]; then
+	exit 1
+else
+
+	# preper the sparky unstable list
+	if [ -f /etc/apt/sources.list.d/sparky-unstable.list ]; then
+		rm -f /etc/apt/sources.list.d/sparky-unstable.list
+	fi
+
+cat > /etc/apt/sources.list.d/sparky-unstable.list <<FOO
+# sparky unstable repository
+deb [signed-by=/usr/share/keyrings/sparky.gpg.key] https://repo.sparkylinux.org/ unstable main
+deb-src [signed-by=/usr/share/keyrings/sparky.gpg.key] https://repo.sparkylinux.org/ unstable main
+FOO
+
+	$SPARKYXTERM "apt-get update"
+	# install 64 bit Sparky kernel and headers
+	$SPARKYXTERM "apt-get install linux-image-sparky-lts-amd64 linux-headers-sparky-lts-amd64"
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL068"
+	exit 0
+fi
+}
+
+amd64menu () {
+$DIALOG $TITLE"$TITLETEXT" $OKEXIT $TEXT"\n$LOCAL069\n\n$LOCAL014"
+
+if [ "$?" != "0" ]; then
+	exit 1
+else
+
+	# preper the sparky unstable list
+	if [ -f /etc/apt/sources.list.d/sparky-unstable.list ]; then
+		rm -f /etc/apt/sources.list.d/sparky-unstable.list
+	fi
+
+cat > /etc/apt/sources.list.d/sparky-unstable.list <<FOO
+# sparky unstable repository
+deb [signed-by=/usr/share/keyrings/sparky.gpg.key] https://repo.sparkylinux.org/ unstable main
+deb-src [signed-by=/usr/share/keyrings/sparky.gpg.key] https://repo.sparkylinux.org/ unstable main
+FOO
+
+	$SPARKYXTERM "apt-get update"
+	# install 64 bit Sparky8 kernel and headers
+	$SPARKYXTERM "apt-get install linux-image-sparky8-amd64 linux-headers-sparky8-amd64"
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL068"
+	exit 0
+fi
+}
+
+mainmenu

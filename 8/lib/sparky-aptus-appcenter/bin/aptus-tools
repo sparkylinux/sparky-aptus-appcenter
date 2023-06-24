@@ -1,0 +1,230 @@
+#!/bin/bash
+
+# Last update 2023/02/02 by pavroo
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+	if [ "`cat /etc/default/locale | grep LANG= | grep es_AR`" != "" ]; then
+. $DEFLOCDIR/es_AR
+	else
+. $DEFLOCDIR/es_ES
+	fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep uk`" != "" ]; then
+. $DEFLOCDIR/uk
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+TESTROOT="`whoami`"
+if [ "$TESTROOT" != "root" ]; then
+	echo " Must be root... Exiting..."
+	exit 1
+fi
+
+DIALOG="yad --window-icon=sparky-aptus-appcenter --width=450 --height=200 --center"
+DIALOG450="yad --window-icon=sparky-aptus-appcenter --width=450 --height=250 --center --fixed"
+DIALOG550="yad --window-icon=sparky-aptus-appcenter --width=450 --height=250 --center"
+DIALOG800="yad --window-icon=sparky-aptus-appcenter --width=800 --height=600 --center"
+TITLE="--always-print-result --dialog-sep --image=sparky-aptus-appcenter --title="
+TEXT="--text="
+MSGBOX="--button=Ok:0"
+OKEXIT=" --button=Ok:0 --button=$LOCAL001:1"
+TITLETEXT="APTus AppCenter"
+FILESELECTION="--file "
+FILTER="--file-filter"
+ENTRY="--entry "
+if [ -f /usr/bin/sparky-xterm ];then
+	SPARKYXTERM="/usr/bin/sparky-xterm"
+else
+	echo "sparky-xterm is missing... Exiting..."
+	exit 1
+fi
+if [ -f /usr/bin/sparky-editor ]; then
+	SPARKYEDITOR="sparky-editor"
+else
+	SPARKYEDITOR="gnome-text-editor"
+fi
+
+# check connection
+PINGTEST=$(ping -c 1 debian.org | grep [0-9])
+
+if [ "$PINGTEST" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL003"
+	exit 1
+fi
+
+# refresh package list
+if [ "$1" = "refresh" ]; then
+	$SPARKYXTERM "apt update"
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+	exit 0
+# upgrade
+elif [ "$1" = "upgrade" ]; then
+	$SPARKYXTERM "apt upgrade --no-install-recommends"
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+	exit 0
+# full upgrade
+elif [ "$1" = "fullupgrade" ]; then
+	$SPARKYXTERM "apt full-upgrade --no-install-recommends"
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+	exit 0
+# install package from repo
+elif [ "$1" = "installdebrepo" ]; then
+	PACK1=`$DIALOG550 $TITLE"$TITLETEXT" $OKEXIT $ENTRY $TEXT"\n$LOCAL034"`
+	if [ "$?" != "0" ]; then
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
+		exit 0
+	else
+		$SPARKYXTERM "apt-get install $PACK1"
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+		exit 0
+	fi
+# install package from local disk
+elif [ "$1" = "installdeblocal" ]; then
+	cd /home
+	DEBFILE=`$DIALOG800 $TITLE"$TITLETEXT" $TEXT"$LOCAL032" $FILESELECTION $FILTER="deb file |*.deb"`
+	if [ "$?" != "0" ]; then
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
+		exit 0
+	else
+		$SPARKYXTERM "gdebi $DEBFILE"
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+		exit 0
+	fi
+# fix packages
+elif [ "$1" = "fixpackages" ]; then
+	$SPARKYXTERM "apt-get install -f"
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+	exit 0
+# remove package
+elif [ "$1" = "aptremove" ]; then
+	PACK2=`$DIALOG550 $TITLE"$TITLETEXT" $OKEXIT $ENTRY $TEXT"\n$LOCAL035"`
+	if [ "$?" != "0" ]; then
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
+		exit 1
+	else
+		$SPARKYXTERM "apt-get remove $PACK2"
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+		exit 0
+	fi
+# apt autoremove
+elif [ "$1" = "aptautoremove" ]; then
+	$SPARKYXTERM "apt-get autoremove"
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+	exit 0
+# apt clean
+elif [ "$1" = "aptclean" ]; then
+	apt-get clean
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+	exit 0
+# quick list
+elif [ "$1" = "quicklist" ]; then
+	PACK1=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $ENTRY $TEXT"\n$LOCAL036"`
+	if [ "$?" != "0" ]; then
+		exit 0
+	else
+		$SPARKYXTERM "apt list *$PACK1* -v && echo 'Press <ENTER> to exit...' && read"
+		exit 0
+	fi
+# edit main repo
+elif [ "$1" = "mainrepo" ]; then
+	$SPARKYEDITOR /etc/apt/sources.list
+	exit 0
+# edit custom repo
+elif [ "$1" = "customrepo" ]; then
+	FILESELECT="$FILESELECTION --filename=/etc/apt/sources.list.d/sparky.list"
+	EDITFILE=`$DIALOG800 $TITLE"$TITLETEXT" $TEXT"$LOCAL037" $FILESELECT`
+	if [ "$?" != "0" ]; then
+		exit 1
+	else
+		$SPARKYEDITOR $EDITFILE
+		exit 0
+	fi
+# install lang packages
+elif [ "$1" = "lang" ]; then
+	/usr/lib/sparky-aptus-appcenter/bin/sparky-locale
+	exit 0
+# remove non-free packages
+elif [ "$1" = "nonfree" ]; then
+	NONFREE=`vrms -s | cut -d "|" -f 1`
+	$DIALOG450 $TITLE"$TITLETEXT" $OKEXIT $TEXT"\n$LOCAL045:\n\n$NONFREE \n\n$LOCAL046"
+	if [ "$?" != "0" ]; then
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
+		exit 0
+	else
+		$SPARKYXTERM "apt-get remove $NONFREE"
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+		exit 0
+	fi
+# clean user cache
+elif [ "$1" = "usercache" ]; then
+	USER1000=`cat /etc/passwd | grep 1000 | cut -f1 -d:`
+	USER0=`users`
+	if [ "$USER1000" = "$USER0" ]; then
+		TARGETUSER="$USER1000"
+	else
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL047\n\n$LOCAL001"
+		exit 1
+	fi
+
+	if [ -d /home/$TARGETUSER/.cache ]; then
+		$DIALOG $TITLE"$TITLETEXT" $OKEXIT $TEXT"\n$LOCAL048 $TARGETUSER ?"
+		if [ "$?" = "0" ]; then
+			rm -frd /home/$TARGETUSER/.cache/*
+			$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+			exit 0
+		fi
+	else
+		exit 1
+	fi
+# install debian kernel
+elif [ "$1" = "debkernel" ]; then
+	/usr/lib/sparky-aptus-appcenter/bin/install-debian-kernel
+	exit 0
+# install liquorix kernel
+elif [ "$1" = "liqkernel" ]; then
+	/usr/lib/sparky-aptus-appcenter/bin/install-liquorix-kernel
+	exit 0
+# install sparky kernel
+elif [ "$1" = "spakernel" ]; then
+	/usr/lib/sparky-aptus-appcenter/bin/install-sparky-kernel
+	exit 0
+# install xanmod kernel
+elif [ "$1" = "xankernel" ]; then
+	/usr/lib/sparky-aptus-appcenter/bin/install-xanmod-kernel
+	exit 0
+# remove old kernel
+elif [ "$1" = "remkernel" ]; then
+	/usr/lib/sparky-aptus-appcenter/bin/old-kernel-remover
+	exit 0
+# run sparky terminal
+elif [ "$1" = "sparkyterm" ]; then
+	spterm
+	exit 0
+fi
+fi
+
+exit 0
