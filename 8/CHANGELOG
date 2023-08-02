@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20230802~sparky8~0 (2023-08-02)
+-------------------------------------------------------------------------------
+  * added packages teams-for-linux, httrack
+  * removed sparky unstable repo from sparky kernel installation
+  * removed packages scratch, snd-gtk-jack
+
+-------------------------------------------------------------------------------
   Version 20230707~sparky8~0 (2023-07-07)
 -------------------------------------------------------------------------------
   * added Sparky Linux kernel 6.1 LTS installation

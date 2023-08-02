@@ -5,7 +5,7 @@
 # Copyright 2016-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2016/04/06
-# Last update 2023/06/24
+# Last update 2023/08/02
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -123,14 +123,10 @@ else
 	# preper the sparky unstable list
 	if [ -f /etc/apt/sources.list.d/sparky-unstable.list ]; then
 		rm -f /etc/apt/sources.list.d/sparky-unstable.list
-	fi
-
 cat > /etc/apt/sources.list.d/sparky-unstable.list <<FOO
-# sparky unstable repository
-deb [signed-by=/usr/share/keyrings/sparky.gpg.key] https://repo.sparkylinux.org/ unstable main
-deb-src [signed-by=/usr/share/keyrings/sparky.gpg.key] https://repo.sparkylinux.org/ unstable main
+# sparky unstable repository is out of service now
 FOO
-
+	fi
 	$SPARKYXTERM "apt-get update"
 	# install 64 bit Sparky kernel and headers
 	$SPARKYXTERM "apt-get install linux-image-sparky-lts-amd64 linux-headers-sparky-lts-amd64"
@@ -149,14 +145,10 @@ else
 	# preper the sparky unstable list
 	if [ -f /etc/apt/sources.list.d/sparky-unstable.list ]; then
 		rm -f /etc/apt/sources.list.d/sparky-unstable.list
-	fi
-
 cat > /etc/apt/sources.list.d/sparky-unstable.list <<FOO
-# sparky unstable repository
-deb [signed-by=/usr/share/keyrings/sparky.gpg.key] https://repo.sparkylinux.org/ unstable main
-deb-src [signed-by=/usr/share/keyrings/sparky.gpg.key] https://repo.sparkylinux.org/ unstable main
+# sparky unstable repository is out of service now
 FOO
-
+	fi
 	$SPARKYXTERM "apt-get update"
 	# install 64 bit Sparky kernel and headers
 	$SPARKYXTERM "apt-get install linux-image-sparky-amd64 linux-headers-sparky-amd64"

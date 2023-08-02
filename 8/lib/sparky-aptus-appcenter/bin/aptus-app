@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2023/06/24 by pavroo
+# Last update 2023/08/02 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -471,6 +471,11 @@ elif [ "$1" = "skypeforlinux" ]; then
 	PACKAGE="$1"
 elif [ "$1" = "teams" ]; then
 	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "teams-for-linux" ]; then
+	if [ "$ARCH32" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
