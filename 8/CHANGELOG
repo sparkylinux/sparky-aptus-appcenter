@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20230905~sparky8~0 (2023-09-05)
+-------------------------------------------------------------------------------
+  * added packages chroma, chromono, rpi-imager, eggs
+  * small fixes
+  * removed packages tuxcmd, anjuta, gcx, widemargin, pixfrogger, quarry, yahtzeesharp, etqw, pixbros, spacezero, spellcast, kega-fusion, pcsx2, zsnes, etoys, sweep
+
+-------------------------------------------------------------------------------
   Version 20230802~sparky8~0 (2023-08-02)
 -------------------------------------------------------------------------------
   * added packages teams-for-linux, httrack
