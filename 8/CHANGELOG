@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20231008~sparky8~0 (2023-10-08)
+-------------------------------------------------------------------------------
+  * added packages tilde, onionmediax, onionbalance, onioncircuits, onionprobe, onionshare-cli
+  * install eggs on arm64 and i386 too
+  * removed packages rox-filer, bless, gfsview, eboard, alex4, foo-yc20, bitmeter, gnome-mpv
+
+-------------------------------------------------------------------------------
   Version 20230905~sparky8~0 (2023-09-05)
 -------------------------------------------------------------------------------
   * added packages chroma, chromono, rpi-imager, eggs

@@ -15,8 +15,8 @@ elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
 	fi
 elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
 . $DEFLOCDIR/fr
-elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
-. $DEFLOCDIR/hu
+#elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+#. $DEFLOCDIR/hu
 elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
 . $DEFLOCDIR/id_ID
 elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then

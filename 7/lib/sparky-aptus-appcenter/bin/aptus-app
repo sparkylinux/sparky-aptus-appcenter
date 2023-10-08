@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2023/09/05 by pavroo
+# Last update 2023/10/08 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -241,6 +241,11 @@ elif [ "$1" = "lightworks" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "mystiq" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "onionmediax" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
@@ -766,7 +771,7 @@ elif [ "$1" = "deepl-linux" ]; then
 
 ##### system backup #####
 elif [ "$1" = "eggs" ]; then
-	if [ "$ARCH64" = "" ]; then
+	if [ "$ARCHARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
