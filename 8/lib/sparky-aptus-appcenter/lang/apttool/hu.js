@@ -1,26 +1,26 @@
-// Hungarian localization file for APTus Tools (translated by nemomen)
+// Hungarian localization file for APTus Tools (translated by nemomen & BunnyMnemonic)
 // Copyright 2020 Pawel "pavroo" Pijanowski <pavroo@onet.eu>
 // Under the GNU GPL v3
-// Last update 2020/10/20 by pavroo
+// Last update 2023/10/09 by BunnyMnemonic
 dict.entries['apttool'] = {};
 // aptus tools
-dict.entries['apttool']['refresh'] = "Frissítse a csomaglistát";
-dict.entries['apttool']['upgrade'] = "Frissítse biztonságosan a rendszert";
+dict.entries['apttool']['refresh'] = "Csomaglista frissítése";
+dict.entries['apttool']['upgrade'] = "A rendszer biztonságos frissítése";
 dict.entries['apttool']['fullupgrade'] = "Teljes rendszerfrissítés";
-dict.entries['apttool']['installdebrepo'] = "Telepítsen csomagot a tárolóból";
-dict.entries['apttool']['installdeblocal'] = "Telepítsen csomagot a helyi lemezről";
-dict.entries['apttool']['fixpackages'] = "Javítsa ki a törött csomagokat";
-dict.entries['apttool']['aptclean'] = "Tisztítsa ki az összes DEB gyorsítótár csomagot";
-dict.entries['apttool']['aptautoremove'] = "Automatikus régi csomag eltávolítás";
-dict.entries['apttool']['aptremove'] = "Távolítsa el a csomagot a rendszerből";
-dict.entries['apttool']['quicklist'] = "Keressen csomagokat a tárolókban";
-dict.entries['apttool']['mainrepo'] = "Javítsa a főtárolót";
-dict.entries['apttool']['customrepo'] = "Javítsa az egyéni (custom) tárolókat";
-dict.entries['apttool']['lang'] = "Telepítsen nyelvi csomagokat";
-dict.entries['apttool']['nonfree'] = "Távolítsa el a Non-Free csomagokat";
-dict.entries['apttool']['usercache'] = "Tisztítsa ki a felhasználó „home” könyvtára gyorsítótárát";
-dict.entries['apttool']['debkernel'] = "Telepítse a Debian kernelt";
-dict.entries['apttool']['liqkernel'] = "Telepítse a Liquorix kernelt";
-dict.entries['apttool']['spakernel'] = "Telepítse a Sparky kernelt";
-dict.entries['apttool']['xankernel'] = "Telepítse a XanMod kernelt";
-dict.entries['apttool']['remkernel'] = "Távolítsa el a régi/korábbi rendszer-kernelt";
+dict.entries['apttool']['installdebrepo'] = "Csomag telepítése tárolóból";
+dict.entries['apttool']['installdeblocal'] = "Csomag telepítése helyi lemezről";
+dict.entries['apttool']['fixpackages'] = "Törött csomagok javítása";
+dict.entries['apttool']['aptclean'] = "A DEB gyorsítótár teljes kitisztítása";
+dict.entries['apttool']['aptautoremove'] = "Régi csomagok automatikus eltávolítása";
+dict.entries['apttool']['aptremove'] = "Csomag eltávolítása a rendszerből";
+dict.entries['apttool']['quicklist'] = "Csomagok keresése a tárolókban";
+dict.entries['apttool']['mainrepo'] = "Főtároló javítása";
+dict.entries['apttool']['customrepo'] = "Egyéni tárolók javítása";
+dict.entries['apttool']['lang'] = "Nyelvi csomagok telepítése";
+dict.entries['apttool']['nonfree'] = "Nem-szabad csomagok eltávolítása";
+dict.entries['apttool']['usercache'] = "A felhasználói home könyvtár gyorsítótárának kitisztítása";
+dict.entries['apttool']['debkernel'] = "Debian kernel telepítése";
+dict.entries['apttool']['liqkernel'] = "Liquorix kernel telepítése";
+dict.entries['apttool']['spakernel'] = "Sparky kernel telepítése";
+dict.entries['apttool']['xankernel'] = "XanMod kernel telepítése";
+dict.entries['apttool']['remkernel'] = "Régi rendszermag eltávolítása";
