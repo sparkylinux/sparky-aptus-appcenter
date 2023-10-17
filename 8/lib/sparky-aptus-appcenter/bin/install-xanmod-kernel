@@ -4,7 +4,7 @@
 # Copyright 2015-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2020/10/20
-# Last update 2023/02/02
+# Last update 2023/10/17
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -48,27 +48,29 @@ if [ "$testroot" != "root" ]; then
 	exit 1
 fi
 
-DIALOG="yad --window-icon=sparky-aptus-appcenter --width=550 --height=350 --center"
+DIALOG="yad --window-icon=sparky-aptus-appcenter --width=600 --height=480 --center"
 TITLE="--always-print-result --dialog-sep --image=sparky-aptus-appcenter --title="
 TEXT="--text="
 MENU="--list --column=$LOCAL049 --column=$LOCAL050"
 OKEXIT=" --button=Ok:0 --button=$LOCAL001:1"
 MSGBOX="--button=Ok:0"
 TITLETEXT="APTus AppCenter"
-ARCH=`uname -r | grep "amd64" | awk '{print $1}'`
-TESTXANREPO=`dpkg-query -l | grep xanmod-repository`
+ARCH64=`uname -r | grep "amd64" | awk '{print $1}'`
+ARCHX64=`uname -r | grep "x64" | awk '{print $1}'`
+if [ "$ARCH64" != "" ]; then
+	ARCH="OK"
+elif [ "$ARCHX64" != "" ]; then
+	ARCH="OK"
+else
+	ARCH=""
+fi
+#TESTXANREPO=`dpkg-query -l | grep xanmod-repository`
 if [ -f /usr/bin/sparky-xterm ]; then
 	SPARKYXTERM="/usr/bin/sparky-xterm"
 else
 	echo "sparky-xterm is missing... Exiting..."
 	exit 1
 fi
-
-# check is the XanMod kernel installed already
-#if [ "$TESTXAN" != "" ]; then
-#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"$LOCAL025"
-#	exit 1
-#fi
 
 # check connection
 PINGTEST=$(ping -c 1 debian.org | grep [0-9])
@@ -84,11 +86,20 @@ if [ "$ARCH" = "" ]; then
 fi
 
 CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
-EDGE "$LOCAL079" \
-STABLE "$LOCAL080" \
-LTS "$LOCAL081" \
-RTEDGE "$LOCAL082" \
-RTSTABLE "$LOCAL083" \
+EDGE2 "$LOCAL079 v2" \
+EDGE3 "$LOCAL079 v3" \
+EDGE4 "$LOCAL079 v4" \
+MAIN1 "$LOCAL080 v1" \
+MAIN2 "$LOCAL080 v2" \
+MAIN3 "$LOCAL080 v3" \
+MAIN4 "$LOCAL080 v4" \
+LTS1 "$LOCAL081 v1" \
+LTS2 "$LOCAL081 v2" \
+LTS3 "$LOCAL081 v3" \
+LTS4 "$LOCAL081 v4" \
+RT2 "$LOCAL082 v2" \
+RT3 "$LOCAL082 v3" \
+RT4 "$LOCAL082 v4" \
 Exit "$LOCAL056"`
 
 if [ "$?" = "0" ]; then
@@ -98,31 +109,64 @@ else
 fi
 
 if [ "$CHOICE" != "Exit" ]; then
-	if [ "$TESTXANREPO" = "" ]; then
-		$SPARKYXTERM "apt-get update && apt-get install xanmod-repository -y"
-	elif [ "$TESTXANREPO" != "" ]; then
+	if [ -f /etc/apt/sources.list.d/xanmod-kernel.list ]; then
 		rm -f /etc/apt/sources.list.d/xanmod-kernel.list
-cat > /etc/apt/sources.list.d/xanmod-kernel.list <<FOO
-deb http://deb.xanmod.org releases main
-FOO
 	fi
+	if [ -f /etc/apt/sources.list.d/xanmod-release.list ]; then
+		rm -f /etc/apt/sources.list.d/xanmod-release.list
+	fi
+	
+	$SPARKYXTERM "wget -qO - https://dl.xanmod.org/archive.key | gpg --dearmor -o /usr/share/keyrings/xanmod-archive-keyring.gpg"
+	echo 'deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xanmod-kernel.list
+
+cat > /etc/apt/sources.list.d/xanmod-kernel.list <<FOO
+deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main
+FOO
+
 fi
 
-if [ "$CHOICE" = "EDGE" ]; then
-	# install latest EDGE kernel
-	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-edge"
-elif [ "$CHOICE" = "STABLE" ]; then
-	# install current STABLE kernel
-	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod"
-elif [ "$CHOICE" = "LTS" ]; then
-	# install stable LTS kernel
-	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-lts"
-elif [ "$CHOICE" = "RTEDGE" ]; then
-	# install latest EDGE real-time kernel
-	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-rt-edge"
-elif [ "$CHOICE" = "RTSTABLE" ]; then
-	# install current STABLE real-time kernel
-	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-rt-edge"
+if [ "$CHOICE" = "EDGE2" ]; then
+	# install latest EDGEv2 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-edge-x64v2"
+elif [ "$CHOICE" = "EDGE3" ]; then
+	# install latest EDGEv3 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-edge-x64v3"
+elif [ "$CHOICE" = "EDGE4" ]; then
+	# install latest EDGEv4 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-edge-x64v4"
+elif [ "$CHOICE" = "MAIN1" ]; then
+	# install current MAINv1 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-x64v1"
+elif [ "$CHOICE" = "MAIN2" ]; then
+	# install current MAINv2 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-x64v2"
+elif [ "$CHOICE" = "MAIN3" ]; then
+	# install current MAINv3 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-x64v3"
+elif [ "$CHOICE" = "MAIN4" ]; then
+	# install current MAINv4 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-x64v4"
+elif [ "$CHOICE" = "LTS1" ]; then
+	# install stable LTSv1 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-lts-x64v1"
+elif [ "$CHOICE" = "LTS2" ]; then
+	# install stable LTSv2 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-lts-x64v2"
+elif [ "$CHOICE" = "LTS3" ]; then
+	# install stable LTSv3 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-lts-x64v3"
+elif [ "$CHOICE" = "LTS4" ]; then
+	# install stable LTSv4 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-lts-x64v4"
+elif [ "$CHOICE" = "RT2" ]; then
+	# install latest real-timev2 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-rt-x64v2"
+elif [ "$CHOICE" = "RT3" ]; then
+	# install latest real-timev3 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-rt-x64v3"
+elif [ "$CHOICE" = "RT4" ]; then
+	# install latest real-timev4 kernel
+	$SPARKYXTERM "apt-get update && apt-get install linux-xanmod-rt-x64v4"
 elif [ "$CHOICE" = "Exit" ]; then
 	exit 1
 else

@@ -4,7 +4,7 @@
 # Copyright 2018-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2018/02/18
-# Last update 2023/03/24
+# Last update 2023/10/17
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -55,7 +55,18 @@ MENU="--list --column=$LOCAL049 --column=$LOCAL050"
 OKEXIT=" --button=Ok:0 --button=$LOCAL001:1"
 MSGBOX="--button=Ok:0"
 TITLETEXT="APTus AppCenter"
-ARCH=`uname -r | grep "amd64"`
+ARCH64=`uname -r | grep "amd64"`
+ARCHX64=`uname -r | grep "x64" | awk '{print $1}'`
+ARCH686=`uname -r | grep "686"`
+if [ "$ARCH64" != "" ]; then
+	ARCH="OK"
+elif [ "$ARCHX64" != "" ]; then
+	ARCH="OK"
+elif [ "$ARCH686" != "" ]; then
+	ARCH="OK"
+else
+	ARCH=""
+fi
 TESTDEBIAN64=`dpkg-query -l | grep linux-image-amd64`
 TESTDEBIAN64RT=`dpkg-query -l | grep linux-image-rt-amd64`
 TESTDEBIAN32=`dpkg-query -l | grep linux-image-686 | grep -v pae`
@@ -82,14 +93,14 @@ if [ "$PINGTEST" = "" ]; then
 fi
 
 # check arm arch
-ARCHARM="`uname -m | grep arm`"
-if [ "$ARCHARM" != "" ]; then
+#ARCHARM="`uname -m | grep arm`"
+if [ "$ARCH" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL051"
 	exit 1
 fi
 
 mainmenu () {
-if [ "$ARCH" != "" ]; then
+if [ "$ARCH686" = "" ]; then
 # 64bit
 CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
 64 "$LOCAL055" \
@@ -143,7 +154,7 @@ fi
 }
 
 nonpaemenu () {
-if [ "$ARCH" != "" ]; then
+if [ "$ARCH686" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
 	mainmenu
 fi
@@ -163,7 +174,7 @@ exit 0
 }
 
 nonpaebackmenu () {
-if [ "$ARCH" != "" ]; then
+if [ "$ARCH686" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
 	mainmenu
 fi
@@ -187,7 +198,7 @@ exit 0
 }
 
 paemenu () {
-if [ "$ARCH" != "" ]; then
+if [ "$ARCH686" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
 	mainmenu
 fi
@@ -207,7 +218,7 @@ exit 0
 }
 
 paebackmenu () {
-if [ "$ARCH" != "" ]; then
+if [ "$ARCH686" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
 	mainmenu
 fi
@@ -231,7 +242,7 @@ exit 0
 }
 
 paertmenu () {
-if [ "$ARCH" != "" ]; then
+if [ "$ARCH686" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
 	mainmenu
 fi
@@ -251,7 +262,7 @@ exit 0
 }
 
 paebackrtmenu () {
-if [ "$ARCH" != "" ]; then
+if [ "$ARCH686" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
 	mainmenu
 fi
@@ -275,7 +286,7 @@ exit 0
 }
 
 amd64menu () {
-if [ "$ARCH" = "" ]; then
+if [ "$ARCH686" != "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
 	mainmenu
 fi
@@ -295,7 +306,7 @@ exit 0
 }
 
 amd64backmenu () {
-if [ "$ARCH" = "" ]; then
+if [ "$ARCH686" != "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
 	mainmenu
 fi
@@ -319,7 +330,7 @@ exit 0
 }
 
 amd64rtmenu () {
-if [ "$ARCH" = "" ]; then
+if [ "$ARCH686" != "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
 	mainmenu
 fi
@@ -339,7 +350,7 @@ exit 0
 }
 
 amd64backrtmenu () {
-if [ "$ARCH" = "" ]; then
+if [ "$ARCH686" != "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
 	mainmenu
 fi

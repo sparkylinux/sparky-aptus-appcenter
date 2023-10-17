@@ -5,7 +5,7 @@
 # Copyright 2016-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2016/04/06
-# Last update 2023/08/02
+# Last update 2023/10/17
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -57,19 +57,21 @@ OKEXIT=" --button=Ok:0 --button=$LOCAL001:1"
 MSGBOX="--button=Ok:0"
 TITLETEXT="APTus AppCenter"
 ARCH64=`uname -r | grep "amd64" | awk '{print $1}'`
-TESTSPARKY=`dpkg-query -l | grep linux-image-sparky*`
+ARCHX64=`uname -r | grep "x64" | awk '{print $1}'`
+if [ "$ARCH64" != "" ]; then
+	ARCH="OK"
+elif [ "$ARCHX64" != "" ]; then
+	ARCH="OK"
+else
+	ARCH=""
+fi
+
 if [ -f /usr/bin/sparky-xterm ]; then
 	SPARKYXTERM="/usr/bin/sparky-xterm"
 else
 	echo "sparky-xterm is missing... Exiting..."
 	exit 1
 fi
-
-# check is the Sparky kernel installed already
-#if [ "$TESTSPARKY" != "" ]; then
-#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL066"
-#	exit 0
-#fi
 
 # check connection
 PINGTEST=$(ping -c 1 sparkylinux.org | grep [0-9])
@@ -79,14 +81,13 @@ if [ "$PINGTEST" = "" ]; then
 fi
 
 # check unsupported archs
-#ARCHARM="`uname -m | grep arm`"
-if [ "$ARCH64" = "" ]; then
+if [ "$ARCH" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL051"
 	exit 1
 fi
 
 mainmenu () {
-if [ "$ARCH64" != "" ]; then
+if [ "$ARCH" != "" ]; then
 CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
 64 "$LOCAL069" \
 64_LTS_61 "$LOCAL069 (6.1 LTS)" \
@@ -123,16 +124,13 @@ if [ "$?" != "0" ]; then
 	exit 1
 else
 
-	# preper the sparky unstable list
+	# remove sparky unstable list
 	if [ -f /etc/apt/sources.list.d/sparky-unstable.list ]; then
 		rm -f /etc/apt/sources.list.d/sparky-unstable.list
-cat > /etc/apt/sources.list.d/sparky-unstable.list <<FOO
-# sparky unstable repository is out of service now
-FOO
 	fi
-	$SPARKYXTERM "apt-get update"
+	# $SPARKYXTERM "apt-get update"
 	# install 64 bit Sparky kernel and headers
-	$SPARKYXTERM "apt-get install linux-image-sparky-lts-amd64 linux-headers-sparky-lts-amd64"
+	$SPARKYXTERM "apt-get update && apt-get install linux-image-sparky-lts-amd64 linux-headers-sparky-lts-amd64"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL068"
 	exit 0
 fi
@@ -145,16 +143,13 @@ if [ "$?" != "0" ]; then
 	exit 1
 else
 
-	# preper the sparky unstable list
+	# remove sparky unstable list
 	if [ -f /etc/apt/sources.list.d/sparky-unstable.list ]; then
 		rm -f /etc/apt/sources.list.d/sparky-unstable.list
-cat > /etc/apt/sources.list.d/sparky-unstable.list <<FOO
-# sparky unstable repository is out of service now
-FOO
 	fi
-	$SPARKYXTERM "apt-get update"
+	# $SPARKYXTERM "apt-get update"
 	# install 64 bit Sparky kernel and headers
-	$SPARKYXTERM "apt-get install linux-image-sparky8-lts61-amd64 linux-headers-sparky8-lts61-amd64"
+	$SPARKYXTERM "apt-get update && apt-get install linux-image-sparky8-lts61-amd64 linux-headers-sparky8-lts61-amd64"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL068"
 	exit 0
 fi
@@ -167,16 +162,13 @@ if [ "$?" != "0" ]; then
 	exit 1
 else
 
-	# preper the sparky unstable list
+	# remove sparky unstable list
 	if [ -f /etc/apt/sources.list.d/sparky-unstable.list ]; then
 		rm -f /etc/apt/sources.list.d/sparky-unstable.list
-cat > /etc/apt/sources.list.d/sparky-unstable.list <<FOO
-# sparky unstable repository is out of service now
-FOO
 	fi
-	$SPARKYXTERM "apt-get update"
+	# $SPARKYXTERM "apt-get update"
 	# install 64 bit Sparky8 kernel and headers
-	$SPARKYXTERM "apt-get install linux-image-sparky8-amd64 linux-headers-sparky8-amd64"
+	$SPARKYXTERM "apt-get update && apt-get install linux-image-sparky8-amd64 linux-headers-sparky8-amd64"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL068"
 	exit 0
 fi
