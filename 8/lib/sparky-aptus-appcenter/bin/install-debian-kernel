@@ -4,7 +4,7 @@
 # Copyright 2018-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2018/02/18
-# Last update 2023/10/17
+# Last update 2023/12/19
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -83,6 +83,14 @@ if [ -f /usr/bin/sparky-xterm ];then
 else
 	echo "sparky-xterm is missing... Exiting..."
 	exit 1
+fi
+CHECKNALA=`which nala`
+if [ "$CHECKNALA" != "" ]; then
+	UPDATE="nala update"
+	INSTALL="nala install"
+else
+	UPDATE="apt-get update"
+	INSTALL="apt-get install"
 fi
 
 # check connection
@@ -165,8 +173,7 @@ if [ "$TESTDEBIAN32" != "" ]; then
 fi
 
 # install i686 NON-PAE Debian kernel and headers
-$SPARKYXTERM "apt-get update"
-$SPARKYXTERM "apt-get install linux-image-686 linux-headers-686"
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-686 linux-headers-686"
 
 $DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
 exit 0
@@ -189,8 +196,8 @@ exit 0
 #	rm -f /etc/apt/sources.list.d/debian-backports.list
 #fi
 #echo deb http://deb.debian.org/debian bookworm-backports main contrib non-free | tee /etc/apt/sources.list.d/debian-backports.list
-#$SPARKYXTERM "apt-get update"
-#$SPARKYXTERM "apt-get install -t bookworm-backports linux-image-686 linux-headers-686"
+#$SPARKYXTERM "$UPDATE"
+#$SPARKYXTERM "$INSTALL -t bookworm-backports linux-image-686 linux-headers-686"
 #
 #$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
 #exit 0
@@ -209,8 +216,7 @@ if [ "$TESTDEBIAN32PAE" != "" ]; then
 fi
 
 # install i686 PAE Debian kernel and headers
-$SPARKYXTERM "apt-get update"
-$SPARKYXTERM "apt-get install linux-image-686-pae linux-headers-686-pae"
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-686-pae linux-headers-686-pae"
 
 $DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
 exit 0
@@ -233,8 +239,8 @@ exit 0
 #	rm -f /etc/apt/sources.list.d/debian-backports.list
 #fi
 #echo deb http://deb.debian.org/debian bookworm-backports main contrib non-free | tee /etc/apt/sources.list.d/debian-backports.list
-#$SPARKYXTERM "apt-get update"
-#$SPARKYXTERM "apt-get install -t bookworm-backports linux-image-686-pae linux-headers-686-pae"
+#$SPARKYXTERM "$UPDATE"
+#$SPARKYXTERM "$INSTALL -t bookworm-backports linux-image-686-pae linux-headers-686-pae"
 #
 #$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
 #exit 0
@@ -253,8 +259,7 @@ if [ "$TESTDEBIAN32PAERT" != "" ]; then
 fi
 
 # install i686 PAE Debian RT kernel and headers
-$SPARKYXTERM "apt-get update"
-$SPARKYXTERM "apt-get install linux-image-rt-686-pae linux-headers-rt-686-pae"
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-rt-686-pae linux-headers-rt-686-pae"
 
 $DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
 exit 0
@@ -277,8 +282,8 @@ exit 0
 #	rm -f /etc/apt/sources.list.d/debian-backports.list
 #fi
 #echo deb http://deb.debian.org/debian bookworm-backports main contrib non-free | tee /etc/apt/sources.list.d/debian-backports.list
-#$SPARKYXTERM "apt-get update"
-#$SPARKYXTERM "apt-get install -t bookworm-backports linux-image-rt-686-pae linux-headers-rt-686-pae"
+#$SPARKYXTERM "$UPDATE"
+#$SPARKYXTERM "$INSTALL -t bookworm-backports linux-image-rt-686-pae linux-headers-rt-686-pae"
 #
 #$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
 #exit 0
@@ -297,8 +302,7 @@ if [ "$TESTDEBIAN64" != "" ]; then
 fi
 
 # install 64 bit Debian kernel and headers
-$SPARKYXTERM "apt-get update"
-$SPARKYXTERM "apt-get install linux-image-amd64 linux-headers-amd64"
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-amd64 linux-headers-amd64"
 
 $DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
 exit 0
@@ -321,8 +325,8 @@ exit 0
 #	rm -f /etc/apt/sources.list.d/debian-backports.list
 #fi
 #echo deb http://deb.debian.org/debian bookworm-backports main contrib non-free | tee /etc/apt/sources.list.d/debian-backports.list
-#$SPARKYXTERM "apt-get update"
-#$SPARKYXTERM "apt-get install -t bookworm-backports linux-image-amd64 linux-headers-amd64"
+#$SPARKYXTERM "$UPDATE"
+#$SPARKYXTERM "$INSTALL -t bookworm-backports linux-image-amd64 linux-headers-amd64"
 #
 #$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
 #exit 0
@@ -341,8 +345,7 @@ if [ "$TESTDEBIAN64RT" != "" ]; then
 fi
 
 # install 64 bit Debian RT kernel and headers
-$SPARKYXTERM "apt-get update"
-$SPARKYXTERM "apt-get install linux-image-rt-amd64 linux-headers-rt-amd64"
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-rt-amd64 linux-headers-rt-amd64"
 
 $DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
 exit 0

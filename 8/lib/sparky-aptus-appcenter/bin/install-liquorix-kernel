@@ -4,7 +4,7 @@
 # Copyright 2015-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2015/05/18
-# Last update 2023/10/17
+# Last update 2023/12/19
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -71,6 +71,14 @@ else
 	echo "sparky-xterm is missing... Exiting..."
 	exit 1
 fi
+CHECKNALA=`which nala`
+if [ "$CHECKNALA" != "" ]; then
+	UPDATE="nala update"
+	INSTALL="nala install"
+else
+	UPDATE="apt-get update"
+	INSTALL="apt-get install"
+fi
 
 # check is the Liquorix kernel installed already
 if [ "$TESTLIQ" != "" ]; then
@@ -86,7 +94,6 @@ if [ "$PINGTEST" = "" ]; then
 fi
 
 # check arm arch
-#ARCHARM="`uname -m | grep arm`"
 if [ "$ARCH" = "" ]; then
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL051"
 	exit 1
@@ -131,12 +138,12 @@ deb [signed-by=/etc/apt/trusted.gpg.d/liquorix-keyring.gpg] http://liquorix.net/
 deb-src [signed-by=/etc/apt/trusted.gpg.d/liquorix-keyring.gpg] http://liquorix.net/debian bookworm main
 FOO
 
-	$SPARKYXTERM "apt-get update"
+	$SPARKYXTERM "$UPDATE"
 fi
 
 if [ "$CHOICE" = "64" ]; then
 	# install 64 bit Liquorix kernel
-	$SPARKYXTERM "apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64"
+	$SPARKYXTERM "$INSTALL linux-image-liquorix-amd64 linux-headers-liquorix-amd64"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL065"
 	exit 0
 elif [ "$CHOICE" = "Exit" ]; then

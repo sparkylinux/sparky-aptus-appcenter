@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Last update 2023/02/02 by pavroo
+# Last update 2023/12/19 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -67,6 +67,24 @@ if [ -f /usr/bin/sparky-editor ]; then
 else
 	SPARKYEDITOR="gnome-text-editor"
 fi
+CHECKNALA=`which nala`
+if [ "$CHECKNALA" != "" ]; then
+	UPDATE="nala update"
+	UPGRADE="nala upgrade --no-autoremove --no-install-recommends"
+	FULLUPGRADE="nala upgrade --full --no-autoremove --no-install-recommends"
+	INSTALL="nala install"
+	REMOVE="nala purge"
+	AUTOREMOVE="nala autoremove"
+	LIST="nala list"
+else
+	UPDATE="apt-get update"
+	UPGRADE="apt-get upgrade --no-install-recommends"
+	FULLUPGRADE="apt-get dist-upgrade --no-install-recommends"
+	INSTALL="apt-get install"
+	REMOVE="apt-get purge"
+	AUTOREMOVE="apt-get autoremove"
+	LIST="apt list"
+fi
 
 # check connection
 PINGTEST=$(ping -c 1 debian.org | grep [0-9])
@@ -78,17 +96,17 @@ fi
 
 # refresh package list
 if [ "$1" = "refresh" ]; then
-	$SPARKYXTERM "apt update"
+	$SPARKYXTERM "$UPDATE"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
 	exit 0
 # upgrade
 elif [ "$1" = "upgrade" ]; then
-	$SPARKYXTERM "apt upgrade --no-install-recommends"
+	$SPARKYXTERM "$UPGRADE"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
 	exit 0
 # full upgrade
 elif [ "$1" = "fullupgrade" ]; then
-	$SPARKYXTERM "apt full-upgrade --no-install-recommends"
+	$SPARKYXTERM "$FULLUPGRADE"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
 	exit 0
 # install package from repo
@@ -98,7 +116,7 @@ elif [ "$1" = "installdebrepo" ]; then
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
 		exit 0
 	else
-		$SPARKYXTERM "apt-get install $PACK1"
+		$SPARKYXTERM "$INSTALL $PACK1"
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
 		exit 0
 	fi
@@ -126,13 +144,13 @@ elif [ "$1" = "aptremove" ]; then
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
 		exit 1
 	else
-		$SPARKYXTERM "apt-get remove $PACK2"
+		$SPARKYXTERM "$REMOVE $PACK2"
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
 		exit 0
 	fi
 # apt autoremove
 elif [ "$1" = "aptautoremove" ]; then
-	$SPARKYXTERM "apt-get autoremove"
+	$SPARKYXTERM "$AUTOREMOVE"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
 	exit 0
 # apt clean
@@ -146,7 +164,7 @@ elif [ "$1" = "quicklist" ]; then
 	if [ "$?" != "0" ]; then
 		exit 0
 	else
-		$SPARKYXTERM "apt list *$PACK1* -v && echo 'Press <ENTER> to exit...' && read"
+		$SPARKYXTERM "$LIST *$PACK1* -v && echo 'Press <ENTER> to exit...' && read"
 		exit 0
 	fi
 # edit main repo
@@ -175,7 +193,7 @@ elif [ "$1" = "nonfree" ]; then
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL033"
 		exit 0
 	else
-		$SPARKYXTERM "apt-get remove $NONFREE"
+		$SPARKYXTERM "$REMOVE $NONFREE"
 		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
 		exit 0
 	fi

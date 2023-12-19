@@ -2,7 +2,7 @@
 
 # Application remover
 # Copyright 2020-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2023/02/02 by pavroo
+# Last update 2023/12/19 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -40,7 +40,12 @@ else
 . $DEFLOCDIR/en
 fi
 
-UNINSTALL="apt-get purge"
+CHECKNALA=`which nala`
+if [ "$CHECKNALA" != "" ]; then
+	UNINSTALL="nala purge"
+else
+	UNINSTALL="apt-get purge"
+fi
 OOPACKAGES="openoffice-brand-en-us openoffice-brand-writer openoffice-brand-calc openoffice-brand-impress openoffice-brand-base openoffice-brand-draw openoffice-brand-math openoffice-pyuno openoffice-ooofonts openoffice-ooolinguistic openoffice-debian-menus"
 
 if [ -f /usr/bin/spterm ]; then
