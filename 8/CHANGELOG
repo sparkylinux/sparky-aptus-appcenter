@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20240114~sparky8~0 (2024-01-14)
+-------------------------------------------------------------------------------
+  * added packages added gnome-commander, sparky-usb-imager  
+  * removed packages sparky-live-usb-creator, sparky-usb-formatter, qreator, gabedit, glogic, d1x-rebirth, reminiscence, xsok, qstopmotion, x2godesktopsharing, x2goserver
+  * changed woeusb to woeusb-ng, changed roundcube to roundcube-core, updated hu locale
+
+-------------------------------------------------------------------------------
   Version 20231219~sparky8~0 (2023-12-19)
 -------------------------------------------------------------------------------
   * added packages dooble, qt5ct, qt6ct, mlvwm desktop
