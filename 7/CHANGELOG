@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20240207~sparky7~0 (2024-02-07)
+-------------------------------------------------------------------------------
+  * added packages thorium-browser, mercury-browser, waterfox-kde, added linux-image-sparky-lts66-amd64
+  * removed older waterfox packages
+  * changed linux-image-sparky7-amd64 meta to linux-image-sparky-amd64
+
+-------------------------------------------------------------------------------
   Version 20240114~sparky7~0 (2024-01-14)
 -------------------------------------------------------------------------------
   * added package gnome-commander

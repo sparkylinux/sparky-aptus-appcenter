@@ -1,7 +1,14 @@
 -------------------------------------------------------------------------------
+  Version 20240207~sparky8~0 (2024-02-07)
+-------------------------------------------------------------------------------
+  * added packages thorium-browser, mercury-browser, waterfox-kde, added linux-image-sparky8-lts66-amd64
+  * removed older waterfox packages
+  * changed p7zip to 7zip
+
+-------------------------------------------------------------------------------
   Version 20240114~sparky8~0 (2024-01-14)
 -------------------------------------------------------------------------------
-  * added packages added gnome-commander, sparky-usb-imager  
+  * added packages gnome-commander, sparky-usb-imager  
   * removed packages sparky-live-usb-creator, sparky-usb-formatter, qreator, gabedit, glogic, d1x-rebirth, reminiscence, xsok, qstopmotion, x2godesktopsharing, x2goserver
   * changed woeusb to woeusb-ng, changed roundcube to roundcube-core, updated hu locale
 

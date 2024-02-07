@@ -5,7 +5,7 @@
 # Copyright 2016-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2016/04/06
-# Last update 2023/12/19
+# Last update 2024/02/07
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -99,6 +99,7 @@ if [ "$ARCH" != "" ]; then
 CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
 64 "$LOCAL069" \
 64_LTS_61 "$LOCAL069 (6.1 LTS)" \
+64_LTS_66 "$LOCAL069 (6.6 LTS)" \
 64_LTS_515 "$LOCAL069 (5.15 LTS)" \
 Exit "$LOCAL056"`
 else
@@ -116,6 +117,8 @@ if [ "$CHOICE" = "64_LTS_515" ]; then
 	amd64lts515menu
 elif [ "$CHOICE" = "64_LTS_61" ]; then
 	amd64lts61menu
+elif [ "$CHOICE" = "64_LTS_66" ]; then
+	amd64lts66menu
 elif [ "$CHOICE" = "64" ]; then
 	amd64menu
 elif [ "$CHOICE" = "Exit" ]; then
@@ -156,6 +159,24 @@ else
 	fi
 	# install 64 bit Sparky kernel and headers
 	$SPARKYXTERM "$UPDATE && $INSTALL linux-image-sparky8-lts61-amd64 linux-headers-sparky8-lts61-amd64"
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL068"
+	exit 0
+fi
+}
+
+amd64lts66menu () {
+$DIALOG $TITLE"$TITLETEXT" $OKEXIT $TEXT"\n$LOCAL069 6.6-LTS\n\n$LOCAL014"
+
+if [ "$?" != "0" ]; then
+	exit 1
+else
+
+	# remove sparky unstable list
+	if [ -f /etc/apt/sources.list.d/sparky-unstable.list ]; then
+		rm -f /etc/apt/sources.list.d/sparky-unstable.list
+	fi
+	# install 64 bit Sparky kernel and headers
+	$SPARKYXTERM "$UPDATE && $INSTALL linux-image-sparky8-lts66-amd64 linux-headers-sparky8-lts66-amd64"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL068"
 	exit 0
 fi
