@@ -5,7 +5,7 @@
 # exit 0 - Yad supports URL (goes to a next page)
 # exit 1 - Yad ignores URL (does nothing)
 # exit 2 - Yad treats URL as a file downloading (not tested yet)
-# Last update by pavroo November 29, 2021
+# Last update by pavroo February 8, 2024
 
 URI="$1"
 
@@ -640,7 +640,8 @@ if [[ "$URI" == aptus* ]]; then
 	
 	# exit
 	elif [ "$CHECKZERO" != "" ]; then
-		killall -9 yad
+		#killall -9 yad
+		kill -USR2 $YAD_PID
 		exit 1
 		
 	# security
