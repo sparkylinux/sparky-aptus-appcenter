@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application remover
-# Copyright 2020-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2023/12/19 by pavroo
+# Copyright 2020-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2024/02/09 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -60,12 +60,12 @@ else
 fi
 
 # remove packge now
-killall -9 yad
+kill -USR1 $YAD_PID
 PACKAGE="$1"
 #sleep 1
 
 if [ "$PACKAGE" = "openoffice" ]; then
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	$SPARKYXTERM "$UNINSTALL $OOPACKAGES"
 	
 elif [ "$PACKAGE" = "vmware" ]; then
@@ -73,7 +73,7 @@ elif [ "$PACKAGE" = "vmware" ]; then
 	exit 0
 
 else
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	$SPARKYXTERM "$UNINSTALL $PACKAGE"
 fi
 
@@ -147,7 +147,7 @@ Last update: October 26, 2020 by pavroo
 </html>
 FOO
 
-killall -9 yad
+kill -USR1 $YAD_PID
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
 

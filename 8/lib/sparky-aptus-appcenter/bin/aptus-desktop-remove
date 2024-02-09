@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2023/12/19 by pavroo
+# last update 2024/02/09 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -311,13 +311,13 @@ Last update: November 9, 2020 by pavroo
 </html>
 FOO
 
-killall -9 yad
+kill -USR1 $YAD_PID
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
 exit 0		
 
 else
-killall -9 yad	
+kill -USR1 $YAD_PID	
 $SPARKYXTERM "$UNINSTALL $REMPACKS"
 
 if [ -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
@@ -385,7 +385,7 @@ Last update: November 9, 2020 by pavroo
 </html>
 FOO
 
-killall -9 yad
+kill -USR1 $YAD_PID
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
 exit 0

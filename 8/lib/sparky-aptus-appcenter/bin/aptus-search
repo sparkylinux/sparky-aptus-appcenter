@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # It looks for a package name in the html files
-# Copyright 2020-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2023/02/02 by pavroo
+# Copyright 2020-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2024/02/09 by pavroo
 sleep 1
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -388,11 +388,11 @@ else
 fi
 
 if [ "$SEARCHPACK1" != "" ]; then
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	./aptus-appcenter $OPT1
 	exit 0
 else
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	./aptus-appcenter null01
 	exit 0
 fi

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application re-installer
-# Copyright 2020-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2023/12/19 by pavroo
+# Copyright 2020-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2024/02/09 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -74,7 +74,7 @@ else
 fi
 
 # reinstall packge now
-killall -9 yad
+kill -USR1 $YAD_PID
 PACKAGE="$1"
 #sleep 1
 
@@ -84,7 +84,7 @@ if [ "$PINGTEST" = "" ]; then
 fi
 
 #if [ "$PACKAGE" = "discord" ]; then
-#	killall -9 yad
+#	kill -USR1 $YAD_PID
 #	rm -rf $WORKDIR
 #	mkdir -p $WORKDIR
 #	cd $WORKDIR
@@ -93,7 +93,7 @@ fi
 #	rm -rf $WORKDIR
 #	
 if [ "$PACKAGE" = "google-chrome-stable" ]; then
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
@@ -102,7 +102,7 @@ if [ "$PACKAGE" = "google-chrome-stable" ]; then
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "google-earth-pro-stable" ]; then
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
@@ -111,7 +111,7 @@ elif [ "$PACKAGE" = "google-earth-pro-stable" ]; then
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
@@ -130,11 +130,11 @@ elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "openoffice" ]; then
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	$SPARKYXTERM "$REINSTALL $OOPACKAGES"
 
 elif [ "$PACKAGE" = "skypeforlinux" ]; then
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
@@ -151,7 +151,7 @@ elif [ "$PACKAGE" = "vmware" ]; then
 	exit 0
 
 elif [ "$PACKAGE" = "wps-office" ]; then
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	$SPARKYXTERM "$REINSTALL $PACKAGE $WPSPACKAGES"
 
 elif [ "$PACKAGE" = "blisk-browser-stable" ]; then
@@ -161,7 +161,7 @@ elif [ "$PACKAGE" = "blisk-browser-stable" ]; then
 	fi
 
 else
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	$SPARKYXTERM "$REINSTALL $PACKAGE"
 fi
 
@@ -230,7 +230,7 @@ Last update: October 26, 2020 by pavroo
 </html>
 FOO
 
-killall -9 yad
+kill -USR1 $YAD_PID
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
 

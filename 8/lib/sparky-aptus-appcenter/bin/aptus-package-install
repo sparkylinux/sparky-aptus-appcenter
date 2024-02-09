@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application installer
-# Copyright 2020-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2023/12/19 by pavroo
+# Copyright 2020-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2024/02/09 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -63,7 +63,7 @@ if [ -f /usr/bin/spterm ]; then
 	SPARKYXTERM="spterm -e"
 elif [ -f /usr/bin/sparky-xterm ]; then
 	SPARKYXTERM="sparky-xterm"
-elif [ -f /usr/bin/x-terminal-emulator ]; then
+if [ -f /usr/bin/x-terminal-emulator ]; then
 	SPARKYXTERM="x-terminal-emulator -e"
 else
 	echo "x terminal emulator is missing... exiting..."
@@ -71,11 +71,11 @@ else
 fi
 
 # install package now
-killall -9 yad
+kill -USR1 $YAD_PID
 PACKAGE="$1"
 
 #if [ "$PACKAGE" = "discord" ]; then
-#	killall -9 yad
+#	kill -USR1 $YAD_PID
 #	rm -rf $WORKDIR
 #	mkdir -p $WORKDIR
 #	cd $WORKDIR
@@ -84,7 +84,7 @@ PACKAGE="$1"
 #	rm -rf $WORKDIR
 #	
 if [ "$PACKAGE" = "google-chrome-stable" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
@@ -93,7 +93,7 @@ if [ "$PACKAGE" = "google-chrome-stable" ]; then
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "google-earth-pro-stable" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
@@ -102,7 +102,7 @@ elif [ "$PACKAGE" = "google-earth-pro-stable" ]; then
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
@@ -115,7 +115,7 @@ elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "openoffice" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	if [ -f /etc/apt/sources.list.d/openoffice.list ]; then
 		rm -f /etc/apt/sources.list.d/openoffice.list
 	fi
@@ -128,7 +128,7 @@ elif [ "$PACKAGE" = "openoffice" ]; then
 	$SPARKYXTERM "$INSTALL $OOPACKAGES"
 
 elif [ "$PACKAGE" = "protonvpn" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	CHECKPROTONVPN=`apt-cache policy protonvpn-stable-release | head -n2 | tail -n1 | grep [0-9]`
 	if [ "$CHECKPROTONVPN" = "" ]; then
 		$SPARKYXTERM "$INSTALL protonvpn-stable-release -y && $UPDATE"
@@ -138,7 +138,7 @@ elif [ "$PACKAGE" = "protonvpn" ]; then
 	$SPARKYXTERM "$INSTALL $PACKAGE"
 
 elif [ "$PACKAGE" = "skypeforlinux" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
@@ -151,29 +151,31 @@ elif [ "$PACKAGE" = "skypeforlinux" ]; then
 	echo "deb [signed-by=/etc/apt/trusted.gpg arch=amd64] https://repo.skype.com/deb stable main" >> /etc/apt/sources.list.d/skype-stable.list
 
 elif [ "$PACKAGE" = "steam" ]; then
-	$SPARKYXTERM "dpkg --add-architecture i386 && apt update"
-	
+	#kill -USR1 $YAD_PID
+	$SPARKYXTERM "dpkg --add-architecture i386 && apt update && apt install steam-installer"
 	exit 0
 	
 elif [ "$PACKAGE" = "vmware" ]; then
+	#kill -USR1 $YAD_PID
 	/usr/bin/sparky-vmplayer-installer
 	exit 0
 
 elif [ "$PACKAGE" = "wps-office" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	$SPARKYXTERM "$INSTALL $PACKAGE $WPSPACKAGES"
 
 elif [ "$PACKAGE" = "blisk-browser-stable" ]; then
+	#kill -USR1 $YAD_PID
 	$SPARKYXTERM "$INSTALL $PACKAGE"
 	if [ -f /etc/apt/sources.list.d/blisk-browser.list ]; then
 		rm -f /etc/apt/sources.list.d/blisk-browser.list
 	fi
 
 else
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	$SPARKYXTERM "$INSTALL $PACKAGE"
 fi
-		
+	
 CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
 if [ "$CHECKPACKAGE0" = "" ]; then
 	DIALOGTEXT="$LOCAL013"
@@ -244,7 +246,7 @@ Last update: October 26, 2020 by pavroo
 </html>
 FOO
 
-killall -9 yad
+kill -USR1 $YAD_PID
 cd /usr/lib/sparky-aptus-appcenter
 ./aptus-appcenter error01
 

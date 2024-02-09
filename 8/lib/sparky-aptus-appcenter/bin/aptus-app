@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2024/02/07 by pavroo
+# Last update 2024/02/09 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -608,7 +608,7 @@ elif [ "$1" = "librewolf" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "mercury-browser" ]; then
-	if [ "$ARCH64" = "" ]; then
+	if [ "$ARCH64" = "" ] || [ "$ARCH64ARM" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -648,7 +648,7 @@ elif [ "$1" = "slimjet" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "thorium-browser" ]; then
-	if [ "$ARCH64" = "" ]; then
+	if [ "$ARCH64" = "" ] || [ "$ARCH64ARM" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -887,13 +887,13 @@ Last update: October 26, 2020 by pavroo
 </html>
 FOO
 
-	killall -9 yad
+	kill -USR1 $YAD_PID
 	./aptus-appcenter error01
 	exit 0
 fi
 
 ### system=wrong end
-killall -9 yad
+kill -USR1 $YAD_PID
 if [ "$SYSTEM" != "wrong" ]; then
 
 if [ -f /tmp/sparky-app1 ]; then
@@ -1199,7 +1199,7 @@ Last update: October 26, 2020 by pavroo
 </html>
 FOO
 
-killall -9 yad
+kill -USR1 $YAD_PID
 ./aptus-appcenter packinst01
 exit 0
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Last update February 2, 2023 by pavroo
+# Last update February 9, 2024 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -42,7 +42,7 @@ TITLE="--always-print-result --dialog-sep --image=/usr/share/pixmaps/sparky-aptu
 TITLETEXT="APTus AppCenter"
 MSGBOX="--button=Ok:0"
 TEXT="--text="
-DIALOGZEN="zenity --progress --pulsate --auto-close --auto-kill --no-cancel --window-icon=/usr/share/pixmaps/sparky-aptus-appcenter.png --width=450 --height=120"
+DIALOGZEN="zenity --progress --pulsate --auto-close --auto-kill --no-cancel --width=450 --height=120"
 TITLEZEN="--title="
 TESTROOT="`whoami`"
 if [ "$TESTROOT" != "root" ]; then
