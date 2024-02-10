@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application installer
-# Copyright 2020-2023 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2023/05/30 by pavroo
+# Copyright 2020-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2024/02/10 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -64,11 +64,11 @@ else
 fi
 
 # install package now
-killall -9 yad
+kill -USR1 $YAD_PID
 PACKAGE="$1"
 
 #if [ "$PACKAGE" = "discord" ]; then
-#	killall -9 yad
+#	#kill -USR1 $YAD_PID
 #	rm -rf $WORKDIR
 #	mkdir -p $WORKDIR
 #	cd $WORKDIR
@@ -77,25 +77,25 @@ PACKAGE="$1"
 #	rm -rf $WORKDIR
 #	
 if [ "$PACKAGE" = "google-chrome-stable" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
 	$SPARKYXTERM "wget $SERVERG/$PACKG64"
-	$SPARKYXTERM "$INSTALL ./$PACKG64"
+	$SPARKYXTERM "$INSTALL ./$PACKG64 && echo 'Done, press <ENTER> to exit...' && read"
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "google-earth-pro-stable" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
 	$SPARKYXTERM "wget $SERVERE/$PACKEARTH"
-	$SPARKYXTERM "$INSTALL ./$PACKEARTH"
+	$SPARKYXTERM "$INSTALL ./$PACKEARTH && echo 'Done, press <ENTER> to exit...' && read"
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
@@ -104,11 +104,11 @@ elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
 	install -o root -g root -m 644 *.gpg /etc/apt/trusted.gpg.d/
 	echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main" >> /etc/apt/sources.list.d/microsoft-edge.list
 	$SPARKYXTERM "$UPDATE"
-	$SPARKYXTERM "$INSTALL $PACKAGE"
+	$SPARKYXTERM "$INSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "openoffice" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	if [ -f /etc/apt/sources.list.d/openoffice.list ]; then
 		rm -f /etc/apt/sources.list.d/openoffice.list
 	fi
@@ -118,25 +118,25 @@ elif [ "$PACKAGE" = "openoffice" ]; then
 #FOO
 #	$SPARKYXTERM "$APTKEY adv --keyserver keys.gnupg.net --recv-keys 90127F5B"
 	$SPARKYXTERM "$UPDATE"
-	$SPARKYXTERM "$INSTALL $OOPACKAGES"
+	$SPARKYXTERM "$INSTALL $OOPACKAGES && echo 'Done, press <ENTER> to exit...' && read"
 
 elif [ "$PACKAGE" = "protonvpn" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	CHECKPROTONVPN=`apt-cache policy protonvpn-stable-release | head -n2 | tail -n1 | grep [0-9]`
 	if [ "$CHECKPROTONVPN" = "" ]; then
 		$SPARKYXTERM "$INSTALL protonvpn-stable-release -y && $UPDATE"
 	else
 		$SPARKYXTERM "$INSTALL --reinstall protonvpn-stable-release -y && $UPDATE"
 	fi
-	$SPARKYXTERM "$INSTALL $PACKAGE"
+	$SPARKYXTERM "$INSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
 
 elif [ "$PACKAGE" = "skypeforlinux" ]; then
-	killall -9 yad
+	#kill -USR1 $YAD_PID
 	rm -rf $WORKDIR
 	mkdir -p $WORKDIR
 	cd $WORKDIR
 	$SPARKYXTERM "wget $SERVER64SKYPE/$PACK64SKYPE"
-	$SPARKYXTERM "$INSTALL ./$PACK64SKYPE"
+	$SPARKYXTERM "$INSTALL ./$PACK64SKYPE && echo 'Done, press <ENTER> to exit...' && read"
 	rm -rf $WORKDIR
 	if [ -f /etc/apt/sources.list.d/skype-stable.list ]; then
 		rm -f /etc/apt/sources.list.d/skype-stable.list
@@ -148,8 +148,8 @@ elif [ "$PACKAGE" = "vmware" ]; then
 	exit 0
 
 elif [ "$PACKAGE" = "wps-office" ]; then
-	killall -9 yad
-	$SPARKYXTERM "$INSTALL $PACKAGE $WPSPACKAGES"
+	#kill -USR1 $YAD_PID
+	$SPARKYXTERM "$INSTALL $PACKAGE $WPSPACKAGES && echo 'Done, press <ENTER> to exit...' && read"
 
 elif [ "$PACKAGE" = "blisk-browser-stable" ]; then
 	$SPARKYXTERM "$INSTALL $PACKAGE"
@@ -158,8 +158,8 @@ elif [ "$PACKAGE" = "blisk-browser-stable" ]; then
 	fi
 
 else
-	killall -9 yad
-	$SPARKYXTERM "$INSTALL $PACKAGE"
+	#kill -USR1 $YAD_PID
+	$SPARKYXTERM "$INSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
 fi
 		
 CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
@@ -232,8 +232,8 @@ Last update: October 26, 2020 by pavroo
 </html>
 FOO
 
-killall -9 yad
-cd /usr/lib/sparky-aptus-appcenter
-./aptus-appcenter error01
+#kill -USR1 $YAD_PID
+#cd /usr/lib/sparky-aptus-appcenter
+#./aptus-appcenter error01
 
 exit 0
