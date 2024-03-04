@@ -1,7 +1,7 @@
 // Ukrainian localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2021/11/29 by pavroo
+// Last update 2024/03/04 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Застосунки";
@@ -37,6 +37,7 @@ dict.entries['main']['info10'] = "Contributors:";
 dict.entries['main']['info11'] = "Переклади (на основі APTus):";
 // accesories
 dict.entries['main']['archivers'] = "Архіватори";
+dict.entries['main']['chatbots'] = "Chatbots";
 dict.entries['main']['clipboards'] = "Буфери обміну";
 dict.entries['main']['devices'] = "Прилади";
 dict.entries['main']['display'] = "Менеджери дісплею";

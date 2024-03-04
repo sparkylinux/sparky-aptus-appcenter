@@ -1,7 +1,7 @@
 // Spanish (es_ES) localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2021/11/29 by pavroo
+// Last update 2024/03/04 by pavroo
 // Translated by depaz
 dict.entries['main'] = {};
 // main menu
@@ -38,6 +38,7 @@ dict.entries['main']['info10'] = "Colaboradores:";
 dict.entries['main']['info11'] = "Traducciones (basadas en APTus):";
 // accesories
 dict.entries['main']['archivers'] = "Archivadores";
+dict.entries['main']['chatbots'] = "Chatbots";
 dict.entries['main']['clipboards'] = "Portapapeles";
 dict.entries['main']['devices'] = "Dispositivos";
 dict.entries['main']['display'] = "Gestores de pantalla";

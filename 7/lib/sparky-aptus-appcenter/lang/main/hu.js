@@ -2,7 +2,7 @@
 // English localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2023/10/09 by BunnyMnemonic
+// Last update 2024/03/04 by BunnyMnemonic
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Alkalmazások";
@@ -38,6 +38,7 @@ dict.entries['main']['info10'] = "Közreműködők:";
 dict.entries['main']['info11'] = "Fordítások (az APTus alapján):";
 // accesories
 dict.entries['main']['archivers'] = "Archívumkezelők";
+dict.entries['main']['chatbots'] = "Chatbots";
 dict.entries['main']['clipboards'] = "Vágólapok";
 dict.entries['main']['devices'] = "Eszközök";
 dict.entries['main']['display'] = "Képernyővezérlők";

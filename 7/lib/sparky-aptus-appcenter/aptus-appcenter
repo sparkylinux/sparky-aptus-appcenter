@@ -2,7 +2,7 @@
 
 # Created by Piotr "MoroS" Mrożek 2018
 # Last update by Paweł "pavroo" Pijanowski May 24, 2021
-# Last update by pavroo February 2, 2023
+# Last update by pavroo March 4, 2024
 
 LANGUAGE1=${LANG:0:2}
 LANGUAGE2=${LANG:0:5}
@@ -53,6 +53,9 @@ if [ "$1" = "" ]; then
 # accessories archivers
 elif [ "$1" = "accarc01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-archivers.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
+# accessories chatbot
+elif [ "$1" = "accbot01" ]; then
+	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-chatbot.html" --user-agent="$LANGUAGE" --uri-handler="./handler"
 # accessories clipboards
 elif [ "$1" = "acccli01" ]; then
 	yad --window-icon=sparky-aptus-appcenter $POS $HTML --uri="accessories-clipboards.html" --user-agent="$LANGUAGE" --uri-handler="./handler"

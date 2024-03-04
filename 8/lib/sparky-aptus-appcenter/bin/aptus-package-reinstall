@@ -98,7 +98,7 @@ if [ "$PACKAGE" = "google-chrome-stable" ]; then
 	mkdir -p $WORKDIR
 	cd $WORKDIR
 	$SPARKYXTERM "wget $SERVERG/$PACKG64"
-	$SPARKYXTERM "$INSTALL ./$PACKG64 && echo 'Done, press <ENTER> to exit...' && read"
+	$SPARKYXTERM "dpkg -i $PACKG64 && echo 'Done, press <ENTER> to exit...' && read"
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "google-earth-pro-stable" ]; then
@@ -107,7 +107,7 @@ elif [ "$PACKAGE" = "google-earth-pro-stable" ]; then
 	mkdir -p $WORKDIR
 	cd $WORKDIR
 	$SPARKYXTERM "wget $SERVERE/$PACKEARTH"
-	$SPARKYXTERM "$INSTALL ./$PACKEARTH && echo 'Done, press <ENTER> to exit...' && read"
+	$SPARKYXTERM "dpkg -i $PACKEARTH && echo 'Done, press <ENTER> to exit...' && read"
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
@@ -126,7 +126,7 @@ elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
 	fi
 	echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main" >> /etc/apt/sources.list.d/microsoft-edge.list
 	$SPARKYXTERM "$UPDATE"
-	$SPARKYXTERM "$INSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
+	$SPARKYXTERM "$REINSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
 	rm -rf $WORKDIR
 
 elif [ "$PACKAGE" = "openoffice" ]; then
@@ -139,7 +139,7 @@ elif [ "$PACKAGE" = "skypeforlinux" ]; then
 	mkdir -p $WORKDIR
 	cd $WORKDIR
 	$SPARKYXTERM "wget $SERVER64SKYPE/$PACK64SKYPE"
-	$SPARKYXTERM "apt install ./$PACK64SKYPE && echo 'Done, press <ENTER> to exit...' && read"
+	$SPARKYXTERM "dpkg -i $PACK64SKYPE && echo 'Done, press <ENTER> to exit...' && read"
 	rm -rf $WORKDIR
 	if [ -f /etc/apt/sources.list.d/skype-stable.list ]; then
 		rm -f /etc/apt/sources.list.d/skype-stable.list

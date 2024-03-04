@@ -1,7 +1,7 @@
 // File di localizzazione in italiano per Main HTML JS
 // Ultimo aggiornamento 2022/05/18 by Yodel Sinatra <mastodon.uno/@YodelSinatra>
 // Rilasciato sotto licenzaGNU GPL v3
-// Last update 2021/11/29 by pavroo
+// Last update 2024/03/04 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "Applicazioni";
@@ -37,6 +37,7 @@ dict.entries['main']['info10'] = "Collaboratori:";
 dict.entries['main']['info11'] = "Traduzioni  (based on APTus):";
 // accesori
 dict.entries['main']['archivers'] = "Archivi";
+dict.entries['main']['chatbots'] = "Chatbots";
 dict.entries['main']['clipboards'] = "Appunti";
 dict.entries['main']['devices'] = "Dispositivi";
 dict.entries['main']['display'] = "Display Managers";

@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2024/02/09 by pavroo
+# Last update 2024/03/04 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -723,6 +723,18 @@ elif [ "$1" = "cpu-x" ]; then
 	fi
 	PACKAGE="$1"
 elif [ "$1" = "kdiskmark" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+
+# accesories chatbot
+elif [ "$1" = "noi" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "imaginer" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi

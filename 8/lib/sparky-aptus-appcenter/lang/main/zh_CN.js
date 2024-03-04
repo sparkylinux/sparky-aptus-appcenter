@@ -1,7 +1,7 @@
 // Chinese（Simplified） localization file for main
 // Originally created by Piotr "MoroS" Mrożek 2018
 // Under the GNU GPL v3
-// Last update 2021/11/29 by pavroo
+// Last update 2024/03/04 by pavroo
 dict.entries['main'] = {};
 // main menu
 dict.entries['main']['applications'] = "应用程序";
@@ -37,6 +37,7 @@ dict.entries['main']['info10'] = "贡献者：";
 dict.entries['main']['info11'] = "翻译（部分来源于 APTus）：";
 // accesories
 dict.entries['main']['archivers'] = "压缩工具";
+dict.entries['main']['chatbots'] = "Chatbots";
 dict.entries['main']['clipboards'] = "剪贴板";
 dict.entries['main']['devices'] = "设备";
 dict.entries['main']['display'] = "显示管理器";

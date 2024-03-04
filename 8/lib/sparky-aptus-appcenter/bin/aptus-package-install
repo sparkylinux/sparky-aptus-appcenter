@@ -71,7 +71,7 @@ else
 fi
 
 # install package now
-kill -USR1 $YAD_PID
+#kill -USR1 $YAD_PID
 PACKAGE="$1"
 
 #if [ "$PACKAGE" = "discord" ]; then

@@ -317,7 +317,7 @@ cd /usr/lib/sparky-aptus-appcenter
 exit 0		
 
 else
-#kill -USR1 $YAD_PID	
+kill -USR1 $YAD_PID	
 $SPARKYXTERM "$UNINSTALL $REMPACKS && echo 'Done, press <ENTER> to exit...' && read"
 
 if [ -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
@@ -385,10 +385,10 @@ Last update: November 9, 2020 by pavroo
 </html>
 FOO
 
-#kill -USR1 $YAD_PID
+kill -USR1 $YAD_PID
 cd /usr/lib/sparky-aptus-appcenter
-#./aptus-appcenter error01
-#exit 0
+./aptus-appcenter error01
+exit 0
 fi
 
 exit 0

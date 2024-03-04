@@ -70,7 +70,7 @@ if [ -f /usr/lib/sparky-aptus-appcenter/page-error.html ]; then
 fi
 
 # install desktop now
-#kill -USR1 $YAD_PID
+kill -USR1 $YAD_PID
 
 if [ "$1" = "trinity" ]; then
 	if [ -f /etc/apt/sources.list.d/trinity.list ]; then
