@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2024/02/09 by pavroo
+# last update 2024/03/07 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -42,7 +42,7 @@ UPDATE="apt-get update"
 INSTALL="apt-get install"
 REINSTALL="apt-get install --reinstall"
 USER1000=`cat /etc/passwd | grep 1000 | awk -F: '{ print $1 }'`
-ARCHARM="`uname -m | grep arm`"
+ARCHARM=`uname -m | grep arm`
 if [ -f /usr/bin/spterm ]; then
 	SPARKYXTERM="spterm -e"
 elif [ -f /usr/bin/sparky-xterm ]; then

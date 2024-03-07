@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2024/02/09 by pavroo
+# last update 2024/03/07 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -44,8 +44,8 @@ if [ "$testroot" != "root" ]; then
 	exit 1
 fi
 
-ARCHARM="`uname -m | grep arm`"
-ARCH64ARM="`uname -m | grep aarch64`"
+ARCHARM=`uname -m | grep arm`
+ARCH64ARM=`uname -m | grep aarch64`
 if [ -f /usr/bin/spterm ]; then
 	SPARKYXTERM="spterm -e"
 elif [ -f /usr/bin/sparky-xterm ]; then
