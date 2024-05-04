@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
+  Version 20240504~sparky8~0 (2024-05-04)
+-------------------------------------------------------------------------------
+  * updated es_AR locale
+  * install dropbox amd64 only
+  * install telegram amd64 instead of telegram-desktop
+  * added package 64gram
+  * removed packages eterm, pangoterm, wordnet, a7xpg, abe, alienblaster, bomberclone, briquolo, coferino, circuslinux, criticalmass, dodgindiamond2, epiphany, geki3, gravitywars, gunroar, heroes, ii-esu, ketm, komi, lierolibre, madbomber, miceamaze, moon-lander, mousetrap, mu-cade, njam, noiz2sa, orbital-eunuchs-sniper, pangzero, parsec47, penguin-command, ping-pony, plee-the-bear, powermanga, projectl, rockdodger, rrootage, tatan, tecnoballz, titanion, tomatoes, torus-trooper, triplane, tumiki-fighters, val-and-rick, vectoroids, jigzo, xshogi, ace-of-penguins, pokerth, cytadela, enemylines3, enemylines7, nexuiz, asylum, blobandconquer, gnujump, holotz-castle, mazeofgalious, pachi, amoebax, biniax2, black-box, blocks-of-the-undead, crack-attack, einstein, fillets-ng, frozen-bubble, gemdropx, gnurobbo, hex-a-hop, lmarbles, pathogen, phlipple, vodovod, wizznic, meritous, foobillardplus, gl-117, micropolis, opencity, openssn, asciijump, tuxfootball, crimson, lgeneral, netpanzer, pingus, warmux, pacman4console, gnome-video-arcade, rlvm, virtualjaguar, dizzy, gtkam, kluppe, spek, scrollz, astroid
+
+-------------------------------------------------------------------------------
   Version 20240402~sparky8~0 (2024-04-02)
 -------------------------------------------------------------------------------
   * added packages foliate, koodo-reader, xzoom, obs-studio, freetube

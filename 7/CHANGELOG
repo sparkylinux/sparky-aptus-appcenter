@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
+  Version 20240504~sparky7~0 (2024-05-04)
+-------------------------------------------------------------------------------
+  * updated es_AR locale
+  * install dropbox amd64 only
+  * install telegram amd64 instead of telegram-desktop
+  * added package 64gram
+
+-------------------------------------------------------------------------------
   Version 20240402~sparky7~0 (2024-04-02)
 -------------------------------------------------------------------------------
   * added packages foliate, koodo-reader, xzoom, obs-studio, freetube
