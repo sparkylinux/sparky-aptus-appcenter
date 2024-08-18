@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20240810~sparky8~0 (2024-08-10)
+-------------------------------------------------------------------------------
+  * added packages peazip, zed
+  * removed packages next, clipit, xdm, spacefm-gtk3, xzoom, jeex, latexdraw, latexila, gperiodic, tilem, matanza, pong2, powder, fairymax, xshisen, xjump, xscavenger, angrydd, netris, xdeminuer, lordsawar, omega-rpg, chessx, xfishtank, gnome-paint, tuxpaint, soundkonverter, tuxguitar, mpg321, fdm, mmh, vinagre, hv3, elvis-tiny, hfsutils
+  * added fi locale
+
+-------------------------------------------------------------------------------
   Version 20240701~sparky8~0 (2024-07-01)
 -------------------------------------------------------------------------------
   * added package finch

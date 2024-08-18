@@ -2,7 +2,7 @@ Upstream Author(s):
     Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 
 Files: *    
-    Copyright (C) 2018-2023 Paweł Pijanowski
+    Copyright (C) 2018-2024 Paweł Pijanowski
     License: GPL-3+
 
 ### translations ###
@@ -30,6 +30,10 @@ Files: es_AR
 File: es_ES
     Copyright 2022 depaz
     License: GNU GPL-3
+
+File: fi
+    Copyright (C) 2024 Jouko Tiilikainen
+    License: GPL-3
 
 Files: fr
     Copyright (C) 2016 hiver <hiver@club-internet.fr>
