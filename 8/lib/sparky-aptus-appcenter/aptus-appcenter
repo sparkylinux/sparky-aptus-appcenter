@@ -2,13 +2,14 @@
 
 # Created by Piotr "MoroS" Mrożek 2018
 # Last update by Paweł "pavroo" Pijanowski May 24, 2021
-# Last update by pavroo March 4, 2024
+# Last update by pavroo September 16, 2024
 
 LANGUAGE1=${LANG:0:2}
 LANGUAGE2=${LANG:0:5}
 EL=`echo $LANGUAGE1 | grep el`
 EN=`echo $LANGUAGE1 | grep en`
 ES=`echo $LANGUAGE1 | grep es`
+FI=`echo $LANGUAGE1 | grep fi`
 HU=`echo $LANGUAGE1 | grep hu`
 IT=`echo $LANGUAGE1 | grep it`
 PL=`echo $LANGUAGE1 | grep pl`
@@ -20,6 +21,8 @@ ZHCN=`echo $LANGUAGE2 | grep zh_CN`
 if [ "$EL" != "" ]; then
 	LANGUAGE="$LANGUAGE1"
 elif [ "$ES" != "" ]; then
+	LANGUAGE="$LANGUAGE1"
+elif [ "$FI" != "" ]; then
 	LANGUAGE="$LANGUAGE1"
 elif [ "$HU" != "" ]; then
 	LANGUAGE="$LANGUAGE1"
