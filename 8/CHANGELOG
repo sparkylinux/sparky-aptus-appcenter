@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
+  Version 20241105~sparky8~0 (2024-11-05)
+-------------------------------------------------------------------------------
+  * changed whatsapp-for-linux to wasistlos
+  * added packages librewolf arm64, simplenote, floorp
+  * small fix
+  * removed packages fbterm, yeahconsole, qt5-styles-ukui, pegsolitarite, runescape, cecilia, jmeter, gnome-shell-mailnag. softether-vpnclient, tilde
+
+-------------------------------------------------------------------------------
   Version 20240916~sparky8~0 (2024-09-16)
 -------------------------------------------------------------------------------
   * added fi locale

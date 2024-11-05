@@ -1,8 +1,8 @@
 #!/bin/bash
-
+export WEBKIT_DISABLE_COMPOSITING_MODE=1
 # Created by Piotr "MoroS" Mrożek 2018
 # Last update by Paweł "pavroo" Pijanowski May 24, 2021
-# Last update by pavroo September 16, 2024
+# Last update by pavroo November 5, 2024
 
 LANGUAGE1=${LANG:0:2}
 LANGUAGE2=${LANG:0:5}
