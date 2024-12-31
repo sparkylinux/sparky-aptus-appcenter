@@ -2,7 +2,7 @@
 
 # Application installer
 # Copyright 2017-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2024/11/05 by pavroo
+# Last update 2024/12/31 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -708,6 +708,11 @@ elif [ "$1" = "viper-browser" ]; then
 #	PACKAGE="$1"
 elif [ "$1" = "waterfox-kde" ]; then
 	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "zen-browser" ]; then
+	if [ "$ARCH64" = "" ] || [ "$ARCH64ARM" != "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
