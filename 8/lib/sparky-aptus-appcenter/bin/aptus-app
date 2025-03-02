@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application installer
-# Copyright 2017-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2024/12/31 by pavroo
+# Copyright 2017-2025 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2025/03/02 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -427,6 +427,11 @@ elif [ "$1" = "android-messages-desktop" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
+elif [ "$1" = "ayugram" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 elif [ "$1" = "caprine" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
@@ -444,6 +449,11 @@ elif [ "$1" = "discord" ]; then
 	PACKAGE="$1"
 elif [ "$1" = "element-desktop" ]; then
 	if [ "$ARCH64" = "" ] || [ "$ARCH64ARM" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "fagram" ]; then
+	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi
 	PACKAGE="$1"
@@ -706,7 +716,7 @@ elif [ "$1" = "viper-browser" ]; then
 #		SYSTEM="wrong"
 #	fi
 #	PACKAGE="$1"
-elif [ "$1" = "waterfox-kde" ]; then
+elif [ "$1" = "waterfox" ]; then
 	if [ "$ARCH64" = "" ]; then
 		SYSTEM="wrong"
 	fi

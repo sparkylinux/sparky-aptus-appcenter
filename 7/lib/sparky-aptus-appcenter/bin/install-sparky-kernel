@@ -2,10 +2,10 @@
 
 # install-sparky-kernel script lets you install the latest stable,
 # home roasted Linux kernel
-# Copyright 2016-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
+# Copyright 2016-2025 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2016/04/06
-# Last update 2024/09/16
+# Last update 2025/03/02
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -92,8 +92,8 @@ mainmenu () {
 if [ "$ARCH" != "" ]; then
 CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
 64 "$LOCAL069" \
+64_LTS_612 "$LOCAL069 (6.12 LTS)" \
 64_LTS_66 "$LOCAL069 (6.6 LTS)" \
-64_LTS_515 "$LOCAL069 (5.15 LTS)" \
 Exit "$LOCAL056"`
 else
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL004"
@@ -106,8 +106,8 @@ else
 	exit 0
 fi
 
-if [ "$CHOICE" = "64_LTS_515" ]; then
-	amd64lts515menu
+if [ "$CHOICE" = "64_LTS_612" ]; then
+	amd64lts612menu
 elif [ "$CHOICE" = "64_LTS_66" ]; then
 	amd64lts66menu
 elif [ "$CHOICE" = "64" ]; then
@@ -119,8 +119,8 @@ else
 fi
 }
 
-amd64lts515menu () {
-$DIALOG $TITLE"$TITLETEXT" $OKEXIT $TEXT"\n$LOCAL069 5.15LTS\n\n$LOCAL014"
+amd64lts612menu () {
+$DIALOG $TITLE"$TITLETEXT" $OKEXIT $TEXT"\n$LOCAL069 6.12LTS\n\n$LOCAL014"
 
 if [ "$?" != "0" ]; then
 	exit 1
@@ -132,7 +132,7 @@ else
 	fi
 	$SPARKYXTERM "apt-get update"
 	# install 64 bit Sparky kernel and headers
-	$SPARKYXTERM "apt-get install linux-image-sparky-lts-amd64 linux-headers-sparky-lts-amd64"
+	$SPARKYXTERM "apt-get install linux-image-sparky-lts612-amd64 linux-headers-sparky-lts612-amd64"
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL068"
 	exit 0
 fi

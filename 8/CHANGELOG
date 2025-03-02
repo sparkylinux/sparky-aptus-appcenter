@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
+  Version 20250302~sparky8~0 (2025-03-02)
+-------------------------------------------------------------------------------
+  * added packages focuswriter, ayugram, fagram, linux kernel 6.12LTS
+  * removed packages linux kernel 5.15LTS, gnome-dictionary, materia-kde, materia-gtk-theme, arduino, tagua, pybik, dwarf-fortress, unknown-horizons, alsaplayer-gtk, betaradio, quiterss, kjots, knotes, nixnote2
+
+-------------------------------------------------------------------------------
   Version 20241231~sparky8~0 (2024-12-31)
 -------------------------------------------------------------------------------
   * added package zen-browser
