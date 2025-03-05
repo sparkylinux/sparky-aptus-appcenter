@@ -5,7 +5,7 @@
 # Copyright 2016-2025 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2016/04/06
-# Last update 2025/03/02
+# Last update 2025/03/05
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -119,7 +119,7 @@ if [ "$CHOICE" = "64_LTS_61" ]; then
 	amd64lts61menu
 elif [ "$CHOICE" = "64_LTS_66" ]; then
 	amd64lts66menu
-if [ "$CHOICE" = "64_LTS_612" ]; then
+elif [ "$CHOICE" = "64_LTS_612" ]; then
 	amd64lts612menu
 elif [ "$CHOICE" = "64" ]; then
 	amd64menu
