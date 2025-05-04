@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
+  Version 20250504~sparky8~0 (2025-05-04)
+-------------------------------------------------------------------------------
+  * added packages python3-ollama, wasistlos all, elecwhat
+  * removed package imaginer
+  * fixed protonvpn installation
+  * added aptitude to package clean
+
+-------------------------------------------------------------------------------
   Version 20250406~sparky8~0 (2025-04-06)
 -------------------------------------------------------------------------------
   * added packages mangler, materialgram, gnome-text-editor

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application installer
-# Copyright 2020-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2024/09/16 by pavroo
+# Copyright 2020-2025 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2025/05/04 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -44,6 +44,7 @@ fi
 
 WORKDIR="/tmp/sparky-appcenter"
 INSTALL="apt-get install"
+PURGE="apt-get purge"
 APTKEY="apt-key"
 UPDATE="apt-get update"
 SERVERG="https://dl.google.com/linux/direct"
@@ -124,13 +125,13 @@ elif [ "$PACKAGE" = "openoffice" ]; then
 
 elif [ "$PACKAGE" = "protonvpn" ]; then
 	#kill -USR1 $YAD_PID
-	CHECKPROTONVPN=`apt-cache policy protonvpn-stable-release | head -n2 | tail -n1 | grep [0-9]`
-	if [ "$CHECKPROTONVPN" = "" ]; then
-		$SPARKYXTERM "$INSTALL protonvpn-stable-release -y && $UPDATE"
-	else
-		$SPARKYXTERM "$INSTALL --reinstall protonvpn-stable-release -y && $UPDATE"
-	fi
-	$SPARKYXTERM "$INSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
+	#CHECKPROTONVPN=`apt-cache policy protonvpn-stable-release | head -n2 | tail -n1 | grep [0-9]`
+	#if [ "$CHECKPROTONVPN" = "" ]; then
+		$SPARKYXTERM "$PURGE protonvpn-stable-release -y && $INSTALL protonvpn-stable-release -y && $UPDATE"
+	#else
+	#	$SPARKYXTERM "$INSTALL --reinstall protonvpn-stable-release -y && $UPDATE"
+	#fi
+	$SPARKYXTERM "$INSTALL --no-install-recommends proton-vpn-gnome-desktop && echo 'Done, press <ENTER> to exit...' && read"
 
 elif [ "$PACKAGE" = "skypeforlinux" ]; then
 	#kill -USR1 $YAD_PID

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Application re-installer
-# Copyright 2020-2024 Paweł "pavroo" Pijanowski under GNU GPL 3
-# Last update 2024/09/16 by pavroo
+# Copyright 2020-2025 Paweł "pavroo" Pijanowski under GNU GPL 3
+# Last update 2025/05/04 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -129,6 +129,10 @@ elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
 elif [ "$PACKAGE" = "openoffice" ]; then
 	#killall -9 yad
 	$SPARKYXTERM "$REINSTALL $OOPACKAGES && echo 'Done, press <ENTER> to exit...' && read"
+
+elif [ "$PACKAGE" = "protonvpn" ]; then
+	#killall -9 yad
+	$SPARKYXTERM "$REINSTALL proton-vpn-gnome-desktop && echo 'Done, press <ENTER> to exit...' && read"
 
 elif [ "$PACKAGE" = "skypeforlinux" ]; then
 	#killall -9 yad

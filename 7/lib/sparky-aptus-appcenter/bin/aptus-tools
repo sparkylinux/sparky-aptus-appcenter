@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Last update 2024/09/16 by pavroo
+# Last update 2025/05/04 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -140,6 +140,9 @@ elif [ "$1" = "aptautoremove" ]; then
 # apt clean
 elif [ "$1" = "aptclean" ]; then
 	apt-get clean
+	if [ -f /usr/bin/aptitude ]; then
+		aptitude purge ~c
+	fi
 	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
 	exit 0
 # quick list
