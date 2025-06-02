@@ -2,7 +2,7 @@ Upstream Author(s):
     Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 
 Files: *    
-    Copyright (C) 2018-2024 Paweł Pijanowski
+    Copyright (C) 2018-2025 Paweł Pijanowski
     License: GPL-3+
 
 ### translations ###
@@ -13,6 +13,7 @@ Files: lang/menu/en.js; lang/categories/en.js, apptus-appcenter; handler;
 Files: de
     Copyright (C) 2015 Pete B.
     Michael Banditt (mband008) (C) 2022
+    Copyright 2025 Roy
     License: GPL-3+
 
 Files: el
