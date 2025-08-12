@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
+  Version 20250812~sparky8~0 (2025-08-12)
+-------------------------------------------------------------------------------
+  * added packages incus, forkgram, birdtray
+  * removed packages latte-dock, netdata, mlterm, qt5-style-kvantum-themes, komorebi, ulauncher, nim, cadabra2, glueviz, tworld, manaplus, endless-sky, open-adventure, openmw, pinta, sooperlooper, gnome-subtitles, olive-editor, yarock, youtube-dl-gui, linphone-desktop, loqui, badwolf, zulucrypt, zulumount, sparky-desktop-ukui
+
+-------------------------------------------------------------------------------
   Version 20250722~sparky8~0 (2025-07-22)
 -------------------------------------------------------------------------------
   * updated de locale
