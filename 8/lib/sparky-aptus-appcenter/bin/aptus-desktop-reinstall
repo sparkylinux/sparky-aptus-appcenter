@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2024/09/16 by pavroo
+# last update 2025/08/21 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -62,7 +62,7 @@ else
 	exit 1
 fi
 # trinity repo
-TDEREPO="trinity-testing trixie deps main"
+TDEREPO="trinity-r14.1.x trixie deps main"
 USER1000=`cat /etc/passwd | grep 1000 | awk -F: '{ print $1 }'`
 TARGETUSER="$USER1000"
 TARGETUSER=`echo $TARGETUSER | cut -d "|" -f 1`
