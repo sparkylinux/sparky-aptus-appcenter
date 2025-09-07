@@ -1,0 +1,334 @@
+#!/bin/bash
+
+# last update 2024/09/16 by pavroo
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+	if [ "`cat /etc/default/locale | grep LANG= | grep es_AR`" != "" ]; then
+. $DEFLOCDIR/es_AR
+	else
+. $DEFLOCDIR/es_ES
+	fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fi`" != "" ]; then
+. $DEFLOCDIR/fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep uk`" != "" ]; then
+. $DEFLOCDIR/uk
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+testroot=`whoami`
+if [ "$testroot" != "root" ]; then
+	echo "Must be root... Exiting now..."
+	exit 1
+fi
+
+ARCHARM=`uname -m | grep arm`
+ARCH64ARM=`uname -m | grep aarch64`
+if [ -f /usr/bin/spterm ]; then
+	SPARKYXTERM="spterm -e"
+elif [ -f /usr/bin/sparky-xterm ]; then
+	SPARKYXTERM="sparky-xterm"
+elif [ -f /usr/bin/x-terminal-emulator ]; then
+	SPARKYXTERM="x-terminal-emulator -e"
+else
+	echo "x terminal emulator is missing... exiting..."
+	exit 1
+fi
+# checking Sparky 4/5/6
+#SPARKYVERCHECK6="`cat /etc/lsb-release | grep Tolo`"
+#SPARKYVERCHECK5="`cat /etc/lsb-release | grep Nibiru`"
+#SPARKYVERCHECK4="`cat /etc/lsb-release | grep Tyche`"
+
+if [ -f /usr/lib/sparky-aptus-appcenter/page-error.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/page-error.html
+fi
+
+if [ -f /usr/lib/sparky-aptus-appcenter/page-install.html ]; then
+	rm -f /usr/lib/sparky-aptus-appcenter/page-install.html
+fi
+
+# check connection
+PINGTEST=$(ping -c 1 debian.org | grep [0-9])
+
+# recive desktop name
+if [ "$1" = "cde" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "draco" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+#elif [ "$1" = "gnomeflashback" ]; then
+#	PACKAGE="gnome-flashback"
+#elif [ "$1" = "gnomeshell" ]; then
+#	PACKAGE="gnome-shell"
+#elif [ "$1" = "lumina" ]; then
+#	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+#		SYSTEM="wrong"
+#	fi
+#	PACKAGE="$1"
+elif [ "$1" = "openbox" ]; then
+	if [ "$ARCHARM" != "" ] || [ "$ARCH64ARM" != "" ]; then
+		PACKAGE="openbox-arm"
+	else
+		PACKAGE="openbox"
+	fi
+else
+	PACKAGE="$1"
+fi
+
+if [ "$SYSTEM" = "wrong" ]; then
+	ERRORTEXT="$LOCAL016"
+
+cat > /usr/lib/sparky-aptus-appcenter/page-error.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: November 9, 2020 by pavroo
+-->
+	<head>
+		<title>Package Error | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="aptus://idzi_idzi"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<br />&nbsp;
+		$ERRORTEXT <br />
+		<br />&nbsp;
+		<a href="aptus://idzi_idzi" class="buttonmenu"><<-- Back</a><br />
+		<br />
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+	kill -USR1 $YAD_PID
+	./aptus-appcenter error01
+	exit 0
+fi
+### system=wrong end
+
+kill -USR1 $YAD_PID
+### system !=wrong
+if [ "$SYSTEM" != "wrong" ]; then
+
+if [ -f /tmp/sparky-app1 ]; then
+	rm -f /tmp/sparky-app1
+fi
+
+apt show sparky-desktop-$PACKAGE > /tmp/sparky-app1
+PACK=`cat /tmp/sparky-app1 | grep Package:`
+VERSION=`cat /tmp/sparky-app1 | grep Version:`
+if [ "$VERSION" != "" ]; then
+	VERSION="$VERSION"
+else
+	VERSION=""
+fi
+SECTION=`cat /tmp/sparky-app1 | grep Section:`
+if [ "$SECTION" != "" ]; then
+	SECTION="$SECTION"
+else
+	SECTION=""
+fi
+MAINTAINER=`cat /tmp/sparky-app1 | grep Maintainer:`
+if [ "$MAINTAINER" != "" ]; then
+	MAINTAINER="$MAINTAINER"
+else
+	MAINTAINER=""
+fi
+DOWNSIZE=`cat /tmp/sparky-app1 | grep Download-Size:`
+if [ "$DOWNSIZE" != "" ]; then
+	DOWNSIZE="$DOWNSIZE"
+else
+	DOWNSIZE=""
+fi
+INSTSIZE=`cat /tmp/sparky-app1 | grep Installed-Size:`
+if [ "$INSTSIZE" != "" ]; then
+	INSTSIZE="$INSTSIZE"
+else
+	INSTSIZE=""
+fi
+DEPS=`cat /tmp/sparky-app1 | grep Depends: | grep -v Pre-Depends:`
+if [ "$DEPS" != "" ]; then
+	DEPS="$DEPS"
+else
+	DEPS=""
+fi
+DESCRIPTION1=`cat /tmp/sparky-app1 | grep Description:`
+if [ "$DESCRIPTION1" != "" ]; then
+	DESCRIPTION1="$DESCRIPTION1"
+else
+	DESCRIPTION1=""
+fi
+DESCRIPTION2=`cat /tmp/sparky-app1 | grep -v Version: | grep -v Priority: | grep -v Package: | grep -v Replaces: | grep -v Section: | grep -v Built-Using | grep -v Source: | grep -v Depends: | grep -v Conflicts: | grep -v Provides: | grep -v Maintainer: | grep -v Installed-Size: | grep -v Download-Size: | grep -v APT-Manual-Installed: | grep -v Bugs: | grep -v :: | grep -v Suggests: | grep -v Breaks: | grep -v Homepage: | grep -v Tag: | grep -v Recommends: | grep -v Vendor: | grep -v APT-Sources: | grep -v APT-Manual: | grep -v Description:`
+if [ "$DESCRIPTION2" != "" ]; then
+	DESCRIPTION2="$DESCRIPTION2"
+else
+	DESCRIPTION2="$LOCAL075<br /><br />$LOCAL76"
+fi
+
+if [ -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
+	PACKTITLE="Remove or Reinstall Desktop"
+	PACKTEXT="$LOCAL011 $LOCAL012"
+	PACKBUTTONS="<a href="aptus://desremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://desrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+elif [ ! -f /usr/share/doc/sparky-desktop-$PACKAGE/copyright ]; then
+	if [ "$PINGTEST" = "" ]; then
+		PACKTITLE="Install Desktop"
+		PACKTEXT="$LOCAL003 $LOCAL005"
+		PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	else
+		PACKTITLE="Install Desktop"
+		PACKTEXT="$LOCAL014"
+		PACKBUTTONS="<a href="aptus://desinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	fi
+fi
+
+
+cat > /usr/lib/sparky-aptus-appcenter/page-install.html << FOO
+<!DOCTYPE html>
+<html>
+<!-- 
+APTus AppCenter by pavroo <pavroo@onet.eu> 2018
+License: GNU GPL 3
+Last update: November 9, 2020 by pavroo
+-->
+	<head>
+		<title>$PACKTITLE | APTus AppCenter</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script src="./js/lang.js" type="text/javascript"></script>
+	</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+		</div>
+	</div>
+	<div id="menu-wrapper-back">
+		<ul id="menu">
+			<li><a href="aptus://idzi_idzi"><span>&laquo;-- </span></a></li>
+			<li><a href="index.html"><span><script>dict.print('main', 'applications');</script></span></a></li>
+			<li><a href="tools.html"><span><script>dict.print('main', 'aptus');</script></span></a></li>
+			<li><a href="aptus://narz_search"><span><script>dict.print('main', 'search');</script></span></a></li>
+			<li><a href="info.html"><span><script>dict.print('main', 'info');</script></span></a></li>
+		</ul>
+	</div>
+	<div id="page">
+		<div id="contentfull">
+			<div class="contentbgfull">
+				<div class="post">
+				<div class="entry">
+
+
+
+
+<table border="0" width="100%">
+<div class="column0">
+<tbody>
+	<tr>
+		<td><br />&nbsp;
+		<b>$PACK</b><br />
+		<br />
+		$VERSION<br />
+		$SECTION<br />
+		$MAINTAINER<br />
+		$DOWNSIZE<br />
+		$INSTSIZE<br />
+		$DEPS<br />
+		<br />
+		<b>&nbsp;&nbsp;$DESCRIPTION1</b><br />
+		<br />
+		$DESCRIPTION2<br />
+		<br />&nbsp;
+		$PACKTEXT<br />
+		<br />
+		$PACKBUTTONS<br />
+		<br />
+		</td>
+	</tr>
+</tbody>
+</div>
+</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+</html>
+FOO
+
+kill -USR1 $YAD_PID
+./aptus-appcenter deskinst01
+exit 0
+
+### system !=wrong end
+fi
+
+exit 0

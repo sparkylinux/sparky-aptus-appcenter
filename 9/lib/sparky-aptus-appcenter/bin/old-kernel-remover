@@ -1,0 +1,122 @@
+#!/bin/bash
+
+# old-kernel-remover by pavroo <pavroo@onet.eu>
+# Last update 2025/07/22
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+	if [ "`cat /etc/default/locale | grep LANG= | grep es_AR`" != "" ]; then
+. $DEFLOCDIR/es_AR
+	else
+. $DEFLOCDIR/es_ES
+	fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fi`" != "" ]; then
+. $DEFLOCDIR/fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep uk`" != "" ]; then
+. $DEFLOCDIR/uk
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo "Must be root... Exiting now..."
+	exit 1
+fi
+
+DIALOG="yad --window-icon=sparky-aptus-appcenter --width=500 --center"
+DIALOGMENU="yad --window-icon=sparky-aptus-appcenter --width=500 --height=350 --center"
+TITLE="--always-print-result --dialog-sep --image=sparky-aptus-appcenter --title="
+TEXT="--text="
+OKEXIT="--button=Ok:0 --button=$LOCAL001:1"
+MSGBOX="--button=Ok:0"
+TITLETEXT="APTus AppCenter"
+MENU="--list --column=Kernel --column=Status"
+if [ -f /usr/bin/sparky-xterm ];then
+	SPARKYXTERM="/usr/bin/sparky-xterm"
+else
+	echo "sparky-xterm is missing... Exiting..."
+	exit 1
+fi
+CHECKNALA=`which nala`
+if [ "$CHECKNALA" != "" ]; then
+	REMOVE="nala purge"
+	AUTOREMOVE="nala autoremove"
+else
+	REMOVE="apt-get purge"
+	AUTOREMOVE="apt-get autoremove"
+fi
+
+if [ -d /tmp/old-kernel-remover ]; then
+	rm -rf /tmp/old-kernel-remover
+fi
+mkdir -p /tmp/old-kernel-remover
+touch /tmp/old-kernel-remover/kernellist0
+touch /tmp/old-kernel-remover/kernellist
+dpkg-query -l | grep linux-image | grep -v meta | grep -v template | cut -d ' ' -f 3 > /tmp/old-kernel-remover/kernellist0
+KERNELACTIVE=`uname -r`
+KERNELNUMBER=`cat /tmp/old-kernel-remover/kernellist0 | wc -l`
+if [ "$KERNELNUMBER" = "1" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL070 $KERNELACTIVE \n$LOCAL071\n\n$LOCAL001"
+	exit 1
+fi
+
+# remove active kernel from the list
+cat /tmp/old-kernel-remover/kernellist0 | grep -v "$KERNELACTIVE" > /tmp/old-kernel-remover/kernellist
+
+LIST=`cat /tmp/old-kernel-remover/kernellist`
+for i in $LIST; do
+	partkernel="$i"
+	partstatus="Installed"
+	partkernelmenu="$partkernelmenu $partkernel $partstatus"
+done
+
+CHOICES=`$DIALOGMENU $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL072: $KERNELACTIVE \n$LOCAL073:" $partkernelmenu`
+
+if [ "$?" = "0" ]; then
+	REMOVEKERNEL=`echo $CHOICES | cut -d "|" -f 1`
+else
+	exit 0
+fi
+
+# get header version
+HEADERS01=`echo $REMOVEKERNEL | head -n1 | sed -e 's/image/headers/g'`
+
+if [ "$REMOVEKERNEL" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $OKEXIT $TEXT"\n$LOCAL074: $REMOVEKERNEL ?"
+	if [ "$?" != "0" ]; then
+		exit 0
+	else
+		# remove kernel and headers now
+		$SPARKYXTERM "$REMOVE $REMOVEKERNEL"
+		$SPARKYXTERM "$REMOVE $HEADERS01"
+		$SPARKYXTERM "$AUTOREMOVE"
+		$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL031"
+		exit 0
+	fi
+fi
+
+exit 0

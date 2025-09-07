@@ -1,0 +1,380 @@
+#!/bin/bash
+
+# install-debian-kernel script lets you install the default Debian's Linux kernel
+# Copyright 2018-2023 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
+# Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
+# Created 2018/02/18
+# Last update 2024/09/16
+
+# get default's locale file
+DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
+if [ "`cat /etc/default/locale | grep LANG= | grep de`" != "" ]; then
+. $DEFLOCDIR/de
+elif [ "`cat /etc/default/locale | grep LANG= | grep el`" != "" ]; then
+. $DEFLOCDIR/el
+elif [ "`cat /etc/default/locale | grep LANG= | grep es`" != "" ]; then
+	if [ "`cat /etc/default/locale | grep LANG= | grep es_AR`" != "" ]; then
+. $DEFLOCDIR/es_AR
+	else
+. $DEFLOCDIR/es_ES
+	fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fi`" != "" ]; then
+. $DEFLOCDIR/fi
+elif [ "`cat /etc/default/locale | grep LANG= | grep fr`" != "" ]; then
+. $DEFLOCDIR/fr
+elif [ "`cat /etc/default/locale | grep LANG= | grep hu`" != "" ]; then
+. $DEFLOCDIR/hu
+elif [ "`cat /etc/default/locale | grep LANG= | grep id_ID`" != "" ]; then
+. $DEFLOCDIR/id_ID
+elif [ "`cat /etc/default/locale | grep LANG= | grep it`" != "" ]; then
+. $DEFLOCDIR/it
+elif [ "`cat /etc/default/locale | grep LANG= | grep pl`" != "" ]; then
+. $DEFLOCDIR/pl
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_BR`" != "" ]; then
+. $DEFLOCDIR/pt_BR
+elif [ "`cat /etc/default/locale | grep LANG= | grep pt_PT`" != "" ]; then
+. $DEFLOCDIR/pt_PT
+elif [ "`cat /etc/default/locale | grep LANG= | grep ru`" != "" ]; then
+. $DEFLOCDIR/ru
+elif [ "`cat /etc/default/locale | grep LANG= | grep uk`" != "" ]; then
+. $DEFLOCDIR/uk
+elif [ "`cat /etc/default/locale | grep LANG= | grep zh_CN`" != "" ]; then
+. $DEFLOCDIR/zh_CN
+else
+. $DEFLOCDIR/en
+fi
+
+testroot="`whoami`"
+if [ "$testroot" != "root" ]; then
+	echo " Must be root... Exiting"
+	exit 1
+fi
+
+DIALOG="yad --window-icon=sparky-aptus-appcenter --width=600 --height=350 --center"
+TITLE="--always-print-result --dialog-sep --image=sparky-aptus-appcenter --title="
+TEXT="--text="
+MENU="--list --column=$LOCAL049 --column=$LOCAL050"
+OKEXIT=" --button=Ok:0 --button=$LOCAL001:1"
+MSGBOX="--button=Ok:0"
+TITLETEXT="APTus AppCenter"
+ARCH64=`uname -r | grep "amd64"`
+ARCHX64=`uname -r | grep "x64" | awk '{print $1}'`
+ARCH686=`uname -r | grep "686"`
+if [ "$ARCH64" != "" ]; then
+	ARCH="OK"
+elif [ "$ARCHX64" != "" ]; then
+	ARCH="OK"
+elif [ "$ARCH686" != "" ]; then
+	ARCH="OK"
+else
+	ARCH=""
+fi
+TESTDEBIAN64=`dpkg-query -l | grep linux-image-amd64`
+TESTDEBIAN64RT=`dpkg-query -l | grep linux-image-rt-amd64`
+TESTDEBIAN32=`dpkg-query -l | grep linux-image-686 | grep -v pae`
+TESTDEBIAN32PAE=`dpkg-query -l | grep linux-image-686-pae`
+TESTDEBIAN32PAERT=`dpkg-query -l | grep linux-image-rt-686-pae`
+# backports
+TESTDEBIAN64BACK=`dpkg-query -l | grep linux-image-amd64 | grep bpo`
+TESTDEBIAN64BACKRT=`dpkg-query -l | grep linux-image-rt-amd64 | grep bpo`
+TESTDEBIAN32BACK=`dpkg-query -l | grep linux-image-686 | grep bpo | grep -v pae`
+TESTDEBIAN32BACKPAE=`dpkg-query -l | grep linux-image-686-pae | grep bpo`
+TESTDEBIAN32BACKPAERT=`dpkg-query -l | grep linux-image-rt-686-pae | grep bpo`
+if [ -f /usr/bin/sparky-xterm ];then
+	SPARKYXTERM="/usr/bin/sparky-xterm"
+else
+	echo "sparky-xterm is missing... Exiting..."
+	exit 1
+fi
+CHECKNALA=`which nala`
+if [ "$CHECKNALA" != "" ]; then
+	UPDATE="nala update"
+	INSTALL="nala install"
+else
+	UPDATE="apt-get update"
+	INSTALL="apt-get install"
+fi
+
+# check connection
+PINGTEST=$(ping -c 1 sparkylinux.org | grep [0-9])
+if [ "$PINGTEST" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL016"
+	exit 1
+fi
+
+# check arch
+if [ "$ARCH" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL051"
+	exit 1
+fi
+
+mainmenu () {
+if [ "$ARCH686" = "" ]; then
+# 64bit
+CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
+64 "$LOCAL055" \
+64_RT "$LOCAL055 (RealTime)" \
+Exit "$LOCAL056"`
+else
+# 32bit
+CHOICES=`$DIALOG $TITLE"$TITLETEXT" $OKEXIT $MENU $TEXT"$LOCAL052" \
+NON_PAE "$LOCAL053" \
+PAE "$LOCAL054" \
+PAE_RT "$LOCAL054 (RealTime)" \
+Exit "$LOCAL056"`
+fi
+# 64BACK "$LOCAL055 Backports" \
+# 64BACK_RT "$LOCAL055 Backports (RealTime)" \
+# NON_PAEBACK "$LOCAL053 Backports" \
+# PAEBACK "$LOCAL054 Backports" \
+# PAEBACK_RT "$LOCAL054 Backports (RealTime)" \
+
+if [ "$?" = "0" ]; then
+	CHOICE=`echo $CHOICES | cut -d "|" -f 1`
+else
+	exit 0
+fi
+
+if [ "$CHOICE" = "NON_PAE" ]; then
+	nonpaemenu
+elif [ "$CHOICE" = "PAE" ]; then
+	paemenu
+elif [ "$CHOICE" = "PAE_RT" ]; then
+	paertmenu
+elif [ "$CHOICE" = "64" ]; then
+	amd64menu
+elif [ "$CHOICE" = "64_RT" ]; then
+	amd64rtmenu
+elif [ "$CHOICE" = "Exit" ]; then
+	exit 0
+else
+	exit 0
+fi
+}
+#elif [ "$CHOICE" = "NON_PAEBACK" ]; then
+#	nonpaebackmenu
+#elif [ "$CHOICE" = "PAEBACK" ]; then
+#	paebackmenu
+#elif [ "$CHOICE" = "PAEBACK_RT" ]; then
+#	paebackrtmenu
+#elif [ "$CHOICE" = "64BACK" ]; then
+#	amd64backmenu
+#elif [ "$CHOICE" = "64BACK_RT" ]; then
+#	amd64backrtmenu
+
+nonpaemenu () {
+if [ "$ARCH686" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
+	mainmenu
+fi
+
+# check is the Debian kernel installed already
+if [ "$TESTDEBIAN32" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+	mainmenu
+fi
+
+# install i686 NON-PAE Debian kernel and headers
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-686 linux-headers-686"
+
+$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+exit 0
+}
+
+#nonpaebackmenu () {
+#if [ "$ARCH" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
+#	mainmenu
+#fi
+#
+## check is the Debian backports kernel installed already
+#if [ "$TESTDEBIAN32" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+#	mainmenu
+#fi
+#
+## install i686 NON-PAE Debian backoprts kernel and headers
+#if [ -f /etc/apt/sources.list.d/debian-backports.list ]; then
+#	rm -f /etc/apt/sources.list.d/debian-backports.list
+#fi
+#echo deb http://deb.debian.org/debian bookworm-backports main contrib non-free | tee /etc/apt/sources.list.d/debian-backports.list
+#$SPARKYXTERM "$UPDATE"
+#$SPARKYXTERM "$INSTALL -t bookworm-backports linux-image-686 linux-headers-686"
+#
+#$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+#exit 0
+#}
+
+paemenu () {
+if [ "$ARCH686" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
+	mainmenu
+fi
+
+# check is the Debian kernel installed already
+if [ "$TESTDEBIAN32PAE" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+	mainmenu
+fi
+
+# install i686 PAE Debian kernel and headers
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-686-pae linux-headers-686-pae"
+
+$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+exit 0
+}
+
+#paebackmenu () {
+#if [ "$ARCH" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
+#	mainmenu
+#fi
+#
+## check is the Debian backports kernel installed already
+#if [ "$TESTDEBIAN32PAE" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+#	mainmenu
+#fi
+#
+## install i686 PAE Debian backports kernel and headers
+#if [ -f /etc/apt/sources.list.d/debian-backports.list ]; then
+#	rm -f /etc/apt/sources.list.d/debian-backports.list
+#fi
+#echo deb http://deb.debian.org/debian bookworm-backports main contrib non-free | tee /etc/apt/sources.list.d/debian-backports.list
+#$SPARKYXTERM "$UPDATE"
+#$SPARKYXTERM "$INSTALL -t bookworm-backports linux-image-686-pae linux-headers-686-pae"
+#
+#$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+#exit 0
+#}
+
+paertmenu () {
+if [ "$ARCH686" = "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
+	mainmenu
+fi
+
+# check is the Debian RT kernel installed already
+if [ "$TESTDEBIAN32PAERT" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+	mainmenu
+fi
+
+# install i686 PAE Debian RT kernel and headers
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-rt-686-pae linux-headers-rt-686-pae"
+
+$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+exit 0
+}
+
+#paebackrtmenu () {
+#if [ "$ARCH" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL057"
+#	mainmenu
+#fi
+#
+## check is the Debian backports RT kernel installed already
+#if [ "$TESTDEBIAN32PAERT" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+#	mainmenu
+#fi
+#
+## install i686 PAE Debian backports RT kernel and headers
+#if [ -f /etc/apt/sources.list.d/debian-backports.list ]; then
+#	rm -f /etc/apt/sources.list.d/debian-backports.list
+#fi
+#echo deb http://deb.debian.org/debian bookworm-backports main contrib non-free | tee /etc/apt/sources.list.d/debian-backports.list
+#$SPARKYXTERM "$UPDATE"
+#$SPARKYXTERM "$INSTALL -t bookworm-backports linux-image-rt-686-pae linux-headers-rt-686-pae"
+#
+#$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+#exit 0
+#}
+
+amd64menu () {
+if [ "$ARCH686" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
+	mainmenu
+fi
+
+# check is the Debian kernel installed already
+if [ "$TESTDEBIAN64" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+	mainmenu
+fi
+
+# install 64 bit Debian kernel and headers
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-amd64 linux-headers-amd64"
+
+$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+exit 0
+}
+
+#amd64backmenu () {
+#if [ "$ARCH" = "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
+#	mainmenu
+#fi
+#
+## check is the Debian backports kernel installed already
+#if [ "$TESTDEBIAN64BACK" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+#	mainmenu
+#fi
+#
+## install 64 bit Debian backports kernel and headers
+#if [ -f /etc/apt/sources.list.d/debian-backports.list ]; then
+#	rm -f /etc/apt/sources.list.d/debian-backports.list
+#fi
+#echo deb http://deb.debian.org/debian bookworm-backports main contrib non-free | tee /etc/apt/sources.list.d/debian-backports.list
+#$SPARKYXTERM "$UPDATE"
+#$SPARKYXTERM "$INSTALL -t bookworm-backports linux-image-amd64 linux-headers-amd64"
+#
+#$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+#exit 0
+#}
+
+amd64rtmenu () {
+if [ "$ARCH686" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
+	mainmenu
+fi
+
+# check is the Debian RT kernel installed already
+if [ "$TESTDEBIAN64RT" != "" ]; then
+	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+	mainmenu
+fi
+
+# install 64 bit Debian RT kernel and headers
+$SPARKYXTERM "$UPDATE && $INSTALL linux-image-rt-amd64 linux-headers-rt-amd64"
+
+$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+exit 0
+}
+
+#amd64backrtmenu () {
+#if [ "$ARCH" = "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL060"
+#	mainmenu
+#fi
+#
+## check is the Debian backoprts RT kernel installed already
+#if [ "$TESTDEBIAN64BACKRT" != "" ]; then
+#	$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL058"
+#	mainmenu
+#fi
+#
+## install 64 bit Debian backports RT kernel and headers
+#if [ -f /etc/apt/sources.list.d/debian-backports.list ]; then
+#	rm -f /etc/apt/sources.list.d/debian-backports.list
+#fi
+#echo deb http://deb.debian.org/debian bookworm-backports main contrib non-free | tee /etc/apt/sources.list.d/debian-backports.list
+#$SPARKYXTERM "apt-get update"
+#$SPARKYXTERM "apt-get install -t bookworm-backports linux-image-rt-amd64 linux-headers-rt-amd64"
+#
+#$DIALOG $TITLE"$TITLETEXT" $MSGBOX $TEXT"\n$LOCAL059"
+#exit 0
+#}
+
+mainmenu
