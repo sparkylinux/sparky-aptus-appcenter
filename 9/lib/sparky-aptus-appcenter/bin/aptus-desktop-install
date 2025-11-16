@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2025/09/07 by pavroo
+# last update 2025/11/16 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -700,6 +700,14 @@ elif [ "$1" = "gnome-shell" ]; then
 		fi
 		cp /usr/share/sparky-desktop-data/gnome-sh/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
 		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
+elif [ "$1" = "hyprland" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-hyprland ]; then
+		echo "installation hyprland desktop ok, no extra files to be installed"
 		DESKTOPCHECK="0"
 	else
 		DESKTOPCHECK="1"

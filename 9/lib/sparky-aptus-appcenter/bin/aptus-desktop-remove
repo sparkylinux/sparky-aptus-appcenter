@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2024/09/16 by pavroo
+# last update 2025/11/16 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -129,12 +129,18 @@ case $1 in
 	WMAN="gnome-shell"
 	REMPACKS="sparky-desktop-$PACKAGE gnome-session gnome-shell"
      ;;
+  hyprland)
+	PACKAGE="hyprland"
+	DESKTOP="Hyprland"
+	WMAN="Hyprland"
+	REMPACKS="sparky-desktop-$PACKAGE ^hyprland*"
+     ;;
   i3)
 	PACKAGE="i3"
 	DESKTOP="i3"
 	WMAN="i3"
 	REMPACKS="sparky-desktop-$PACKAGE i3-wm i3blocks sparky-conky-i3 rofi"
-     ;;
+     ;;\
   icewm)
 	PACKAGE="icewm"
 	DESKTOP="IceWM"

@@ -706,6 +706,14 @@ elif [ "$1" = "gnome-shell" ]; then
 		DESKTOPCHECK="1"
 	fi
 
+elif [ "$1" = "hyprland" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-hyprland ]; then
+		echo "installation hyprland desktop ok, no extra files to be installed"
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
+	fi
+
 elif [ "$1" = "i3" ]; then
 	if [ -d /usr/share/doc/sparky-desktop-i3 ] && [ -d /usr/share/sparky-desktop-data/i3/skel ]; then
 		if [ -d /home/$TARGETUSER/.config/i3 ]; then
