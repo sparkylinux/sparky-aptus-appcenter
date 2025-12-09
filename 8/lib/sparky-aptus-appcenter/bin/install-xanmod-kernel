@@ -4,7 +4,7 @@
 # Copyright 2015-2025 Paweł "pavroo" Pijanowski <pavroo@onet.eu>
 # Licensed under the GPLv2 license see /usr/share/common-licenses/GPL-2
 # Created 2020/10/20
-# Last update 2025/07/22
+# Last update 2025/12/09
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -100,6 +100,7 @@ EDGE2 "$LOCAL079 v2" \
 EDGE3 "$LOCAL079 v3" \
 MAIN2 "$LOCAL080 v2" \
 MAIN3 "$LOCAL080 v3" \
+LTS1 "$LOCAL081 v1" \
 LTS2 "$LOCAL081 v2" \
 LTS3 "$LOCAL081 v3" \
 RT2 "$LOCAL082 v2" \
@@ -140,6 +141,9 @@ elif [ "$CHOICE" = "MAIN2" ]; then
 elif [ "$CHOICE" = "MAIN3" ]; then
 	# install current MAINv3 kernel
 	$SPARKYXTERM "$UPDATE && $INSTALL linux-xanmod-x64v3"
+elif [ "$CHOICE" = "LTS1" ]; then
+	# install stable LTSv1 kernel
+	$SPARKYXTERM "$UPDATE && $INSTALL linux-xanmod-lts-x64v1"
 elif [ "$CHOICE" = "LTS2" ]; then
 	# install stable LTSv2 kernel
 	$SPARKYXTERM "$UPDATE && $INSTALL linux-xanmod-lts-x64v2"
