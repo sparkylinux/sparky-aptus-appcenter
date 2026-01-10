@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2025/11/16 by pavroo
+# last update 2026/01/10 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -158,6 +158,12 @@ case $1 in
 	DESKTOP="KDE Plasma"
 	WMAN="kwin_x11"
 	REMPACKS="sparky-desktop-$PACKAGE ^plasma*"
+     ;;
+  labwc)
+	PACKAGE="labwc"
+	DESKTOP="Labwc"
+	WMAN="Hyprland"
+	REMPACKS="sparky-desktop-$PACKAGE ^labwc*"
      ;;
   lumina)
 	PACKAGE="lumina"

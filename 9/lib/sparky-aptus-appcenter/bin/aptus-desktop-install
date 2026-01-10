@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# last update 2025/11/16 by pavroo
+# last update 2026/01/10 by pavroo
 
 # get default's locale file
 DEFLOCDIR="/usr/share/sparky/sparky-aptus-appcenter"
@@ -989,6 +989,55 @@ elif [ "$1" = "kde" ]; then
 		DESKTOPCHECK="0"
 	else
 		DESKTOPCHECK="1"	
+	fi
+
+elif [ "$1" = "labwc" ]; then
+	if [ -d /usr/share/doc/sparky-desktop-labwc ] && [ -d /usr/share/sparky-desktop-data/labwc/skel ]; then
+		if [ -f /home/$TARGETUSER/.gtkrc-2.0 ]; then
+			rm -f /home/$TARGETUSER/.gtkrc-2.0
+		fi
+		cp /usr/share/sparky-desktop-data/labwc/skel/.gtkrc-2.0 /home/$TARGETUSER/.gtkrc-2.0
+		chown $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.gtkrc-2.0
+		
+		if [ -f /home/$TARGETUSER/.config/Trolltech.conf ]; then
+			rm -f /home/$TARGETUSER/.config/Trolltech.conf
+		fi
+		cp /usr/share/sparky-desktop-data/labwc/skel/.config/Trolltech.conf /home/$TARGETUSER/.config/Trolltech.conf
+		
+		if [ -d /home/$TARGETUSER/.config/gtk-2.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-2.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-2.0
+		rsync -a /usr/share/sparky-desktop-data/labwc/skel/.config/gtk-2.0 /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/gtk-3.0 ]; then
+			rm -rf /home/$TARGETUSER/.config/gtk-3.0
+		fi
+		mkdir -p /home/$TARGETUSER/.config/gtk-3.0
+		rsync -a /usr/share/sparky-desktop-data/labwc/skel/.config/gtk-3.0 /home/$TARGETUSER/.config/
+		
+		if [ -d /home/$TARGETUSER/.config/jgmenu ]; then
+			rm -rf /home/$TARGETUSER/.config/jgmenu
+		fi
+		mkdir -p /home/$TARGETUSER/.config/jgmenu
+		rsync -a /usr/share/sparky-desktop-data/labwc/skel/.config/jgmenu /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/labwc ]; then
+			rm -rf /home/$TARGETUSER/.config/labwc
+		fi
+		mkdir -p /home/$TARGETUSER/.config/labwc
+		rsync -a /usr/share/sparky-desktop-data/labwc/skel/.config/labwc /home/$TARGETUSER/.config/
+
+		if [ -d /home/$TARGETUSER/.config/waybar ]; then
+			rm -rf /home/$TARGETUSER/.config/waybar
+		fi
+		mkdir -p /home/$TARGETUSER/.config/waybar
+		rsync -a /usr/share/sparky-desktop-data/labwc/skel/.config/waybar /home/$TARGETUSER/.config/
+		
+		chown -R $TARGETUSER:$TARGETUSER /home/$TARGETUSER/.config
+		DESKTOPCHECK="0"
+	else
+		DESKTOPCHECK="1"
 	fi
 
 elif [ "$1" = "lumina" ]; then
