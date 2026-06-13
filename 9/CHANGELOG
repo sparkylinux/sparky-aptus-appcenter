@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
+  Version 20260613~sparky9~0 (2026-06-13)
+-------------------------------------------------------------------------------
+  * added packages pdfarranger, zapzap
+  * removed packages lightzone, gnome-mousetrap, jack-keyboard, mousetweaks, qml-module-qtbluetooth, gnome-shell-extension-weather, magnus, gnome-theme-gilouche, metacity-themes, murrine-themes, qt5-style-plugins, shiki-brave-theme, shiki-colors, glade, elki, jugglinglab, ltrsift, rasmol, granule, acm, kraptor, xracer, prboom-plus, mokomaze, crossfire-client, etw, spring, triplea, playonlinux, q4wine, ogamesim, pokemmo-installer, qxw, fotoxx, goobox, amsynth, buzztrax, gjacktransport, jack-keyboard, lmms, phasex, grig, mudita24, swami, timemachne, voctomix, clapper, smtube, mangler, jftp, tickr, grdesktop, xsane, wordgrinder-x11, finger, s3fs, encfs, vmfs-tools, lumina-desktop
+  * replaced mono-complete to mono-devel, minetest to luanti, view3dscene to castle-model-viewer
+
+-------------------------------------------------------------------------------
   Version 20260326~sparky9~0 (2026-03-26)
 -------------------------------------------------------------------------------
   *  added packages opera-gx-stable, sparky-feh, azote
