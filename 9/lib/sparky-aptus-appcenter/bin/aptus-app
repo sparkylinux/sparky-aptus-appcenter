@@ -847,6 +847,16 @@ elif [ "$1" = "deepl-linux" ]; then
 	fi
 	PACKAGE="$1"
 
+elif [ "$1" = "dotnet-sdk-8.0" ]; then
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
+elif [ "$1" = "dotnet-sdk-10.0" ]; then
+	if [ "$ARCH64" = "" ] && [ "$ARCH64ARM" = "" ]; then
+		SYSTEM="wrong"
+	fi
+	PACKAGE="$1"
 ##### system backup #####
 elif [ "$1" = "eggs" ]; then
 	if [ "$ARCHARM" != "" ]; then

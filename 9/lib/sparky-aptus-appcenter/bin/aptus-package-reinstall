@@ -131,6 +131,18 @@ elif [ "$PACKAGE" = "microsoft-edge-stable" ]; then
 	$SPARKYXTERM "$REINSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
 	rm -rf $WORKDIR
 
+elif [ "$PACKAGE" = "dotnet-sdk-8.0" ] || [ "$PACKAGE" = "dotnet-sdk-10.0" ]; then
+	#kill -USR1 $YAD_PID
+	rm -rf $WORKDIR
+	mkdir -p $WORKDIR
+	cd $WORKDIR
+	# Microsoft's Debian 13 repository; the setup package installs its key and source list
+	$SPARKYXTERM "wget https://packages.microsoft.com/config/debian/13/packages-microsoft-prod.deb"
+	$SPARKYXTERM "$INSTALL ./packages-microsoft-prod.deb"
+	$SPARKYXTERM "$UPDATE"
+	$SPARKYXTERM "$REINSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
+	rm -rf $WORKDIR
+
 elif [ "$PACKAGE" = "openoffice" ]; then
 	#kill -USR1 $YAD_PID
 	$SPARKYXTERM "$REINSTALL $OOPACKAGES"
