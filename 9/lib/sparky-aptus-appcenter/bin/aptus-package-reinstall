@@ -64,6 +64,9 @@ SERVER64SKYPE="https://go.skype.com"
 PACK64SKYPE="skypeforlinux-64.deb"
 OOPACKAGES="openoffice-brand-en-us openoffice-brand-writer openoffice-brand-calc openoffice-brand-impress openoffice-brand-base openoffice-brand-draw openoffice-brand-math openoffice-pyuno openoffice-ooofonts openoffice-ooolinguistic openoffice-debian-menus"
 WPSPACKAGES="wps-office-fonts"
+SERVERKAMLYNK="https://github.com/dionatansimioni/KamLynk/releases/download/v0.8"
+PACKKAMLYNK="KamLynk-0.8-x86_64.AppImage"
+SHAKAMLYNK="3c8a742ad43e5b8dd46bc7ebac9ca6aa0b7feea06cbb3e733f132fe83a735344"
 if [ -f /usr/bin/spterm ]; then
 	SPARKYXTERM="spterm -e"
 elif [ -f /usr/bin/sparky-xterm ]; then
@@ -165,6 +168,43 @@ elif [ "$PACKAGE" = "blisk-browser-stable" ]; then
 	if [ -f /etc/apt/sources.list.d/blisk-browser.list ]; then
 		rm -f /etc/apt/sources.list.d/blisk-browser.list
 	fi
+
+elif [ "$PACKAGE" = "kamlynk" ]; then
+	#kill -USR1 $YAD_PID
+	rm -rf $WORKDIR
+	mkdir -p $WORKDIR
+	cd $WORKDIR
+	# the AppImage from the release page of its author, checked against the SHA-256 of his SHA256SUMS file
+	$SPARKYXTERM "wget $SERVERKAMLYNK/$PACKKAMLYNK"
+	if echo "$SHAKAMLYNK  $PACKKAMLYNK" | sha256sum -c - >/dev/null 2>&1; then
+		# the AppImage starts through fusermount, from the fuse3 package
+		if [ ! -f /usr/bin/fusermount3 ] && [ ! -f /usr/bin/fusermount ]; then
+			$SPARKYXTERM "$INSTALL fuse3"
+		fi
+		# the menu entry and the icon are the ones inside the AppImage
+		chmod 755 $PACKKAMLYNK
+		./$PACKKAMLYNK --appimage-extract kamlynk.desktop >/dev/null
+		./$PACKKAMLYNK --appimage-extract usr/share/icons/hicolor/scalable/apps/kamlynk.svg >/dev/null
+		if [ ! -f /usr/bin/fusermount3 ] && [ ! -f /usr/bin/fusermount ]; then
+			$SPARKYXTERM "echo 'KamLynk needs the fuse3 package to start, and it is NOT installed. Nothing has been changed.' && echo 'Press <ENTER> to exit...' && read"
+		elif [ ! -f squashfs-root/kamlynk.desktop ] || [ ! -f squashfs-root/usr/share/icons/hicolor/scalable/apps/kamlynk.svg ]; then
+			$SPARKYXTERM "echo 'The menu entry and the icon could NOT be read from the AppImage. Nothing has been changed.' && echo 'Press <ENTER> to exit...' && read"
+		else
+			rm -rf /opt/kamlynk
+			mkdir -p /opt/kamlynk
+			cp $PACKKAMLYNK /opt/kamlynk/KamLynk.AppImage
+			chmod 755 /opt/kamlynk/KamLynk.AppImage
+			cp squashfs-root/kamlynk.desktop /usr/share/applications/kamlynk.desktop
+			cp squashfs-root/usr/share/icons/hicolor/scalable/apps/kamlynk.svg /usr/share/pixmaps/kamlynk.svg
+			ln -sf /opt/kamlynk/KamLynk.AppImage /usr/bin/kamlynk
+			$SPARKYXTERM "echo 'KamLynk has been reinstalled in /opt/kamlynk.' && echo 'Done, press <ENTER> to exit...' && read"
+		fi
+	elif [ -f $WORKDIR/$PACKKAMLYNK ]; then
+		$SPARKYXTERM "echo 'The downloaded file does NOT match the SHA-256 checksum of its author. Nothing has been changed.' && echo 'Press <ENTER> to exit...' && read"
+	else
+		$SPARKYXTERM "echo 'The download has failed. Nothing has been changed.' && echo 'Check your internet connection and try again.' && echo 'Press <ENTER> to exit...' && read"
+	fi
+	rm -rf $WORKDIR
 
 else
 	#kill -USR1 $YAD_PID
