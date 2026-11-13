@@ -61,6 +61,9 @@ SERVER64SKYPE="https://go.skype.com"
 PACK64SKYPE="skypeforlinux-64.deb"
 OOPACKAGES="openoffice-brand-en-us openoffice-brand-writer openoffice-brand-calc openoffice-brand-impress openoffice-brand-base openoffice-brand-draw openoffice-brand-math openoffice-pyuno openoffice-ooofonts openoffice-ooolinguistic openoffice-debian-menus"
 WPSPACKAGES="wps-office-fonts"
+SERVERVINCI="https://github.com/dionatansimioni/vinci/releases/download/v0.4.7"
+PACKVINCI="Vinci-0.4.7-x86_64.AppImage"
+SHAVINCI="ea4dbf5b82a0594ab3e50ae57ffafada2b5c41babaeef409288fdead9e011891"
 if [ -f /usr/bin/spterm ]; then
 	SPARKYXTERM="spterm -e"
 elif [ -f /usr/bin/sparky-xterm ]; then
@@ -173,12 +176,50 @@ elif [ "$PACKAGE" = "blisk-browser-stable" ]; then
 		rm -f /etc/apt/sources.list.d/blisk-browser.list
 	fi
 
+elif [ "$PACKAGE" = "vinci" ]; then
+	#kill -USR1 $YAD_PID
+	rm -rf /tmp/sparky-appcenter
+	mkdir -p $WORKDIR
+	cd $WORKDIR
+	# the AppImage from the release page of its author, checked against the SHA-256 in the GitHub release asset record
+	$SPARKYXTERM "wget $SERVERVINCI/$PACKVINCI"
+	if echo "$SHAVINCI  $PACKVINCI" | sha256sum -c - >/dev/null 2>&1; then
+		# the AppImage starts through fusermount, from the fuse3 package
+		$SPARKYXTERM "$INSTALL -y --no-remove bsdextrautils podman distrobox fuse3 && touch $WORKDIR/vinci-dependencies-ready"
+		# the menu entry and the icon are the ones inside the AppImage
+		chmod 755 $PACKVINCI
+		./$PACKVINCI --appimage-extract usr/share/applications/io.github.dionatansimioni.Vinci.desktop >/dev/null
+		./$PACKVINCI --appimage-extract usr/share/icons/hicolor/scalable/apps/io.github.dionatansimioni.Vinci.svg >/dev/null
+		if [ ! -f $WORKDIR/vinci-dependencies-ready ] || ! command -v podman >/dev/null 2>&1 || ! command -v distrobox >/dev/null 2>&1 || ! command -v fusermount3 >/dev/null 2>&1 || ! command -v rev >/dev/null 2>&1; then
+			$SPARKYXTERM "echo 'Vinci needs bsdextrautils, podman, distrobox and fuse3, and a required tool is NOT installed. Nothing has been installed.' && echo 'Press <ENTER> to exit...' && read"
+		elif [ ! -f squashfs-root/usr/share/applications/io.github.dionatansimioni.Vinci.desktop ] || [ ! -f squashfs-root/usr/share/icons/hicolor/scalable/apps/io.github.dionatansimioni.Vinci.svg ]; then
+			$SPARKYXTERM "echo 'The menu entry and the icon could NOT be read from the AppImage. Nothing has been installed.' && echo 'Press <ENTER> to exit...' && read"
+		else
+			rm -rf /opt/vinci
+			mkdir -p /opt/vinci
+			cp $PACKVINCI /opt/vinci/Vinci.AppImage || exit 1
+			chmod 755 /opt/vinci/Vinci.AppImage
+			cp squashfs-root/usr/share/applications/io.github.dionatansimioni.Vinci.desktop /usr/share/applications/io.github.dionatansimioni.Vinci.desktop || exit 1
+			cp squashfs-root/usr/share/icons/hicolor/scalable/apps/io.github.dionatansimioni.Vinci.svg /usr/share/pixmaps/io.github.dionatansimioni.Vinci.svg || exit 1
+			ln -sf /opt/vinci/Vinci.AppImage /usr/bin/vinci
+			$SPARKYXTERM "echo 'Vinci has been installed in /opt/vinci.' && echo 'Done, press <ENTER> to exit...' && read"
+		fi
+	elif [ -f $WORKDIR/$PACKVINCI ]; then
+		$SPARKYXTERM "echo 'The downloaded file does NOT match the SHA-256 checksum of its author. Nothing has been installed.' && echo 'Press <ENTER> to exit...' && read"
+	else
+		$SPARKYXTERM "echo 'The download has failed. Nothing has been installed.' && echo 'Check your internet connection and try again.' && echo 'Press <ENTER> to exit...' && read"
+	fi
+	rm -rf /tmp/sparky-appcenter
+
 else
 	#kill -USR1 $YAD_PID
 	$SPARKYXTERM "$INSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
 fi
 	
 CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
+if [ "$PACKAGE" = "vinci" ] && [ -f /usr/bin/vinci ]; then
+	CHECKPACKAGE0="vinci"
+fi
 if [ "$CHECKPACKAGE0" = "" ]; then
 	DIALOGTEXT="$LOCAL013"
 else
