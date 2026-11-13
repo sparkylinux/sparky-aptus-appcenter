@@ -125,6 +125,20 @@ elif [ "$1" = "xnview" ]; then
 	fi
 	PACKAGE="$1"
 
+##### accessories devices #####
+elif [ "$1" = "kamlynk" ]; then
+	# an AppImage for x86_64 only, its Sony libraries need glibc 2.34 or newer
+	GLIBCVER=`getconf GNU_LIBC_VERSION | awk '{print $2}'`
+	GLIBCOLD=`printf '%s\n' "$GLIBCVER" "2.34" | sort -V | head -n1 | grep -v "2.34"`
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+		ERRORKAMLYNK="arch"
+	elif [ "$GLIBCOLD" != "" ]; then
+		SYSTEM="wrong"
+		ERRORKAMLYNK="glibc"
+	fi
+	PACKAGE="$1"
+
 ##### multimedia audio players #####
 elif [ "$1" = "harmonoid" ]; then
 	if [ "$ARCH64" = "" ]; then
@@ -885,6 +899,10 @@ if [ "$ERROROFFICE" = "openoff" ]; then
 	ERRORTEXT="$LOCAL025"
 elif [ "$ERROROFFICE" = "libreoff" ]; then
 	ERRORTEXT="$LOCAL025"
+elif [ "$ERRORKAMLYNK" = "arch" ]; then
+	ERRORTEXT="$LOCAL004"
+elif [ "$ERRORKAMLYNK" = "glibc" ]; then
+	ERRORTEXT="$LOCAL006"
 else
 	ERRORTEXT="$LOCAL016"
 fi
@@ -1052,6 +1070,17 @@ else
 	DESCRIPTION2="$DESCRIPTION2"
 fi
 
+# kamlynk is not a deb package, so tell here what will be downloaded
+if [ "$1" = "kamlynk" ]; then
+	VERSION="Version: 0.8"
+	SECTION="Section: utils"
+	MAINTAINER="Author: Dionatan Simioni"
+	DOWNSIZE="Download-Size: 54.6 MB"
+	INSTSIZE="Installed-Size: 54.6 MB"
+	DESCRIPTION1="Description: PC support for Sony cameras: monitor and remote"
+	DESCRIPTION2="KamLynk connects a Sony camera to your PC, over Wi-Fi or USB, and turns the PC into its monitor and remote.<br />It is made for the Sony ZV-E10 II and uses the Sony Camera Remote SDK, so other cameras that SDK supports should work too.<br />It is an AppImage from the release page of its author, checked against his SHA-256 checksum and installed in /opt/kamlynk for all users.<br />It includes the Sony Camera Remote SDK libraries, under the license of Sony.<br />Homepage: https://dionatansimioni.github.io/KamLynk/"
+fi
+
 CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
 
 # install, reinstall or remove discord
@@ -1156,6 +1185,24 @@ elif [ "$1" = "wps-office" ]; then
 		PACKTEXT="$LOCAL011 $LOCAL012"
 		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ ! -f /usr/bin/wps ]; then
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		fi
+	fi
+
+# install, reinstall or remove kamlynk
+elif [ "$1" = "kamlynk" ]; then
+	if [ -f /usr/bin/kamlynk ]; then
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	elif [ ! -f /usr/bin/kamlynk ]; then
 		if [ "$PINGTEST" = "" ]; then
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL003 $LOCAL005"
