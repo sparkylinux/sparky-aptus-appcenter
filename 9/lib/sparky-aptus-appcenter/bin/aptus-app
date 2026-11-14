@@ -125,6 +125,20 @@ elif [ "$1" = "xnview" ]; then
 	fi
 	PACKAGE="$1"
 
+##### graphics others #####
+elif [ "$1" = "vinci" ]; then
+	# an AppImage for x86_64 only, it needs glibc 2.39 or newer
+	GLIBCVER=`getconf GNU_LIBC_VERSION | awk '{print $2}'`
+	GLIBCOLD=`printf '%s\n' "$GLIBCVER" "2.39" | sort -V | head -n1 | grep -v "2.39"`
+	if [ "$ARCH64" = "" ]; then
+		SYSTEM="wrong"
+		ERRORVINCI="arch"
+	elif [ "$GLIBCOLD" != "" ]; then
+		SYSTEM="wrong"
+		ERRORVINCI="glibc"
+	fi
+	PACKAGE="$1"
+
 ##### multimedia audio players #####
 elif [ "$1" = "harmonoid" ]; then
 	if [ "$ARCH64" = "" ]; then
@@ -885,6 +899,10 @@ if [ "$ERROROFFICE" = "openoff" ]; then
 	ERRORTEXT="$LOCAL025"
 elif [ "$ERROROFFICE" = "libreoff" ]; then
 	ERRORTEXT="$LOCAL025"
+elif [ "$ERRORVINCI" = "arch" ]; then
+	ERRORTEXT="$LOCAL004"
+elif [ "$ERRORVINCI" = "glibc" ]; then
+	ERRORTEXT="$LOCAL006"
 else
 	ERRORTEXT="$LOCAL016"
 fi
@@ -1052,6 +1070,17 @@ else
 	DESCRIPTION2="$DESCRIPTION2"
 fi
 
+# vinci is not a deb package, so tell here what will be downloaded
+if [ "$1" = "vinci" ]; then
+	VERSION="Version: 0.4.7"
+	SECTION="Section: video"
+	MAINTAINER="Author: Dionatan Simioni"
+	DOWNSIZE="Download-Size: 38.3 MB"
+	INSTSIZE="Installed-Size: 38.3 MB"
+	DESCRIPTION1="Description: unofficial DaVinci Resolve installer"
+	DESCRIPTION2="Vinci installs DaVinci Resolve in a container using podman and distrobox, which this entry installs with fuse3 and bsdextrautils.<br />Download the official Resolve Linux installer from Blackmagic Design yourself.<br />Vinci is by Dionatan Simioni, GPL-3.0-or-later, independent of Blackmagic Design.<br />DaVinci Resolve is a trademark of Blackmagic Design Pty. Ltd.<br />Homepage: https://dionatansimioni.github.io/vinci/"
+fi
+
 CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
 
 # install, reinstall or remove discord
@@ -1156,6 +1185,24 @@ elif [ "$1" = "wps-office" ]; then
 		PACKTEXT="$LOCAL011 $LOCAL012"
 		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
 	elif [ ! -f /usr/bin/wps ]; then
+		if [ "$PINGTEST" = "" ]; then
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL003 $LOCAL005"
+			PACKBUTTONS="<a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		else
+			PACKTITLE="Install Package"
+			PACKTEXT="$LOCAL014"
+			PACKBUTTONS="<a href="aptus://debinst_$1" class="buttonmenu">$LOCAL010</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+		fi
+	fi
+
+# install, reinstall or remove vinci
+elif [ "$1" = "vinci" ]; then
+	if [ -f /usr/bin/vinci ]; then
+		PACKTITLE="Remove or Reinstall Package"
+		PACKTEXT="$LOCAL011 $LOCAL012"
+		PACKBUTTONS="<a href="aptus://debremo_$1" class="buttonmenu">$LOCAL008</a>&nbsp;&nbsp; <a href="aptus://debrein_$1" class="buttonmenu">$LOCAL009</a>&nbsp;&nbsp; <a href="aptus://idzi_idzi" class="buttonmenu">$LOCAL001</a><br />"
+	elif [ ! -f /usr/bin/vinci ]; then
 		if [ "$PINGTEST" = "" ]; then
 			PACKTITLE="Install Package"
 			PACKTEXT="$LOCAL003 $LOCAL005"

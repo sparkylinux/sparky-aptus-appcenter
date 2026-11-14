@@ -79,6 +79,10 @@ elif [ "$PACKAGE" = "vmware" ]; then
 	/usr/bin/sparky-vmplayer-installer
 	exit 0
 
+elif [ "$PACKAGE" = "vinci" ]; then
+	# the AppImage, its menu entry and icon, only; Resolve containers, projects and user settings stay with their users
+	$SPARKYXTERM "rm -rfv /opt/vinci /usr/bin/vinci /usr/share/applications/io.github.dionatansimioni.Vinci.desktop /usr/share/pixmaps/io.github.dionatansimioni.Vinci.svg  && echo 'Done, press <ENTER> to exit...' && read"
+
 else
 	#kill -USR1 $YAD_PID
 	$SPARKYXTERM "$UNINSTALL $PACKAGE && echo 'Done, press <ENTER> to exit...' && read"
@@ -89,6 +93,9 @@ if [ -f /usr/lib/sparky-aptus-appcenter/page-error.html ]; then
 fi
 
 CHECKPACKAGE0=`apt-cache policy $PACKAGE | head -n2 | tail -n1 | grep [0-9]`
+if [ "$PACKAGE" = "vinci" ] && [ -f /usr/bin/vinci ]; then
+	CHECKPACKAGE0="vinci"
+fi
 if [ "$CHECKPACKAGE0" = "" ]; then
 	DIALOGTEXT="$LOCAL031"
 else
